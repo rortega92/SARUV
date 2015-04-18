@@ -298,6 +298,7 @@ ul.sidebar-menu li ul.sub li:last-child{
 }
 
 ul.sidebar-menu li ul.sub li a {
+    white-space: nowrap;
     font-size: 12px;
     padding: 0 0 0 32px;
     line-height: 35px;
