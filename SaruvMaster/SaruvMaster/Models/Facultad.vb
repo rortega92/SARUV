@@ -4,7 +4,7 @@ Namespace Models
     Public Class Facultad
         Public Property ID As Integer
         Public Property Nombre As String
-        
+
     End Class
 
     Public Class FacultadDbContext

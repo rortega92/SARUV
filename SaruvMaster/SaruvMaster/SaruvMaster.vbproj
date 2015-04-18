@@ -189,12 +189,14 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="Controllers\AccountController.vb" />
+    <Compile Include="Controllers\AreasDeConocimientoController.vb" />
     <Compile Include="Controllers\FacultadController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.vb" />
+    <Compile Include="Models\AreasDeConocimientoModels.vb" />
     <Compile Include="Models\Facultad.vb" />
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\ManageViewModels.vb" />
@@ -861,6 +863,11 @@
     <Content Include="Views\Facultad\Details.vbhtml" />
     <Content Include="Views\Facultad\Edit.vbhtml" />
     <Content Include="Views\Facultad\Index.vbhtml" />
+    <Content Include="Views\AreasDeConocimiento\Create.vbhtml" />
+    <Content Include="Views\AreasDeConocimiento\Delete.vbhtml" />
+    <Content Include="Views\AreasDeConocimiento\Details.vbhtml" />
+    <Content Include="Views\AreasDeConocimiento\Edit.vbhtml" />
+    <Content Include="Views\AreasDeConocimiento\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
