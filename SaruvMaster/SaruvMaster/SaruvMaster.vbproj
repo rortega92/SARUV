@@ -199,7 +199,7 @@
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreasDeConocimientoModels.vb" />
     <Compile Include="Models\EmpresaModels.vb" />
-    <Compile Include="Models\Facultad.vb" />
+    <Compile Include="Models\FacultadModels.vb" />
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\ManageViewModels.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -860,11 +860,6 @@
     <Content Include="Views\Shared\_Layout2.vbhtml" />
     <Content Include="Views\Shared\Header.vbhtml" />
     <Content Include="Views\Shared\LeftContent.vbhtml" />
-    <Content Include="Views\Facultad\Create.vbhtml" />
-    <Content Include="Views\Facultad\Delete.vbhtml" />
-    <Content Include="Views\Facultad\Details.vbhtml" />
-    <Content Include="Views\Facultad\Edit.vbhtml" />
-    <Content Include="Views\Facultad\Index.vbhtml" />
     <Content Include="Views\AreasDeConocimiento\Create.vbhtml" />
     <Content Include="Views\AreasDeConocimiento\Delete.vbhtml" />
     <Content Include="Views\AreasDeConocimiento\Details.vbhtml" />
@@ -875,6 +870,11 @@
     <Content Include="Views\Empresa\Details.vbhtml" />
     <Content Include="Views\Empresa\Edit.vbhtml" />
     <Content Include="Views\Empresa\Index.vbhtml" />
+    <Content Include="Views\Facultad\Create.vbhtml" />
+    <Content Include="Views\Facultad\Delete.vbhtml" />
+    <Content Include="Views\Facultad\Details.vbhtml" />
+    <Content Include="Views\Facultad\Edit.vbhtml" />
+    <Content Include="Views\Facultad\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

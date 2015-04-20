@@ -1,34 +1,26 @@
-﻿@ModelType SaruvMaster.Models.Facultad
-
+﻿@ModelType SaruvMaster.FacultadModels
 @Code
-    Layout = Nothing
+    ViewData("Title") = "Details"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<!DOCTYPE html>
+<h2>Details</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>Facultad</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.Nombre)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.Nombre)
-            </dd>
-    
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+<div>
+    <h4>FacultadModels</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(Function(model) model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Function(model) model.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

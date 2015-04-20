@@ -6,8 +6,7 @@ Imports System.Linq
 Imports System.Net
 Imports System.Web
 Imports System.Web.Mvc
-Imports SaruvMaster.Models
-
+Imports SaruvMaster
 
 Namespace Controllers
     Public Class FacultadController
@@ -17,7 +16,7 @@ Namespace Controllers
 
         ' GET: Facultad
         Function Index() As ActionResult
-            Return View(db.Facultad.ToList())
+            Return View(db.facultades.ToList())
         End Function
 
         ' GET: Facultad/Details/5
@@ -25,11 +24,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim facultad As Facultad = db.Facultad.Find(id)
-            If IsNothing(facultad) Then
+            Dim facultadModels As FacultadModels = db.facultades.Find(id)
+            If IsNothing(facultadModels) Then
                 Return HttpNotFound()
             End If
-            Return View(facultad)
+            Return View(facultadModels)
         End Function
 
         ' GET: Facultad/Create
@@ -42,13 +41,13 @@ Namespace Controllers
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,Nombre")> ByVal facultad As Facultad) As ActionResult
+        Function Create(<Bind(Include:="ID,Nombre")> ByVal facultadModels As FacultadModels) As ActionResult
             If ModelState.IsValid Then
-                db.Facultad.Add(facultad)
+                db.facultades.Add(facultadModels)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(facultad)
+            Return View(facultadModels)
         End Function
 
         ' GET: Facultad/Edit/5
@@ -56,11 +55,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim facultad As Facultad = db.Facultad.Find(id)
-            If IsNothing(facultad) Then
+            Dim facultadModels As FacultadModels = db.facultades.Find(id)
+            If IsNothing(facultadModels) Then
                 Return HttpNotFound()
             End If
-            Return View(facultad)
+            Return View(facultadModels)
         End Function
 
         ' POST: Facultad/Edit/5
@@ -68,13 +67,13 @@ Namespace Controllers
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,Nombre")> ByVal facultad As Facultad) As ActionResult
+        Function Edit(<Bind(Include:="ID,Nombre")> ByVal facultadModels As FacultadModels) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(facultad).State = EntityState.Modified
+                db.Entry(facultadModels).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(facultad)
+            Return View(facultadModels)
         End Function
 
         ' GET: Facultad/Delete/5
@@ -82,11 +81,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim facultad As Facultad = db.Facultad.Find(id)
-            If IsNothing(facultad) Then
+            Dim facultadModels As FacultadModels = db.facultades.Find(id)
+            If IsNothing(facultadModels) Then
                 Return HttpNotFound()
             End If
-            Return View(facultad)
+            Return View(facultadModels)
         End Function
 
         ' POST: Facultad/Delete/5
@@ -94,8 +93,8 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim facultad As Facultad = db.Facultad.Find(id)
-            db.Facultad.Remove(facultad)
+            Dim facultadModels As FacultadModels = db.facultades.Find(id)
+            db.facultades.Remove(facultadModels)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function
