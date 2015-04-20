@@ -5,7 +5,7 @@
         <ul class="sidebar-menu">
 
             <li class="sub-menu">
-                <a href="javascript:;" class="">
+                <a href=" javascript:;" class="">
                     <i class="icon_document_alt"></i>
                     <span>Administración</span>
                     <span class="menu-arrow arrow_carrot-right"></span>
@@ -21,13 +21,13 @@
 
 
             <li class="sub-menu">
-                <a href="javascript:;" class="">
+                <a style="display:flex;" href="javascript:;" class="">
                     <i class="icon_table"></i>
                     <span>Registro de Datos</span>
                     <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
                 <ul class="sub">
-                    <li><a class="" href="#">Área de Conocimiento</a></li>
+                    <li><a class="" href="AreasDeConocimiento">Área de Conocimiento</a></li>
                     <li><a class="" href="#">Cliente Corporativo</a></li>
                     <li><a class="" href="#">Curso</a></li>
                     <li><a class="" href="#">Departamento</a></li>

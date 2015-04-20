@@ -57,8 +57,6 @@
     <!--custome script for all page-->
     @Scripts.Render("~/Content/layout/js/scripts.js")
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required:=False)
 
 </body>
