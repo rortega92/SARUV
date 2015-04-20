@@ -1,16 +1,16 @@
 ﻿@ModelType SaruvMaster.AreasDeConocimientoModels
 @Code
-    ViewData("Title") = "Create"
+    ViewData("Title") = "Crear"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Create</h2>
+<h3>Crear</h3>
 
 @Using (Html.BeginForm()) 
     @Html.AntiForgeryToken()
     
     @<div class="form-horizontal">
-        <h4>AreasDeConocimientoModels</h4>
+        <h4>Area de conocimiento</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
         <div class="form-group">
@@ -23,14 +23,14 @@ End Code
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Crear" class="btn btn-default" />
             </div>
         </div>
     </div>
 End Using
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar a la lista", "Index")
 </div>
 
 @Section Scripts 

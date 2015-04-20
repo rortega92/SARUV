@@ -1,14 +1,13 @@
 ﻿@ModelType SaruvMaster.AreasDeConocimientoModels
 @Code
-    ViewData("Title") = "Delete"
+    ViewData("Title") = "Borrar"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>Eliminar</h3>
 <div>
-    <h4>AreasDeConocimientoModels</h4>
+    <h4>Area de conocimiento</h4>
+    <p>Desea eliminar el registro?</p>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -23,9 +22,11 @@ End Code
     @Using (Html.BeginForm())
         @Html.AntiForgeryToken()
 
-        @<div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+        @<div class="form-group">
+             <input type="submit" value="Eliminar" class="btn btn-default" />
+         </div>        
     End Using
+    <div>
+        @Html.ActionLink("Regresar a la lista", "Index")
+    </div>
 </div>

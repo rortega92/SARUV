@@ -1,17 +1,11 @@
 ﻿@ModelType IEnumerable(Of SaruvMaster.Models.Facultad)
 
 @Code
-    Layout = Nothing
+    ViewData("Title") = "Index"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
+<h2>Index</h2>
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
@@ -37,5 +31,3 @@ End Code
     Next
     
     </table>
-</body>
-</html>
