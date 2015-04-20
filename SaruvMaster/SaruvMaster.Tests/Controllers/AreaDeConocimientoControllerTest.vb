@@ -10,12 +10,41 @@ Imports SaruvMaster.Controllers
     <TestMethod()> Public Sub Index()
         ' Arrange
         Dim controller As New AreasDeConocimientoController()
-
         ' Act
-        Dim result As ActionResult = DirectCast(controller.Index(), ViewResult)
-
+        Dim result As ActionResult = DirectCast(controller.Index(), ActionResult)
         ' Assert
         Assert.IsNotNull(result)
     End Sub
-
+    <TestMethod()> Public Sub Details()
+        ' Arrange
+        Dim controller As New AreasDeConocimientoController()
+        ' Act
+        Dim result As ActionResult = DirectCast(controller.Details(1), ActionResult)
+        ' Assert
+        Assert.IsNotNull(result)
+    End Sub
+    <TestMethod()> Public Sub Create()
+        ' Arrange
+        Dim controller As New AreasDeConocimientoController()
+        ' Act
+        Dim result As ActionResult = DirectCast(controller.Create(), ActionResult)
+        ' Assert
+        Assert.IsNotNull(result)
+    End Sub
+    <TestMethod()> Public Sub Edit()
+        ' Arrange
+        Dim controller As New AreasDeConocimientoController()
+        ' Act
+        Dim result As ActionResult = DirectCast(controller.Edit(1), ActionResult)
+        ' Assert
+        Assert.IsNotNull(result)
+    End Sub
+    <TestMethod()> Public Sub Delete()
+        ' Arrange
+        Dim controller As New AreasDeConocimientoController()
+        ' Act
+        Dim result As ActionResult = DirectCast(controller.Delete(1), ActionResult)
+        ' Assert
+        Assert.IsNotNull(result)
+    End Sub
 End Class

@@ -7,6 +7,8 @@ Imports System.Net
 Imports System.Web
 Imports System.Web.Mvc
 Imports SaruvMaster
+Imports System.Data.SqlClient
+
 
 Namespace Controllers
     Public Class AreasDeConocimientoController

@@ -17,9 +17,7 @@ Namespace Controllers
 
         ' GET: Facultad
         Function Index() As ActionResult
-            Dim facultad = From m In db.Facultad
-                         Select m
-            Return View(facultad)
+            Return View(db.Facultad.ToList())
         End Function
 
         ' GET: Facultad/Details/5
