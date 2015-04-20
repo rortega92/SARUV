@@ -4,21 +4,25 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h3>Detalles</h3>
-
 <div>
-    <h4>Area de conocimiento</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento)
-        </dt>
+    <h3>Area de conocimiento</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            Detalles
+        </header>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.AreaDeConocimiento)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.AreaDeConocimiento)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+    </section>
 </div>
 <p>
     @Html.ActionLink("Editar", "Edit", New With {.id = Model.ID}) |
