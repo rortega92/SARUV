@@ -19,7 +19,7 @@ Public Class EmpresaModels
 
     <Display(Name:="Teléfono"), Required>
     <StringLength(255, MinimumLength:=5, ErrorMessage:="Solo se puede un minimo de 5 letras y un maximo de 255 letras")>
-    <RegularExpression("^[a-zA-Z ]*$", ErrorMessage:="Solo se aceptan letras y espacios")>
+    <RegularExpression("^(\d{3}|\(\s*\d{3}\s*\))\s*-?\s*\d{4}\s*-?\s*\d{4}$", ErrorMessage:="Solo se aceptan los formatos: (504)-2233-4455, 504-2233-4455, 504-22334455, 50422334455")>
     Public Property Telefono As String
 
     <Display(Name:="Ciudad"), Required>
