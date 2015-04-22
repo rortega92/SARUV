@@ -1,4 +1,4 @@
-﻿@ModelType SaruvMaster.Facultad
+﻿@ModelType SaruvMaster.AreaDeConocimiento
 @Code
     ViewData("Title") = "Details"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
@@ -7,7 +7,7 @@ End Code
 <h2>Details</h2>
 
 <div>
-    <h4>Facultad</h4>
+    <h4>AreaDeConocimiento</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>

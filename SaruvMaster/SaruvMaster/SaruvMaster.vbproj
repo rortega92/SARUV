@@ -189,16 +189,21 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="Controllers\AccountController.vb" />
-    <Compile Include="Controllers\AreasDeConocimientoController.vb" />
+    <Compile Include="Controllers\AreaDeConocimientoController.vb" />
+    <Compile Include="Controllers\DocenteController.vb" />
     <Compile Include="Controllers\EmpresaController.vb" />
     <Compile Include="Controllers\FacultadController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
+    <Compile Include="DAL\Connection.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.vb" />
+    <Compile Include="Models\AreaDeConocimiento.vb" />
     <Compile Include="Models\AreasDeConocimientoModels.vb" />
+    <Compile Include="Models\Docente.vb" />
     <Compile Include="Models\EmpresaModels.vb" />
+    <Compile Include="Models\Facultad.vb" />
     <Compile Include="Models\FacultadModels.vb" />
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\ManageViewModels.vb" />
@@ -860,21 +865,26 @@
     <Content Include="Views\Shared\_Layout2.vbhtml" />
     <Content Include="Views\Shared\Header.vbhtml" />
     <Content Include="Views\Shared\LeftContent.vbhtml" />
-    <Content Include="Views\AreasDeConocimiento\Create.vbhtml" />
-    <Content Include="Views\AreasDeConocimiento\Delete.vbhtml" />
-    <Content Include="Views\AreasDeConocimiento\Details.vbhtml" />
-    <Content Include="Views\AreasDeConocimiento\Edit.vbhtml" />
-    <Content Include="Views\AreasDeConocimiento\Index.vbhtml" />
     <Content Include="Views\Empresa\Create.vbhtml" />
     <Content Include="Views\Empresa\Delete.vbhtml" />
     <Content Include="Views\Empresa\Details.vbhtml" />
     <Content Include="Views\Empresa\Edit.vbhtml" />
     <Content Include="Views\Empresa\Index.vbhtml" />
+    <Content Include="Views\AreaDeConocimiento\Create.vbhtml" />
+    <Content Include="Views\AreaDeConocimiento\Delete.vbhtml" />
+    <Content Include="Views\AreaDeConocimiento\Details.vbhtml" />
+    <Content Include="Views\AreaDeConocimiento\Edit.vbhtml" />
+    <Content Include="Views\AreaDeConocimiento\Index.vbhtml" />
     <Content Include="Views\Facultad\Create.vbhtml" />
     <Content Include="Views\Facultad\Delete.vbhtml" />
     <Content Include="Views\Facultad\Details.vbhtml" />
     <Content Include="Views\Facultad\Edit.vbhtml" />
     <Content Include="Views\Facultad\Index.vbhtml" />
+    <Content Include="Views\Docente\Create.vbhtml" />
+    <Content Include="Views\Docente\Delete.vbhtml" />
+    <Content Include="Views\Docente\Details.vbhtml" />
+    <Content Include="Views\Docente\Edit.vbhtml" />
+    <Content Include="Views\Docente\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

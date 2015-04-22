@@ -9,92 +9,92 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
-    Public Class FacultadController
+    Public Class AreaDeConocimientoController
         Inherits System.Web.Mvc.Controller
 
         Private db As New Connection
 
-        ' GET: Facultad
+        ' GET: AreaDeConocimiento
         Function Index() As ActionResult
-            Return View(db.Facultad.ToList())
+            Return View(db.AreaDeConocimiento.ToList())
         End Function
 
-        ' GET: Facultad/Details/5
+        ' GET: AreaDeConocimiento/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim facultad As Facultad = db.Facultad.Find(id)
-            If IsNothing(facultad) Then
+            Dim areaDeConocimiento As AreaDeConocimiento = db.AreaDeConocimiento.Find(id)
+            If IsNothing(areaDeConocimiento) Then
                 Return HttpNotFound()
             End If
-            Return View(facultad)
+            Return View(areaDeConocimiento)
         End Function
 
-        ' GET: Facultad/Create
+        ' GET: AreaDeConocimiento/Create
         Function Create() As ActionResult
             Return View()
         End Function
 
-        ' POST: Facultad/Create
+        ' POST: AreaDeConocimiento/Create
         'Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,Nombre")> ByVal facultad As Facultad) As ActionResult
+        Function Create(<Bind(Include:="ID,Nombre")> ByVal areaDeConocimiento As AreaDeConocimiento) As ActionResult
             If ModelState.IsValid Then
-                db.Facultad.Add(facultad)
+                db.AreaDeConocimiento.Add(areaDeConocimiento)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(facultad)
+            Return View(areaDeConocimiento)
         End Function
 
-        ' GET: Facultad/Edit/5
+        ' GET: AreaDeConocimiento/Edit/5
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim facultad As Facultad = db.Facultad.Find(id)
-            If IsNothing(facultad) Then
+            Dim areaDeConocimiento As AreaDeConocimiento = db.AreaDeConocimiento.Find(id)
+            If IsNothing(areaDeConocimiento) Then
                 Return HttpNotFound()
             End If
-            Return View(facultad)
+            Return View(areaDeConocimiento)
         End Function
 
-        ' POST: Facultad/Edit/5
+        ' POST: AreaDeConocimiento/Edit/5
         'Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,Nombre")> ByVal facultad As Facultad) As ActionResult
+        Function Edit(<Bind(Include:="ID,Nombre")> ByVal areaDeConocimiento As AreaDeConocimiento) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(facultad).State = EntityState.Modified
+                db.Entry(areaDeConocimiento).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(facultad)
+            Return View(areaDeConocimiento)
         End Function
 
-        ' GET: Facultad/Delete/5
+        ' GET: AreaDeConocimiento/Delete/5
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim facultad As Facultad = db.Facultad.Find(id)
-            If IsNothing(facultad) Then
+            Dim areaDeConocimiento As AreaDeConocimiento = db.AreaDeConocimiento.Find(id)
+            If IsNothing(areaDeConocimiento) Then
                 Return HttpNotFound()
             End If
-            Return View(facultad)
+            Return View(areaDeConocimiento)
         End Function
 
-        ' POST: Facultad/Delete/5
+        ' POST: AreaDeConocimiento/Delete/5
         <HttpPost()>
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim facultad As Facultad = db.Facultad.Find(id)
-            db.Facultad.Remove(facultad)
+            Dim areaDeConocimiento As AreaDeConocimiento = db.AreaDeConocimiento.Find(id)
+            db.AreaDeConocimiento.Remove(areaDeConocimiento)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function

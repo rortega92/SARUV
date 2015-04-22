@@ -1,20 +1,18 @@
-﻿@ModelType SaruvMaster.Facultad
+﻿@ModelType SaruvMaster.AreaDeConocimiento
 @Code
-    ViewData("Title") = "Edit"
+    ViewData("Title") = "Create"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Edit</h2>
+<h2>Create</h2>
 
-@Using (Html.BeginForm())
+@Using (Html.BeginForm()) 
     @Html.AntiForgeryToken()
     
     @<div class="form-horizontal">
-        <h4>Facultad</h4>
+        <h4>AreaDeConocimiento</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
-        @Html.HiddenFor(Function(model) model.ID)
-
         <div class="form-group">
             @Html.LabelFor(Function(model) model.Nombre, htmlAttributes:= New With { .class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -25,7 +23,7 @@ End Code
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>

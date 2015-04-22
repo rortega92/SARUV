@@ -7,96 +7,103 @@ Imports System.Net
 Imports System.Web
 Imports System.Web.Mvc
 Imports SaruvMaster
-Imports System.Data.SqlClient
-
 
 Namespace Controllers
-    Public Class AreasDeConocimientoController
+    Public Class DocenteController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New AreaConocimientoDbContext
+        Private db As New Connection
 
-        ' GET: AreasDeConocimiento
+        ' GET: Docente
         Function Index() As ActionResult
-            Return View(db.areas.ToList())
+            Dim docente = db.Docente.Include(Function(d) d.AreaDeConocimiento).Include(Function(d) d.Facultad)
+            Return View(docente.ToList())
         End Function
 
-        ' GET: AreasDeConocimiento/Details/5
+        ' GET: Docente/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim areasDeConocimientoModels As AreasDeConocimientoModels = db.areas.Find(id)
-            If IsNothing(areasDeConocimientoModels) Then
+            Dim docente As Docente = db.Docente.Find(id)
+            If IsNothing(docente) Then
                 Return HttpNotFound()
             End If
-            Return View(areasDeConocimientoModels)
+            Return View(docente)
         End Function
 
-        ' GET: AreasDeConocimiento/Create
+        ' GET: Docente/Create
         Function Create() As ActionResult
+            ViewBag.AreaDeConocimientoID = New SelectList(db.AreaDeConocimiento, "ID", "Nombre")
+            ViewBag.FacultadID = New SelectList(db.Facultad, "ID", "Nombre")
             Return View()
         End Function
 
-        ' POST: AreasDeConocimiento/Create
+        ' POST: Docente/Create
         'Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,AreaDeConocimiento")> ByVal areasDeConocimientoModels As AreasDeConocimientoModels) As ActionResult
+        Function Create(<Bind(Include:="ID,Nombres,Apellidos,NumeroTalentoHumano,correoElectronico,telefono,AreaDeConocimientoID,FacultadID")> ByVal docente As Docente) As ActionResult
             If ModelState.IsValid Then
-                db.areas.Add(areasDeConocimientoModels)
+                db.Docente.Add(docente)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(areasDeConocimientoModels)
+            ViewBag.AreaDeConocimientoID = New SelectList(db.AreaDeConocimiento, "ID", "Nombre", docente.AreaDeConocimientoID)
+            ViewBag.FacultadID = New SelectList(db.Facultad, "ID", "Nombre", docente.FacultadID)
+            Return View(docente)
         End Function
 
-        ' GET: AreasDeConocimiento/Edit/5
+        ' GET: Docente/Edit/5
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim areasDeConocimientoModels As AreasDeConocimientoModels = db.areas.Find(id)
-            If IsNothing(areasDeConocimientoModels) Then
+            Dim docente As Docente = db.Docente.Find(id)
+            If IsNothing(docente) Then
                 Return HttpNotFound()
             End If
-            Return View(areasDeConocimientoModels)
+            ViewBag.AreaDeConocimientoID = New SelectList(db.AreaDeConocimiento, "ID", "Nombre", docente.AreaDeConocimientoID)
+            ViewBag.FacultadID = New SelectList(db.Facultad, "ID", "Nombre", docente.FacultadID)
+            Return View(docente)
         End Function
 
-        ' POST: AreasDeConocimiento/Edit/5
+        ' POST: Docente/Edit/5
         'Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,AreaDeConocimiento")> ByVal areasDeConocimientoModels As AreasDeConocimientoModels) As ActionResult
+        Function Edit(<Bind(Include:="ID,Nombres,Apellidos,NumeroTalentoHumano,correoElectronico,telefono,AreaDeConocimientoID,FacultadID")> ByVal docente As Docente) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(areasDeConocimientoModels).State = EntityState.Modified
+                db.Entry(docente).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(areasDeConocimientoModels)
+            ViewBag.AreaDeConocimientoID = New SelectList(db.AreaDeConocimiento, "ID", "Nombre", docente.AreaDeConocimientoID)
+            ViewBag.FacultadID = New SelectList(db.Facultad, "ID", "Nombre", docente.FacultadID)
+            Return View(docente)
         End Function
 
-        ' GET: AreasDeConocimiento/Delete/5
+        ' GET: Docente/Delete/5
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim areasDeConocimientoModels As AreasDeConocimientoModels = db.areas.Find(id)
-            If IsNothing(areasDeConocimientoModels) Then
+            Dim docente As Docente = db.Docente.Find(id)
+            If IsNothing(docente) Then
                 Return HttpNotFound()
             End If
-            Return View(areasDeConocimientoModels)
+            Return View(docente)
         End Function
 
-        ' POST: AreasDeConocimiento/Delete/5
+        ' POST: Docente/Delete/5
         <HttpPost()>
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim areasDeConocimientoModels As AreasDeConocimientoModels = db.areas.Find(id)
-            db.areas.Remove(areasDeConocimientoModels)
+            Dim docente As Docente = db.Docente.Find(id)
+            db.Docente.Remove(docente)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function

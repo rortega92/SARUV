@@ -1,4 +1,4 @@
-﻿@ModelType SaruvMaster.Facultad
+﻿@ModelType SaruvMaster.AreaDeConocimiento
 @Code
     ViewData("Title") = "Delete"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
@@ -8,7 +8,7 @@ End Code
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Facultad</h4>
+    <h4>AreaDeConocimiento</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
