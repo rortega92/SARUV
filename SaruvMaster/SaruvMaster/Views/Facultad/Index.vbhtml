@@ -1,4 +1,4 @@
-﻿@ModelType IEnumerable(Of SaruvMaster.FacultadModels)
+﻿@ModelType IEnumerable(Of SaruvMaster.Facultad)
 @Code
 ViewData("Title") = "Index"
 Layout = "~/Views/Shared/_Layout2.vbhtml"

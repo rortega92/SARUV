@@ -22,7 +22,7 @@
                     <span>Registro de Datos</span>
                 </a>
                 <ul class="sub">
-                    <li><a class="" href="/AreasDeConocimiento">Área de Conocimiento</a></li>
+                    <li><a class="" href="/AreaDeConocimiento">Área de Conocimiento</a></li>
                     <li><a class="" href="/ClienteCorporativo">Cliente Corporativo</a></li>
                     <li><a class="" href="/Curso">Curso</a></li>
                     <li><a class="" href="/Departamento">Departamento</a></li>

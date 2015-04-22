@@ -1,4 +1,4 @@
-﻿@ModelType SaruvMaster.FacultadModels
+﻿@ModelType SaruvMaster.Facultad
 @Code
     ViewData("Title") = "Delete"
     Layout = "~/Views/Shared/_Layout2.vbhtml"

@@ -1,4 +1,4 @@
-﻿@ModelType SaruvMaster.FacultadModels
+﻿@ModelType SaruvMaster.Facultad
 @Code
     ViewData("Title") = "Create"
     Layout = "~/Views/Shared/_Layout2.vbhtml"

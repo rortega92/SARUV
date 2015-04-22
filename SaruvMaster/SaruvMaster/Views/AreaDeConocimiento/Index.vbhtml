@@ -1,4 +1,4 @@
-﻿@ModelType IEnumerable(Of SaruvMaster.AreasDeConocimientoModels)
+﻿@ModelType IEnumerable(Of SaruvMaster.AreaDeConocimiento)
 @Code
     ViewData("Title") = "Index"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
@@ -21,7 +21,7 @@ End Code
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento)
+                                @Html.DisplayNameFor(Function(model) model.Nombre)
                             </th>
                             <th>
                                 Acciones
@@ -32,7 +32,7 @@ End Code
                         @For Each item In Model
                             @<tr>
                                 <td>
-                                    @Html.DisplayFor(Function(modelItem) item.AreaDeConocimiento)
+                                    @Html.DisplayFor(Function(modelItem) item.Nombre)
                                 </td>
                                 <td>
                                     @Html.ActionLink("Editar", "Edit", New With {.id = item.ID}) |
