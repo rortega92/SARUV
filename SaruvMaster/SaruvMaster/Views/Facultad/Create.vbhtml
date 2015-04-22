@@ -1,4 +1,4 @@
-﻿@ModelType SaruvMaster.Facultad
+﻿@ModelType SaruvMaster.FacultadModels
 @Code
     ViewData("Title") = "Create"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
@@ -10,7 +10,7 @@ End Code
     @Html.AntiForgeryToken()
     
     @<div class="form-horizontal">
-        <h4>Facultad</h4>
+        <h4>FacultadModels</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
         <div class="form-group">
