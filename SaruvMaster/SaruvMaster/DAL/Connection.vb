@@ -13,6 +13,10 @@ Public Class Connection
 
     Public Property Docente As DbSet(Of Docente)
 
+    Public Property Empresa As DbSet(Of Empresa)
+
+    Public Property ClienteCorporativo As DbSet(Of ClienteCorporativo)
+
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
         modelBuilder.Conventions.Remove(Of PluralizingTableNameConvention)()
     End Sub

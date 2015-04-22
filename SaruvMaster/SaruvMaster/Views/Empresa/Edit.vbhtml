@@ -1,4 +1,4 @@
-﻿@ModelType SaruvMaster.EmpresaModels
+﻿@ModelType SaruvMaster.Empresa
 @Code
     ViewData("Title") = "Editar"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
@@ -65,14 +65,14 @@ End Code
                 </div>
             </div>
         End Using
-        </div>
+    </div>
 </section>
 
 
-        <div>
-            @Html.ActionLink("Regresar a la lista", "Index")
-        </div>
+<div>
+    @Html.ActionLink("Regresar a la lista", "Index")
+</div>
 
-        @Section Scripts
-            @Scripts.Render("~/bundles/jqueryval")
-        End Section
+@Section Scripts
+    @Scripts.Render("~/bundles/jqueryval")
+End Section

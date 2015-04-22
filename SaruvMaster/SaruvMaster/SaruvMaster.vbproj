@@ -190,6 +190,7 @@
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\AreaDeConocimientoController.vb" />
+    <Compile Include="Controllers\ClienteCorporativoController.vb" />
     <Compile Include="Controllers\DocenteController.vb" />
     <Compile Include="Controllers\EmpresaController.vb" />
     <Compile Include="Controllers\FacultadController.vb" />
@@ -201,8 +202,9 @@
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
     <Compile Include="Models\AreasDeConocimientoModels.vb" />
+    <Compile Include="Models\ClienteCorporativo.vb" />
     <Compile Include="Models\Docente.vb" />
-    <Compile Include="Models\EmpresaModels.vb" />
+    <Compile Include="Models\Empresa.vb" />
     <Compile Include="Models\Facultad.vb" />
     <Compile Include="Models\FacultadModels.vb" />
     <Compile Include="Models\IdentityModels.vb" />
@@ -865,11 +867,6 @@
     <Content Include="Views\Shared\_Layout2.vbhtml" />
     <Content Include="Views\Shared\Header.vbhtml" />
     <Content Include="Views\Shared\LeftContent.vbhtml" />
-    <Content Include="Views\Empresa\Create.vbhtml" />
-    <Content Include="Views\Empresa\Delete.vbhtml" />
-    <Content Include="Views\Empresa\Details.vbhtml" />
-    <Content Include="Views\Empresa\Edit.vbhtml" />
-    <Content Include="Views\Empresa\Index.vbhtml" />
     <Content Include="Views\AreaDeConocimiento\Create.vbhtml" />
     <Content Include="Views\AreaDeConocimiento\Delete.vbhtml" />
     <Content Include="Views\AreaDeConocimiento\Details.vbhtml" />
@@ -885,6 +882,16 @@
     <Content Include="Views\Docente\Details.vbhtml" />
     <Content Include="Views\Docente\Edit.vbhtml" />
     <Content Include="Views\Docente\Index.vbhtml" />
+    <Content Include="Views\Empresa\Create.vbhtml" />
+    <Content Include="Views\Empresa\Delete.vbhtml" />
+    <Content Include="Views\Empresa\Details.vbhtml" />
+    <Content Include="Views\Empresa\Edit.vbhtml" />
+    <Content Include="Views\Empresa\Index.vbhtml" />
+    <Content Include="Views\ClienteCorporativo\Create.vbhtml" />
+    <Content Include="Views\ClienteCorporativo\Delete.vbhtml" />
+    <Content Include="Views\ClienteCorporativo\Details.vbhtml" />
+    <Content Include="Views\ClienteCorporativo\Edit.vbhtml" />
+    <Content Include="Views\ClienteCorporativo\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
