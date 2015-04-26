@@ -4,7 +4,7 @@ Public Class Empresa
 
     Public Property ID As Integer
 
-    <Display(Name:="Nombre"), Required>
+    <Display(Name:="Empresa"), Required>
     <StringLength(255, MinimumLength:=5, ErrorMessage:="Solo se puede un mínimo de 5 letras y un máximo de 255 letras")>
     <RegularExpression("^[a-zA-Z ]*$", ErrorMessage:="Solo se aceptan letras y espacios")>
     Public Property Nombre As String
