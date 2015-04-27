@@ -42,6 +42,17 @@ Namespace Controllers
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include:="ID,Nombre")> ByVal areaDeConocimiento As AreaDeConocimiento) As ActionResult
+
+
+            For i = 0 To db.AreaDeConocimiento.ToArray.Length - 1
+                If db.AreaDeConocimiento.ToArray(i).Nombre = areaDeConocimiento.Nombre Then
+                    ModelState.AddModelError(String.Empty, "El nombre del Área de Conocimiento ya existe ")
+                    Return View(areaDeConocimiento)
+                    Exit For
+
+                End If
+            Next
+
             If ModelState.IsValid Then
                 db.AreaDeConocimiento.Add(areaDeConocimiento)
                 db.SaveChanges()
