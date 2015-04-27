@@ -12,11 +12,11 @@ Namespace Controllers
     Public Class EmpresaController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New EmpresaDbContext
+        Private db As New Connection
 
         ' GET: Empresa
         Function Index() As ActionResult
-            Return View(db.empresas.ToList())
+            Return View(db.Empresa.ToList())
         End Function
 
         ' GET: Empresa/Details/5
@@ -24,11 +24,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim empresaModels As EmpresaModels = db.empresas.Find(id)
-            If IsNothing(empresaModels) Then
+            Dim empresa As Empresa = db.Empresa.Find(id)
+            If IsNothing(empresa) Then
                 Return HttpNotFound()
             End If
-            Return View(empresaModels)
+            Return View(empresa)
         End Function
 
         ' GET: Empresa/Create
@@ -41,13 +41,13 @@ Namespace Controllers
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,Nombre,Direccion,Telefono,Ciudad,Departamento")> ByVal empresaModels As EmpresaModels) As ActionResult
+        Function Create(<Bind(Include:="ID,Nombre,Direccion,Telefono,Ciudad,Departamento")> ByVal empresa As Empresa) As ActionResult
             If ModelState.IsValid Then
-                db.empresas.Add(empresaModels)
+                db.Empresa.Add(empresa)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(empresaModels)
+            Return View(empresa)
         End Function
 
         ' GET: Empresa/Edit/5
@@ -55,11 +55,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim empresaModels As EmpresaModels = db.empresas.Find(id)
-            If IsNothing(empresaModels) Then
+            Dim empresa As Empresa = db.Empresa.Find(id)
+            If IsNothing(empresa) Then
                 Return HttpNotFound()
             End If
-            Return View(empresaModels)
+            Return View(empresa)
         End Function
 
         ' POST: Empresa/Edit/5
@@ -67,13 +67,13 @@ Namespace Controllers
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,Nombre,Direccion,Telefono,Ciudad,Departamento")> ByVal empresaModels As EmpresaModels) As ActionResult
+        Function Edit(<Bind(Include:="ID,Nombre,Direccion,Telefono,Ciudad,Departamento")> ByVal empresa As Empresa) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(empresaModels).State = EntityState.Modified
+                db.Entry(empresa).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(empresaModels)
+            Return View(empresa)
         End Function
 
         ' GET: Empresa/Delete/5
@@ -81,11 +81,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim empresaModels As EmpresaModels = db.empresas.Find(id)
-            If IsNothing(empresaModels) Then
+            Dim empresa As Empresa = db.Empresa.Find(id)
+            If IsNothing(empresa) Then
                 Return HttpNotFound()
             End If
-            Return View(empresaModels)
+            Return View(empresa)
         End Function
 
         ' POST: Empresa/Delete/5
@@ -93,8 +93,8 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim empresaModels As EmpresaModels = db.empresas.Find(id)
-            db.empresas.Remove(empresaModels)
+            Dim empresa As Empresa = db.Empresa.Find(id)
+            db.Empresa.Remove(empresa)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function

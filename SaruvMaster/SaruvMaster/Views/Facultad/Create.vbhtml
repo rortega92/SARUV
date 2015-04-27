@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 ﻿
 @ModelType SaruvMaster.FacultadModels
+=======
+﻿@ModelType SaruvMaster.Facultad
+>>>>>>> main_dev
 @Code
     ViewData("Title") = "Create"
     Layout = "~/Views/Shared/_Layout2.vbhtml"

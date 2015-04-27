@@ -1,4 +1,4 @@
-﻿@ModelType SaruvMaster.EmpresaModels
+﻿@ModelType SaruvMaster.Empresa
 @Code
     ViewData("Title") = "Editar"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
@@ -14,7 +14,6 @@ End Code
             @Html.AntiForgeryToken()
 
             @<div class="form-horizontal">
-                <h4>EmpresaModels</h4>
                 <hr />
                 @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
                 @Html.HiddenFor(Function(model) model.ID)
@@ -61,19 +60,19 @@ End Code
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+                        <input type="submit" value="Guardar" class="btn btn-default" />
                     </div>
                 </div>
             </div>
         End Using
-        </div>
+    </div>
 </section>
 
 
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<div>
+    @Html.ActionLink("Regresar a la lista", "Index")
+</div>
 
-        @Section Scripts
-            @Scripts.Render("~/bundles/jqueryval")
-        End Section
+@Section Scripts
+    @Scripts.Render("~/bundles/jqueryval")
+End Section

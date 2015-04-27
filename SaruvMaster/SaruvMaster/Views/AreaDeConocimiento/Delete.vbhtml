@@ -1,4 +1,4 @@
-﻿@ModelType SaruvMaster.AreasDeConocimientoModels
+﻿@ModelType SaruvMaster.AreaDeConocimiento
 @Code
     ViewData("Title") = "Borrar"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
@@ -13,11 +13,11 @@ End Code
         <div class="panel-body">
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento)
+                    @Html.DisplayNameFor(Function(model) model.Nombre)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(Function(model) model.AreaDeConocimiento)
+                    @Html.DisplayFor(Function(model) model.Nombre)
                 </dd>
 
             </dl>

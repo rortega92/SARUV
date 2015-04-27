@@ -1,4 +1,4 @@
-﻿@ModelType SaruvMaster.EmpresaModels
+﻿@ModelType SaruvMaster.Empresa
 @Code
     ViewData("Title") = "Create"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
@@ -16,7 +16,6 @@ End Code
             @Html.AntiForgeryToken()
 
             @<div class="form-horizontal">
-                <h4>EmpresaModels</h4>
                 <hr />
                 @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
                 <div class="form-group">
@@ -61,7 +60,7 @@ End Code
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                        <input type="submit" value="Crear" class="btn btn-default" />
                     </div>
                 </div>
             </div>

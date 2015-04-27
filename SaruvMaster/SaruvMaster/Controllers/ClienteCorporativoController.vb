@@ -7,96 +7,99 @@ Imports System.Net
 Imports System.Web
 Imports System.Web.Mvc
 Imports SaruvMaster
-Imports System.Data.SqlClient
-
 
 Namespace Controllers
-    Public Class AreasDeConocimientoController
+    Public Class ClienteCorporativoController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New AreaConocimientoDbContext
+        Private db As New Connection
 
-        ' GET: AreasDeConocimiento
+        ' GET: ClienteCorporativo
         Function Index() As ActionResult
-            Return View(db.areas.ToList())
+            Dim clienteCorporativo = db.ClienteCorporativo.Include(Function(c) c.Empresa)
+            Return View(clienteCorporativo.ToList())
         End Function
 
-        ' GET: AreasDeConocimiento/Details/5
+        ' GET: ClienteCorporativo/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim areasDeConocimientoModels As AreasDeConocimientoModels = db.areas.Find(id)
-            If IsNothing(areasDeConocimientoModels) Then
+            Dim clienteCorporativo As ClienteCorporativo = db.ClienteCorporativo.Find(id)
+            If IsNothing(clienteCorporativo) Then
                 Return HttpNotFound()
             End If
-            Return View(areasDeConocimientoModels)
+            Return View(clienteCorporativo)
         End Function
 
-        ' GET: AreasDeConocimiento/Create
+        ' GET: ClienteCorporativo/Create
         Function Create() As ActionResult
+            ViewBag.EmpresaID = New SelectList(db.Empresa, "ID", "Nombre")
             Return View()
         End Function
 
-        ' POST: AreasDeConocimiento/Create
+        ' POST: ClienteCorporativo/Create
         'Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,AreaDeConocimiento")> ByVal areasDeConocimientoModels As AreasDeConocimientoModels) As ActionResult
+        Function Create(<Bind(Include:="ID,Nombres,Apellidos,NumeroIdentidad,CorreoElectronico,Telefono,EmpresaID")> ByVal clienteCorporativo As ClienteCorporativo) As ActionResult
             If ModelState.IsValid Then
-                db.areas.Add(areasDeConocimientoModels)
+                db.ClienteCorporativo.Add(clienteCorporativo)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(areasDeConocimientoModels)
+            ViewBag.EmpresaID = New SelectList(db.Empresa, "ID", "Nombre", clienteCorporativo.EmpresaID)
+            Return View(clienteCorporativo)
         End Function
 
-        ' GET: AreasDeConocimiento/Edit/5
+        ' GET: ClienteCorporativo/Edit/5
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim areasDeConocimientoModels As AreasDeConocimientoModels = db.areas.Find(id)
-            If IsNothing(areasDeConocimientoModels) Then
+            Dim clienteCorporativo As ClienteCorporativo = db.ClienteCorporativo.Find(id)
+            If IsNothing(clienteCorporativo) Then
                 Return HttpNotFound()
             End If
-            Return View(areasDeConocimientoModels)
+            ViewBag.EmpresaID = New SelectList(db.Empresa, "ID", "Nombre", clienteCorporativo.EmpresaID)
+            Return View(clienteCorporativo)
         End Function
 
-        ' POST: AreasDeConocimiento/Edit/5
+        ' POST: ClienteCorporativo/Edit/5
         'Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,AreaDeConocimiento")> ByVal areasDeConocimientoModels As AreasDeConocimientoModels) As ActionResult
+        Function Edit(<Bind(Include:="ID,Nombres,Apellidos,NumeroIdentidad,CorreoElectronico,Telefono,EmpresaID")> ByVal clienteCorporativo As ClienteCorporativo) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(areasDeConocimientoModels).State = EntityState.Modified
+                db.Entry(clienteCorporativo).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(areasDeConocimientoModels)
+            ViewBag.EmpresaID = New SelectList(db.Empresa, "ID", "Nombre", clienteCorporativo.EmpresaID)
+            Return View(clienteCorporativo)
         End Function
 
-        ' GET: AreasDeConocimiento/Delete/5
+        ' GET: ClienteCorporativo/Delete/5
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim areasDeConocimientoModels As AreasDeConocimientoModels = db.areas.Find(id)
-            If IsNothing(areasDeConocimientoModels) Then
+            Dim clienteCorporativo As ClienteCorporativo = db.ClienteCorporativo.Find(id)
+            If IsNothing(clienteCorporativo) Then
                 Return HttpNotFound()
             End If
-            Return View(areasDeConocimientoModels)
+            Return View(clienteCorporativo)
         End Function
 
-        ' POST: AreasDeConocimiento/Delete/5
+        ' POST: ClienteCorporativo/Delete/5
         <HttpPost()>
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim areasDeConocimientoModels As AreasDeConocimientoModels = db.areas.Find(id)
-            db.areas.Remove(areasDeConocimientoModels)
+            Dim clienteCorporativo As ClienteCorporativo = db.ClienteCorporativo.Find(id)
+            db.ClienteCorporativo.Remove(clienteCorporativo)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function

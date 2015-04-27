@@ -1,7 +1,7 @@
-﻿@ModelType IEnumerable(Of SaruvMaster.EmpresaModels)
+﻿@ModelType IEnumerable(Of SaruvMaster.Empresa)
 @Code
-ViewData("Title") = "Index"
-Layout = "~/Views/Shared/_Layout2.vbhtml"
+    ViewData("Title") = "Index"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
 <div class="row">
@@ -45,22 +45,22 @@ End Code
                     <tbody>
                         @For Each item In Model
                             @<tr>
-                                 <td>
-                                     @Html.DisplayFor(Function(modelItem) item.Nombre)
-                                 </td>
-                                 <td>
-                                     @Html.DisplayFor(Function(modelItem) item.Direccion)
-                                 </td>
-                                 <td>
-                                     @Html.DisplayFor(Function(modelItem) item.Telefono)
-                                 </td>
-                                 <td>
-                                     @Html.DisplayFor(Function(modelItem) item.Ciudad)
-                                 </td>
-                                 <td>
-                                     @Html.DisplayFor(Function(modelItem) item.Departamento)
-                                 </td>
-                                 
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Direccion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Telefono)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Ciudad)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Departamento)
+                                </td>
+
                                 <td>
                                     @Html.ActionLink("Editar", "Edit", New With {.id = item.ID}) |
                                     @Html.ActionLink("Detalles", "Details", New With {.id = item.ID}) |
