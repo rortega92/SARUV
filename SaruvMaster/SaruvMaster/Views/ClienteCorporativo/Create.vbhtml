@@ -18,6 +18,8 @@ End Code
             <div class="col-md-10">
                 @Html.EditorFor(Function(model) model.Nombres, New With { .htmlAttributes = New With { .class = "form-control" } })
                 @Html.ValidationMessageFor(Function(model) model.Nombres, "", New With { .class = "text-danger" })
+                
+                
             </div>
         </div>
 

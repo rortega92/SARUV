@@ -8,7 +8,7 @@ Imports System.Web
 Imports System.Web.Mvc
 Imports SaruvMaster
 
-Namespace Controllers
+Namespace Controllers    
     Public Class EmpresaController
         Inherits System.Web.Mvc.Controller
 
@@ -41,12 +41,27 @@ Namespace Controllers
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,Nombre,Direccion,Telefono,Ciudad,Departamento")> ByVal empresa As Empresa) As ActionResult
+        Function Create(<Bind(Include:="Nombre,Direccion,Telefono,Ciudad,Departamento")> ByVal empresa As Empresa) As ActionResult
+
+
+            For i = 0 To db.Empresa.ToArray.Length - 1
+                If db.Empresa.ToArray(i).Nombre = empresa.Nombre Then
+                    ModelState.AddModelError(String.Empty, "El nombre de la empresa existe ")
+                    Return View(empresa)
+                    Exit For
+
+                End If
+            Next
+
+
             If ModelState.IsValid Then
+
                 db.Empresa.Add(empresa)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
+
             End If
+
             Return View(empresa)
         End Function
 
@@ -68,8 +83,11 @@ Namespace Controllers
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Edit(<Bind(Include:="ID,Nombre,Direccion,Telefono,Ciudad,Departamento")> ByVal empresa As Empresa) As ActionResult
+
             If ModelState.IsValid Then
+
                 db.Entry(empresa).State = EntityState.Modified
+
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If

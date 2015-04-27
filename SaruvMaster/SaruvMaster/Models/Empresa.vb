@@ -6,7 +6,7 @@ Public Class Empresa
 
     <Display(Name:="Empresa"), Required>
     <StringLength(255, MinimumLength:=5, ErrorMessage:="Solo se puede un mínimo de 5 letras y un máximo de 255 letras")>
-    <RegularExpression("^[a-zA-Z ]*$", ErrorMessage:="Solo se aceptan letras y espacios")>
+    <RegularExpression("^([a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y espacios")>
     Public Property Nombre As String
 
     <Display(Name:="Dirección"), Required>
