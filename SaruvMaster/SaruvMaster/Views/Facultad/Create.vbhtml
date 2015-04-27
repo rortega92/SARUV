@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-﻿
-@ModelType SaruvMaster.FacultadModels
-=======
-﻿@ModelType SaruvMaster.Facultad
->>>>>>> main_dev
+@ModelType SaruvMaster.Facultad
 @Code
     ViewData("Title") = "Create"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
@@ -25,7 +20,7 @@ End Code
                 <hr />
                 @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
                 <div class="form-group">
-                    @Html.LabelFor(Function(model) model.Nombre, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                    <label for="Nombre" class="control-label col-md-2">Facultad @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                    
                     <div class="col-md-10">
                         @Html.EditorFor(Function(model) model.Nombre, New With {.htmlAttributes = New With {.class = "form-control"}})
