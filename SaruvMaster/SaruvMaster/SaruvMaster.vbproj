@@ -870,11 +870,11 @@
     <Content Include="Views\Empresa\Details.vbhtml" />
     <Content Include="Views\Empresa\Edit.vbhtml" />
     <Content Include="Views\Empresa\Index.vbhtml" />
-    <Content Include="Views\Facultad\Create.vbhtml" />
     <Content Include="Views\Facultad\Delete.vbhtml" />
     <Content Include="Views\Facultad\Details.vbhtml" />
     <Content Include="Views\Facultad\Edit.vbhtml" />
     <Content Include="Views\Facultad\Index.vbhtml" />
+    <Content Include="Views\Facultad\Create.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
