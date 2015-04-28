@@ -42,6 +42,15 @@ Namespace Controllers
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include:="ID,Nombre")> ByVal facultad As Facultad) As ActionResult
+
+            For i = 0 To db.Facultad.ToArray.Length - 1
+                If db.Facultad.ToArray(i).Nombre = facultad.Nombre Then
+                    ModelState.AddModelError(String.Empty, "El nombre de la Facultad ya existe ")
+                    Return View(facultad)
+                    Exit For
+
+                End If
+            Next
             If ModelState.IsValid Then
                 db.Facultad.Add(facultad)
                 db.SaveChanges()
