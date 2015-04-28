@@ -300,7 +300,7 @@ ul.sidebar-menu li ul.sub li:last-child{
 ul.sidebar-menu li ul.sub li a {
     white-space: nowrap;
     font-size: 12px;
-    padding: 0 0 0 32px;
+    padding: 0 0 0 20px !important;
     line-height: 35px;
     height: 35px;
     -webkit-transition: all 0.3s ease;
