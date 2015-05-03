@@ -17,7 +17,9 @@ Public Class EncargadoDeValidacion
     Public Property Telefono As String
 
     <Display(Name:="Extensión:(Si aplica)")>
-    Public Property Extensión As Integer
+    <RegularExpression("^\d+$", ErrorMessage:="Solo se aceptan números")>
+    <StringLength(4, MinimumLength:=4, ErrorMessage:="Solo se puede un total de 4 números")>
+    Public Property Extensión As String
 
     <Required(ErrorMessage:="Este campo es obligatorio")>
     <Display(Name:="Correo Electrónico")>
