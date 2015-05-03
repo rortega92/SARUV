@@ -6,7 +6,7 @@ End Code
 
 <script>
     function ConfirmDelete() {
-        var x = confirm("¡¡Los Docentes de esta Facultad tambien seran eliminados!!");
+        var x = confirm("Los Docentes de esta Facultad también serán eliminados.");
         if (x)
             return true;
         else
