@@ -4,60 +4,63 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>EncargadoDeValidacion</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Facultad.Nombre)
-        </dt>
+    <h3>Area de conocimiento</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            Desea eliminar el registro?
+        </header>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Facultad.Nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Facultad.Nombre)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Facultad.Nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Nombre)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Nombre)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Telefono)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Telefono)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Telefono)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Telefono)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Extensión)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Extensión)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Extensión)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Extensión)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.correoElectronico)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.correoElectronico)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.correoElectronico)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.correoElectronico)
+                </dd>
 
-    </dl>
-    @Using (Html.BeginForm())
-        @Html.AntiForgeryToken()
+            </dl>
+            @Using (Html.BeginForm())
+                @Html.AntiForgeryToken()
 
-        @<div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                @<div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            End Using
         </div>
-    End Using
+    </section>
 </div>

@@ -3,6 +3,7 @@
     ViewData("Title") = "Index"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
+
 <div class="row">
     <div class="col-md-12">
         <header class="panel-heading">
