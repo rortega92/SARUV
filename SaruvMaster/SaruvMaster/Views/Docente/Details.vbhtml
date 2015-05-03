@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
     <h4>Docente</h4>
@@ -70,5 +70,5 @@ End Code
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Resgresar a la lista", "Index")
 </p>
