@@ -8,7 +8,7 @@ End Code
     <h3>Empresa</h3>
     <section class="panel">
         <header class="panel-heading">
-            Desea eliminar el registro?
+            ¿Desea eliminar el registro?
         </header>
         <div class="panel-body">
             <dl class="dl-horizontal">

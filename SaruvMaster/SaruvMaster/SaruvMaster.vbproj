@@ -193,6 +193,7 @@
     <Compile Include="Controllers\ClienteCorporativoController.vb" />
     <Compile Include="Controllers\DocenteController.vb" />
     <Compile Include="Controllers\EmpresaController.vb" />
+    <Compile Include="Controllers\EncargadoDeValidacionController.vb" />
     <Compile Include="Controllers\FacultadController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
     <Compile Include="DAL\Connection.vb" />
@@ -205,6 +206,7 @@
     <Compile Include="Models\ClienteCorporativo.vb" />
     <Compile Include="Models\Docente.vb" />
     <Compile Include="Models\Empresa.vb" />
+    <Compile Include="Models\EncargadoDeValidacion.vb" />
     <Compile Include="Models\Facultad.vb" />
     <Compile Include="Models\FacultadModels.vb" />
     <Compile Include="Models\IdentityModels.vb" />
@@ -892,6 +894,11 @@
     <Content Include="Views\ClienteCorporativo\Details.vbhtml" />
     <Content Include="Views\ClienteCorporativo\Edit.vbhtml" />
     <Content Include="Views\ClienteCorporativo\Index.vbhtml" />
+    <Content Include="Views\EncargadoDeValidacion\Create.vbhtml" />
+    <Content Include="Views\EncargadoDeValidacion\Delete.vbhtml" />
+    <Content Include="Views\EncargadoDeValidacion\Details.vbhtml" />
+    <Content Include="Views\EncargadoDeValidacion\Edit.vbhtml" />
+    <Content Include="Views\EncargadoDeValidacion\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

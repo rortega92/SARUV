@@ -17,6 +17,8 @@ Public Class Connection
 
     Public Property ClienteCorporativo As DbSet(Of ClienteCorporativo)
 
+    Public Property EncargadoDeValidacion As DbSet(Of EncargadoDeValidacion)
+
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
         modelBuilder.Conventions.Remove(Of PluralizingTableNameConvention)()
     End Sub
