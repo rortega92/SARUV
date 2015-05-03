@@ -15,7 +15,7 @@ Public Class Docente
 
     <Required>
     <Display(Name:="Correo Electrónico")>
-    <EmailAddress(ErrorMessage:="Asegurate de tener un formao correcto de correo")>
+    <EmailAddress(ErrorMessage:="Asegurate de tener un formato correcto de correo")>
     Public Property correoElectronico As String
 
     <Display(Name:="Teléfono")>
