@@ -4,63 +4,68 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Details</h2>
 
 <div>
-    <h4>ClienteCorporativo</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Empresa.Nombre)
-        </dt>
+    <h3>ClienteCorporativo</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            Detalles
+        </header>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Empresa.Nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Empresa.Nombre)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Empresa.Nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Nombres)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Nombres)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Nombres)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Nombres)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Apellidos)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Apellidos)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Apellidos)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Apellidos)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.NumeroIdentidad)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.NumeroIdentidad)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.NumeroIdentidad)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.NumeroIdentidad)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.CorreoElectronico)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.CorreoElectronico)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.CorreoElectronico)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.CorreoElectronico)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Telefono)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Telefono)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Telefono)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Telefono)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+    </section>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        <p>
+            @Html.ActionLink("Edit", "Edit", New With {.id = Model.ID}) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
