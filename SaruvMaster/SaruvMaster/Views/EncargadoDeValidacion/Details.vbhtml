@@ -4,10 +4,10 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h3>Area de conocimiento</h3>
+    <h3>Encargado de Validación</h3>
     <section class="panel">
         <header class="panel-heading">
             Detalles
@@ -60,6 +60,6 @@ End Code
 </div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", New With {.id = Model.ID}) |
+    @Html.ActionLink("Regresar a la Lista", "Index")
 </p>

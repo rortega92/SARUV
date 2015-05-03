@@ -21,7 +21,7 @@ End Code
                 @Html.HiddenFor(Function(model) model.ID)
 
                 <div class="form-group">
-                    @Html.LabelFor(Function(model) model.Nombre, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                    <label for="Nombre" class="control-label col-md-2">Nombre @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
                         @Html.EditorFor(Function(model) model.Nombre, New With {.htmlAttributes = New With {.class = "form-control"}})
                         @Html.ValidationMessageFor(Function(model) model.Nombre, "", New With {.class = "text-danger"})
@@ -29,7 +29,7 @@ End Code
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(Function(model) model.FacultadID, "FacultadID", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                    <label for="FacultadID" class="control-label col-md-2">Facultad @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
                         @Html.DropDownList("FacultadID", Nothing, htmlAttributes:=New With {.class = "form-control"})
                         @Html.ValidationMessageFor(Function(model) model.FacultadID, "", New With {.class = "text-danger"})
@@ -37,7 +37,7 @@ End Code
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(Function(model) model.Telefono, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                    <label for="Telefono" class="control-label col-md-2">Teléfono @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
                         @Html.EditorFor(Function(model) model.Telefono, New With {.htmlAttributes = New With {.class = "form-control"}})
                         @Html.ValidationMessageFor(Function(model) model.Telefono, "", New With {.class = "text-danger"})
@@ -53,7 +53,7 @@ End Code
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(Function(model) model.correoElectronico, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                    <label for="correoElectronico" class="control-label col-md-2">Correo Electrónico @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
                         @Html.EditorFor(Function(model) model.correoElectronico, New With {.htmlAttributes = New With {.class = "form-control"}})
                         @Html.ValidationMessageFor(Function(model) model.correoElectronico, "", New With {.class = "text-danger"})
@@ -62,7 +62,7 @@ End Code
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+                        <input type="submit" value="Guardar" class="btn btn-default" />
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@ End Code
 </section>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la Lista", "Index")
 </div>
 
 @Section Scripts

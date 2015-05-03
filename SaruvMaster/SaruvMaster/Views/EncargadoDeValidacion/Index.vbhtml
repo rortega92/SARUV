@@ -10,7 +10,7 @@ End Code
             <h3>Encargado de Validación</h3>
         </header>
         <div class="breadcrumb">
-            @Html.ActionLink("Crear Nueva", "Create")
+            @Html.ActionLink("Crear Nuevo", "Create")
         </div>
     </div>
 </div>
@@ -45,19 +45,19 @@ End Code
                         @For Each item In Model
                             @<tr>
                                  <th>
-                                     @Html.DisplayNameFor(Function(model) model.Facultad.Nombre)
+                                     @Html.DisplayFor(Function(modelItem) item.Facultad.Nombre)
                                  </th>
                                  <th>
-                                     @Html.DisplayNameFor(Function(model) model.Nombre)
+                                     @Html.DisplayFor(Function(modelItem) item.Nombre)
                                  </th>
                                  <th>
-                                     @Html.DisplayNameFor(Function(model) model.Telefono)
+                                     @Html.DisplayFor(Function(modelItem) item.Telefono)
                                  </th>
                                  <th>
-                                     @Html.DisplayNameFor(Function(model) model.Extensión)
+                                     @Html.DisplayFor(Function(modelItem) item.Extensión)
                                  </th>
                                  <th>
-                                     @Html.DisplayNameFor(Function(model) model.correoElectronico)
+                                     @Html.DisplayFor(Function(modelItem) item.correoElectronico)
                                  </th>
                             </tr>
                         Next
