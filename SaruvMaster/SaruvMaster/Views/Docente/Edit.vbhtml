@@ -51,7 +51,7 @@ End Code
                 </div>
 
                 <div class="form-group">
-                    <label for="Nombre" class="control-label col-md-2">Telefono @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <label for="Nombre" class="control-label col-md-2">Telefono @Html.Label(" ", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
                         @Html.EditorFor(Function(model) model.telefono, New With {.htmlAttributes = New With {.class = "form-control"}})
                         @Html.ValidationMessageFor(Function(model) model.telefono, "", New With {.class = "text-danger"})
@@ -76,7 +76,7 @@ End Code
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                        <input type="submit" value="Editar" class="btn btn-default" />
                     </div>
                 </div>
             </div>
