@@ -78,7 +78,7 @@ End Code
 </section>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar a la Lista", "Index")
 </div>
 
 @Section Scripts

@@ -64,11 +64,14 @@ End Code
             @Using (Html.BeginForm())
                 @Html.AntiForgeryToken()
 
-                @<div class="form-actions no-color">
-                    <input type="submit" value="Delete" class="btn btn-default" /> |
-                    @Html.ActionLink("Back to List", "Index")
+                @<div class="form-group">
+                    <input type="submit" value="Eliminar" class="btn btn-default" />
                 </div>
             End Using
         </div>
     </section>
+    <div>
+        @Html.ActionLink("Regresar a la lista", "Index")
+    </div>
 </div>
+

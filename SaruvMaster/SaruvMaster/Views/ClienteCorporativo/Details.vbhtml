@@ -66,6 +66,6 @@ End Code
     </section>
 </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", New With {.id = Model.ID}) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Editar", "Edit", New With {.id = Model.ID}) |
+            @Html.ActionLink("Regresar a la Lista", "Index")
         </p>

@@ -7,7 +7,7 @@ End Code
 <div class="row">
     <div class="col-md-12">
         <header class="panel-heading">
-            <h3>Areas de conocimiento</h3>
+            <h3>Cliente Corporativo</h3>
         </header>
         <div class="breadcrumb">
             @Html.ActionLink("Crear Nueva", "Create")
