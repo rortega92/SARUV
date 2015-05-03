@@ -23,12 +23,6 @@ End Code
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento.Nombre)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.Facultad.Nombre)
-                            </th>
-                            <th>
                                 @Html.DisplayNameFor(Function(model) model.Nombres)
                             </th>
                             <th>
@@ -43,6 +37,13 @@ End Code
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.telefono)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.Facultad.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento.Nombre)
+                            </th>
+
                             <th></th>
                         </tr>
                     </thead>
@@ -50,12 +51,7 @@ End Code
 
                         @For Each item In Model
                             @<tr>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.AreaDeConocimiento.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Facultad.Nombre)
-                                </td>
+
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.Nombres)
                                 </td>
@@ -72,6 +68,13 @@ End Code
                                     @Html.DisplayFor(Function(modelItem) item.telefono)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Facultad.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.AreaDeConocimiento.Nombre)
+                                </td>
+
+                                <td>
                                     @Html.ActionLink("Editar", "Edit", New With {.id = item.ID}) |
                                     @Html.ActionLink("Detalles", "Details", New With {.id = item.ID}) |
                                     @Html.ActionLink("Eliminar", "Delete", New With {.id = item.ID})
@@ -84,4 +87,3 @@ End Code
         </section>
     </div>
 </div>
-
