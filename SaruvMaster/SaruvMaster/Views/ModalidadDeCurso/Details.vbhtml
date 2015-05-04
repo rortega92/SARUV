@@ -1,42 +1,39 @@
-﻿@ModelType ModalidadDeCurso
-
+﻿@ModelType SaruvMaster.ModalidadDeCurso
 @Code
-    Layout = Nothing
+    ViewData("Title") = "Details"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
 <!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>ModalidadDeCurso</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.Nombre)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.Nombre)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.Duracion)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.Duracion)
-            </dd>
-    
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+<div>
+    <h3>Modalidad de Curso</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            Detalles
+        </header>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Nombre)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Duracion)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Duracion)
+                </dd>
+            </dl>
+        </div>
+    </section>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", New With {.id = Model.ID}) |
+    @Html.ActionLink("Resgresar a la lista", "Index")
+</p>
