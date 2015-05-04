@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Detalles</h2>
-
 <div>
     <h3>Encargado de Validación</h3>
     <section class="panel">
@@ -39,7 +37,7 @@ End Code
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(Function(model) model.Extensión)
+                    Extensión
                 </dt>
 
                 <dd>

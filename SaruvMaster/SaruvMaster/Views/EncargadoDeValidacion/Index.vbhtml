@@ -31,7 +31,7 @@ End Code
                                 @Html.DisplayNameFor(Function(model) model.Telefono)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(Function(model) model.Extensión)
+                                Extensión
                             </th>
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.correoElectronico)
@@ -44,21 +44,26 @@ End Code
                     <tbody>
                         @For Each item In Model
                             @<tr>
-                                 <th>
+                                 <td>
                                      @Html.DisplayFor(Function(modelItem) item.Facultad.Nombre)
-                                 </th>
-                                 <th>
+                                 </td>
+                                 <td>
                                      @Html.DisplayFor(Function(modelItem) item.Nombre)
-                                 </th>
-                                 <th>
+                                 </td>
+                                 <td>
                                      @Html.DisplayFor(Function(modelItem) item.Telefono)
-                                 </th>
-                                 <th>
+                                 </td>
+                                 <td>
                                      @Html.DisplayFor(Function(modelItem) item.Extensión)
-                                 </th>
-                                 <th>
+                                 </td>
+                                 <td>
                                      @Html.DisplayFor(Function(modelItem) item.correoElectronico)
-                                 </th>
+                                 </td>
+                                 <td>
+                                     @Html.ActionLink("Editar", "Edit", New With {.id = item.ID}) |
+                                     @Html.ActionLink("Detalles", "Details", New With {.id = item.ID}) |
+                                     @Html.ActionLink("Eliminar", "Delete", New With {.id = item.ID})
+                                 </td>
                             </tr>
                         Next
                     </tbody>

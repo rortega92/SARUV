@@ -15,7 +15,6 @@ End Code
             @Html.AntiForgeryToken()
 
             @<div class="form-horizontal">
-                <h4>EncargadoDeValidacion</h4>
                 <hr />
                 @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
                 @Html.HiddenFor(Function(model) model.ID)
@@ -45,7 +44,7 @@ End Code
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(Function(model) model.Extensión, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                    <label for="Extensión" class="control-label col-md-2">Extensión (Si aplica)</label>
                     <div class="col-md-10">
                         @Html.EditorFor(Function(model) model.Extensión, New With {.htmlAttributes = New With {.class = "form-control"}})
                         @Html.ValidationMessageFor(Function(model) model.Extensión, "", New With {.class = "text-danger"})

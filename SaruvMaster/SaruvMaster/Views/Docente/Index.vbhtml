@@ -29,7 +29,7 @@ End Code
                                 @Html.DisplayNameFor(Function(model) model.Apellidos)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(Function(model) model.NumeroTalentoHumano)
+                                Número de Talento Humano
                             </th>
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.correoElectronico)
@@ -44,7 +44,7 @@ End Code
                                 @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento.Nombre)
                             </th>
 
-                            <th></th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>

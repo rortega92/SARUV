@@ -37,7 +37,7 @@ End Code
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(Function(model) model.Extensión)
+                    Extensión
                 </dt>
 
                 <dd>
