@@ -15,10 +15,26 @@ End Code
                 <dt>
                     @Html.DisplayNameFor(Function(model) model.Nombre)
                 </dt>
-
+                 
                 <dd>
                     @Html.DisplayFor(Function(model) model.Nombre)
                 </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaCreacion)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaCreacion)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaModificacion)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaModificacion)
+                </dd>
+
 
             </dl>
         </div>

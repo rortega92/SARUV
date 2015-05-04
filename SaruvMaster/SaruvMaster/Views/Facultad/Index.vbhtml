@@ -25,6 +25,12 @@ End Code
                                 @Html.DisplayNameFor(Function(model) model.Nombre)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(Function(model) model.FechaCreacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.FechaModificacion)
+                            </th>
+                            <th>
                                 Acciones
                             </th>
                         </tr>
@@ -35,6 +41,12 @@ End Code
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.Nombre)
                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.FechaCreacion)
+                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.FechaModificacion)
+                                 </td>
                                 <td>
                                     @Html.ActionLink("Editar", "Edit", New With {.id = item.ID}) |
                                     @Html.ActionLink("Detalles", "Details", New With {.id = item.ID}) |
