@@ -5,7 +5,7 @@
 End Code
 
 <div>
-    <h3>ClienteCorporativo</h3>
+    <h3>Cliente Corporativo</h3>
     <section class="panel">
         <header class="panel-heading">
             Desea eliminar el registro?

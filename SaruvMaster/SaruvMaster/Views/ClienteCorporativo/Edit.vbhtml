@@ -15,7 +15,6 @@ End Code
             @Html.AntiForgeryToken()
 
             @<div class="form-horizontal">
-                <h4>Editar</h4>
                 <hr />
                 @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
                 @Html.HiddenFor(Function(model) model.ID)

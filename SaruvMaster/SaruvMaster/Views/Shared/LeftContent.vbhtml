@@ -23,18 +23,17 @@
                 </a>
                 <ul class="sub">
                     <li><a class="" href="/AreaDeConocimiento">Área de Conocimiento</a></li>
-                    <li><a class="" href="#">Cliente Corporativo</a></li>
-                    <li><a class="" href="#">Curso</a></li>
-                    <li><a class="" href="#">Departamento</a></li>
-                    <li><a class="" href="#">Docente</a></li>
+                    <li><a class="" href="/ClienteCorporativo">Cliente Corporativo</a></li>
+                    <li><a class="" href="/Curso">Curso</a></li>
+                    <li><a class="" href="/Docente">Docente</a></li>
                     <li><a class="" href="/Empresa">Empresa</a></li>
-                    <li><a class="" href="#">Encargado de Validación</a></li>
+                    <li><a class="" href="/EncargadoDeValidacion">Encargado de Validación</a></li>
                     <li><a class="" href="/Facultad">Facultad</a></li>
-                    <li><a class="" href="#">Modalidad de Curso</a></li>
-                    <li><a class="" href="#">Recurso</a></li>
+                    <li><a class="" href="/ModalidadDeCurso">Modalidad de Curso</a></li>
+                    <!--<li><a class="" href="#">Recurso</a></li>
                     <li><a class="" href="#">Rol por Departamento </a></li>
                     <li><a class="" href="#">Tipo de Recurso</a></li>
-                    <li><a class="" href="#">Usuarios</a></li>
+                    <li><a class="" href="#">Usuarios</a></li>-->
                 </ul>
             </li>
 

@@ -10,7 +10,7 @@ End Code
             <h3>Cliente Corporativo</h3>
         </header>
         <div class="breadcrumb">
-            @Html.ActionLink("Crear Nueva", "Create")
+            @Html.ActionLink("Crear Nuevo", "Create")
         </div>
     </div>
 </div>
@@ -20,10 +20,7 @@ End Code
             <div class="panel-body">
                 <table class="table table-bordered table-striped">
                     <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.Empresa.Nombre)
-                            </th>
+                        <tr>                            
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.Nombres)
                             </th>
@@ -39,6 +36,9 @@ End Code
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.Telefono)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.Empresa.Nombre)
+                            </th>
                             
                             <th>
                                 Acciones
@@ -48,9 +48,6 @@ End Code
                     <tbody>
                         @For Each item In Model
                             @<tr>
-                                 <td>
-                                     @Html.DisplayFor(Function(modelItem) item.Empresa.Nombre)
-                                 </td>
                                  <td>
                                      @Html.DisplayFor(Function(modelItem) item.Nombres)
                                  </td>
@@ -65,6 +62,9 @@ End Code
                                  </td>
                                  <td>
                                      @Html.DisplayFor(Function(modelItem) item.Telefono)
+                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.Empresa.Nombre)
                                  </td>
                                 <td>
                                     @Html.ActionLink("Editar", "Edit", New With {.id = item.ID}) |
