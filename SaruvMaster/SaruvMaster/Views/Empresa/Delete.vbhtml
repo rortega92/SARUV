@@ -4,6 +4,18 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
+<script>
+    function ConfirmDelete() {
+        var x = confirm("Los clientes corporativos de esta Empresa también serán eliminados");
+        if (x)
+            return true;
+        else
+            return false;
+    }
+
+
+</script>
+
 <div>
     <h3>Empresa</h3>
     <section class="panel">
@@ -57,7 +69,7 @@ End Code
                 @Html.AntiForgeryToken()
 
                 @<div class="form-group">
-                    <input type="submit" value="Eliminar" class="btn btn-default" />
+                     <input type="submit" value="Eliminar" class="btn btn-default" onclick="return ConfirmDelete();" />
                 </div>
             End Using
         </div>
