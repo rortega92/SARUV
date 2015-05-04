@@ -39,5 +39,13 @@ Public Class Curso
     <Range(1, 5, ErrorMessage:="El período no puede ser menor a 1 o mayor a 5")>
     Public Property Periodo As Integer
 
+    <Display(Name:="Fecha de creación")>
+    <DataType(DataType.DateTime)>
+    Public Property FechaCreacion As Date
+
+    <Display(Name:="Fecha de modificación")>
+    <DataType(DataType.DateTime)>
+    Public Property FechaModificacion As Date
+
 
 End Class

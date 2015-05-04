@@ -41,11 +41,13 @@ Namespace SaruvMaster
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include := "ID,Nombre,Duracion")> ByVal modalidaddecurso As ModalidadDeCurso) As ActionResult
+            modalidaddecurso.FechaCreacion = DateTime.Now
+            modalidaddecurso.FechaModificacion = modalidaddecurso.FechaCreacion
             If ModelState.IsValid Then
                 db.ModalidadDeCurso.Add(modalidaddecurso)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
-            End If 
+            End If
             Return View(modalidaddecurso)
         End Function
 
