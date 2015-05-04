@@ -9,6 +9,9 @@ Public Class Connection
 
     End Sub
     Public Property AreaDeConocimiento As DbSet(Of AreaDeConocimiento)
+
+    Public Property Curso As DbSet(Of Curso)
+
     Public Property Facultad As DbSet(Of Facultad)
 
     Public Property Docente As DbSet(Of Docente)

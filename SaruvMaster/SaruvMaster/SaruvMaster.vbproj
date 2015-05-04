@@ -205,6 +205,7 @@
     <Compile Include="Models\AreaDeConocimiento.vb" />
     <Compile Include="Models\AreasDeConocimientoModels.vb" />
     <Compile Include="Models\ClienteCorporativo.vb" />
+    <Compile Include="Models\Curso.vb" />
     <Compile Include="Models\Docente.vb" />
     <Compile Include="Models\Empresa.vb" />
     <Compile Include="Models\EncargadoDeValidacion.vb" />
