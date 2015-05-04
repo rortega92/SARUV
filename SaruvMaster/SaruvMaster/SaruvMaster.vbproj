@@ -191,6 +191,7 @@
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\AreaDeConocimientoController.vb" />
     <Compile Include="Controllers\ClienteCorporativoController.vb" />
+    <Compile Include="Controllers\CursoController.vb" />
     <Compile Include="Controllers\DocenteController.vb" />
     <Compile Include="Controllers\EmpresaController.vb" />
     <Compile Include="Controllers\EncargadoDeValidacionController.vb" />
@@ -907,6 +908,11 @@
     <Content Include="Views\ModalidadDeCurso\Details.vbhtml" />
     <Content Include="Views\ModalidadDeCurso\Edit.vbhtml" />
     <Content Include="Views\ModalidadDeCurso\Index.vbhtml" />
+    <Content Include="Views\Curso\Create.vbhtml" />
+    <Content Include="Views\Curso\Delete.vbhtml" />
+    <Content Include="Views\Curso\Details.vbhtml" />
+    <Content Include="Views\Curso\Edit.vbhtml" />
+    <Content Include="Views\Curso\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
