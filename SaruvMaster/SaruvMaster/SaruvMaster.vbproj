@@ -196,6 +196,7 @@
     <Compile Include="Controllers\EncargadoDeValidacionController.vb" />
     <Compile Include="Controllers\FacultadController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
+    <Compile Include="Controllers\ModalidadDeCursoController.vb" />
     <Compile Include="DAL\Connection.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -900,6 +901,11 @@
     <Content Include="Views\EncargadoDeValidacion\Details.vbhtml" />
     <Content Include="Views\EncargadoDeValidacion\Edit.vbhtml" />
     <Content Include="Views\EncargadoDeValidacion\Index.vbhtml" />
+    <Content Include="Views\ModalidadDeCurso\Create.vbhtml" />
+    <Content Include="Views\ModalidadDeCurso\Delete.vbhtml" />
+    <Content Include="Views\ModalidadDeCurso\Details.vbhtml" />
+    <Content Include="Views\ModalidadDeCurso\Edit.vbhtml" />
+    <Content Include="Views\ModalidadDeCurso\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

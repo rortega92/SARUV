@@ -17,7 +17,7 @@ Public Class Connection
 
     Public Property ClienteCorporativo As DbSet(Of ClienteCorporativo)
 
-    Public Property ModalidadCurso As DbSet(Of ModalidadDeCurso)
+    Public Property ModalidadDeCurso As DbSet(Of ModalidadDeCurso)
 
     Public Property EncargadoDeValidacion As DbSet(Of EncargadoDeValidacion)
 
