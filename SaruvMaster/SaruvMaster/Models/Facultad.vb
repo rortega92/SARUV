@@ -7,5 +7,13 @@ Public Class Facultad
     <Display(Name:="Facultad")>
     Public Property Nombre As String
 
+    <Display(Name:="Fecha de creación")>
+    <DataType(DataType.DateTime)>
+    Public Property FechaCreacion As Date
+
+    <Display(Name:="Fecha de modificación")>
+    <DataType(DataType.DateTime)>
+    Public Property FechaModificacion As Date
+
 End Class
 

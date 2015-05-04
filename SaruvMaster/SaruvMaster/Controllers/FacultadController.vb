@@ -51,6 +51,8 @@ Namespace Controllers
 
                 End If
             Next
+            facultad.FechaCreacion = DateTime.Now
+            facultad.FechaModificacion = facultad.FechaCreacion
             If ModelState.IsValid Then
                 db.Facultad.Add(facultad)
                 db.SaveChanges()
@@ -76,7 +78,8 @@ Namespace Controllers
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,Nombre")> ByVal facultad As Facultad) As ActionResult
+        Function Edit(<Bind(Include:="ID,Nombre,FechaCreacion, FechaModificacion")> ByVal facultad As Facultad) As ActionResult
+            facultad.FechaModificacion = DateTime.Now
             If ModelState.IsValid Then
                 db.Entry(facultad).State = EntityState.Modified
                 db.SaveChanges()
