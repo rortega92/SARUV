@@ -16,7 +16,7 @@ End Code
         <div class="panel-body">
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento.Nombre)
+                    @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento)
                 </dt>
 
                 <dd>
@@ -24,7 +24,7 @@ End Code
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(Function(model) model.EncargadoDeValidacion.Nombre)
+                    @Html.DisplayNameFor(Function(model) model.EncargadoDeValidacion)
                 </dt>
 
                 <dd>
@@ -32,7 +32,7 @@ End Code
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(Function(model) model.ModalidadDeCurso.Nombre)
+                    @Html.DisplayNameFor(Function(model) model.ModalidadDeCurso)
                 </dt>
 
                 <dd>

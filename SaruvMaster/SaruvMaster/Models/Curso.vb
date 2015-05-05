@@ -3,7 +3,7 @@ Public Class Curso
 
     Public Property ID As Integer
 
-    <Required(ErrorMessage:="Este campo es obligatorio")>
+    <Required(ErrorMessage:="Este campo es obligatorio"), RegularExpression("^([a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
     <Display(Name:="Nombre")>
     <StringLength(255, MinimumLength:=7, ErrorMessage:="Solo se puede un minimo de 5 letras y un maximo de 255 letras")>
     Public Property Nombres As String
