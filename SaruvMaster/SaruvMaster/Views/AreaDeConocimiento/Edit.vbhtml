@@ -17,6 +17,8 @@ End Code
                 <hr />
                 @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
                 @Html.HiddenFor(Function(model) model.ID)
+                @Html.HiddenFor(Function(model) model.FechaCreacion)
+                @Html.HiddenFor(Function(model) model.FechaModificacion)
 
                 <div class="form-group">
                     @Html.LabelFor(Function(model) model.Nombre, htmlAttributes:=New With {.class = "control-label col-md-2"})
