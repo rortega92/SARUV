@@ -3,7 +3,7 @@ Public Class EncargadoDeValidacion
 
     Public Property ID As Integer
 
-    <Display(Name:="Nombre"), Required(ErrorMessage:="Este campo es obligatorio")>
+    <Display(Name:="Encargado de Validación"), Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, MinimumLength:=5, ErrorMessage:="Solo se puede un mínimo de 5 letras y un máximo de 255 letras")>
     <RegularExpression("^(([A-Z][a-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+) ?)+$", ErrorMessage:="Solo se aceptan letras y espacios")>
     Public Property Nombre As String
