@@ -1,7 +1,8 @@
 ﻿@ModelType Curso
 
 @Code
-    Layout = Nothing
+    ViewData("Title") = "Delete"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@ End Code
         <div class="panel-body">
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento.Nombre)
+                    @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento)
                 </dt>
 
                 <dd>
@@ -23,7 +24,7 @@ End Code
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(Function(model) model.EncargadoDeValidacion.Nombre)
+                    @Html.DisplayNameFor(Function(model) model.EncargadoDeValidacion)
                 </dt>
 
                 <dd>
@@ -31,7 +32,7 @@ End Code
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(Function(model) model.ModalidadDeCurso.Nombre)
+                    @Html.DisplayNameFor(Function(model) model.ModalidadDeCurso)
                 </dt>
 
                 <dd>

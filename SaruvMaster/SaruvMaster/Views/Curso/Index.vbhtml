@@ -26,13 +26,13 @@ End Code
                                 @Html.DisplayNameFor(Function(model) model.Nombres)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento.Nombre)
+                                @Html.DisplayNameFor(Function(model) model.ModalidadDeCurso)
+                            </th>
+                            <th>                                
+                                @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(Function(model) model.ModalidadDeCurso.Nombre)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.EncargadoDeValidacion.Nombre)
+                                @Html.DisplayNameFor(Function(model) model.EncargadoDeValidacion)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.Periodo)
