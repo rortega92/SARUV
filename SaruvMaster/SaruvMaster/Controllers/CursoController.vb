@@ -86,7 +86,7 @@ Namespace SaruvMaster
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include := "ID,Nombres,AreaDeConocimientoID,ModalidadDeCursoID,EncargadoDeValidacionID,FechaInicio,FechaFinal,Periodo")> ByVal curso As Curso) As ActionResult
+        Function Edit(<Bind(Include:="ID,Nombres,AreaDeConocimientoID,ModalidadDeCursoID,EncargadoDeValidacionID,FechaInicio,FechaFinal,Periodo,FechaCreacion,FechaModificacion")> ByVal curso As Curso) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(curso).State = EntityState.Modified
                 db.SaveChanges()

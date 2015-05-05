@@ -8,27 +8,21 @@ Public Class Curso
     <StringLength(255, MinimumLength:=7, ErrorMessage:="Solo se puede un minimo de 5 letras y un maximo de 255 letras")>
     Public Property Nombres As String
 
-    <Required(ErrorMessage:="Este campo es obligatorio")>
     <Display(Name:="Área de conocimiento")>
     Public Property AreaDeConocimientoID As Integer
 
-    <Required(ErrorMessage:="Este campo es obligatorio")>
     <Display(Name:="Área de conocimiento")>
     Public Overridable Property AreaDeConocimiento As AreaDeConocimiento
 
-    <Required(ErrorMessage:="Este campo es obligatorio")>
     <Display(Name:="Modalidad de Curso")>
     Public Property ModalidadDeCursoID As Integer
 
-    <Required(ErrorMessage:="Este campo es obligatorio")>
     <Display(Name:="Modalidad de Curso")>
     Public Overridable Property ModalidadDeCurso As ModalidadDeCurso
 
-    <Required(ErrorMessage:="Este campo es obligatorio")>
     <Display(Name:="Encargado de Validación")>
     Public Property EncargadoDeValidacionID As Integer
 
-    <Required(ErrorMessage:="Este campo es obligatorio")>
     <Display(Name:="Encargado de Validación")>
     Public Overridable Property EncargadoDeValidacion As EncargadoDeValidacion
 

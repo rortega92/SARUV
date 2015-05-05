@@ -23,18 +23,14 @@ Public Class Docente
     Public Property telefono As String
 
     <Display(Name:="Área de conocimiento")>
-    <Required(ErrorMessage:="Este campo es obligatorio")>
     Public Property AreaDeConocimientoID As Integer
 
     <Display(Name:="Facultad")>
-    <Required(ErrorMessage:="Este campo es obligatorio")>
     Public Property FacultadID As Integer
 
     <Display(Name:="Área de conocimiento")>
-    <Required(ErrorMessage:="Este campo es obligatorio")>
     Public Overridable Property AreaDeConocimiento As AreaDeConocimiento
 
     <Display(Name:="Facultad")>
-    <Required(ErrorMessage:="Este campo es obligatorio")>
     Public Overridable Property Facultad As Facultad
 End Class

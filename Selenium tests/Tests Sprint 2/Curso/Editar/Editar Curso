@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Test Suite</title>
+</head>
+<body>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="Editar Curso Correcto.html">Editar Curso Correcto</a></td></tr>
+<tr><td><a href="Editar Curso Criterio1.html">Editar Curso Criterio1</a></td></tr>
+<tr><td><a href="Editar Curso Criterio2.html">Editar Curso Criterio2</a></td></tr>
+<tr><td><a href="Editar Curso Criterio3.html">Editar Curso Criterio3</a></td></tr>
+<tr><td><a href="Editar Curso Criterio4.html">Editar Curso Criterio4</a></td></tr>
+<tr><td><a href="Editar Curso Criterio5.html">Editar Curso Criterio5</a></td></tr>
+<tr><td><a href="Editar Curso Criterio6.html">Editar Curso Criterio6</a></td></tr>
+<tr><td><a href="Editar Curso Criterio7.html">Editar Curso Criterio7</a></td></tr>
+<tr><td><a href="Editar Curso Criterio8.html">Editar Curso Criterio8</a></td></tr>
+<tr><td><a href="Editar Curso Criterio9.html">Editar Curso Criterio9</a></td></tr>
+</tbody></table>
+</body>
+</html>
