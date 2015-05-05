@@ -1,47 +1,46 @@
-﻿@ModelType ModalidadDeCurso
-
+﻿@ModelType SaruvMaster.ModalidadDeCurso
 @Code
-    Layout = Nothing
+    ViewData("Title") = "Delete"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
 <!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
-</head>
-<body>
-    <h3>Are you sure you want to delete this?</h3>
+<div>
+    <h3>Modalidad de Curso</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            ¿Desea eliminar la Modalidad?
+        </header>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Nombre)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Duracion)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Duracion)
+                </dd>
+
+            </dl>
+            @Using (Html.BeginForm())
+                @Html.AntiForgeryToken()
+
+                @<div class="form-actions no-color">
+                    <input type="submit" value="Eliminar" class="btn btn-default" />
+                </div>
+            End Using
+        </div>
+    </section>
     <div>
-        <h4>ModalidadDeCurso</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.Nombre)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.Nombre)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.Duracion)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.Duracion)
-            </dd>
-    
-        </dl>
-        @Using (Html.BeginForm())
-            @Html.AntiForgeryToken()
-    
-            @<div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-        End Using
+        @Html.ActionLink("Regresar a la lista", "Index")
     </div>
-</body>
-</html>
+</div>

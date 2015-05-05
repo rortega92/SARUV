@@ -45,11 +45,21 @@ Namespace SaruvMaster
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include := "ID,Nombres,AreaDeConocimientoID,ModalidadDeCursoID,EncargadoDeValidacionID,FechaInicio,FechaFinal,Periodo")> ByVal curso As Curso) As ActionResult
+            For i = 0 To db.Curso.ToArray.Length - 1
+                If db.Curso.ToArray(i).Nombres = curso.Nombres Then
+                    ModelState.AddModelError(String.Empty, "El nombre de la Facultad ya existe ")
+                    Return View(curso)
+                    Exit For
+
+                End If
+            Next
+            curso.FechaCreacion = DateTime.Now
+            curso.FechaModificacion = curso.FechaCreacion
             If ModelState.IsValid Then
                 db.Curso.Add(curso)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
-            End If 
+            End If
             ViewBag.AreaDeConocimientoID = New SelectList(db.AreaDeConocimiento, "ID", "Nombre", curso.AreaDeConocimientoID)
             ViewBag.EncargadoDeValidacionID = New SelectList(db.EncargadoDeValidacion, "ID", "Nombre", curso.EncargadoDeValidacionID)
             ViewBag.ModalidadDeCursoID = New SelectList(db.ModalidadDeCurso, "ID", "Nombre", curso.ModalidadDeCursoID)
