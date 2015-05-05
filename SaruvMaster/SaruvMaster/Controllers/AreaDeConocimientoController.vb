@@ -80,6 +80,7 @@ Namespace Controllers
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Edit(<Bind(Include:="ID,Nombre,FechaCreacion, FechaModificacion")> ByVal areaDeConocimiento As AreaDeConocimiento) As ActionResult
+            areaDeConocimiento.FechaModificacion = DateTime.Now
             If ModelState.IsValid Then
                 db.Entry(areaDeConocimiento).State = EntityState.Modified
                 db.SaveChanges()
