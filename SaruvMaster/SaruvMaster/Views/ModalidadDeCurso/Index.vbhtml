@@ -15,6 +15,13 @@ End Code
         <div class="breadcrumb">
             @Html.ActionLink("Crear Nueva", "Create")
         </div>
+        @Using Html.BeginForm("Index", "ModalidadDeCurso", FormMethod.Get)
+
+            @<p>
+                Modalidad de curso: @Html.TextBox("SearchString")
+                <input type="submit" value="Filter" />
+            </p>
+        End Using       
     </div>
 </div>
 <div class="row">
@@ -33,7 +40,8 @@ End Code
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
+           
+                    <tbody>                                  
 
                         @For Each item In Model
                             @<tr>

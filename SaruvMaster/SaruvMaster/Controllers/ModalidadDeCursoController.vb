@@ -14,8 +14,15 @@ Namespace SaruvMaster
         Private db As New Connection
 
         ' GET: /ModalidadDeCurso/
-        Function Index() As ActionResult
-            Return View(db.ModalidadDeCurso.ToList())
+        Function Index(ByVal searchString As String) As ActionResult
+            Dim modalidadDeCurso = From m In db.ModalidadDeCurso
+                                   Select m
+
+            If Not String.IsNullOrEmpty(searchString) Then
+                modalidadDeCurso = modalidadDeCurso.Where(Function(m) m.Nombre.Equals(searchString))          
+            End If
+
+            Return View(modalidadDeCurso)
         End Function
 
         ' GET: /ModalidadDeCurso/Details/5
