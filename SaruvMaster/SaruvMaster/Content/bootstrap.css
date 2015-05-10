@@ -860,6 +860,7 @@ pre code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
+  
 }
 
 .col-xs-1,
@@ -3634,6 +3635,7 @@ input[type="button"].btn-block {
   position: relative;
   display: table;
   border-collapse: separate;
+  margin-bottom:10px;  
 }
 
 .input-group.col {
@@ -3738,6 +3740,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .input-group-addon input[type="radio"],
 .input-group-addon input[type="checkbox"] {
   margin-top: 0;
+
 }
 
 .input-group .form-control:first-child,

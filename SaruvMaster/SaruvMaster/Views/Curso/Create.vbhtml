@@ -1,9 +1,11 @@
-﻿@ModelType Curso
+﻿@ModelType SaruvMaster.Curso
 
 @Code
     ViewData("Title") = "Crear"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
+
+
 <!DOCTYPE html>
 
 
@@ -11,7 +13,7 @@ End Code
 
 <section class="panel">
     <header class="panel-heading">
-        Crear
+    Crear()
     </header>
     <div class="panel-body">
         @Using (Html.BeginForm())
@@ -55,8 +57,10 @@ End Code
                 <div class="form-group">
                     <label for="Nombre" class="control-label col-md-2">Fecha Inicio @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
+                                   
                         @Html.EditorFor(Function(model) model.FechaInicio, New With {.htmlAttributes = New With {.class = "form-control"}})
                         @Html.ValidationMessageFor(Function(model) model.FechaInicio, "", New With {.class = "text-danger"})
+                       
                     </div>
                 </div>
 

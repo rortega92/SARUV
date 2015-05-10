@@ -28,10 +28,14 @@ Public Class Curso
 
     <Required(ErrorMessage:="Este campo es obligatorio")>
     <Display(Name:="Fecha Inicio")>
+    <DataType(DataType.Date)>
+    <DisplayFormat(DataFormatString:="{0:yyyy-MM-dd}", ApplyFormatInEditMode:=True)>
     Public Property FechaInicio As Date
 
     <Required(ErrorMessage:="Este campo es obligatorio")>
     <Display(Name:="Fecha Final")>
+    <DataType(DataType.Date)>
+    <DisplayFormat(DataFormatString:="{0:yyyy-MM-dd}", ApplyFormatInEditMode:=True)>
     Public Property FechaFinal As Date
 
     <Required(ErrorMessage:="Este campo es obligatorio")>

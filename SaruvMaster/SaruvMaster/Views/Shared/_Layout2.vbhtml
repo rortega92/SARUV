@@ -30,6 +30,16 @@
       @Scripts.Render("js/respond.min.js")
       @Scripts.Render("js/lte-ie7.js")|
     <![endif]-->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    
+   
 </head>
 
 <body>
