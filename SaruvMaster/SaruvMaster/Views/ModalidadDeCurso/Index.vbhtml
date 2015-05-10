@@ -27,15 +27,17 @@ End Code
         <section class="panel">
             <div navbar-collapse navbar-ex1-collapse>
                 <div class="col-sm-6 col-md-3" style="margin-bottom:10px">
-                    <div class="input-group">
-                        @Html.TextBox("SearchString", "Buscar por Nombre", htmlAttributes:=New With {.class = "form-control"})
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    @Using Html.BeginForm("Index", "ModalidadDeCurso", FormMethod.Get)
+                        @<div class="input-group">
+                            @Html.TextBox("SearchString", Nothing, htmlAttributes:=New With {.class = "form-control", .placeholder = "Buscar por Nombre"})
+                            <div class="input-group-btn">
+                                <button type="submit" value="Filter" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
                         </div>
-                    </div>
+                    End Using
                 </div>
             </div>
-            <div class="panel-body">                
+            <div class="panel-body">
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
