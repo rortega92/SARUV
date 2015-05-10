@@ -26,5 +26,13 @@ Public Class Connection
 
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
         modelBuilder.Conventions.Remove(Of PluralizingTableNameConvention)()
+        modelBuilder.Entity(Of Facultad).MapToStoredProcedures()
+        modelBuilder.Entity(Of AreaDeConocimiento).MapToStoredProcedures()
+        modelBuilder.Entity(Of Empresa).MapToStoredProcedures()
+        modelBuilder.Entity(Of EncargadoDeValidacion).MapToStoredProcedures()
+        modelBuilder.Entity(Of ClienteCorporativo).MapToStoredProcedures()
+        modelBuilder.Entity(Of Docente).MapToStoredProcedures()
+        modelBuilder.Entity(Of ModalidadDeCurso).MapToStoredProcedures()
+        modelBuilder.Entity(Of Curso).MapToStoredProcedures()
     End Sub
 End Class
