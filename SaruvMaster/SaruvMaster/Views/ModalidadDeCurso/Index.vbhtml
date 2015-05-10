@@ -17,16 +17,26 @@ End Code
         </div>
         @Using Html.BeginForm("Index", "ModalidadDeCurso", FormMethod.Get)
 
-            @<p>
-                Modalidad de curso: @Html.TextBox("SearchString")
-                <input type="submit" value="Filter" />
-            </p>
-        End Using       
+
+        End Using
     </div>
 </div>
+
 <div class="row">
     <div class="col-md-12">
         <section class="panel">
+            <div navbar-collapse navbar-ex1-collapse>
+                <div class="col-sm-6 col-md-3" style="margin-bottom:10px">
+                    @Using Html.BeginForm("Index", "ModalidadDeCurso", FormMethod.Get)
+                        @<div class="input-group">
+                            @Html.TextBox("SearchString", Nothing, htmlAttributes:=New With {.class = "form-control", .placeholder = "Buscar por Nombre"})
+                            <div class="input-group-btn">
+                                <button type="submit" value="Filter" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                        </div>
+                    End Using
+                </div>
+            </div>
             <div class="panel-body">
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -40,8 +50,8 @@ End Code
                             <th>Acciones</th>
                         </tr>
                     </thead>
-           
-                    <tbody>                                  
+
+                    <tbody>
 
                         @For Each item In Model
                             @<tr>

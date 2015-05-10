@@ -1,17 +1,39 @@
-﻿@ModelType Curso
+﻿@ModelType SaruvMaster.Curso
 
 @Code
     ViewData("Title") = "Crear"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
+
+
 <!DOCTYPE html>
+<script>
+    function Test() {
+
+        var startDate = document.getElementById("inicio").value;
+        var endDate = document.getElementById("final").value;
+        //Difference in milliseconds
+        var timeDiff = Date.parse(endDate) - Date.parse(startDate);
+        if (Date.parse(endDate) > Date.parse(startDate)) {
+            document.getElementById("finalError").innerHTML = " ";
+            return true;
+        }
+        else {                   
+            if (document.getElementById("cursoNombre").value != "") {
+                document.getElementById("finalError").innerHTML = "La Fecha final tiene que ser después de la fecha Inícial";
+                document.getElementById("final").focus();
+                return false;
+            }
+        }
+    }
+</script>
 
 
 <h3>Curso</h3>
 
 <section class="panel">
     <header class="panel-heading">
-        Crear
+    Crear
     </header>
     <div class="panel-body">
         @Using (Html.BeginForm())
@@ -23,7 +45,7 @@ End Code
                 <div class="form-group">
                     <label for="Nombre" class="control-label col-md-2">Nombre @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
-                        @Html.EditorFor(Function(model) model.Nombres, New With {.htmlAttributes = New With {.class = "form-control"}})
+                        @Html.EditorFor(Function(model) model.Nombres, New With {.htmlAttributes = New With {.class = "form-control", .id = "cursoNombre"}})
                         @Html.ValidationMessageFor(Function(model) model.Nombres, "", New With {.class = "text-danger"})
                     </div>
                 </div>
@@ -55,15 +77,18 @@ End Code
                 <div class="form-group">
                     <label for="Nombre" class="control-label col-md-2">Fecha Inicio @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
-                        @Html.EditorFor(Function(model) model.FechaInicio, New With {.htmlAttributes = New With {.class = "form-control"}})
+                                   
+                        @Html.EditorFor(Function(model) model.FechaInicio, New With {.htmlAttributes = New With {.class = "form-control", .id = "inicio"}})
                         @Html.ValidationMessageFor(Function(model) model.FechaInicio, "", New With {.class = "text-danger"})
+                       
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="Nombre" class="control-label col-md-2">Fecha Final @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
-                        @Html.EditorFor(Function(model) model.FechaFinal, New With {.htmlAttributes = New With {.class = "form-control"}})
+                        @Html.EditorFor(Function(model) model.FechaFinal, New With {.htmlAttributes = New With {.class = "form-control", .id = "final",  .oninput="Test()"}})
+                        <span style="color:#b94a48 " id="finalError"></span>
                         @Html.ValidationMessageFor(Function(model) model.FechaFinal, "", New With {.class = "text-danger"})
                     </div>
                 </div>
@@ -72,13 +97,13 @@ End Code
                     <label for="Nombre" class="control-label col-md-2">Periodo @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
                         @Html.EditorFor(Function(model) model.Periodo, New With {.htmlAttributes = New With {.class = "form-control"}})
-                        @Html.ValidationMessageFor(Function(model) model.Periodo, "", New With {.class = "text-danger"})
+                        @Html.ValidationMessageFor(Function(model) model.Periodo, "", New With {.class = "text-danger"})                     
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Crear" class="btn btn-default" />
+                        <input type="submit" value="Crear" class="btn btn-default" onclick= "return Test()"/>
                     </div>
                 </div>
             </div>
