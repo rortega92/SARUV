@@ -45,6 +45,17 @@ Namespace Controllers
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include:="ID,Nombres,Apellidos,NumeroTalentoHumano,correoElectronico,telefono,AreaDeConocimientoID,FacultadID")> ByVal docente As Docente) As ActionResult
+            For i = 0 To db.Docente.ToArray.Length - 1
+                If db.Docente.ToArray(i).NumeroTalentoHumano = docente.NumeroTalentoHumano Then
+                    ModelState.AddModelError(String.Empty, "El número de talento ya existe ")
+                    ViewBag.AreaDeConocimientoID = New SelectList(db.AreaDeConocimiento, "ID", "Nombre", docente.AreaDeConocimientoID)
+                    ViewBag.FacultadID = New SelectList(db.Facultad, "ID", "Nombre", docente.FacultadID)
+                    Return View(docente)
+                    Exit For
+
+                End If
+            Next
+            
             If ModelState.IsValid Then
                 db.Docente.Add(docente)
                 db.SaveChanges()
