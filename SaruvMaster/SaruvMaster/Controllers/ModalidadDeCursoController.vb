@@ -50,7 +50,7 @@ Namespace SaruvMaster
         Function Create(<Bind(Include := "ID,Nombre,Duracion")> ByVal modalidaddecurso As ModalidadDeCurso) As ActionResult
             For i = 0 To db.ModalidadDeCurso.ToArray.Length - 1
                 If db.ModalidadDeCurso.ToArray(i).Nombre = modalidaddecurso.Nombre Then
-                    ModelState.AddModelError(String.Empty, "El nombre de la Facultad ya existe ")
+                    ModelState.AddModelError(String.Empty, "El nombre de la Modalidad ya existe.")
                     Return View(modalidaddecurso)
                     Exit For
 
