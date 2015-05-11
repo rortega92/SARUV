@@ -12,7 +12,7 @@ End Code
         $("#Submit").on("click", function () {
             var startDate = document.getElementById("FechaInicio").value;
             var endDate = document.getElementById("FechaFinal").value;
-            //Difference in milliseconds
+            //Diferencia en milissegundos
             var timeDiff = Date.parse(endDate) - Date.parse(startDate);
             if (Date.parse(endDate) > Date.parse(startDate)) {
                 document.getElementById("finalError").innerHTML = " ";

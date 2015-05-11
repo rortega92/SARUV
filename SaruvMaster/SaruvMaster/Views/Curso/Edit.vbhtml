@@ -6,25 +6,31 @@ End Code
 <!DOCTYPE html>
 
 <script>
-    function Test() {
-
-        var startDate = document.getElementById("inicio").value;
-        var endDate = document.getElementById("final").value;
-        //Difference in milliseconds
-        var timeDiff = Date.parse(endDate) - Date.parse(startDate);
-        if (Date.parse(endDate) > Date.parse(startDate)) {
-            document.getElementById("finalError").innerHTML = " ";
-            return true;
-        }
-        else {
-            if (document.getElementById("cursoNombre").value != "") {
-                document.getElementById("finalError").innerHTML = "La Fecha final tiene que ser después de la fecha Inícial";
-                document.getElementById("final").focus();
-                return false;
+    $(document).ready(function Test() {
+        $("#Submit").on("click", function () {
+            var startDate = document.getElementById("FechaInicio").value;
+            var endDate = document.getElementById("FechaFinal").value;
+            //diferencia en milisegundos
+            var timeDiff = Date.parse(endDate) - Date.parse(startDate);
+            if (Date.parse(endDate) > Date.parse(startDate)) {
+                document.getElementById("finalError").innerHTML = " ";
+                return true;
             }
-        }
-    }
+            else {
+                if (document.getElementById("cursoNombre").value != "") {
+                    document.getElementById("finalError").innerHTML = "La fecha final debe ser mayor a la fecha inicial";
+                    document.getElementById("FechaFinal").focus();
+                    return false;
+                }
+            }
+        })
+        $("#FechaInicio").addClass('form-control text-box single-line valid');
+        $("#FechaFinal").addClass('form-control text-box single-line valid');
+    })
 </script>
+
+
+
 
 
 <h3>Curso</h3>
@@ -78,7 +84,7 @@ End Code
                 <div class="form-group">
                     <label for="Nombre" class="control-label col-md-2">Fecha Inicio @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
-                        @Html.EditorFor(Function(model) model.FechaInicio, New With {.htmlAttributes = New With {.class = "form-control", .id = "inicio"}})
+                        @Html.JQueryUI().DatepickerFor(Function(model) model.FechaInicio, New With {.htmlAttributes = New With {.class = "form-control", .id = "inicio"}})
                         @Html.ValidationMessageFor(Function(model) model.FechaInicio, "", New With {.class = "text-danger"})
                     </div>
                 </div>
@@ -86,9 +92,10 @@ End Code
                 <div class="form-group">
                     @Html.LabelFor(Function(model) model.FechaFinal, New With {.class = "control-label col-md-2"})
                     <div class="col-md-10">
-                        @Html.EditorFor(Function(model) model.FechaFinal, New With {.htmlAttributes = New With {.class = "form-control", .id = "final", .oninput = "Test()"}})
-                        @Html.ValidationMessageFor(Function(model) model.FechaFinal, "", New With {.class = "text-danger"})
+                        @Html.JQueryUI().DatepickerFor(Function(model) model.FechaFinal, New With {.htmlAttributes = New With {.class = "form-control", .id = "final", .oninput = "Test()"}})
                         <span style="color:#b94a48 " id="finalError"></span>
+                         @Html.ValidationMessageFor(Function(model) model.FechaFinal, "", New With {.class = "text-danger"})
+                        
                     </div>
                 </div>
 
@@ -107,7 +114,7 @@ End Code
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Editar" class="btn btn-default" onclick="return Test()" />
+                        <input type="submit" value="Editar" class="btn btn-default" onclick="return Test()" id="Submit" />
                     </div>
                 </div>
             </div>
