@@ -4,44 +4,50 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>TipoDeRecurso</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Nombre)
-        </dt>
+    <h3>Tipo de Recurso</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            ¿Desea eliminar el tipo?
+        </header>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Nombre)
-        </dd>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Nombre)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.CodigoRecurso)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Nombre)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.CodigoRecurso)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.CodigoRecurso)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaInicio)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.CodigoRecurso)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaInicio)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaDeCreacion)
+                </dt>
 
-    </dl>
-    @Using (Html.BeginForm())
-        @Html.AntiForgeryToken()
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaDeCreacion)
+                </dd>
 
-        @<div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            </dl>
+            @Using (Html.BeginForm())
+                @Html.AntiForgeryToken()
+
+                @<div class="form-actions no-color">
+                    <input type="submit" value="Eliminar" class="btn btn-default" />
+                </div>
+            End Using
         </div>
-    End Using
+    </section>
+    <div>
+        @Html.ActionLink("Regresar a la lista", "Index")
+    </div>
 </div>

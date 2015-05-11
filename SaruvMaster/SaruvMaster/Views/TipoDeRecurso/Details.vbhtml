@@ -4,39 +4,43 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Details</h2>
-
 <div>
-    <h4>TipoDeRecurso</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Nombre)
-        </dt>
+    <h3>Tipo de Recurso</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            Detalles
+        </header>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Nombre)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.CodigoRecurso)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.CodigoRecurso)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.CodigoRecurso)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.CodigoRecurso)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaInicio)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaDeCreacion)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaInicio)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaDeCreacion)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+    </section>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", New With {.id = Model.Id}) |
+    @Html.ActionLink("Resgresar a la lista", "Index")
 </p>
