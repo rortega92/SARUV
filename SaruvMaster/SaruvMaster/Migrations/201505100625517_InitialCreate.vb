@@ -631,8 +631,70 @@ Namespace Migrations
                     {
                         .Id = p.Int()
                     },
-                body :=
+                body:=
                     "DELETE [dbo].[TipoDeRecurso]" & vbCrLf & _
+                    "WHERE ([Id] = @Id)"
+            )
+
+            CreateStoredProcedure(
+               "dbo.Recurso_Insert",
+               Function(p) New With
+                   {
+                       .Nombre = p.String(maxLength:=255),
+                       .TipoDeRecursoID = p.Int(),
+                       .ModalidadDeCursoID = p.Int(),
+                       .EmpresaID = p.Int(),
+                       .CursoID = p.Int(),
+                       .ClienteCorporativoID = p.Int(),
+                       .DocenteID = p.Int(),
+                       .Duracion = p.Int(),
+                       .Prioridad = p.String(maxLength:=255),
+                       .FechaEntrega = p.DateTime()
+                   },
+               body:=
+                   "INSERT [dbo].[Recurso]([Nombre], [TipoDeRecursoID], [ModalidadDeCursoID], [EmpresaID], [CursoID], [ClienteCorporativoID], [DocenteID], [Duracion], [Prioridad], [FechaEntrega])" & vbCrLf & _
+                   "VALUES (@Nombre, @TipoDeRecursoID, @ModalidadDeCursoID, @EmpresaID, @CursoID, @ClienteCorporativoID, @DocenteID, @Duracion, @Prioridad, @FechaEntrega)" & vbCrLf & _
+                   "" & vbCrLf & _
+                   "DECLARE @Id int" & vbCrLf & _
+                   "SELECT @Id = [Id]" & vbCrLf & _
+                   "FROM [dbo].[Recurso]" & vbCrLf & _
+                   "WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()" & vbCrLf & _
+                   "" & vbCrLf & _
+                   "SELECT t0.[Id]" & vbCrLf & _
+                   "FROM [dbo].[Recurso] AS t0" & vbCrLf & _
+                   "WHERE @@ROWCOUNT > 0 AND t0.[Id] = @Id"
+           )
+
+            CreateStoredProcedure(
+                "dbo.Recurso_Update",
+                Function(p) New With
+                    {
+                        .Id = p.Int(),
+                        .Nombre = p.String(maxLength:=255),
+                        .TipoDeRecursoID = p.Int(),
+                        .ModalidadDeCursoID = p.Int(),
+                        .EmpresaID = p.Int(),
+                        .CursoID = p.Int(),
+                        .ClienteCorporativoID = p.Int(),
+                        .DocenteID = p.Int(),
+                        .Duracion = p.Int(),
+                        .Prioridad = p.String(maxLength:=255),
+                        .FechaEntrega = p.DateTime()
+                    },
+                body:=
+                    "UPDATE [dbo].[Recurso]" & vbCrLf & _
+                    "SET [Nombre] = @Nombre, [TipoDeRecursoID] = @TipoDeRecursoID, [ModalidadDeCursoID] = @ModalidadDeCursoID, [EmpresaID] = @EmpresaID, [CursoID] = @CursoID, [ClienteCorporativoID] = @ClienteCorporativoID, [DocenteID] = @DocenteID, [Duracion] = @Duracion, [Prioridad] = @Prioridad, [FechaEntrega] = @FechaEntrega" & vbCrLf & _
+                    "WHERE ([Id] = @Id)"
+            )
+
+            CreateStoredProcedure(
+                "dbo.Recurso_Delete",
+                Function(p) New With
+                    {
+                        .Id = p.Int()
+                    },
+                body:=
+                    "DELETE [dbo].[Recurso]" & vbCrLf & _
                     "WHERE ([Id] = @Id)"
             )
             
@@ -666,6 +728,9 @@ Namespace Migrations
             DropStoredProcedure("dbo.AreaDeConocimiento_Delete")
             DropStoredProcedure("dbo.AreaDeConocimiento_Update")
             DropStoredProcedure("dbo.AreaDeConocimiento_Insert")
+            DropStoredProcedure("dbo.Recurso_Delete")
+            DropStoredProcedure("dbo.Recurso_Update")
+            DropStoredProcedure("dbo.Recurso_Insert")
             DropForeignKey("dbo.Recurso", "TipoDeRecursoID", "dbo.TipoDeRecurso")
             DropForeignKey("dbo.Recurso", "ModalidadDeCursoID", "dbo.ModalidadDeCurso")
             DropForeignKey("dbo.Recurso", "EmpresaID", "dbo.Empresa")
@@ -702,6 +767,7 @@ Namespace Migrations
             DropTable("dbo.Empresa")
             DropTable("dbo.ClienteCorporativo")
             DropTable("dbo.AreaDeConocimiento")
+
         End Sub
     End Class
 End Namespace
