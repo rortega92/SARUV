@@ -36,5 +36,6 @@ Public Class Connection
         modelBuilder.Entity(Of Docente).MapToStoredProcedures()
         modelBuilder.Entity(Of ModalidadDeCurso).MapToStoredProcedures()
         modelBuilder.Entity(Of Curso).MapToStoredProcedures()
+        modelBuilder.Entity(Of TipoDeRecurso).MapToStoredProcedures()
     End Sub
 End Class
