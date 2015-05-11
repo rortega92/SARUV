@@ -15,5 +15,7 @@ Public Class Facultad
     <DataType(DataType.DateTime)>
     Public Property FechaModificacion As Date
 
+    Public Property IsDeleted As Integer = 0
+
 End Class
 

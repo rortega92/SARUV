@@ -38,6 +38,7 @@ Public Class Connection
         modelBuilder.Entity(Of Curso).MapToStoredProcedures()
         modelBuilder.Entity(Of TipoDeRecurso).MapToStoredProcedures()
         modelBuilder.Entity(Of Recurso).MapToStoredProcedures()
+        modelBuilder.Entity(Of Facultad).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
     End Sub
     Public Property Recursoes As System.Data.Entity.DbSet(Of Recurso)
 End Class

@@ -89,44 +89,45 @@ Namespace Migrations
                 "dbo.Facultad",
                 Function(c) New With
                     {
-                        .ID = c.Int(nullable := False, identity := True),
-                        .Nombre = c.String(nullable := False, maxLength := 255),
-                        .FechaCreacion = c.DateTime(nullable := False),
-                        .FechaModificacion = c.DateTime(nullable := False)
+                        .ID = c.Int(nullable:=False, identity:=True),
+                        .Nombre = c.String(nullable:=False, maxLength:=255),
+                        .FechaCreacion = c.DateTime(nullable:=False),
+                        .FechaModificacion = c.DateTime(nullable:=False),
+                        .IsDeleted = c.Int(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.ID)
-            
+
             CreateTable(
                 "dbo.ModalidadDeCurso",
                 Function(c) New With
                     {
-                        .ID = c.Int(nullable := False, identity := True),
-                        .Nombre = c.String(nullable := False, maxLength := 255),
-                        .Duracion = c.Int(nullable := False),
-                        .FechaCreacion = c.DateTime(nullable := False),
-                        .FechaModificacion = c.DateTime(nullable := False)
+                        .ID = c.Int(nullable:=False, identity:=True),
+                        .Nombre = c.String(nullable:=False, maxLength:=255),
+                        .Duracion = c.Int(nullable:=False),
+                        .FechaCreacion = c.DateTime(nullable:=False),
+                        .FechaModificacion = c.DateTime(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.ID)
-            
+
             CreateTable(
                 "dbo.Docente",
                 Function(c) New With
                     {
-                        .ID = c.Int(nullable := False, identity := True),
-                        .Nombres = c.String(nullable := False, maxLength := 255),
-                        .Apellidos = c.String(nullable := False, maxLength := 255),
-                        .NumeroTalentoHumano = c.String(nullable := False, maxLength := 5),
-                        .correoElectronico = c.String(nullable := False),
-                        .telefono = c.String(nullable := False, maxLength := 11),
-                        .AreaDeConocimientoID = c.Int(nullable := False),
-                        .FacultadID = c.Int(nullable := False)
+                        .ID = c.Int(nullable:=False, identity:=True),
+                        .Nombres = c.String(nullable:=False, maxLength:=255),
+                        .Apellidos = c.String(nullable:=False, maxLength:=255),
+                        .NumeroTalentoHumano = c.String(nullable:=False, maxLength:=5),
+                        .correoElectronico = c.String(nullable:=False),
+                        .telefono = c.String(nullable:=False, maxLength:=11),
+                        .AreaDeConocimientoID = c.Int(nullable:=False),
+                        .FacultadID = c.Int(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.ID) _
-                .ForeignKey("dbo.AreaDeConocimiento", Function(t) t.AreaDeConocimientoID, cascadeDelete := True) _
-                .ForeignKey("dbo.Facultad", Function(t) t.FacultadID, cascadeDelete := True) _
+                .ForeignKey("dbo.AreaDeConocimiento", Function(t) t.AreaDeConocimientoID, cascadeDelete:=True) _
+                .ForeignKey("dbo.Facultad", Function(t) t.FacultadID, cascadeDelete:=True) _
                 .Index(Function(t) t.AreaDeConocimientoID) _
                 .Index(Function(t) t.FacultadID)
-            
+
             CreateTable(
                 "dbo.Recurso",
                 Function(c) New With
@@ -144,39 +145,39 @@ Namespace Migrations
                         .FechaEntrega = c.DateTime(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.Id) _
-                .ForeignKey("dbo.ClienteCorporativo", Function(t) t.ClienteCorporativoID) _
-                .ForeignKey("dbo.Curso", Function(t) t.CursoID) _
-                .ForeignKey("dbo.Docente", Function(t) t.DocenteID) _
-                .ForeignKey("dbo.Empresa", Function(t) t.EmpresaID) _
-                .ForeignKey("dbo.ModalidadDeCurso", Function(t) t.ModalidadDeCursoID) _
-                .ForeignKey("dbo.TipoDeRecurso", Function(t) t.TipoDeRecursoID) _
+                .ForeignKey("dbo.ClienteCorporativo", Function(t) t.ClienteCorporativoID, cascadeDelete:=False) _
+                .ForeignKey("dbo.Curso", Function(t) t.CursoID, cascadeDelete:=False) _
+                .ForeignKey("dbo.Docente", Function(t) t.DocenteID, cascadeDelete:=False) _
+                .ForeignKey("dbo.Empresa", Function(t) t.EmpresaID, cascadeDelete:=False) _
+                .ForeignKey("dbo.ModalidadDeCurso", Function(t) t.ModalidadDeCursoID, cascadeDelete:=False) _
+                .ForeignKey("dbo.TipoDeRecurso", Function(t) t.TipoDeRecursoID, cascadeDelete:=False) _
                 .Index(Function(t) t.TipoDeRecursoID) _
                 .Index(Function(t) t.ModalidadDeCursoID) _
                 .Index(Function(t) t.EmpresaID) _
                 .Index(Function(t) t.CursoID) _
                 .Index(Function(t) t.ClienteCorporativoID) _
                 .Index(Function(t) t.DocenteID)
-            
+
             CreateTable(
                 "dbo.TipoDeRecurso",
                 Function(c) New With
                     {
-                        .Id = c.Int(nullable := False, identity := True),
-                        .Nombre = c.String(nullable := False, maxLength := 255),
-                        .CodigoRecurso = c.String(nullable := False),
-                        .FechaDeCreacion = c.DateTime(nullable := False)
+                        .Id = c.Int(nullable:=False, identity:=True),
+                        .Nombre = c.String(nullable:=False, maxLength:=255),
+                        .CodigoRecurso = c.String(nullable:=False),
+                        .FechaDeCreacion = c.DateTime(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.Id)
-            
+
             CreateStoredProcedure(
                 "dbo.AreaDeConocimiento_Insert",
                 Function(p) New With
                     {
-                        .Nombre = p.String(maxLength := 255),
+                        .Nombre = p.String(maxLength:=255),
                         .FechaCreacion = p.DateTime(),
                         .FechaModificacion = p.DateTime()
                     },
-                body :=
+                body:=
                     "INSERT [dbo].[AreaDeConocimiento]([Nombre], [FechaCreacion], [FechaModificacion])" & vbCrLf & _
                     "VALUES (@Nombre, @FechaCreacion, @FechaModificacion)" & vbCrLf & _
                     "" & vbCrLf & _
@@ -189,45 +190,45 @@ Namespace Migrations
                     "FROM [dbo].[AreaDeConocimiento] AS t0" & vbCrLf & _
                     "WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.AreaDeConocimiento_Update",
                 Function(p) New With
                     {
                         .ID = p.Int(),
-                        .Nombre = p.String(maxLength := 255),
+                        .Nombre = p.String(maxLength:=255),
                         .FechaCreacion = p.DateTime(),
                         .FechaModificacion = p.DateTime()
                     },
-                body :=
+                body:=
                     "UPDATE [dbo].[AreaDeConocimiento]" & vbCrLf & _
                     "SET [Nombre] = @Nombre, [FechaCreacion] = @FechaCreacion, [FechaModificacion] = @FechaModificacion" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.AreaDeConocimiento_Delete",
                 Function(p) New With
                     {
                         .ID = p.Int()
                     },
-                body :=
+                body:=
                     "DELETE [dbo].[AreaDeConocimiento]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.ClienteCorporativo_Insert",
                 Function(p) New With
                     {
-                        .Nombres = p.String(maxLength := 255),
-                        .Apellidos = p.String(maxLength := 255),
-                        .NumeroIdentidad = p.String(maxLength := 15),
+                        .Nombres = p.String(maxLength:=255),
+                        .Apellidos = p.String(maxLength:=255),
+                        .NumeroIdentidad = p.String(maxLength:=15),
                         .CorreoElectronico = p.String(),
-                        .Telefono = p.String(maxLength := 255),
+                        .Telefono = p.String(maxLength:=255),
                         .EmpresaID = p.Int()
                     },
-                body :=
+                body:=
                     "INSERT [dbo].[ClienteCorporativo]([Nombres], [Apellidos], [NumeroIdentidad], [CorreoElectronico], [Telefono], [EmpresaID])" & vbCrLf & _
                     "VALUES (@Nombres, @Apellidos, @NumeroIdentidad, @CorreoElectronico, @Telefono, @EmpresaID)" & vbCrLf & _
                     "" & vbCrLf & _
@@ -240,47 +241,47 @@ Namespace Migrations
                     "FROM [dbo].[ClienteCorporativo] AS t0" & vbCrLf & _
                     "WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.ClienteCorporativo_Update",
                 Function(p) New With
                     {
                         .ID = p.Int(),
-                        .Nombres = p.String(maxLength := 255),
-                        .Apellidos = p.String(maxLength := 255),
-                        .NumeroIdentidad = p.String(maxLength := 15),
+                        .Nombres = p.String(maxLength:=255),
+                        .Apellidos = p.String(maxLength:=255),
+                        .NumeroIdentidad = p.String(maxLength:=15),
                         .CorreoElectronico = p.String(),
-                        .Telefono = p.String(maxLength := 255),
+                        .Telefono = p.String(maxLength:=255),
                         .EmpresaID = p.Int()
                     },
-                body :=
+                body:=
                     "UPDATE [dbo].[ClienteCorporativo]" & vbCrLf & _
                     "SET [Nombres] = @Nombres, [Apellidos] = @Apellidos, [NumeroIdentidad] = @NumeroIdentidad, [CorreoElectronico] = @CorreoElectronico, [Telefono] = @Telefono, [EmpresaID] = @EmpresaID" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.ClienteCorporativo_Delete",
                 Function(p) New With
                     {
                         .ID = p.Int()
                     },
-                body :=
+                body:=
                     "DELETE [dbo].[ClienteCorporativo]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.Empresa_Insert",
                 Function(p) New With
                     {
-                        .Nombre = p.String(maxLength := 255),
-                        .Direccion = p.String(maxLength := 255),
-                        .Telefono = p.String(maxLength := 11),
-                        .Ciudad = p.String(maxLength := 255),
-                        .Departamento = p.String(maxLength := 255)
+                        .Nombre = p.String(maxLength:=255),
+                        .Direccion = p.String(maxLength:=255),
+                        .Telefono = p.String(maxLength:=11),
+                        .Ciudad = p.String(maxLength:=255),
+                        .Departamento = p.String(maxLength:=255)
                     },
-                body :=
+                body:=
                     "INSERT [dbo].[Empresa]([Nombre], [Direccion], [Telefono], [Ciudad], [Departamento])" & vbCrLf & _
                     "VALUES (@Nombre, @Direccion, @Telefono, @Ciudad, @Departamento)" & vbCrLf & _
                     "" & vbCrLf & _
@@ -293,40 +294,40 @@ Namespace Migrations
                     "FROM [dbo].[Empresa] AS t0" & vbCrLf & _
                     "WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.Empresa_Update",
                 Function(p) New With
                     {
                         .ID = p.Int(),
-                        .Nombre = p.String(maxLength := 255),
-                        .Direccion = p.String(maxLength := 255),
-                        .Telefono = p.String(maxLength := 11),
-                        .Ciudad = p.String(maxLength := 255),
-                        .Departamento = p.String(maxLength := 255)
+                        .Nombre = p.String(maxLength:=255),
+                        .Direccion = p.String(maxLength:=255),
+                        .Telefono = p.String(maxLength:=11),
+                        .Ciudad = p.String(maxLength:=255),
+                        .Departamento = p.String(maxLength:=255)
                     },
-                body :=
+                body:=
                     "UPDATE [dbo].[Empresa]" & vbCrLf & _
                     "SET [Nombre] = @Nombre, [Direccion] = @Direccion, [Telefono] = @Telefono, [Ciudad] = @Ciudad, [Departamento] = @Departamento" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.Empresa_Delete",
                 Function(p) New With
                     {
                         .ID = p.Int()
                     },
-                body :=
+                body:=
                     "DELETE [dbo].[Empresa]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.Curso_Insert",
                 Function(p) New With
                     {
-                        .Nombres = p.String(maxLength := 255),
+                        .Nombres = p.String(maxLength:=255),
                         .AreaDeConocimientoID = p.Int(),
                         .ModalidadDeCursoID = p.Int(),
                         .EncargadoDeValidacionID = p.Int(),
@@ -336,7 +337,7 @@ Namespace Migrations
                         .FechaCreacion = p.DateTime(),
                         .FechaModificacion = p.DateTime()
                     },
-                body :=
+                body:=
                     "INSERT [dbo].[Curso]([Nombres], [AreaDeConocimientoID], [ModalidadDeCursoID], [EncargadoDeValidacionID], [FechaInicio], [FechaFinal], [Periodo], [FechaCreacion], [FechaModificacion])" & vbCrLf & _
                     "VALUES (@Nombres, @AreaDeConocimientoID, @ModalidadDeCursoID, @EncargadoDeValidacionID, @FechaInicio, @FechaFinal, @Periodo, @FechaCreacion, @FechaModificacion)" & vbCrLf & _
                     "" & vbCrLf & _
@@ -349,13 +350,13 @@ Namespace Migrations
                     "FROM [dbo].[Curso] AS t0" & vbCrLf & _
                     "WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.Curso_Update",
                 Function(p) New With
                     {
                         .ID = p.Int(),
-                        .Nombres = p.String(maxLength := 255),
+                        .Nombres = p.String(maxLength:=255),
                         .AreaDeConocimientoID = p.Int(),
                         .ModalidadDeCursoID = p.Int(),
                         .EncargadoDeValidacionID = p.Int(),
@@ -365,34 +366,34 @@ Namespace Migrations
                         .FechaCreacion = p.DateTime(),
                         .FechaModificacion = p.DateTime()
                     },
-                body :=
+                body:=
                     "UPDATE [dbo].[Curso]" & vbCrLf & _
                     "SET [Nombres] = @Nombres, [AreaDeConocimientoID] = @AreaDeConocimientoID, [ModalidadDeCursoID] = @ModalidadDeCursoID, [EncargadoDeValidacionID] = @EncargadoDeValidacionID, [FechaInicio] = @FechaInicio, [FechaFinal] = @FechaFinal, [Periodo] = @Periodo, [FechaCreacion] = @FechaCreacion, [FechaModificacion] = @FechaModificacion" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.Curso_Delete",
                 Function(p) New With
                     {
                         .ID = p.Int()
                     },
-                body :=
+                body:=
                     "DELETE [dbo].[Curso]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.EncargadoDeValidacion_Insert",
                 Function(p) New With
                     {
-                        .Nombre = p.String(maxLength := 255),
+                        .Nombre = p.String(maxLength:=255),
                         .FacultadID = p.Int(),
-                        .Telefono = p.String(maxLength := 11),
-                        .Extensión = p.String(maxLength := 6),
+                        .Telefono = p.String(maxLength:=11),
+                        .Extensión = p.String(maxLength:=6),
                         .correoElectronico = p.String()
                     },
-                body :=
+                body:=
                     "INSERT [dbo].[EncargadoDeValidacion]([Nombre], [FacultadID], [Telefono], [Extensión], [correoElectronico])" & vbCrLf & _
                     "VALUES (@Nombre, @FacultadID, @Telefono, @Extensión, @correoElectronico)" & vbCrLf & _
                     "" & vbCrLf & _
@@ -405,46 +406,46 @@ Namespace Migrations
                     "FROM [dbo].[EncargadoDeValidacion] AS t0" & vbCrLf & _
                     "WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.EncargadoDeValidacion_Update",
                 Function(p) New With
                     {
                         .ID = p.Int(),
-                        .Nombre = p.String(maxLength := 255),
+                        .Nombre = p.String(maxLength:=255),
                         .FacultadID = p.Int(),
-                        .Telefono = p.String(maxLength := 11),
-                        .Extensión = p.String(maxLength := 6),
+                        .Telefono = p.String(maxLength:=11),
+                        .Extensión = p.String(maxLength:=6),
                         .correoElectronico = p.String()
                     },
-                body :=
+                body:=
                     "UPDATE [dbo].[EncargadoDeValidacion]" & vbCrLf & _
                     "SET [Nombre] = @Nombre, [FacultadID] = @FacultadID, [Telefono] = @Telefono, [Extensión] = @Extensión, [correoElectronico] = @correoElectronico" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.EncargadoDeValidacion_Delete",
                 Function(p) New With
                     {
                         .ID = p.Int()
                     },
-                body :=
+                body:=
                     "DELETE [dbo].[EncargadoDeValidacion]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.Facultad_Insert",
                 Function(p) New With
                     {
-                        .Nombre = p.String(maxLength := 255),
+                        .Nombre = p.String(maxLength:=255),
                         .FechaCreacion = p.DateTime(),
                         .FechaModificacion = p.DateTime()
                     },
-                body :=
-                    "INSERT [dbo].[Facultad]([Nombre], [FechaCreacion], [FechaModificacion])" & vbCrLf & _
-                    "VALUES (@Nombre, @FechaCreacion, @FechaModificacion)" & vbCrLf & _
+                body:=
+                    "INSERT [dbo].[Facultad]([Nombre], [FechaCreacion], [FechaModificacion], [IsDeleted])" & vbCrLf & _
+                    "VALUES (@Nombre, @FechaCreacion, @FechaModificacion, 0)" & vbCrLf & _
                     "" & vbCrLf & _
                     "DECLARE @ID int" & vbCrLf & _
                     "SELECT @ID = [ID]" & vbCrLf & _
@@ -455,43 +456,44 @@ Namespace Migrations
                     "FROM [dbo].[Facultad] AS t0" & vbCrLf & _
                     "WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.Facultad_Update",
                 Function(p) New With
                     {
                         .ID = p.Int(),
-                        .Nombre = p.String(maxLength := 255),
+                        .Nombre = p.String(maxLength:=255),
                         .FechaCreacion = p.DateTime(),
                         .FechaModificacion = p.DateTime()
                     },
-                body :=
+                body:=
                     "UPDATE [dbo].[Facultad]" & vbCrLf & _
                     "SET [Nombre] = @Nombre, [FechaCreacion] = @FechaCreacion, [FechaModificacion] = @FechaModificacion" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.Facultad_Delete",
                 Function(p) New With
                     {
                         .ID = p.Int()
                     },
-                body :=
-                    "DELETE [dbo].[Facultad]" & vbCrLf & _
+                body:=
+                    "UPDATE [dbo].[Facultad]" & vbCrLf & _
+                    "SET [IsDeleted] = @ID" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.ModalidadDeCurso_Insert",
                 Function(p) New With
                     {
-                        .Nombre = p.String(maxLength := 255),
+                        .Nombre = p.String(maxLength:=255),
                         .Duracion = p.Int(),
                         .FechaCreacion = p.DateTime(),
                         .FechaModificacion = p.DateTime()
                     },
-                body :=
+                body:=
                     "INSERT [dbo].[ModalidadDeCurso]([Nombre], [Duracion], [FechaCreacion], [FechaModificacion])" & vbCrLf & _
                     "VALUES (@Nombre, @Duracion, @FechaCreacion, @FechaModificacion)" & vbCrLf & _
                     "" & vbCrLf & _
@@ -504,47 +506,47 @@ Namespace Migrations
                     "FROM [dbo].[ModalidadDeCurso] AS t0" & vbCrLf & _
                     "WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.ModalidadDeCurso_Update",
                 Function(p) New With
                     {
                         .ID = p.Int(),
-                        .Nombre = p.String(maxLength := 255),
+                        .Nombre = p.String(maxLength:=255),
                         .Duracion = p.Int(),
                         .FechaCreacion = p.DateTime(),
                         .FechaModificacion = p.DateTime()
                     },
-                body :=
+                body:=
                     "UPDATE [dbo].[ModalidadDeCurso]" & vbCrLf & _
                     "SET [Nombre] = @Nombre, [Duracion] = @Duracion, [FechaCreacion] = @FechaCreacion, [FechaModificacion] = @FechaModificacion" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.ModalidadDeCurso_Delete",
                 Function(p) New With
                     {
                         .ID = p.Int()
                     },
-                body :=
+                body:=
                     "DELETE [dbo].[ModalidadDeCurso]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.Docente_Insert",
                 Function(p) New With
                     {
-                        .Nombres = p.String(maxLength := 255),
-                        .Apellidos = p.String(maxLength := 255),
-                        .NumeroTalentoHumano = p.String(maxLength := 5),
+                        .Nombres = p.String(maxLength:=255),
+                        .Apellidos = p.String(maxLength:=255),
+                        .NumeroTalentoHumano = p.String(maxLength:=5),
                         .correoElectronico = p.String(),
-                        .telefono = p.String(maxLength := 11),
+                        .telefono = p.String(maxLength:=11),
                         .AreaDeConocimientoID = p.Int(),
                         .FacultadID = p.Int()
                     },
-                body :=
+                body:=
                     "INSERT [dbo].[Docente]([Nombres], [Apellidos], [NumeroTalentoHumano], [correoElectronico], [telefono], [AreaDeConocimientoID], [FacultadID])" & vbCrLf & _
                     "VALUES (@Nombres, @Apellidos, @NumeroTalentoHumano, @correoElectronico, @telefono, @AreaDeConocimientoID, @FacultadID)" & vbCrLf & _
                     "" & vbCrLf & _
@@ -557,113 +559,65 @@ Namespace Migrations
                     "FROM [dbo].[Docente] AS t0" & vbCrLf & _
                     "WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.Docente_Update",
                 Function(p) New With
                     {
                         .ID = p.Int(),
-                        .Nombres = p.String(maxLength := 255),
-                        .Apellidos = p.String(maxLength := 255),
-                        .NumeroTalentoHumano = p.String(maxLength := 5),
+                        .Nombres = p.String(maxLength:=255),
+                        .Apellidos = p.String(maxLength:=255),
+                        .NumeroTalentoHumano = p.String(maxLength:=5),
                         .correoElectronico = p.String(),
-                        .telefono = p.String(maxLength := 11),
+                        .telefono = p.String(maxLength:=11),
                         .AreaDeConocimientoID = p.Int(),
                         .FacultadID = p.Int()
                     },
-                body :=
+                body:=
                     "UPDATE [dbo].[Docente]" & vbCrLf & _
                     "SET [Nombres] = @Nombres, [Apellidos] = @Apellidos, [NumeroTalentoHumano] = @NumeroTalentoHumano, [correoElectronico] = @correoElectronico, [telefono] = @telefono, [AreaDeConocimientoID] = @AreaDeConocimientoID, [FacultadID] = @FacultadID" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
                 "dbo.Docente_Delete",
                 Function(p) New With
                     {
                         .ID = p.Int()
                     },
-                body :=
+                body:=
                     "DELETE [dbo].[Docente]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
-            
+
             CreateStoredProcedure(
-                "dbo.TipoDeRecurso_Insert",
+                "dbo.Recurso_Insert",
                 Function(p) New With
                     {
-                        .Nombre = p.String(maxLength := 255),
-                        .CodigoRecurso = p.String(),
-                        .FechaDeCreacion = p.DateTime()
+                        .Nombre = p.String(maxLength:=255),
+                        .TipoDeRecursoID = p.Int(),
+                        .ModalidadDeCursoID = p.Int(),
+                        .EmpresaID = p.Int(),
+                        .CursoID = p.Int(),
+                        .ClienteCorporativoID = p.Int(),
+                        .DocenteID = p.Int(),
+                        .Duracion = p.Int(),
+                        .Prioridad = p.String(maxLength:=255),
+                        .FechaEntrega = p.DateTime()
                     },
-                body :=
-                    "INSERT [dbo].[TipoDeRecurso]([Nombre], [CodigoRecurso], [FechaDeCreacion])" & vbCrLf & _
-                    "VALUES (@Nombre, @CodigoRecurso, @FechaDeCreacion)" & vbCrLf & _
+                body:=
+                    "INSERT [dbo].[Recurso]([Nombre], [TipoDeRecursoID], [ModalidadDeCursoID], [EmpresaID], [CursoID], [ClienteCorporativoID], [DocenteID], [Duracion], [Prioridad], [FechaEntrega])" & vbCrLf & _
+                    "VALUES (@Nombre, @TipoDeRecursoID, @ModalidadDeCursoID, @EmpresaID, @CursoID, @ClienteCorporativoID, @DocenteID, @Duracion, @Prioridad, @FechaEntrega)" & vbCrLf & _
                     "" & vbCrLf & _
                     "DECLARE @Id int" & vbCrLf & _
                     "SELECT @Id = [Id]" & vbCrLf & _
-                    "FROM [dbo].[TipoDeRecurso]" & vbCrLf & _
+                    "FROM [dbo].[Recurso]" & vbCrLf & _
                     "WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()" & vbCrLf & _
                     "" & vbCrLf & _
                     "SELECT t0.[Id]" & vbCrLf & _
-                    "FROM [dbo].[TipoDeRecurso] AS t0" & vbCrLf & _
+                    "FROM [dbo].[Recurso] AS t0" & vbCrLf & _
                     "WHERE @@ROWCOUNT > 0 AND t0.[Id] = @Id"
             )
-            
-            CreateStoredProcedure(
-                "dbo.TipoDeRecurso_Update",
-                Function(p) New With
-                    {
-                        .Id = p.Int(),
-                        .Nombre = p.String(maxLength := 255),
-                        .CodigoRecurso = p.String(),
-                        .FechaDeCreacion = p.DateTime()
-                    },
-                body :=
-                    "UPDATE [dbo].[TipoDeRecurso]" & vbCrLf & _
-                    "SET [Nombre] = @Nombre, [CodigoRecurso] = @CodigoRecurso, [FechaDeCreacion] = @FechaDeCreacion" & vbCrLf & _
-                    "WHERE ([Id] = @Id)"
-            )
-            
-            CreateStoredProcedure(
-                "dbo.TipoDeRecurso_Delete",
-                Function(p) New With
-                    {
-                        .Id = p.Int()
-                    },
-                body:=
-                    "DELETE [dbo].[TipoDeRecurso]" & vbCrLf & _
-                    "WHERE ([Id] = @Id)"
-            )
-
-            CreateStoredProcedure(
-               "dbo.Recurso_Insert",
-               Function(p) New With
-                   {
-                       .Nombre = p.String(maxLength:=255),
-                       .TipoDeRecursoID = p.Int(),
-                       .ModalidadDeCursoID = p.Int(),
-                       .EmpresaID = p.Int(),
-                       .CursoID = p.Int(),
-                       .ClienteCorporativoID = p.Int(),
-                       .DocenteID = p.Int(),
-                       .Duracion = p.Int(),
-                       .Prioridad = p.String(maxLength:=255),
-                       .FechaEntrega = p.DateTime()
-                   },
-               body:=
-                   "INSERT [dbo].[Recurso]([Nombre], [TipoDeRecursoID], [ModalidadDeCursoID], [EmpresaID], [CursoID], [ClienteCorporativoID], [DocenteID], [Duracion], [Prioridad], [FechaEntrega])" & vbCrLf & _
-                   "VALUES (@Nombre, @TipoDeRecursoID, @ModalidadDeCursoID, @EmpresaID, @CursoID, @ClienteCorporativoID, @DocenteID, @Duracion, @Prioridad, @FechaEntrega)" & vbCrLf & _
-                   "" & vbCrLf & _
-                   "DECLARE @Id int" & vbCrLf & _
-                   "SELECT @Id = [Id]" & vbCrLf & _
-                   "FROM [dbo].[Recurso]" & vbCrLf & _
-                   "WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()" & vbCrLf & _
-                   "" & vbCrLf & _
-                   "SELECT t0.[Id]" & vbCrLf & _
-                   "FROM [dbo].[Recurso] AS t0" & vbCrLf & _
-                   "WHERE @@ROWCOUNT > 0 AND t0.[Id] = @Id"
-           )
 
             CreateStoredProcedure(
                 "dbo.Recurso_Update",
@@ -697,13 +651,64 @@ Namespace Migrations
                     "DELETE [dbo].[Recurso]" & vbCrLf & _
                     "WHERE ([Id] = @Id)"
             )
-            
+
+            CreateStoredProcedure(
+                "dbo.TipoDeRecurso_Insert",
+                Function(p) New With
+                    {
+                        .Nombre = p.String(maxLength:=255),
+                        .CodigoRecurso = p.String(),
+                        .FechaDeCreacion = p.DateTime()
+                    },
+                body:=
+                    "INSERT [dbo].[TipoDeRecurso]([Nombre], [CodigoRecurso], [FechaDeCreacion])" & vbCrLf & _
+                    "VALUES (@Nombre, @CodigoRecurso, @FechaDeCreacion)" & vbCrLf & _
+                    "" & vbCrLf & _
+                    "DECLARE @Id int" & vbCrLf & _
+                    "SELECT @Id = [Id]" & vbCrLf & _
+                    "FROM [dbo].[TipoDeRecurso]" & vbCrLf & _
+                    "WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()" & vbCrLf & _
+                    "" & vbCrLf & _
+                    "SELECT t0.[Id]" & vbCrLf & _
+                    "FROM [dbo].[TipoDeRecurso] AS t0" & vbCrLf & _
+                    "WHERE @@ROWCOUNT > 0 AND t0.[Id] = @Id"
+            )
+
+            CreateStoredProcedure(
+                "dbo.TipoDeRecurso_Update",
+                Function(p) New With
+                    {
+                        .Id = p.Int(),
+                        .Nombre = p.String(maxLength:=255),
+                        .CodigoRecurso = p.String(),
+                        .FechaDeCreacion = p.DateTime()
+                    },
+                body:=
+                    "UPDATE [dbo].[TipoDeRecurso]" & vbCrLf & _
+                    "SET [Nombre] = @Nombre, [CodigoRecurso] = @CodigoRecurso, [FechaDeCreacion] = @FechaDeCreacion" & vbCrLf & _
+                    "WHERE ([Id] = @Id)"
+            )
+
+            CreateStoredProcedure(
+                "dbo.TipoDeRecurso_Delete",
+                Function(p) New With
+                    {
+                        .Id = p.Int()
+                    },
+                body:=
+                    "DELETE [dbo].[TipoDeRecurso]" & vbCrLf & _
+                    "WHERE ([Id] = @Id)"
+            )
+
         End Sub
-        
+
         Public Overrides Sub Down()
             DropStoredProcedure("dbo.TipoDeRecurso_Delete")
             DropStoredProcedure("dbo.TipoDeRecurso_Update")
             DropStoredProcedure("dbo.TipoDeRecurso_Insert")
+            DropStoredProcedure("dbo.Recurso_Delete")
+            DropStoredProcedure("dbo.Recurso_Update")
+            DropStoredProcedure("dbo.Recurso_Insert")
             DropStoredProcedure("dbo.Docente_Delete")
             DropStoredProcedure("dbo.Docente_Update")
             DropStoredProcedure("dbo.Docente_Insert")
@@ -728,9 +733,6 @@ Namespace Migrations
             DropStoredProcedure("dbo.AreaDeConocimiento_Delete")
             DropStoredProcedure("dbo.AreaDeConocimiento_Update")
             DropStoredProcedure("dbo.AreaDeConocimiento_Insert")
-            DropStoredProcedure("dbo.Recurso_Delete")
-            DropStoredProcedure("dbo.Recurso_Update")
-            DropStoredProcedure("dbo.Recurso_Insert")
             DropForeignKey("dbo.Recurso", "TipoDeRecursoID", "dbo.TipoDeRecurso")
             DropForeignKey("dbo.Recurso", "ModalidadDeCursoID", "dbo.ModalidadDeCurso")
             DropForeignKey("dbo.Recurso", "EmpresaID", "dbo.Empresa")
@@ -767,7 +769,6 @@ Namespace Migrations
             DropTable("dbo.Empresa")
             DropTable("dbo.ClienteCorporativo")
             DropTable("dbo.AreaDeConocimiento")
-
         End Sub
     End Class
 End Namespace
