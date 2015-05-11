@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Test Suite</title>
+</head>
+<body>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="Area de conocimiento/CrearAreaCorrecto.html">CrearAreaCorrecto</a></td></tr>
+<tr><td><a href="Area de conocimiento/CrearAreaCriterio1.html">CrearAreaCriterio1</a></td></tr>
+<tr><td><a href="Area de conocimiento/CrearAreaCriterio2.html">CrearAreaCriterio2</a></td></tr>
+<tr><td><a href="Area de conocimiento/CrearAreaCriterio3.html">CrearAreaCriterio3</a></td></tr>
+<tr><td><a href="Area de conocimiento/EditarAreaCorrecto.html">EditarAreaCorrecto</a></td></tr>
+<tr><td><a href="Area de conocimiento/EditarAreaCriterio1.html">EditarAreaCriterio1</a></td></tr>
+<tr><td><a href="Area de conocimiento/EditarAreaCriterio2.html">EditarAreaCriterio2</a></td></tr>
+<tr><td><a href="Area de conocimiento/EditarAreaCriterio3.html">EditarAreaCriterio3</a></td></tr>
+<tr><td><a href="Area de conocimiento/ListarAreaCorrecto.html">ListarAreaCorrecto</a></td></tr>
+<tr><td><a href="Facultad/CrearFacultadCorrecto.html">CrearFacultadCorrecto</a></td></tr>
+<tr><td><a href="Facultad/CrearFacultadCriterio1.html">CrearFacultadCriterio1</a></td></tr>
+<tr><td><a href="Facultad/CrearFacultadCriterio2.html">CrearFacultadCriterio2</a></td></tr>
+<tr><td><a href="Facultad/CrearFacultadCriterio3.html">CrearFacultadCriterio3</a></td></tr>
+<tr><td><a href="Facultad/EditarFacultadCorrecto.html">EditarFacultadCorrecto</a></td></tr>
+<tr><td><a href="Facultad/EditarFacultadCriterio1.html">EditarFacultadCriterio1</a></td></tr>
+<tr><td><a href="Facultad/EditarFacultadCriterio2.html">EditarFacultadCriterio2</a></td></tr>
+<tr><td><a href="Facultad/EditarFacultadCriterio3.html">EditarFacultadCriterio3</a></td></tr>
+<tr><td><a href="Facultad/ListarFacultadCorrecto.html">ListarFacultadCorrecto</a></td></tr>
+<tr><td><a href="Empresa/CrearEmpresaCorrecto.html">CrearEmpresaCorrecto</a></td></tr>
+<tr><td><a href="Empresa/CrearEmpresaCriterio3.html">CrearEmpresaCriterio3</a></td></tr>
+<tr><td><a href="Empresa/CrearEmpresaCriterios1.html">CrearEmpresaCriterios1</a></td></tr>
+<tr><td><a href="Empresa/CrearEmpresaCriterios2.html">CrearEmpresaCriterios2</a></td></tr>
+<tr><td><a href="Empresa/EditarEmpresaCorrecto.html">EditarEmpresaCorrecto</a></td></tr>
+<tr><td><a href="Empresa/EditarEmpresaCriterio1.html">EditarEmpresaCriterio1</a></td></tr>
+<tr><td><a href="Empresa/EditarEmpresaCriterio2.html">EditarEmpresaCriterio2</a></td></tr>
+<tr><td><a href="Empresa/EditarEmpresaCriterio3.html">EditarEmpresaCriterio3</a></td></tr>
+<tr><td><a href="Empresa/ListarEmpresaCorrecto.html">ListarEmpresaCorrecto</a></td></tr>
+<tr><td><a href="Dashboard Administrativo/DashboardAdministrativo.html">DashboardAdministrativo</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Crear/Crear Cliente Correcto.html">Crear Cliente Correcto</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Crear/Crear Cliente Criterio1.html">Crear Cliente Criterio1</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Crear/Crear Cliente Criterio2.html">Crear Cliente Criterio2</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Crear/Crear Cliente Criterio3.html">Crear Cliente Criterio3</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Crear/Crear Cliente Criterio4.html">Crear Cliente Criterio4</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Crear/Crear Cliente Criterio5.html">Crear Cliente Criterio5</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Crear/Crear Cliente Criterio6.html">Crear Cliente Criterio6</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Crear/Crear Cliente Criterio7.html">Crear Cliente Criterio7</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Crear/Crear Cliente Criterio8.html">Crear Cliente Criterio8</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Crear/Crear Cliente Criterio9.html">Crear Cliente Criterio9</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Crear/Crear Cliente Criterio10.html">Crear Cliente Criterio10</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Editar/Editar Cliente Correcto.html">Editar Cliente Correcto</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Editar/Editar Cliente Criterio1.html">Editar Cliente Criterio1</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Editar/Editar Cliente Criterio2.html">Editar Cliente Criterio2</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Editar/Editar Cliente Criterio3.html">Editar Cliente Criterio3</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Editar/Editar Cliente Criterio4.html">Editar Cliente Criterio4</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Editar/Editar Cliente Criterio5.html">Editar Cliente Criterio5</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Editar/Editar Cliente Criterio6.html">Editar Cliente Criterio6</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Editar/Editar Cliente Criterio7.html">Editar Cliente Criterio7</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Editar/Editar Cliente Criterio8.html">Editar Cliente Criterio8</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Editar/Editar Cliente Criterio9.html">Editar Cliente Criterio9</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Editar/Editar Cliente Criterio10.html">Editar Cliente Criterio10</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Listar/Listar Cliente Corporativo.html">Listar Cliente Corporativo</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Crear/Crear Docente Correcto.html">Crear Docente Correcto</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Crear/Crear Docente Criterio1.html">Crear Docente Criterio1</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Crear/Crear Docente Criterio2.html">Crear Docente Criterio2</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Crear/Crear Docente Criterio3.html">Crear Docente Criterio3</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Crear/Crear Docente Criterio4.html">Crear Docente Criterio4</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Crear/Crear Docente Criterio5.html">Crear Docente Criterio5</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Crear/Crear Docente Criterio6.html">Crear Docente Criterio6</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Crear/Crear Docente Criterio7.html">Crear Docente Criterio7</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Crear/Crear Docente Criterio8.html">Crear Docente Criterio8</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Crear/Crear Docente Criterio9.html">Crear Docente Criterio9</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Editar/Editar Docente Correcto.html">Editar Docente Correcto</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Editar/Editar Docente Criterio1.html">Editar Docente Criterio1</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Editar/Editar Docente Criterio2.html">Editar Docente Criterio2</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Editar/Editar Docente Criterio3.html">Editar Docente Criterio3</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Editar/Editar Docente Criterio4.html">Editar Docente Criterio4</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Editar/Editar Docente Criterio5.html">Editar Docente Criterio5</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Editar/Editar Docente Criterio6.html">Editar Docente Criterio6</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Editar/Editar Docente Criterio7.html">Editar Docente Criterio7</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Editar/Editar Docente Criterio8.html">Editar Docente Criterio8</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Editar/Editar Docente Criterio9.html">Editar Docente Criterio9</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Listar/Listar Docente.html">Listar Docente</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Crear/Crear Encargado Correcto.html">Crear Encargado Correcto</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Crear/Crear Encargado Criterio1.html">Crear Encargado Criterio1</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Crear/Crear Encargado Criterio2.html">Crear Encargado Criterio2</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Crear/Crear Encargado Criterio3.html">Crear Encargado Criterio3</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Crear/Crear Encargado Criterio4.html">Crear Encargado Criterio4</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Crear/Crear Encargado Criterio5.html">Crear Encargado Criterio5</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Crear/Crear Encargado Criterio6.html">Crear Encargado Criterio6</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Crear/Crear Encargado Criterio7.html">Crear Encargado Criterio7</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Editar/Editar Encargado Correcto.html">Editar Encargado Correcto</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Editar/Editar Encargado Criterio1.html">Editar Encargado Criterio1</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Editar/Editar Encargado Criterio2.html">Editar Encargado Criterio2</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Editar/Editar Encargado Criterio3.html">Editar Encargado Criterio3</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Editar/Editar Encargado Criterio4.html">Editar Encargado Criterio4</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Editar/Editar Encargado Criterio5.html">Editar Encargado Criterio5</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Editar/Editar Encargado Criterio6.html">Editar Encargado Criterio6</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Editar/Editar Encargado Criterio7.html">Editar Encargado Criterio7</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Listar/Listar Encargado de validación.html">Listar Encargado de validación</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Modalidad de Curso/Crear/Crear Modalidad Correcto.html">Crear Modalidad Correcto</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Modalidad de Curso/Crear/Crear Modalidad Criterio1.html">Crear Modalidad Criterio1</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Modalidad de Curso/Crear/Crear Modalidad Criterio2.html">Crear Modalidad Criterio2</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Modalidad de Curso/Crear/Crear Modalidad Criterio3.html">Crear Modalidad Criterio3</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Modalidad de Curso/Crear/Crear Modalidad Criterio4.html">Crear Modalidad Criterio4</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Modalidad de Curso/Crear/Crear Modalidad Criterio5.html">Crear Modalidad Criterio5</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Modalidad de Curso/Crear/Crear Modalidad Criterio6.html">Crear Modalidad Criterio6</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Modalidad de Curso/Editar/Editar Modalidad Correcto.html">Editar Modalidad Correcto</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Crear/Crear Curso Correcto.html">Crear Curso Correcto</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Crear/Crear Curso Criterio1.html">Crear Curso Criterio1</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Crear/Crear Curso Criterio2.html">Crear Curso Criterio2</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Crear/Crear Curso Criterio3.html">Crear Curso Criterio3</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Crear/Crear Curso Criterio4.html">Crear Curso Criterio4</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Crear/Crear Curso Criterio5.html">Crear Curso Criterio5</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Crear/Crear Curso Criterio6.html">Crear Curso Criterio6</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Crear/Crear Curso Criterio7.html">Crear Curso Criterio7</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Crear/Crear Curso Criterio8.html">Crear Curso Criterio8</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Crear/Crear Curso Criterio9.html">Crear Curso Criterio9</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Editar/Editar Curso Correcto.html">Editar Curso Correcto</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Editar/Editar Curso Criterio1.html">Editar Curso Criterio1</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Editar/Editar Curso Criterio2.html">Editar Curso Criterio2</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Editar/Editar Curso Criterio3.html">Editar Curso Criterio3</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Editar/Editar Curso Criterio4.html">Editar Curso Criterio4</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Editar/Editar Curso Criterio5.html">Editar Curso Criterio5</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Editar/Editar Curso Criterio6.html">Editar Curso Criterio6</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Editar/Editar Curso Criterio7.html">Editar Curso Criterio7</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Editar/Editar Curso Criterio8.html">Editar Curso Criterio8</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Editar/Editar Curso Criterio9.html">Editar Curso Criterio9</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Listar/Listar Curso Correcto.html">Listar Curso Correcto</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Curso/Eliminar/Eliminar Curso Correcto.html">Eliminar Curso Correcto</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Encargado de validación/Eliminar/Eliminar Encargado de validación.html">Eliminar Encargado de validación</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Cliente Corporativo/Eliminar/Eliminar Cliente Corporativo.html">Eliminar Cliente Corporativo</a></td></tr>
+<tr><td><a href="Tests Sprint 2/Docente/Eliminar/Eliminar Docente Correcto.html">Eliminar Docente Correcto</a></td></tr>
+<tr><td><a href="Area de conocimiento/EliminarAreaCorrecto.html">EliminarAreaCorrecto</a></td></tr>
+<tr><td><a href="Facultad/EliminarFacultadCorrecto.html">EliminarFacultadCorrecto</a></td></tr>
+<tr><td><a href="Empresa/EliminarEmpresaCorrecto.html">EliminarEmpresaCorrecto</a></td></tr>
+</tbody></table>
+</body>
+</html>
