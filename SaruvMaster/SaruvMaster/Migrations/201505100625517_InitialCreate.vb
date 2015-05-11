@@ -112,18 +112,18 @@ Namespace Migrations
                 "dbo.Docente",
                 Function(c) New With
                     {
-                        .ID = c.Int(nullable := False, identity := True),
-                        .Nombres = c.String(nullable := False, maxLength := 255),
-                        .Apellidos = c.String(nullable := False, maxLength := 255),
-                        .NumeroTalentoHumano = c.String(nullable := False, maxLength := 5),
-                        .correoElectronico = c.String(nullable := False),
-                        .telefono = c.String(maxLength := 255),
-                        .AreaDeConocimientoID = c.Int(nullable := False),
-                        .FacultadID = c.Int(nullable := False)
+                        .ID = c.Int(nullable:=False, identity:=True),
+                        .Nombres = c.String(nullable:=False, maxLength:=255),
+                        .Apellidos = c.String(nullable:=False, maxLength:=255),
+                        .NumeroTalentoHumano = c.String(nullable:=False, maxLength:=5),
+                        .correoElectronico = c.String(nullable:=False),
+                        .telefono = c.String(nullable:=False, maxLength:=11),
+                        .AreaDeConocimientoID = c.Int(nullable:=False),
+                        .FacultadID = c.Int(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.ID) _
-                .ForeignKey("dbo.AreaDeConocimiento", Function(t) t.AreaDeConocimientoID, cascadeDelete := True) _
-                .ForeignKey("dbo.Facultad", Function(t) t.FacultadID, cascadeDelete := True) _
+                .ForeignKey("dbo.AreaDeConocimiento", Function(t) t.AreaDeConocimientoID, cascadeDelete:=True) _
+                .ForeignKey("dbo.Facultad", Function(t) t.FacultadID, cascadeDelete:=True) _
                 .Index(Function(t) t.AreaDeConocimientoID) _
                 .Index(Function(t) t.FacultadID)
             
@@ -495,15 +495,15 @@ Namespace Migrations
                 "dbo.Docente_Insert",
                 Function(p) New With
                     {
-                        .Nombres = p.String(maxLength := 255),
-                        .Apellidos = p.String(maxLength := 255),
-                        .NumeroTalentoHumano = p.String(maxLength := 5),
+                        .Nombres = p.String(maxLength:=255),
+                        .Apellidos = p.String(maxLength:=255),
+                        .NumeroTalentoHumano = p.String(maxLength:=5),
                         .correoElectronico = p.String(),
-                        .telefono = p.String(maxLength := 255),
+                        .telefono = p.String(maxLength:=11),
                         .AreaDeConocimientoID = p.Int(),
                         .FacultadID = p.Int()
                     },
-                body :=
+                body:=
                     "INSERT [dbo].[Docente]([Nombres], [Apellidos], [NumeroTalentoHumano], [correoElectronico], [telefono], [AreaDeConocimientoID], [FacultadID])" & vbCrLf & _
                     "VALUES (@Nombres, @Apellidos, @NumeroTalentoHumano, @correoElectronico, @telefono, @AreaDeConocimientoID, @FacultadID)" & vbCrLf & _
                     "" & vbCrLf & _
@@ -522,15 +522,15 @@ Namespace Migrations
                 Function(p) New With
                     {
                         .ID = p.Int(),
-                        .Nombres = p.String(maxLength := 255),
-                        .Apellidos = p.String(maxLength := 255),
-                        .NumeroTalentoHumano = p.String(maxLength := 5),
+                        .Nombres = p.String(maxLength:=255),
+                        .Apellidos = p.String(maxLength:=255),
+                        .NumeroTalentoHumano = p.String(maxLength:=5),
                         .correoElectronico = p.String(),
-                        .telefono = p.String(maxLength := 255),
+                        .telefono = p.String(maxLength:=11),
                         .AreaDeConocimientoID = p.Int(),
                         .FacultadID = p.Int()
                     },
-                body :=
+                body:=
                     "UPDATE [dbo].[Docente]" & vbCrLf & _
                     "SET [Nombres] = @Nombres, [Apellidos] = @Apellidos, [NumeroTalentoHumano] = @NumeroTalentoHumano, [correoElectronico] = @correoElectronico, [telefono] = @telefono, [AreaDeConocimientoID] = @AreaDeConocimientoID, [FacultadID] = @FacultadID" & vbCrLf & _
                     "WHERE ([ID] = @ID)"

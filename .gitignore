@@ -191,5 +191,6 @@ ModelManifest.xml
 
 Web.config
 EntityFramework.6.1.3/
+EntityFramework.es.6.1.3/
 portable-net40+sl5+wp80+win8+wpa81/
 portable-net45+wp80+win8+wpa81/
