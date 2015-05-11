@@ -37,6 +37,7 @@ Public Class Connection
         modelBuilder.Entity(Of ModalidadDeCurso).MapToStoredProcedures()
         modelBuilder.Entity(Of Curso).MapToStoredProcedures()
         modelBuilder.Entity(Of TipoDeRecurso).MapToStoredProcedures()
+        modelBuilder.Entity(Of Recurso).MapToStoredProcedures()
     End Sub
     Public Property Recursoes As System.Data.Entity.DbSet(Of Recurso)
 End Class
