@@ -1,111 +1,109 @@
-﻿@ModelType Recurso
-
+﻿@ModelType SaruvMaster.Recurso
 @Code
-    Layout = Nothing
+    ViewData("Title") = "Delete"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<!DOCTYPE html>
+<div>
+    <h3>Recurso</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            Desea eliminar el registro?
+        </header>
+        <div class="panel-body">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
-</head>
-<body>
-    <h3>Are you sure you want to delete this?</h3>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.ClienteCorporativo.Nombres)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.ClienteCorporativo.Nombres)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Curso.Nombres)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Curso.Nombres)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Docente.Nombres)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Docente.Nombres)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Empresa.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Empresa.Nombre)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.ModalidadDeCurso.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.ModalidadDeCurso.Nombre)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.TipoDeRecurso.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.TipoDeRecurso.Nombre)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Nombre)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Duracion)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Duracion)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Prioridad)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Prioridad)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaEntrega)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaEntrega)
+                </dd>
+
+            </dl>
+            @Using (Html.BeginForm())
+                @Html.AntiForgeryToken()
+
+                @<div class="form-group">
+                    <input type="submit" value="Eliminar" class="btn btn-default" />
+                </div>
+            End Using
+        </div>
+    </section>
     <div>
-        <h4>Recurso</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.ClienteCorporativo.Nombres)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.ClienteCorporativo.Nombres)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.Curso.Nombres)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.Curso.Nombres)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.Docente.Nombres)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.Docente.Nombres)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.Empresa.Nombre)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.Empresa.Nombre)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.ModalidadDeCurso.Nombre)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.ModalidadDeCurso.Nombre)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.TipoDeRecurso.Nombre)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.TipoDeRecurso.Nombre)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.Nombre)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.Nombre)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.Duracion)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.Duracion)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.Prioridad)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.Prioridad)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(Function(model) model.FechaEntrega)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(Function(model) model.FechaEntrega)
-            </dd>
-    
-        </dl>
-        @Using (Html.BeginForm())
-            @Html.AntiForgeryToken()
-    
-            @<div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-        End Using
+        @Html.ActionLink("Regresar a la lista", "Index")
     </div>
-</body>
-</html>
+</div>
