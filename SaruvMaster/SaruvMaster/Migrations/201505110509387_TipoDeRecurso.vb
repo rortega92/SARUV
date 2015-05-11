@@ -14,7 +14,7 @@ Namespace Migrations
                         .Id = c.Int(nullable := False, identity := True),
                         .Nombre = c.String(nullable := False, maxLength := 255),
                         .CodigoRecurso = c.String(nullable := False),
-                        .FechaInicio = c.DateTime(nullable := False)
+                        .FechaDeCreacion = c.DateTime(nullable := False)
                     }) _
                 .PrimaryKey(Function(t) t.Id)
             
@@ -22,13 +22,13 @@ Namespace Migrations
                 "dbo.TipoDeRecurso_Insert",
                 Function(p) New With
                     {
-                        .Nombre = p.String(maxLength:=255),
+                        .Nombre = p.String(maxLength := 255),
                         .CodigoRecurso = p.String(),
-                        .FechaInicio = p.DateTime()
+                        .FechaDeCreacion = p.DateTime()
                     },
-                body:=
-                    "INSERT [dbo].[TipoDeRecurso]([Nombre], [CodigoRecurso], [FechaInicio])" & vbCrLf & _
-                    "VALUES (@Nombre, @CodigoRecurso, @FechaInicio)" & vbCrLf & _
+                body :=
+                    "INSERT [dbo].[TipoDeRecurso]([Nombre], [CodigoRecurso], [FechaDeCreacion])" & vbCrLf & _
+                    "VALUES (@Nombre, @CodigoRecurso, @FechaDeCreacion)" & vbCrLf & _
                     "" & vbCrLf & _
                     "DECLARE @Id int" & vbCrLf & _
                     "SELECT @Id = [Id]" & vbCrLf & _
@@ -39,35 +39,35 @@ Namespace Migrations
                     "FROM [dbo].[TipoDeRecurso] AS t0" & vbCrLf & _
                     "WHERE @@ROWCOUNT > 0 AND t0.[Id] = @Id"
             )
-
+            
             CreateStoredProcedure(
                 "dbo.TipoDeRecurso_Update",
                 Function(p) New With
                     {
                         .Id = p.Int(),
-                        .Nombre = p.String(maxLength:=255),
+                        .Nombre = p.String(maxLength := 255),
                         .CodigoRecurso = p.String(),
-                        .FechaInicio = p.DateTime()
+                        .FechaDeCreacion = p.DateTime()
                     },
-                body:=
+                body :=
                     "UPDATE [dbo].[TipoDeRecurso]" & vbCrLf & _
-                    "SET [Nombre] = @Nombre, [CodigoRecurso] = @CodigoRecurso, [FechaInicio] = @FechaInicio" & vbCrLf & _
+                    "SET [Nombre] = @Nombre, [CodigoRecurso] = @CodigoRecurso, [FechaDeCreacion] = @FechaDeCreacion" & vbCrLf & _
                     "WHERE ([Id] = @Id)"
             )
-
+            
             CreateStoredProcedure(
                 "dbo.TipoDeRecurso_Delete",
                 Function(p) New With
                     {
                         .Id = p.Int()
                     },
-                body:=
+                body :=
                     "DELETE [dbo].[TipoDeRecurso]" & vbCrLf & _
                     "WHERE ([Id] = @Id)"
             )
-
+            
         End Sub
-
+        
         Public Overrides Sub Down()
             DropStoredProcedure("dbo.TipoDeRecurso_Delete")
             DropStoredProcedure("dbo.TipoDeRecurso_Update")

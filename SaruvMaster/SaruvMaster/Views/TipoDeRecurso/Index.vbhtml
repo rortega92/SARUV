@@ -18,7 +18,7 @@ End Code
             @Html.DisplayNameFor(Function(model) model.CodigoRecurso)
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.FechaInicio)
+            @Html.DisplayNameFor(Function(model) model.FechaDeCreacion)
         </th>
         <th></th>
     </tr>
@@ -32,7 +32,7 @@ End Code
             @Html.DisplayFor(Function(modelItem) item.CodigoRecurso)
         </td>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.FechaInicio)
+            @Html.DisplayFor(Function(modelItem) item.FechaDeCreacion)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", New With {.id = item.Id }) |

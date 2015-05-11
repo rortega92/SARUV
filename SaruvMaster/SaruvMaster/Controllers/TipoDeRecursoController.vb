@@ -41,7 +41,8 @@ Namespace Controllers
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="Id,Nombre,CodigoRecurso,FechaInicio")> ByVal tipoDeRecurso As TipoDeRecurso) As ActionResult
+        Function Create(<Bind(Include:="Id,Nombre,CodigoRecurso,FechaDeCreacion")> ByVal tipoDeRecurso As TipoDeRecurso) As ActionResult
+            tipoDeRecurso.FechaDeCreacion = Date.Now
             If ModelState.IsValid Then
                 db.TipoDeRecurso.Add(tipoDeRecurso)
                 db.SaveChanges()
@@ -67,7 +68,7 @@ Namespace Controllers
         'más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="Id,Nombre,CodigoRecurso,FechaInicio")> ByVal tipoDeRecurso As TipoDeRecurso) As ActionResult
+        Function Edit(<Bind(Include:="Id,Nombre,CodigoRecurso,FechaDeCreacion")> ByVal tipoDeRecurso As TipoDeRecurso) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(tipoDeRecurso).State = EntityState.Modified
                 db.SaveChanges()

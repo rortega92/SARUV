@@ -9,12 +9,14 @@ Public Class TipoDeRecurso
     Public Property Nombre As String
 
     <Required(ErrorMessage:="Este campo es obligatorio.")>
+    <Display(name:="Código de Recurso")>
     Public Property CodigoRecurso As String
 
     <Required(ErrorMessage:="Este campo es obligatorio.")>
     <DataType(DataType.Date)>
-    <DisplayFormat(DataFormatString:="{0:y}", ApplyFormatInEditMode:=True)>
-    Public Property FechaInicio As Date
+    <Display(Name:="Fecha de creación")>
+    <DisplayFormat(DataFormatString:="{0:yyyy-MM-dd}", ApplyFormatInEditMode:=True)>
+    Public Property FechaDeCreacion As Date
 
 
 
