@@ -2,7 +2,7 @@
 Public Class TipoDeRecurso
     Public Property Id As Integer
 
-    <StringLength(255, MinimumLength:=6, ErrorMessage:="Solo se puede un máximmo de 255 letras y un mínimo de 6 letras.")>
+    <StringLength(255, ErrorMessage:="Este campo permite un máximo de 255 caracteres")>
     <Display(Name:="Nombre de Recurso")>
     <Required(ErrorMessage:="Este campo es obligatorio")>
     <RegularExpression("^([a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>

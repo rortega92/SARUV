@@ -201,6 +201,7 @@
     <Compile Include="Controllers\FacultadController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
     <Compile Include="Controllers\ModalidadDeCursoController.vb" />
+    <Compile Include="Controllers\RecursoController.vb" />
     <Compile Include="Controllers\TipoDeRecursoController.vb" />
     <Compile Include="DAL\Connection.vb" />
     <Compile Include="Global.asax.vb">
@@ -210,10 +211,6 @@
       <DependentUpon>201505100625517_InitialCreate.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201505100625517_InitialCreate.vb" />
-    <Compile Include="Migrations\201505110509387_TipoDeRecurso.Designer.vb">
-      <DependentUpon>201505110509387_TipoDeRecurso.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505110509387_TipoDeRecurso.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -228,6 +225,7 @@
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\ManageViewModels.vb" />
     <Compile Include="Models\ModalidadDeCurso.vb" />
+    <Compile Include="Models\Recurso.vb" />
     <Compile Include="Models\TipoDeRecurso.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -250,9 +248,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201505100625517_InitialCreate.resx">
       <DependentUpon>201505100625517_InitialCreate.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505110509387_TipoDeRecurso.resx">
-      <DependentUpon>201505110509387_TipoDeRecurso.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -1004,6 +999,11 @@
     <Content Include="Views\TipoDeRecurso\Details.vbhtml" />
     <Content Include="Views\TipoDeRecurso\Edit.vbhtml" />
     <Content Include="Views\TipoDeRecurso\Index.vbhtml" />
+    <Content Include="Views\Recurso\Create.vbhtml" />
+    <Content Include="Views\Recurso\Delete.vbhtml" />
+    <Content Include="Views\Recurso\Details.vbhtml" />
+    <Content Include="Views\Recurso\Edit.vbhtml" />
+    <Content Include="Views\Recurso\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

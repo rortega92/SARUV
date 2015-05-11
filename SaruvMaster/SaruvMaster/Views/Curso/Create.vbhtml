@@ -20,7 +20,7 @@ End Code
             }
             else {
                 if (document.getElementById("cursoNombre").value != "") {
-                    document.getElementById("finalError").innerHTML = "La Fecha Final debe ser mayor a la fecha Inicial";
+                    document.getElementById("finalError").innerHTML = "La fecha final debe ser mayor a la fecha inicial";
                     document.getElementById("FechaFinal").focus();
                     return false;
                 }

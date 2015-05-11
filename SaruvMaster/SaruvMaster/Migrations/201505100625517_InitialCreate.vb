@@ -41,7 +41,7 @@ Namespace Migrations
                         .ID = c.Int(nullable := False, identity := True),
                         .Nombre = c.String(nullable := False, maxLength := 255),
                         .Direccion = c.String(nullable := False, maxLength := 255),
-                        .Telefono = c.String(nullable := False, maxLength := 255),
+                        .Telefono = c.String(nullable := False, maxLength := 11),
                         .Ciudad = c.String(nullable := False, maxLength := 255),
                         .Departamento = c.String(nullable := False, maxLength := 255)
                     }) _
@@ -77,8 +77,8 @@ Namespace Migrations
                         .ID = c.Int(nullable := False, identity := True),
                         .Nombre = c.String(nullable := False, maxLength := 255),
                         .FacultadID = c.Int(nullable := False),
-                        .Telefono = c.String(nullable := False, maxLength := 255),
-                        .Extensión = c.String(maxLength := 4),
+                        .Telefono = c.String(nullable := False, maxLength := 11),
+                        .Extensión = c.String(maxLength := 6),
                         .correoElectronico = c.String(nullable := False)
                     }) _
                 .PrimaryKey(Function(t) t.ID) _
@@ -112,20 +112,61 @@ Namespace Migrations
                 "dbo.Docente",
                 Function(c) New With
                     {
-                        .ID = c.Int(nullable:=False, identity:=True),
-                        .Nombres = c.String(nullable:=False, maxLength:=255),
-                        .Apellidos = c.String(nullable:=False, maxLength:=255),
-                        .NumeroTalentoHumano = c.String(nullable:=False, maxLength:=5),
-                        .correoElectronico = c.String(nullable:=False),
-                        .telefono = c.String(nullable:=False, maxLength:=11),
-                        .AreaDeConocimientoID = c.Int(nullable:=False),
-                        .FacultadID = c.Int(nullable:=False)
+                        .ID = c.Int(nullable := False, identity := True),
+                        .Nombres = c.String(nullable := False, maxLength := 255),
+                        .Apellidos = c.String(nullable := False, maxLength := 255),
+                        .NumeroTalentoHumano = c.String(nullable := False, maxLength := 5),
+                        .correoElectronico = c.String(nullable := False),
+                        .telefono = c.String(nullable := False, maxLength := 11),
+                        .AreaDeConocimientoID = c.Int(nullable := False),
+                        .FacultadID = c.Int(nullable := False)
                     }) _
                 .PrimaryKey(Function(t) t.ID) _
-                .ForeignKey("dbo.AreaDeConocimiento", Function(t) t.AreaDeConocimientoID, cascadeDelete:=True) _
-                .ForeignKey("dbo.Facultad", Function(t) t.FacultadID, cascadeDelete:=True) _
+                .ForeignKey("dbo.AreaDeConocimiento", Function(t) t.AreaDeConocimientoID, cascadeDelete := True) _
+                .ForeignKey("dbo.Facultad", Function(t) t.FacultadID, cascadeDelete := True) _
                 .Index(Function(t) t.AreaDeConocimientoID) _
                 .Index(Function(t) t.FacultadID)
+            
+            CreateTable(
+                "dbo.Recurso",
+                Function(c) New With
+                    {
+                        .Id = c.Int(nullable:=False, identity:=True),
+                        .Nombre = c.String(nullable:=False, maxLength:=255),
+                        .TipoDeRecursoID = c.Int(nullable:=False),
+                        .ModalidadDeCursoID = c.Int(nullable:=False),
+                        .EmpresaID = c.Int(nullable:=False),
+                        .CursoID = c.Int(nullable:=False),
+                        .ClienteCorporativoID = c.Int(nullable:=False),
+                        .DocenteID = c.Int(nullable:=False),
+                        .Duracion = c.Int(nullable:=False),
+                        .Prioridad = c.String(nullable:=False, maxLength:=255),
+                        .FechaEntrega = c.DateTime(nullable:=False)
+                    }) _
+                .PrimaryKey(Function(t) t.Id) _
+                .ForeignKey("dbo.ClienteCorporativo", Function(t) t.ClienteCorporativoID) _
+                .ForeignKey("dbo.Curso", Function(t) t.CursoID) _
+                .ForeignKey("dbo.Docente", Function(t) t.DocenteID) _
+                .ForeignKey("dbo.Empresa", Function(t) t.EmpresaID) _
+                .ForeignKey("dbo.ModalidadDeCurso", Function(t) t.ModalidadDeCursoID) _
+                .ForeignKey("dbo.TipoDeRecurso", Function(t) t.TipoDeRecursoID) _
+                .Index(Function(t) t.TipoDeRecursoID) _
+                .Index(Function(t) t.ModalidadDeCursoID) _
+                .Index(Function(t) t.EmpresaID) _
+                .Index(Function(t) t.CursoID) _
+                .Index(Function(t) t.ClienteCorporativoID) _
+                .Index(Function(t) t.DocenteID)
+            
+            CreateTable(
+                "dbo.TipoDeRecurso",
+                Function(c) New With
+                    {
+                        .Id = c.Int(nullable := False, identity := True),
+                        .Nombre = c.String(nullable := False, maxLength := 255),
+                        .CodigoRecurso = c.String(nullable := False),
+                        .FechaDeCreacion = c.DateTime(nullable := False)
+                    }) _
+                .PrimaryKey(Function(t) t.Id)
             
             CreateStoredProcedure(
                 "dbo.AreaDeConocimiento_Insert",
@@ -235,7 +276,7 @@ Namespace Migrations
                     {
                         .Nombre = p.String(maxLength := 255),
                         .Direccion = p.String(maxLength := 255),
-                        .Telefono = p.String(maxLength := 255),
+                        .Telefono = p.String(maxLength := 11),
                         .Ciudad = p.String(maxLength := 255),
                         .Departamento = p.String(maxLength := 255)
                     },
@@ -260,7 +301,7 @@ Namespace Migrations
                         .ID = p.Int(),
                         .Nombre = p.String(maxLength := 255),
                         .Direccion = p.String(maxLength := 255),
-                        .Telefono = p.String(maxLength := 255),
+                        .Telefono = p.String(maxLength := 11),
                         .Ciudad = p.String(maxLength := 255),
                         .Departamento = p.String(maxLength := 255)
                     },
@@ -347,8 +388,8 @@ Namespace Migrations
                     {
                         .Nombre = p.String(maxLength := 255),
                         .FacultadID = p.Int(),
-                        .Telefono = p.String(maxLength := 255),
-                        .Extensión = p.String(maxLength := 4),
+                        .Telefono = p.String(maxLength := 11),
+                        .Extensión = p.String(maxLength := 6),
                         .correoElectronico = p.String()
                     },
                 body :=
@@ -372,8 +413,8 @@ Namespace Migrations
                         .ID = p.Int(),
                         .Nombre = p.String(maxLength := 255),
                         .FacultadID = p.Int(),
-                        .Telefono = p.String(maxLength := 255),
-                        .Extensión = p.String(maxLength := 4),
+                        .Telefono = p.String(maxLength := 11),
+                        .Extensión = p.String(maxLength := 6),
                         .correoElectronico = p.String()
                     },
                 body :=
@@ -495,15 +536,15 @@ Namespace Migrations
                 "dbo.Docente_Insert",
                 Function(p) New With
                     {
-                        .Nombres = p.String(maxLength:=255),
-                        .Apellidos = p.String(maxLength:=255),
-                        .NumeroTalentoHumano = p.String(maxLength:=5),
+                        .Nombres = p.String(maxLength := 255),
+                        .Apellidos = p.String(maxLength := 255),
+                        .NumeroTalentoHumano = p.String(maxLength := 5),
                         .correoElectronico = p.String(),
-                        .telefono = p.String(maxLength:=11),
+                        .telefono = p.String(maxLength := 11),
                         .AreaDeConocimientoID = p.Int(),
                         .FacultadID = p.Int()
                     },
-                body:=
+                body :=
                     "INSERT [dbo].[Docente]([Nombres], [Apellidos], [NumeroTalentoHumano], [correoElectronico], [telefono], [AreaDeConocimientoID], [FacultadID])" & vbCrLf & _
                     "VALUES (@Nombres, @Apellidos, @NumeroTalentoHumano, @correoElectronico, @telefono, @AreaDeConocimientoID, @FacultadID)" & vbCrLf & _
                     "" & vbCrLf & _
@@ -522,15 +563,15 @@ Namespace Migrations
                 Function(p) New With
                     {
                         .ID = p.Int(),
-                        .Nombres = p.String(maxLength:=255),
-                        .Apellidos = p.String(maxLength:=255),
-                        .NumeroTalentoHumano = p.String(maxLength:=5),
+                        .Nombres = p.String(maxLength := 255),
+                        .Apellidos = p.String(maxLength := 255),
+                        .NumeroTalentoHumano = p.String(maxLength := 5),
                         .correoElectronico = p.String(),
-                        .telefono = p.String(maxLength:=11),
+                        .telefono = p.String(maxLength := 11),
                         .AreaDeConocimientoID = p.Int(),
                         .FacultadID = p.Int()
                     },
-                body:=
+                body :=
                     "UPDATE [dbo].[Docente]" & vbCrLf & _
                     "SET [Nombres] = @Nombres, [Apellidos] = @Apellidos, [NumeroTalentoHumano] = @NumeroTalentoHumano, [correoElectronico] = @correoElectronico, [telefono] = @telefono, [AreaDeConocimientoID] = @AreaDeConocimientoID, [FacultadID] = @FacultadID" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
@@ -547,9 +588,60 @@ Namespace Migrations
                     "WHERE ([ID] = @ID)"
             )
             
+            CreateStoredProcedure(
+                "dbo.TipoDeRecurso_Insert",
+                Function(p) New With
+                    {
+                        .Nombre = p.String(maxLength := 255),
+                        .CodigoRecurso = p.String(),
+                        .FechaDeCreacion = p.DateTime()
+                    },
+                body :=
+                    "INSERT [dbo].[TipoDeRecurso]([Nombre], [CodigoRecurso], [FechaDeCreacion])" & vbCrLf & _
+                    "VALUES (@Nombre, @CodigoRecurso, @FechaDeCreacion)" & vbCrLf & _
+                    "" & vbCrLf & _
+                    "DECLARE @Id int" & vbCrLf & _
+                    "SELECT @Id = [Id]" & vbCrLf & _
+                    "FROM [dbo].[TipoDeRecurso]" & vbCrLf & _
+                    "WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()" & vbCrLf & _
+                    "" & vbCrLf & _
+                    "SELECT t0.[Id]" & vbCrLf & _
+                    "FROM [dbo].[TipoDeRecurso] AS t0" & vbCrLf & _
+                    "WHERE @@ROWCOUNT > 0 AND t0.[Id] = @Id"
+            )
+            
+            CreateStoredProcedure(
+                "dbo.TipoDeRecurso_Update",
+                Function(p) New With
+                    {
+                        .Id = p.Int(),
+                        .Nombre = p.String(maxLength := 255),
+                        .CodigoRecurso = p.String(),
+                        .FechaDeCreacion = p.DateTime()
+                    },
+                body :=
+                    "UPDATE [dbo].[TipoDeRecurso]" & vbCrLf & _
+                    "SET [Nombre] = @Nombre, [CodigoRecurso] = @CodigoRecurso, [FechaDeCreacion] = @FechaDeCreacion" & vbCrLf & _
+                    "WHERE ([Id] = @Id)"
+            )
+            
+            CreateStoredProcedure(
+                "dbo.TipoDeRecurso_Delete",
+                Function(p) New With
+                    {
+                        .Id = p.Int()
+                    },
+                body :=
+                    "DELETE [dbo].[TipoDeRecurso]" & vbCrLf & _
+                    "WHERE ([Id] = @Id)"
+            )
+            
         End Sub
         
         Public Overrides Sub Down()
+            DropStoredProcedure("dbo.TipoDeRecurso_Delete")
+            DropStoredProcedure("dbo.TipoDeRecurso_Update")
+            DropStoredProcedure("dbo.TipoDeRecurso_Insert")
             DropStoredProcedure("dbo.Docente_Delete")
             DropStoredProcedure("dbo.Docente_Update")
             DropStoredProcedure("dbo.Docente_Insert")
@@ -574,6 +666,12 @@ Namespace Migrations
             DropStoredProcedure("dbo.AreaDeConocimiento_Delete")
             DropStoredProcedure("dbo.AreaDeConocimiento_Update")
             DropStoredProcedure("dbo.AreaDeConocimiento_Insert")
+            DropForeignKey("dbo.Recurso", "TipoDeRecursoID", "dbo.TipoDeRecurso")
+            DropForeignKey("dbo.Recurso", "ModalidadDeCursoID", "dbo.ModalidadDeCurso")
+            DropForeignKey("dbo.Recurso", "EmpresaID", "dbo.Empresa")
+            DropForeignKey("dbo.Recurso", "DocenteID", "dbo.Docente")
+            DropForeignKey("dbo.Recurso", "CursoID", "dbo.Curso")
+            DropForeignKey("dbo.Recurso", "ClienteCorporativoID", "dbo.ClienteCorporativo")
             DropForeignKey("dbo.Docente", "FacultadID", "dbo.Facultad")
             DropForeignKey("dbo.Docente", "AreaDeConocimientoID", "dbo.AreaDeConocimiento")
             DropForeignKey("dbo.Curso", "ModalidadDeCursoID", "dbo.ModalidadDeCurso")
@@ -581,6 +679,12 @@ Namespace Migrations
             DropForeignKey("dbo.EncargadoDeValidacion", "FacultadID", "dbo.Facultad")
             DropForeignKey("dbo.Curso", "AreaDeConocimientoID", "dbo.AreaDeConocimiento")
             DropForeignKey("dbo.ClienteCorporativo", "EmpresaID", "dbo.Empresa")
+            DropIndex("dbo.Recurso", New String() { "DocenteID" })
+            DropIndex("dbo.Recurso", New String() { "ClienteCorporativoID" })
+            DropIndex("dbo.Recurso", New String() { "CursoID" })
+            DropIndex("dbo.Recurso", New String() { "EmpresaID" })
+            DropIndex("dbo.Recurso", New String() { "ModalidadDeCursoID" })
+            DropIndex("dbo.Recurso", New String() { "TipoDeRecursoID" })
             DropIndex("dbo.Docente", New String() { "FacultadID" })
             DropIndex("dbo.Docente", New String() { "AreaDeConocimientoID" })
             DropIndex("dbo.EncargadoDeValidacion", New String() { "FacultadID" })
@@ -588,6 +692,8 @@ Namespace Migrations
             DropIndex("dbo.Curso", New String() { "ModalidadDeCursoID" })
             DropIndex("dbo.Curso", New String() { "AreaDeConocimientoID" })
             DropIndex("dbo.ClienteCorporativo", New String() { "EmpresaID" })
+            DropTable("dbo.TipoDeRecurso")
+            DropTable("dbo.Recurso")
             DropTable("dbo.Docente")
             DropTable("dbo.ModalidadDeCurso")
             DropTable("dbo.Facultad")

@@ -30,9 +30,9 @@
                     <li><a class="" href="/EncargadoDeValidacion">Encargado de Validación</a></li>
                     <li><a class="" href="/Facultad">Facultad</a></li>
                     <li><a class="" href="/ModalidadDeCurso">Modalidad de Curso</a></li>
-                    <!--<li><a class="" href="#">Recurso</a></li>
-                    <li><a class="" href="#">Rol por Departamento </a></li>
-                    <li><a class="" href="#">Tipo de Recurso</a></li>
+                    <li><a class="" href="/TipoDeRecurso">Tipo de Recurso</a></li>
+                    <li><a class="" href="/Recurso">Recurso</a></li>
+                    <!--<li><a class="" href="#">Rol por Departamento </a></li>                    
                     <li><a class="" href="#">Usuarios</a></li>-->
                 </ul>
             </li>
