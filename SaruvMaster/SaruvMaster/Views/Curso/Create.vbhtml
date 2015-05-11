@@ -95,9 +95,14 @@ End Code
                 <div class="form-group">
                     <label for="Nombre" class="control-label col-md-2">Periodo @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
-                        @Html.EditorFor(Function(model) model.Periodo, New With {.htmlAttributes = New With {.class = "form-control"}})
-                        @Html.ValidationMessageFor(Function(model) model.Periodo, "", New With {.class = "text-danger"})                     
-                    </div>
+                        <select class="form-control" id="Periodo" name="Periodo">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                            @Html.ValidationMessageFor(Function(model) model.Periodo, "", New With {.class = "text-danger"})
+</div>
                 </div>
 
                 <div class="form-group">
