@@ -24,6 +24,8 @@ Public Class Connection
 
     Public Property EncargadoDeValidacion As DbSet(Of EncargadoDeValidacion)
 
+    Public Property TipoDeRecurso As DbSet(Of TipoDeRecurso)
+
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
         modelBuilder.Conventions.Remove(Of PluralizingTableNameConvention)()
         modelBuilder.Entity(Of Facultad).MapToStoredProcedures()

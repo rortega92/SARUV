@@ -201,6 +201,7 @@
     <Compile Include="Controllers\FacultadController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
     <Compile Include="Controllers\ModalidadDeCursoController.vb" />
+    <Compile Include="Controllers\TipoDeRecursoController.vb" />
     <Compile Include="DAL\Connection.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -223,6 +224,7 @@
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\ManageViewModels.vb" />
     <Compile Include="Models\ModalidadDeCurso.vb" />
+    <Compile Include="Models\TipoDeRecurso.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -990,6 +992,11 @@
     <Content Include="Views\Curso\Details.vbhtml" />
     <Content Include="Views\Curso\Edit.vbhtml" />
     <Content Include="Views\Curso\Index.vbhtml" />
+    <Content Include="Views\TipoDeRecurso\Create.vbhtml" />
+    <Content Include="Views\TipoDeRecurso\Delete.vbhtml" />
+    <Content Include="Views\TipoDeRecurso\Details.vbhtml" />
+    <Content Include="Views\TipoDeRecurso\Edit.vbhtml" />
+    <Content Include="Views\TipoDeRecurso\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
