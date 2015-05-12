@@ -15,7 +15,11 @@ Namespace Controllers
         Private db As New Connection
 
         ' GET: Docente
-        Function Index() As ActionResult
+        Function Index(ByVal filtro As String, ByVal searchString As String) As ActionResult
+            Dim array(2) As String
+            array(0) = "Area de conocimiento"            
+            array(1) = "Facultad"
+            ViewBag.filtro = New SelectList(array)
             Dim docente = db.Docente.Include(Function(d) d.AreaDeConocimiento).Include(Function(d) d.Facultad)
             Return View(docente.ToList())
         End Function

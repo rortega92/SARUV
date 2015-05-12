@@ -46,8 +46,9 @@ End Code
 <div id="Buscar" class="row" style="margin-bottom:10px">
     <div class="col-xs-4 col-xs-offset-2" style="margin-top:10px">
         @Using Html.BeginForm("Index", "Docente", FormMethod.Get)
+           
             @<div class="input-group">
-                <div class="input-group-btn" id="search-panel">
+                <div class="input-group-btn" id="search-panel">                
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <span id="search_concept">Filtrar Por</span> <span class="caret"></span>
                     </button>

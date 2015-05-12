@@ -45,8 +45,7 @@ End Code
                 @Html.TextBox("SearchString", Nothing, htmlAttributes:=New With {.class = "form-control", .placeholder = "Buscar por Nombre"})
                 <span class="input-group-btn">
                     <button type="submit" value="Filter" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
-                
+                </span>                
             </div>
         End Using
         <a href="javascript:void(0)" id="cancelar">Cancelar</a>
