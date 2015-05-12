@@ -66,21 +66,21 @@ Namespace Migrations
                     New Empresa() With {
                         .Nombre = "Kielsa",
                         .Direccion = "Bulevard Morazan",
-                        .Telefono = "(504)-22554433",
+                        .Telefono = "50422554433",
                         .Ciudad = "Tegucigalpa",
                         .Departamento = "Francisco Morazan"
                     },
                     New Empresa() With {
                         .Nombre = "Empresa X",
                         .Direccion = "Bulevard Fuerzas Armadas",
-                        .Telefono = "(504)-22254213",
+                        .Telefono = "50422254213",
                         .Ciudad = "Tegucigalpa",
                         .Departamento = "Francisco Morazan"
                     },
                     New Empresa() With {
                         .Nombre = "Empresa XYZ",
                         .Direccion = "Bulevard Suyapa",
-                        .Telefono = "(504)-22121433",
+                        .Telefono = "50422121433",
                         .Ciudad = "Tegucigalpa",
                         .Departamento = "Francisco Morazan"
                     }
@@ -96,7 +96,7 @@ Namespace Migrations
                         .Apellidos = "Gomez Lopez",
                         .NumeroIdentidad = "0703-1990-12345",
                         .CorreoElectronico = "jgomez@gmail.com",
-                        .Telefono = "(504)-22123432",
+                        .Telefono = "50422123432",
                         .EmpresaID = empresas.Single(Function(e) e.Nombre = "Kielsa").ID
                     },
                     New ClienteCorporativo() With {
@@ -104,7 +104,7 @@ Namespace Migrations
                         .Apellidos = "Galeano Funez",
                         .NumeroIdentidad = "0701-1988-10325",
                         .CorreoElectronico = "jgaleano@gmail.com",
-                        .Telefono = "(504)-22131412",
+                        .Telefono = "50422131412",
                         .EmpresaID = empresas.Single(Function(e) e.Nombre = "Kielsa").ID
                     },
                     New ClienteCorporativo() With {
@@ -112,7 +112,7 @@ Namespace Migrations
                         .Apellidos = "Rivera Martinez",
                         .NumeroIdentidad = "0802-1991-13322",
                         .CorreoElectronico = "arivera@gmail.com",
-                        .Telefono = "(504)-22123456",
+                        .Telefono = "50422123456",
                         .EmpresaID = empresas.Single(Function(e) e.Nombre = "Empresa X").ID
                     }
                 }
@@ -131,21 +131,21 @@ Namespace Migrations
                     New EncargadoDeValidacion() With {
                         .Nombre = "Karina Gabriela Sevilla Ortiz",
                         .FacultadID = facultades.Single(Function(e) e.Nombre = "Ingeniería").ID,
-                        .Telefono = "(504)-22113411",
+                        .Telefono = "50422113411",
                         .Extensión = "2354",
                         .correoElectronico = "ksevilla@gmail.com"
                     },
                     New EncargadoDeValidacion() With {
                         .Nombre = "Reinaldo José Ruiz Chacón",
                         .FacultadID = facultades.Single(Function(e) e.Nombre = "Ingeniería").ID,
-                        .Telefono = "(504)-22113411",
+                        .Telefono = "50422113411",
                         .Extensión = "2353",
                         .correoElectronico = "rruiz@gmail.com"
                     },
                     New EncargadoDeValidacion() With {
                         .Nombre = "Camila Alejandra Sierra Duarte",
                         .FacultadID = facultades.Single(Function(e) e.Nombre = "Ciencias de la Salud").ID,
-                        .Telefono = "(504)-22111411",
+                        .Telefono = "50422111411",
                         .Extensión = "1001",
                         .correoElectronico = "csierra@gmail.com"
                     }
@@ -164,10 +164,10 @@ Namespace Migrations
             Dim docentes = New List(Of Docente)() From {
                     New Docente() With {
                         .Nombres = "Karla Cecilia",
-                        .Apellidos = "Águilar Santos",
+                        .Apellidos = "Aguilar Santos",
                         .NumeroTalentoHumano = "13256",
                         .correoElectronico = "kavila@gmail.com",
-                        .telefono = "(504)-22116811",
+                        .telefono = "50422116811",
                         .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Matemáticas").ID,
                         .FacultadID = facultades.Single(Function(e) e.Nombre = "Ingeniería").ID
                     },
@@ -176,7 +176,7 @@ Namespace Migrations
                         .Apellidos = "Leonardo Vargas",
                         .NumeroTalentoHumano = "45896",
                         .correoElectronico = "jvargas@gmail.com",
-                        .telefono = "(504)-22116812",
+                        .telefono = "50422116812",
                         .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Matemáticas").ID,
                         .FacultadID = facultades.Single(Function(e) e.Nombre = "Ingeniería").ID
                     },
@@ -185,7 +185,7 @@ Namespace Migrations
                         .Apellidos = "Castro Madrid",
                         .NumeroTalentoHumano = "10230",
                         .correoElectronico = "scastro@gmail.com",
-                        .telefono = "(504)-22196811",
+                        .telefono = "50422196811",
                         .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Literatura").ID,
                         .FacultadID = facultades.Single(Function(e) e.Nombre = "Ciencias Administrativas").ID
                     }
