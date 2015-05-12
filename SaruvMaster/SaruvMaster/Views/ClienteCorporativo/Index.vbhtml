@@ -18,7 +18,7 @@ End Code
     <div class="col-md-12">
         <section class="panel">
             <div navbar-collapse navbar-ex1-collapse>
-                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3" style="margin-top:10px">
+                <div class="col-xs-5 col-sm-6 col-md-4 col-lg-3" style="margin-top:10px">
                     @Using Html.BeginForm("Index", "ClienteCorporativo", FormMethod.Get)
                         @<div class="input-group">
                             @Html.TextBox("SearchString", Nothing, htmlAttributes:=New With {.class = "form-control", .placeholder = "Buscar por Nombre"})
