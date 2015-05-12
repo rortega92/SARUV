@@ -11,80 +11,85 @@ Namespace Migrations
                 "dbo.AreaDeConocimiento",
                 Function(c) New With
                     {
-                        .ID = c.Int(nullable := False, identity := True),
-                        .Nombre = c.String(nullable := False, maxLength := 255),
-                        .FechaCreacion = c.DateTime(nullable := False),
-                        .FechaModificacion = c.DateTime(nullable := False)
+                        .ID = c.Int(nullable:=False, identity:=True),
+                        .Nombre = c.String(nullable:=False, maxLength:=255),
+                        .FechaCreacion = c.DateTime(nullable:=False),
+                        .FechaModificacion = c.DateTime(nullable:=False),
+                        .IsDeleted = c.Int(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.ID)
-            
+
             CreateTable(
                 "dbo.ClienteCorporativo",
                 Function(c) New With
                     {
-                        .ID = c.Int(nullable := False, identity := True),
-                        .Nombres = c.String(nullable := False, maxLength := 255),
-                        .Apellidos = c.String(nullable := False, maxLength := 255),
-                        .NumeroIdentidad = c.String(nullable := False, maxLength := 15),
-                        .CorreoElectronico = c.String(nullable := False),
-                        .Telefono = c.String(nullable := False, maxLength := 255),
-                        .EmpresaID = c.Int(nullable := False)
+                        .ID = c.Int(nullable:=False, identity:=True),
+                        .Nombres = c.String(nullable:=False, maxLength:=255),
+                        .Apellidos = c.String(nullable:=False, maxLength:=255),
+                        .NumeroIdentidad = c.String(nullable:=False, maxLength:=15),
+                        .CorreoElectronico = c.String(nullable:=False),
+                        .Telefono = c.String(nullable:=False, maxLength:=15),
+                        .EmpresaID = c.Int(nullable:=False),
+                        .IsDeleted = c.Int(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.ID) _
-                .ForeignKey("dbo.Empresa", Function(t) t.EmpresaID, cascadeDelete := True) _
+                .ForeignKey("dbo.Empresa", Function(t) t.EmpresaID, cascadeDelete:=False) _
                 .Index(Function(t) t.EmpresaID)
-            
+
             CreateTable(
                 "dbo.Empresa",
                 Function(c) New With
                     {
-                        .ID = c.Int(nullable := False, identity := True),
-                        .Nombre = c.String(nullable := False, maxLength := 255),
-                        .Direccion = c.String(nullable := False, maxLength := 255),
-                        .Telefono = c.String(nullable := False, maxLength := 11),
-                        .Ciudad = c.String(nullable := False, maxLength := 255),
-                        .Departamento = c.String(nullable := False, maxLength := 255)
+                        .ID = c.Int(nullable:=False, identity:=True),
+                        .Nombre = c.String(nullable:=False, maxLength:=255),
+                        .Direccion = c.String(nullable:=False, maxLength:=255),
+                        .Telefono = c.String(nullable:=False, maxLength:=15),
+                        .Ciudad = c.String(nullable:=False, maxLength:=255),
+                        .Departamento = c.String(nullable:=False, maxLength:=255),
+                        .IsDeleted = c.Int(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.ID)
-            
+
             CreateTable(
                 "dbo.Curso",
                 Function(c) New With
                     {
-                        .ID = c.Int(nullable := False, identity := True),
-                        .Nombres = c.String(nullable := False, maxLength := 255),
-                        .AreaDeConocimientoID = c.Int(nullable := False),
-                        .ModalidadDeCursoID = c.Int(nullable := False),
-                        .EncargadoDeValidacionID = c.Int(nullable := False),
-                        .FechaInicio = c.DateTime(nullable := False),
-                        .FechaFinal = c.DateTime(nullable := False),
-                        .Periodo = c.Int(nullable := False),
-                        .FechaCreacion = c.DateTime(nullable := False),
-                        .FechaModificacion = c.DateTime(nullable := False)
+                        .ID = c.Int(nullable:=False, identity:=True),
+                        .Nombres = c.String(nullable:=False, maxLength:=255),
+                        .AreaDeConocimientoID = c.Int(nullable:=False),
+                        .ModalidadDeCursoID = c.Int(nullable:=False),
+                        .EncargadoDeValidacionID = c.Int(nullable:=False),
+                        .FechaInicio = c.DateTime(nullable:=False),
+                        .FechaFinal = c.DateTime(nullable:=False),
+                        .Periodo = c.Int(nullable:=False),
+                        .FechaCreacion = c.DateTime(nullable:=False),
+                        .FechaModificacion = c.DateTime(nullable:=False),
+                        .IsDeleted = c.Int(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.ID) _
-                .ForeignKey("dbo.AreaDeConocimiento", Function(t) t.AreaDeConocimientoID, cascadeDelete := True) _
-                .ForeignKey("dbo.EncargadoDeValidacion", Function(t) t.EncargadoDeValidacionID, cascadeDelete := True) _
-                .ForeignKey("dbo.ModalidadDeCurso", Function(t) t.ModalidadDeCursoID, cascadeDelete := True) _
+                .ForeignKey("dbo.AreaDeConocimiento", Function(t) t.AreaDeConocimientoID, cascadeDelete:=False) _
+                .ForeignKey("dbo.EncargadoDeValidacion", Function(t) t.EncargadoDeValidacionID, cascadeDelete:=False) _
+                .ForeignKey("dbo.ModalidadDeCurso", Function(t) t.ModalidadDeCursoID, cascadeDelete:=False) _
                 .Index(Function(t) t.AreaDeConocimientoID) _
                 .Index(Function(t) t.ModalidadDeCursoID) _
                 .Index(Function(t) t.EncargadoDeValidacionID)
-            
+
             CreateTable(
                 "dbo.EncargadoDeValidacion",
                 Function(c) New With
                     {
-                        .ID = c.Int(nullable := False, identity := True),
-                        .Nombre = c.String(nullable := False, maxLength := 255),
-                        .FacultadID = c.Int(nullable := False),
-                        .Telefono = c.String(nullable := False, maxLength := 11),
-                        .Extensión = c.String(maxLength := 6),
-                        .correoElectronico = c.String(nullable := False)
+                        .ID = c.Int(nullable:=False, identity:=True),
+                        .Nombre = c.String(nullable:=False, maxLength:=255),
+                        .FacultadID = c.Int(nullable:=False),
+                        .Telefono = c.String(nullable:=False, maxLength:=15),
+                        .Extensión = c.String(maxLength:=6),
+                        .correoElectronico = c.String(nullable:=False),
+                        .IsDeleted = c.Int(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.ID) _
-                .ForeignKey("dbo.Facultad", Function(t) t.FacultadID, cascadeDelete := True) _
+                .ForeignKey("dbo.Facultad", Function(t) t.FacultadID, cascadeDelete:=False) _
                 .Index(Function(t) t.FacultadID)
-            
+
             CreateTable(
                 "dbo.Facultad",
                 Function(c) New With
@@ -105,7 +110,8 @@ Namespace Migrations
                         .Nombre = c.String(nullable:=False, maxLength:=255),
                         .Duracion = c.Int(nullable:=False),
                         .FechaCreacion = c.DateTime(nullable:=False),
-                        .FechaModificacion = c.DateTime(nullable:=False)
+                        .FechaModificacion = c.DateTime(nullable:=False),
+                        .IsDeleted = c.Int(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.ID)
 
@@ -118,13 +124,14 @@ Namespace Migrations
                         .Apellidos = c.String(nullable:=False, maxLength:=255),
                         .NumeroTalentoHumano = c.String(nullable:=False, maxLength:=5),
                         .correoElectronico = c.String(nullable:=False),
-                        .telefono = c.String(nullable:=False, maxLength:=11),
+                        .telefono = c.String(nullable:=False, maxLength:=15),
                         .AreaDeConocimientoID = c.Int(nullable:=False),
-                        .FacultadID = c.Int(nullable:=False)
+                        .FacultadID = c.Int(nullable:=False),
+                        .IsDeleted = c.Int(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.ID) _
-                .ForeignKey("dbo.AreaDeConocimiento", Function(t) t.AreaDeConocimientoID, cascadeDelete:=True) _
-                .ForeignKey("dbo.Facultad", Function(t) t.FacultadID, cascadeDelete:=True) _
+                .ForeignKey("dbo.AreaDeConocimiento", Function(t) t.AreaDeConocimientoID, cascadeDelete:=False) _
+                .ForeignKey("dbo.Facultad", Function(t) t.FacultadID, cascadeDelete:=False) _
                 .Index(Function(t) t.AreaDeConocimientoID) _
                 .Index(Function(t) t.FacultadID)
 
@@ -142,7 +149,8 @@ Namespace Migrations
                         .DocenteID = c.Int(nullable:=False),
                         .Duracion = c.Int(nullable:=False),
                         .Prioridad = c.String(nullable:=False, maxLength:=255),
-                        .FechaEntrega = c.DateTime(nullable:=False)
+                        .FechaEntrega = c.DateTime(nullable:=False),
+                        .IsDeleted = c.Int(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.Id) _
                 .ForeignKey("dbo.ClienteCorporativo", Function(t) t.ClienteCorporativoID, cascadeDelete:=False) _
@@ -165,7 +173,8 @@ Namespace Migrations
                         .Id = c.Int(nullable:=False, identity:=True),
                         .Nombre = c.String(nullable:=False, maxLength:=255),
                         .CodigoRecurso = c.String(nullable:=False),
-                        .FechaDeCreacion = c.DateTime(nullable:=False)
+                        .FechaDeCreacion = c.DateTime(nullable:=False),
+                        .IsDeleted = c.Int(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.Id)
 
@@ -178,8 +187,8 @@ Namespace Migrations
                         .FechaModificacion = p.DateTime()
                     },
                 body:=
-                    "INSERT [dbo].[AreaDeConocimiento]([Nombre], [FechaCreacion], [FechaModificacion])" & vbCrLf & _
-                    "VALUES (@Nombre, @FechaCreacion, @FechaModificacion)" & vbCrLf & _
+                    "INSERT [dbo].[AreaDeConocimiento]([Nombre], [FechaCreacion], [FechaModificacion], [IsDeleted])" & vbCrLf & _
+                    "VALUES (@Nombre, @FechaCreacion, @FechaModificacion, 0)" & vbCrLf & _
                     "" & vbCrLf & _
                     "DECLARE @ID int" & vbCrLf & _
                     "SELECT @ID = [ID]" & vbCrLf & _
@@ -213,7 +222,8 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "DELETE [dbo].[AreaDeConocimiento]" & vbCrLf & _
+                    "UPDATE [dbo].[AreaDeConocimiento]" & vbCrLf & _
+                    "SET [IsDeleted] = @ID" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -225,12 +235,12 @@ Namespace Migrations
                         .Apellidos = p.String(maxLength:=255),
                         .NumeroIdentidad = p.String(maxLength:=15),
                         .CorreoElectronico = p.String(),
-                        .Telefono = p.String(maxLength:=255),
+                        .Telefono = p.String(maxLength:=15),
                         .EmpresaID = p.Int()
                     },
                 body:=
-                    "INSERT [dbo].[ClienteCorporativo]([Nombres], [Apellidos], [NumeroIdentidad], [CorreoElectronico], [Telefono], [EmpresaID])" & vbCrLf & _
-                    "VALUES (@Nombres, @Apellidos, @NumeroIdentidad, @CorreoElectronico, @Telefono, @EmpresaID)" & vbCrLf & _
+                    "INSERT [dbo].[ClienteCorporativo]([Nombres], [Apellidos], [NumeroIdentidad], [CorreoElectronico], [Telefono], [EmpresaID], [IsDeleted])" & vbCrLf & _
+                    "VALUES (@Nombres, @Apellidos, @NumeroIdentidad, @CorreoElectronico, @Telefono, @EmpresaID, 0)" & vbCrLf & _
                     "" & vbCrLf & _
                     "DECLARE @ID int" & vbCrLf & _
                     "SELECT @ID = [ID]" & vbCrLf & _
@@ -251,7 +261,7 @@ Namespace Migrations
                         .Apellidos = p.String(maxLength:=255),
                         .NumeroIdentidad = p.String(maxLength:=15),
                         .CorreoElectronico = p.String(),
-                        .Telefono = p.String(maxLength:=255),
+                        .Telefono = p.String(maxLength:=15),
                         .EmpresaID = p.Int()
                     },
                 body:=
@@ -267,7 +277,8 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "DELETE [dbo].[ClienteCorporativo]" & vbCrLf & _
+                    "UPDATE [dbo].[ClienteCorporativo]" & vbCrLf & _
+                    "SET [IsDeleted] = @ID" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -277,13 +288,13 @@ Namespace Migrations
                     {
                         .Nombre = p.String(maxLength:=255),
                         .Direccion = p.String(maxLength:=255),
-                        .Telefono = p.String(maxLength:=11),
+                        .Telefono = p.String(maxLength:=15),
                         .Ciudad = p.String(maxLength:=255),
                         .Departamento = p.String(maxLength:=255)
                     },
                 body:=
-                    "INSERT [dbo].[Empresa]([Nombre], [Direccion], [Telefono], [Ciudad], [Departamento])" & vbCrLf & _
-                    "VALUES (@Nombre, @Direccion, @Telefono, @Ciudad, @Departamento)" & vbCrLf & _
+                    "INSERT [dbo].[Empresa]([Nombre], [Direccion], [Telefono], [Ciudad], [Departamento], [IsDeleted])" & vbCrLf & _
+                    "VALUES (@Nombre, @Direccion, @Telefono, @Ciudad, @Departamento, 0)" & vbCrLf & _
                     "" & vbCrLf & _
                     "DECLARE @ID int" & vbCrLf & _
                     "SELECT @ID = [ID]" & vbCrLf & _
@@ -302,7 +313,7 @@ Namespace Migrations
                         .ID = p.Int(),
                         .Nombre = p.String(maxLength:=255),
                         .Direccion = p.String(maxLength:=255),
-                        .Telefono = p.String(maxLength:=11),
+                        .Telefono = p.String(maxLength:=15),
                         .Ciudad = p.String(maxLength:=255),
                         .Departamento = p.String(maxLength:=255)
                     },
@@ -319,7 +330,8 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "DELETE [dbo].[Empresa]" & vbCrLf & _
+                    "UPDATE [dbo].[Empresa]" & vbCrLf & _
+                    "SET [IsDeleted] = @ID" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -338,8 +350,8 @@ Namespace Migrations
                         .FechaModificacion = p.DateTime()
                     },
                 body:=
-                    "INSERT [dbo].[Curso]([Nombres], [AreaDeConocimientoID], [ModalidadDeCursoID], [EncargadoDeValidacionID], [FechaInicio], [FechaFinal], [Periodo], [FechaCreacion], [FechaModificacion])" & vbCrLf & _
-                    "VALUES (@Nombres, @AreaDeConocimientoID, @ModalidadDeCursoID, @EncargadoDeValidacionID, @FechaInicio, @FechaFinal, @Periodo, @FechaCreacion, @FechaModificacion)" & vbCrLf & _
+                    "INSERT [dbo].[Curso]([Nombres], [AreaDeConocimientoID], [ModalidadDeCursoID], [EncargadoDeValidacionID], [FechaInicio], [FechaFinal], [Periodo], [FechaCreacion], [FechaModificacion], [IsDeleted])" & vbCrLf & _
+                    "VALUES (@Nombres, @AreaDeConocimientoID, @ModalidadDeCursoID, @EncargadoDeValidacionID, @FechaInicio, @FechaFinal, @Periodo, @FechaCreacion, @FechaModificacion, 0)" & vbCrLf & _
                     "" & vbCrLf & _
                     "DECLARE @ID int" & vbCrLf & _
                     "SELECT @ID = [ID]" & vbCrLf & _
@@ -379,7 +391,8 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "DELETE [dbo].[Curso]" & vbCrLf & _
+                    "UPDATE [dbo].[Curso]" & vbCrLf & _
+                    "SET [IsDeleted] = @ID" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -389,13 +402,13 @@ Namespace Migrations
                     {
                         .Nombre = p.String(maxLength:=255),
                         .FacultadID = p.Int(),
-                        .Telefono = p.String(maxLength:=11),
+                        .Telefono = p.String(maxLength:=15),
                         .Extensión = p.String(maxLength:=6),
                         .correoElectronico = p.String()
                     },
                 body:=
-                    "INSERT [dbo].[EncargadoDeValidacion]([Nombre], [FacultadID], [Telefono], [Extensión], [correoElectronico])" & vbCrLf & _
-                    "VALUES (@Nombre, @FacultadID, @Telefono, @Extensión, @correoElectronico)" & vbCrLf & _
+                    "INSERT [dbo].[EncargadoDeValidacion]([Nombre], [FacultadID], [Telefono], [Extensión], [correoElectronico], [IsDeleted])" & vbCrLf & _
+                    "VALUES (@Nombre, @FacultadID, @Telefono, @Extensión, @correoElectronico, 0)" & vbCrLf & _
                     "" & vbCrLf & _
                     "DECLARE @ID int" & vbCrLf & _
                     "SELECT @ID = [ID]" & vbCrLf & _
@@ -414,7 +427,7 @@ Namespace Migrations
                         .ID = p.Int(),
                         .Nombre = p.String(maxLength:=255),
                         .FacultadID = p.Int(),
-                        .Telefono = p.String(maxLength:=11),
+                        .Telefono = p.String(maxLength:=15),
                         .Extensión = p.String(maxLength:=6),
                         .correoElectronico = p.String()
                     },
@@ -431,7 +444,8 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "DELETE [dbo].[EncargadoDeValidacion]" & vbCrLf & _
+                    "UPDATE [dbo].[EncargadoDeValidacion]" & vbCrLf & _
+                    "SET [IsDeleted] = @ID" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -494,8 +508,8 @@ Namespace Migrations
                         .FechaModificacion = p.DateTime()
                     },
                 body:=
-                    "INSERT [dbo].[ModalidadDeCurso]([Nombre], [Duracion], [FechaCreacion], [FechaModificacion])" & vbCrLf & _
-                    "VALUES (@Nombre, @Duracion, @FechaCreacion, @FechaModificacion)" & vbCrLf & _
+                    "INSERT [dbo].[ModalidadDeCurso]([Nombre], [Duracion], [FechaCreacion], [FechaModificacion], [IsDeleted])" & vbCrLf & _
+                    "VALUES (@Nombre, @Duracion, @FechaCreacion, @FechaModificacion, 0)" & vbCrLf & _
                     "" & vbCrLf & _
                     "DECLARE @ID int" & vbCrLf & _
                     "SELECT @ID = [ID]" & vbCrLf & _
@@ -530,7 +544,8 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "DELETE [dbo].[ModalidadDeCurso]" & vbCrLf & _
+                    "UPDATE [dbo].[ModalidadDeCurso]" & vbCrLf & _
+                    "SET [IsDeleted] = @ID" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -542,13 +557,13 @@ Namespace Migrations
                         .Apellidos = p.String(maxLength:=255),
                         .NumeroTalentoHumano = p.String(maxLength:=5),
                         .correoElectronico = p.String(),
-                        .telefono = p.String(maxLength:=11),
+                        .telefono = p.String(maxLength:=15),
                         .AreaDeConocimientoID = p.Int(),
                         .FacultadID = p.Int()
                     },
                 body:=
-                    "INSERT [dbo].[Docente]([Nombres], [Apellidos], [NumeroTalentoHumano], [correoElectronico], [telefono], [AreaDeConocimientoID], [FacultadID])" & vbCrLf & _
-                    "VALUES (@Nombres, @Apellidos, @NumeroTalentoHumano, @correoElectronico, @telefono, @AreaDeConocimientoID, @FacultadID)" & vbCrLf & _
+                    "INSERT [dbo].[Docente]([Nombres], [Apellidos], [NumeroTalentoHumano], [correoElectronico], [telefono], [AreaDeConocimientoID], [FacultadID], [IsDeleted])" & vbCrLf & _
+                    "VALUES (@Nombres, @Apellidos, @NumeroTalentoHumano, @correoElectronico, @telefono, @AreaDeConocimientoID, @FacultadID, 0)" & vbCrLf & _
                     "" & vbCrLf & _
                     "DECLARE @ID int" & vbCrLf & _
                     "SELECT @ID = [ID]" & vbCrLf & _
@@ -569,7 +584,7 @@ Namespace Migrations
                         .Apellidos = p.String(maxLength:=255),
                         .NumeroTalentoHumano = p.String(maxLength:=5),
                         .correoElectronico = p.String(),
-                        .telefono = p.String(maxLength:=11),
+                        .telefono = p.String(maxLength:=15),
                         .AreaDeConocimientoID = p.Int(),
                         .FacultadID = p.Int()
                     },
@@ -586,7 +601,8 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "DELETE [dbo].[Docente]" & vbCrLf & _
+                    "UPDATE [dbo].[Docente]" & vbCrLf & _
+                    "SET [IsDeleted] = @ID" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -606,8 +622,8 @@ Namespace Migrations
                         .FechaEntrega = p.DateTime()
                     },
                 body:=
-                    "INSERT [dbo].[Recurso]([Nombre], [TipoDeRecursoID], [ModalidadDeCursoID], [EmpresaID], [CursoID], [ClienteCorporativoID], [DocenteID], [Duracion], [Prioridad], [FechaEntrega])" & vbCrLf & _
-                    "VALUES (@Nombre, @TipoDeRecursoID, @ModalidadDeCursoID, @EmpresaID, @CursoID, @ClienteCorporativoID, @DocenteID, @Duracion, @Prioridad, @FechaEntrega)" & vbCrLf & _
+                    "INSERT [dbo].[Recurso]([Nombre], [TipoDeRecursoID], [ModalidadDeCursoID], [EmpresaID], [CursoID], [ClienteCorporativoID], [DocenteID], [Duracion], [Prioridad], [FechaEntrega], [IsDeleted])" & vbCrLf & _
+                    "VALUES (@Nombre, @TipoDeRecursoID, @ModalidadDeCursoID, @EmpresaID, @CursoID, @ClienteCorporativoID, @DocenteID, @Duracion, @Prioridad, @FechaEntrega, 0)" & vbCrLf & _
                     "" & vbCrLf & _
                     "DECLARE @Id int" & vbCrLf & _
                     "SELECT @Id = [Id]" & vbCrLf & _
@@ -648,7 +664,8 @@ Namespace Migrations
                         .Id = p.Int()
                     },
                 body:=
-                    "DELETE [dbo].[Recurso]" & vbCrLf & _
+                    "UPDATE [dbo].[Recurso]" & vbCrLf & _
+                    "SET [IsDeleted] = @ID" & vbCrLf & _
                     "WHERE ([Id] = @Id)"
             )
 
@@ -661,8 +678,8 @@ Namespace Migrations
                         .FechaDeCreacion = p.DateTime()
                     },
                 body:=
-                    "INSERT [dbo].[TipoDeRecurso]([Nombre], [CodigoRecurso], [FechaDeCreacion])" & vbCrLf & _
-                    "VALUES (@Nombre, @CodigoRecurso, @FechaDeCreacion)" & vbCrLf & _
+                    "INSERT [dbo].[TipoDeRecurso]([Nombre], [CodigoRecurso], [FechaDeCreacion], [IsDeleted])" & vbCrLf & _
+                    "VALUES (@Nombre, @CodigoRecurso, @FechaDeCreacion, 0)" & vbCrLf & _
                     "" & vbCrLf & _
                     "DECLARE @Id int" & vbCrLf & _
                     "SELECT @Id = [Id]" & vbCrLf & _
@@ -696,7 +713,8 @@ Namespace Migrations
                         .Id = p.Int()
                     },
                 body:=
-                    "DELETE [dbo].[TipoDeRecurso]" & vbCrLf & _
+                    "UPDATE [dbo].[TipoDeRecurso]" & vbCrLf & _
+                    "SET [IsDeleted] = @ID" & vbCrLf & _
                     "WHERE ([Id] = @Id)"
             )
 

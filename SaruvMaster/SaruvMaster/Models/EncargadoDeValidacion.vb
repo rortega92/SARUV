@@ -5,14 +5,14 @@ Public Class EncargadoDeValidacion
 
     <Display(Name:="Encargado de Validación"), Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, ErrorMessage:="Este campo solo permite un máximo de 255 caracteres")>
-    <RegularExpression("^(([A-Z][a-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+) ?)+$", ErrorMessage:="Solo se aceptan letras y espacios")>
+    <RegularExpression("^([A-Z][a-zA-Z]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y espacios")>
     Public Property Nombre As String
 
     <Display(Name:="Facultad")>
     Public Property FacultadID As Integer
 
     <Display(Name:="Teléfono"), Required(ErrorMessage:="Este campo es obligatorio")>
-    <StringLength(11, MinimumLength:=11, ErrorMessage:="Solo se aceptan los formatos: (504)-2233-4455, 504-2233-4455, 504-22334455, 50422334455")>
+    <StringLength(15, MinimumLength:=11, ErrorMessage:="Solo se aceptan los formatos: (504)-2233-4455, 504-2233-4455, 504-22334455, 50422334455")>
     <RegularExpression("^(\d{3}|\(\s*\d{3}\s*\))\s*-?\s*\d{4}\s*-?\s*\d{4}$", ErrorMessage:="Solo se aceptan los formatos: (504)-2233-4455, 504-2233-4455, 504-22334455, 50422334455")>
     Public Property Telefono As String
 
@@ -28,5 +28,7 @@ Public Class EncargadoDeValidacion
 
     <Display(Name:="Facultad")>
     Public Overridable Property Facultad As Facultad
+
+    Public Property IsDeleted As Integer = 0
 
 End Class

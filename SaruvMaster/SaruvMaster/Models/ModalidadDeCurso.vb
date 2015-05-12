@@ -3,8 +3,8 @@ Public Class ModalidadDeCurso
     Public Property ID As Integer
 
     <Display(Name:="Nombre"), Required(ErrorMessage:="Este campo es obligatorio")>
-    <StringLength(255, MinimumLength:=5, ErrorMessage:="Solo se puede un mínimo de 5 letras y un máximo de 255 letras")>
-    <RegularExpression("^([a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y espacios")>
+    <StringLength(255, ErrorMessage:="Este campo solo permite un máximo de 255 caracteres")>
+    <RegularExpression("^([A-Z][a-zA-Z]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y espacios")>
     Public Property Nombre As String
 
     <Display(Name:="Duración de Semanas"), Required(ErrorMessage:="Este campo es obligatorio")>
@@ -18,5 +18,7 @@ Public Class ModalidadDeCurso
     <Display(Name:="Fecha de modificación")>
     <DataType(DataType.DateTime)>
     Public Property FechaModificacion As Date
+
+    Public Property IsDeleted As Integer = 0
 
 End Class

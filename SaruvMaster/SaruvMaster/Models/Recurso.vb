@@ -4,7 +4,7 @@ Public Class Recurso
 
     <Display(Name:="Tema de Recurso"), Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, ErrorMessage:="Este campo permite un máximo de 255 caracteres")>
-    <RegularExpression("^([A-Z][a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+ ?)+?$", ErrorMessage:="Este es un campo alfanumérico que acepta letras, números y espacios")>
+    <RegularExpression("^([A-Z][a-zA-Z\d]+ ?)+?$", ErrorMessage:="Este es un campo alfanumérico que acepta letras, números y espacios")>
     Public Property Nombre As String
 
     <Display(Name:="Tipo de Recurso")>
@@ -56,5 +56,7 @@ Public Class Recurso
     <DataType(DataType.Date)>
     <DisplayFormat(DataFormatString:="{0:yyyy-MM-dd}", ApplyFormatInEditMode:=True)>
     Public Property FechaEntrega As Date
+
+    Public Property IsDeleted As Integer = 0
 
 End Class

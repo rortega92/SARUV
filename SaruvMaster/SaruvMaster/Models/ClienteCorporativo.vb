@@ -2,7 +2,7 @@
 Public Class ClienteCorporativo
     Public Property ID As Integer
 
-    <Required(ErrorMessage:="Este campo es obligatorio"), RegularExpression("^([a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
+    <Required(ErrorMessage:="Este campo es obligatorio"), RegularExpression("^([A-Z][a-zA-Z]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
     <StringLength(255, ErrorMessage:="Este campo permite un máximo de 255 caracteres")>
     Public Property Nombres As String
 
@@ -22,7 +22,7 @@ Public Class ClienteCorporativo
     Public Property CorreoElectronico As String
 
     <Display(Name:="Teléfono"), Required(ErrorMessage:="Este campo es obligatorio")>
-    <StringLength(255, MinimumLength:=11, ErrorMessage:="Este campo debe tener un mínimo de 11 números, representando código de país y número.")>
+    <StringLength(15, MinimumLength:=11, ErrorMessage:="Este campo debe tener un mínimo de 11 números, representando código de país y número.")>
     <RegularExpression("^(\d{3}|\(\s*\d{3}\s*\))\s*-?\s*\d{4}\s*-?\s*\d{4}$", ErrorMessage:="Solo se aceptan los formatos: (504)-2233-4455, 504-2233-4455, 504-22334455, 50422334455")>
     Public Property Telefono As String
 
@@ -31,5 +31,7 @@ Public Class ClienteCorporativo
     Public Property EmpresaID As Integer
 
     Public Overridable Property Empresa As Empresa
+
+    Public Property IsDeleted As Integer = 0
 
 End Class
