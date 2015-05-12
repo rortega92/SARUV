@@ -6,6 +6,22 @@ End Code
 
 
 <!DOCTYPE html>
+<script>
+    $(function () {
+        $("#boton").click(function () {
+            $("#Buscar").show("blind");
+            $("#boton").hide();
+
+        })
+        $("#cancelar").click(function () {
+            $("#Buscar").hide("blind");
+            $("#boton").show();
+
+        })
+        $("#Buscar").hide();
+    });
+   
+</script>
 
 <div class="row">
     <div class="col-md-12">
@@ -13,30 +29,33 @@ End Code
             <h3>Modalidad de Curso</h3>
         </header>
         <div class="breadcrumb">
-            @Html.ActionLink("Crear Nueva", "Create")
+            @Html.ActionLink("Crear Nueva", "Create") |
+            <a  href ="javascript:void(0)" id="boton"> Buscar</a>
         </div>
         @Using Html.BeginForm("Index", "ModalidadDeCurso", FormMethod.Get)
 
-
         End Using
+    </div>
+</div>
+
+<div id="Buscar" class="row" display:"none" style="margin-bottom:10px">
+    <div class="col-xs-3 col-xs-offset-2" style="margin-top:10px">
+        @Using Html.BeginForm("Index", "ModalidadDeCurso", FormMethod.Get)
+            @<div class="input-group">
+                @Html.TextBox("SearchString", Nothing, htmlAttributes:=New With {.class = "form-control", .placeholder = "Buscar por Nombre"})
+                <span class="input-group-btn">
+                    <button type="submit" value="Filter" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+                
+            </div>
+        End Using
+        <a href="javascript:void(0)" id="cancelar">Cancelar</a>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
         <section class="panel">
-            <div navbar-collapse navbar-ex1-collapse>
-                <div class="col-xs-5 col-sm-6 col-md-4 col-lg-3" style="margin-top:10px">
-                    @Using Html.BeginForm("Index", "ModalidadDeCurso", FormMethod.Get)
-                        @<div class="input-group">
-                            @Html.TextBox("SearchString", Nothing, htmlAttributes:=New With {.class = "form-control", .placeholder = "Buscar por Nombre"})
-                            <span class="input-group-btn">
-                                <button type="submit" value="Filter" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                            </span>
-                        </div>
-                    End Using
-                </div>
-            </div>
             <div class="panel-body">
                 <table class="table table-bordered table-striped">
                     <thead>

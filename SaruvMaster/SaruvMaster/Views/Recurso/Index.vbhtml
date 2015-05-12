@@ -4,31 +4,79 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
+<!DOCTYPE html>
+<script>
+
+    $(function () {
+        $("#botonBuscar").click(function () {
+            $("#Buscar").show("blind");
+            $("#botonBuscar").hide();
+
+        })
+        $("#cancelar").click(function () {
+            $("#Buscar").hide("blind");
+            $("#botonBuscar").show();
+
+        })
+        $("#Buscar").hide();
+    });
+    $(document).ready(function (e) {
+        $('#search-panel .dropdown-menu').find('a').click(function (e) {
+            e.preventDefault();
+            var parametro = $(this).attr("href").replace("#", "");
+            var concepto = $(this).text();
+            $('#search-panel span#search_concept').text(concepto);
+            $('.input-group #search_param').val(parametro);
+        });
+    });
+
+</script>
 <div class="row">
     <div class="col-md-12">
         <header class="panel-heading">
             <h3>Recurso</h3>
         </header>
         <div class="breadcrumb">
-            @Html.ActionLink("Crear Nuevo", "Create")
+            @Html.ActionLink("Crear Nuevo", "Create") |
+            <a href="javascript:void(0)" id="botonBuscar"> Buscar</a>
         </div>
+    </div>
+</div>
+<div id="Buscar" class="row" style="margin-bottom:10px">
+    <div class="col-xs-4 col-xs-offset-2" style="margin-top:10px">
+        @Using Html.BeginForm("Index", "Recurso", FormMethod.Get)
+            @<div class="input-group">
+                <div class="input-group-btn" id="search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span id="search_concept">Filtrar Por</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#Nombre">Nombre</a></li>
+                        <li><a href="#Tipo">Tipo de Recurso</a></li>
+                        <li><a href="#Modalidad">Modalidad </a></li>
+                        <li><a href="#Empresa">Empresa </a></li>
+                        <li><a href="#Curso">Curso </a></li>
+                        <li><a href="#Cliente Corp.">Cliente Corporativo </a></li>
+                        <li><a href="#Docente">Docente </a></li>
+                        <li><a href="#Correo">Correo Electrónico </a></li>
+                        <li><a href="#Duración">Duración </a></li>
+                        <li><a href="#Prioridad">Prioridad </a></li>
+                        <li><a href="#Fecha Entrega">Fecha Entrega </a></li>
+                    </ul>
+                </div>
+                
+                @Html.TextBox("SearchString", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+        End Using
+        <a href="javascript:void(0)" id="cancelar">Cancelar</a>
     </div>
 </div>
 <div class="row">
     <div class="col-md-12">
-        <section class="panel">
-            <div navbar-collapse navbar-ex1-collapse>
-                <div class="col-sm-6 col-md-2" style="margin-bottom:10px">
-                    @Using Html.BeginForm("Index", "Recurso", FormMethod.Get)
-                        @<div class="input-group">
-                            @Html.TextBox("SearchString", Nothing, htmlAttributes:=New With {.class = "form-control", .placeholder = "Buscar por Nombre"})
-                            <div class="input-group-btn">
-                                <button type="submit" value="Filter" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                            </div>
-                        </div>
-                    End Using
-                </div>
-            </div>
+        <section class="panel">            
             <div class="panel-body">
                 <table class="table table-bordered table-striped">
                     <thead>

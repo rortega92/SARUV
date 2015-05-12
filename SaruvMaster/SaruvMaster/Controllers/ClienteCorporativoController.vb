@@ -80,7 +80,6 @@ Namespace Controllers
             ViewBag.EmpresaID = New SelectList(db.Empresa, "ID", "Nombre", clienteCorporativo.EmpresaID)
             Return View(clienteCorporativo)
         End Function
-
         ' GET: ClienteCorporativo/Delete/5
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
