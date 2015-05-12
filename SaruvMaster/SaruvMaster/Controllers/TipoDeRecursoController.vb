@@ -42,6 +42,14 @@ Namespace Controllers
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include:="Id,Nombre,CodigoRecurso,FechaDeCreacion")> ByVal tipoDeRecurso As TipoDeRecurso) As ActionResult
+            For i = 0 To db.TipoDeRecurso.ToArray.Length - 1
+                If db.TipoDeRecurso.ToArray(i).CodigoRecurso = tipoDeRecurso.CodigoRecurso Then
+                    ModelState.AddModelError(String.Empty, "El tipo de recurso ya existe ")
+                    Return View(tipoDeRecurso)
+                    Exit For
+
+                End If
+            Next
             tipoDeRecurso.FechaDeCreacion = Date.Now
             If ModelState.IsValid Then
                 db.TipoDeRecurso.Add(tipoDeRecurso)

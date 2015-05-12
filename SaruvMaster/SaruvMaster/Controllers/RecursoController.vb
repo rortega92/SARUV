@@ -39,6 +39,11 @@ Namespace SaruvMaster
             ViewBag.EmpresaID = New SelectList(db.Empresa, "ID", "Nombre")
             ViewBag.ModalidadDeCursoID = New SelectList(db.ModalidadDeCurso, "ID", "Nombre")
             ViewBag.TipoDeRecursoID = New SelectList(db.TipoDeRecurso, "Id", "Nombre")
+            Dim prioridad(3) As String
+            prioridad(0) = "baja"
+            prioridad(1) = "Media"
+            prioridad(2) = "Alta"
+            ViewBag.prioridad = New SelectList(Prioridad)
             Return View()
         End Function
 
@@ -59,6 +64,7 @@ Namespace SaruvMaster
             ViewBag.EmpresaID = New SelectList(db.Empresa, "ID", "Nombre", recurso.EmpresaID)
             ViewBag.ModalidadDeCursoID = New SelectList(db.ModalidadDeCurso, "ID", "Nombre", recurso.ModalidadDeCursoID)
             ViewBag.TipoDeRecursoID = New SelectList(db.TipoDeRecurso, "Id", "Nombre", recurso.TipoDeRecursoID)
+
             Return View(recurso)
         End Function
 
@@ -129,5 +135,6 @@ Namespace SaruvMaster
             End If
             MyBase.Dispose(disposing)
         End Sub
+
     End Class
 End Namespace
