@@ -15,19 +15,22 @@ Namespace Migrations
         Protected Overrides Sub Seed(context As Connection)
             Dim facultades = New List(Of Facultad)() From {
                     New Facultad() With {
-                        .Nombre = "Ingeniería",
+                        .Nombre = "Ingenieria",
                         .FechaCreacion = DateTime.Parse("2010-09-01"),
-                        .FechaModificacion = DateTime.Parse("2010-10-01")
+                        .FechaModificacion = DateTime.Parse("2010-10-01"),
+                        .IsDeleted = 0
                     },
                     New Facultad() With {
-                        .Nombre = "Ciencias de la Salud",
+                        .Nombre = "Ciencias De La Salud",
                         .FechaCreacion = DateTime.Parse("2011-09-01"),
-                        .FechaModificacion = DateTime.Parse("2012-10-01")
+                        .FechaModificacion = DateTime.Parse("2012-10-01"),
+                        .IsDeleted = 0
                     },
                     New Facultad() With {
                         .Nombre = "Ciencias Administrativas",
                         .FechaCreacion = DateTime.Parse("2000-09-01"),
-                        .FechaModificacion = DateTime.Parse("2012-10-01")
+                        .FechaModificacion = DateTime.Parse("2012-10-01"),
+                        .IsDeleted = 0
                     }
                 }
             For Each f In facultades
@@ -39,22 +42,26 @@ Namespace Migrations
                     New AreaDeConocimiento() With {
                         .Nombre = "Literatura",
                         .FechaCreacion = DateTime.Parse("2008-09-01"),
-                        .FechaModificacion = DateTime.Parse("2012-10-01")
+                        .FechaModificacion = DateTime.Parse("2012-10-01"),
+                        .IsDeleted = 0
                     },
                     New AreaDeConocimiento() With {
-                        .Nombre = "Física",
+                        .Nombre = "Fisica",
                         .FechaCreacion = DateTime.Parse("2007-09-01"),
-                        .FechaModificacion = DateTime.Parse("2013-10-01")
+                        .FechaModificacion = DateTime.Parse("2013-10-01"),
+                        .IsDeleted = 0
                     },
                     New AreaDeConocimiento() With {
-                        .Nombre = "Química",
+                        .Nombre = "Quimica",
                         .FechaCreacion = DateTime.Parse("2001-09-01"),
-                        .FechaModificacion = DateTime.Parse("2013-10-01")
+                        .FechaModificacion = DateTime.Parse("2013-10-01"),
+                        .IsDeleted = 0
                     },
                     New AreaDeConocimiento() With {
-                        .Nombre = "Matemáticas",
+                        .Nombre = "Matematicas",
                         .FechaCreacion = DateTime.Parse("2001-09-01"),
-                        .FechaModificacion = DateTime.Parse("2013-10-01")
+                        .FechaModificacion = DateTime.Parse("2013-10-01"),
+                        .IsDeleted = 0
                     }
                 }
             For Each a In areasDeConocimiento
@@ -68,21 +75,24 @@ Namespace Migrations
                         .Direccion = "Bulevard Morazan",
                         .Telefono = "50422554433",
                         .Ciudad = "Tegucigalpa",
-                        .Departamento = "Francisco Morazan"
+                        .Departamento = "Francisco Morazan",
+                        .IsDeleted = 0
                     },
                     New Empresa() With {
-                        .Nombre = "Empresa X",
+                        .Nombre = "Empresa XY",
                         .Direccion = "Bulevard Fuerzas Armadas",
                         .Telefono = "50422254213",
                         .Ciudad = "Tegucigalpa",
-                        .Departamento = "Francisco Morazan"
+                        .Departamento = "Francisco Morazan",
+                        .IsDeleted = 0
                     },
                     New Empresa() With {
                         .Nombre = "Empresa XYZ",
                         .Direccion = "Bulevard Suyapa",
                         .Telefono = "50422121433",
                         .Ciudad = "Tegucigalpa",
-                        .Departamento = "Francisco Morazan"
+                        .Departamento = "Francisco Morazan",
+                        .IsDeleted = 0
                     }
                 }
             For Each emp In empresas
@@ -97,7 +107,8 @@ Namespace Migrations
                         .NumeroIdentidad = "0703-1990-12345",
                         .CorreoElectronico = "jgomez@gmail.com",
                         .Telefono = "50422123432",
-                        .EmpresaID = empresas.Single(Function(e) e.Nombre = "Kielsa").ID
+                        .EmpresaID = empresas.Single(Function(e) e.Nombre = "Kielsa").ID,
+                        .IsDeleted = 0
                     },
                     New ClienteCorporativo() With {
                         .Nombres = "Jeremy Leandro",
@@ -105,7 +116,8 @@ Namespace Migrations
                         .NumeroIdentidad = "0701-1988-10325",
                         .CorreoElectronico = "jgaleano@gmail.com",
                         .Telefono = "50422131412",
-                        .EmpresaID = empresas.Single(Function(e) e.Nombre = "Kielsa").ID
+                        .EmpresaID = empresas.Single(Function(e) e.Nombre = "Kielsa").ID,
+                        .IsDeleted = 0
                     },
                     New ClienteCorporativo() With {
                         .Nombres = "Ana Melissa",
@@ -113,7 +125,8 @@ Namespace Migrations
                         .NumeroIdentidad = "0802-1991-13322",
                         .CorreoElectronico = "arivera@gmail.com",
                         .Telefono = "50422123456",
-                        .EmpresaID = empresas.Single(Function(e) e.Nombre = "Empresa X").ID
+                        .EmpresaID = empresas.Single(Function(e) e.Nombre = "Empresa XY").ID,
+                        .IsDeleted = 0
                     }
                 }
             For Each c As ClienteCorporativo In clientesCorporativos
@@ -130,24 +143,27 @@ Namespace Migrations
             Dim engargadosDeValidacion = New List(Of EncargadoDeValidacion)() From {
                     New EncargadoDeValidacion() With {
                         .Nombre = "Karina Gabriela Sevilla Ortiz",
-                        .FacultadID = facultades.Single(Function(e) e.Nombre = "Ingeniería").ID,
+                        .FacultadID = facultades.Single(Function(e) e.Nombre = "Ingenieria").ID,
                         .Telefono = "50422113411",
                         .Extensión = "2354",
-                        .correoElectronico = "ksevilla@gmail.com"
+                        .correoElectronico = "ksevilla@gmail.com",
+                        .IsDeleted = 0
                     },
                     New EncargadoDeValidacion() With {
-                        .Nombre = "Reinaldo José Ruiz Chacón",
-                        .FacultadID = facultades.Single(Function(e) e.Nombre = "Ingeniería").ID,
+                        .Nombre = "Reinaldo Jose Ruiz Chacon",
+                        .FacultadID = facultades.Single(Function(e) e.Nombre = "Ingenieria").ID,
                         .Telefono = "50422113411",
                         .Extensión = "2353",
-                        .correoElectronico = "rruiz@gmail.com"
+                        .correoElectronico = "rruiz@gmail.com",
+                        .IsDeleted = 0
                     },
                     New EncargadoDeValidacion() With {
                         .Nombre = "Camila Alejandra Sierra Duarte",
-                        .FacultadID = facultades.Single(Function(e) e.Nombre = "Ciencias de la Salud").ID,
+                        .FacultadID = facultades.Single(Function(e) e.Nombre = "Ciencias De La Salud").ID,
                         .Telefono = "50422111411",
                         .Extensión = "1001",
-                        .correoElectronico = "csierra@gmail.com"
+                        .correoElectronico = "csierra@gmail.com",
+                        .IsDeleted = 0
                     }
                 }
             For Each en As EncargadoDeValidacion In engargadosDeValidacion
@@ -168,8 +184,9 @@ Namespace Migrations
                         .NumeroTalentoHumano = "13256",
                         .correoElectronico = "kavila@gmail.com",
                         .telefono = "50422116811",
-                        .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Matemáticas").ID,
-                        .FacultadID = facultades.Single(Function(e) e.Nombre = "Ingeniería").ID
+                        .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Matematicas").ID,
+                        .FacultadID = facultades.Single(Function(e) e.Nombre = "Ingenieria").ID,
+                        .IsDeleted = 0
                     },
                     New Docente() With {
                         .Nombres = "Juan Carlos",
@@ -177,8 +194,9 @@ Namespace Migrations
                         .NumeroTalentoHumano = "45896",
                         .correoElectronico = "jvargas@gmail.com",
                         .telefono = "50422116812",
-                        .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Matemáticas").ID,
-                        .FacultadID = facultades.Single(Function(e) e.Nombre = "Ingeniería").ID
+                        .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Matematicas").ID,
+                        .FacultadID = facultades.Single(Function(e) e.Nombre = "Ingenieria").ID,
+                        .IsDeleted = 0
                     },
                     New Docente() With {
                         .Nombres = "Samir Edgardo",
@@ -187,7 +205,8 @@ Namespace Migrations
                         .correoElectronico = "scastro@gmail.com",
                         .telefono = "50422196811",
                         .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Literatura").ID,
-                        .FacultadID = facultades.Single(Function(e) e.Nombre = "Ciencias Administrativas").ID
+                        .FacultadID = facultades.Single(Function(e) e.Nombre = "Ciencias Administrativas").ID,
+                        .IsDeleted = 0
                     }
                 }
             For Each doc As Docente In docentes
@@ -206,13 +225,15 @@ Namespace Migrations
                         .Nombre = "Presencial",
                         .Duracion = 10,
                         .FechaCreacion = DateTime.Parse("2008-09-01"),
-                        .FechaModificacion = DateTime.Parse("2012-10-01")
+                        .FechaModificacion = DateTime.Parse("2012-10-01"),
+                        .IsDeleted = 0
                     },
                     New ModalidadDeCurso() With {
                         .Nombre = "Internacional",
                         .Duracion = 5,
                         .FechaCreacion = DateTime.Parse("2014-09-10"),
-                        .FechaModificacion = DateTime.Parse("2014-10-10")
+                        .FechaModificacion = DateTime.Parse("2014-10-10"),
+                        .IsDeleted = 0
                     }
                 }
             For Each m In modalidadesDeCurso
@@ -223,36 +244,39 @@ Namespace Migrations
             Dim cursos = New List(Of Curso)() From {
                     New Curso() With {
                         .Nombres = "Ecuaciones Diferenciales",
-                        .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Matemáticas").ID,
+                        .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Matematicas").ID,
                         .ModalidadDeCursoID = modalidadesDeCurso.Single(Function(e) e.Nombre = "Presencial").ID,
                         .EncargadoDeValidacionID = engargadosDeValidacion.Single(Function(e) e.Nombre = "Karina Gabriela Sevilla Ortiz").ID,
                         .FechaInicio = DateTime.Parse("2014-09-10"),
                         .FechaFinal = DateTime.Parse("2014-11-22"),
                         .Periodo = 5,
                         .FechaCreacion = DateTime.Parse("2014-09-10"),
-                        .FechaModificacion = DateTime.Parse("2014-10-10")
+                        .FechaModificacion = DateTime.Parse("2014-10-10"),
+                        .IsDeleted = 0
                     },
                     New Curso() With {
-                        .Nombres = "Química I",
-                        .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Química").ID,
+                        .Nombres = "Quimica II",
+                        .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Quimica").ID,
                         .ModalidadDeCursoID = modalidadesDeCurso.Single(Function(e) e.Nombre = "Presencial").ID,
                         .EncargadoDeValidacionID = engargadosDeValidacion.Single(Function(e) e.Nombre = "Karina Gabriela Sevilla Ortiz").ID,
                         .FechaInicio = DateTime.Parse("2014-07-10"),
                         .FechaFinal = DateTime.Parse("2014-09-12"),
                         .Periodo = 4,
                         .FechaCreacion = DateTime.Parse("2014-09-10"),
-                        .FechaModificacion = DateTime.Parse("2014-10-10")
+                        .FechaModificacion = DateTime.Parse("2014-10-10"),
+                        .IsDeleted = 0
                     },
                     New Curso() With {
-                        .Nombres = "Física II",
-                        .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Física").ID,
+                        .Nombres = "Fisica II",
+                        .AreaDeConocimientoID = areasDeConocimiento.Single(Function(e) e.Nombre = "Fisica").ID,
                         .ModalidadDeCursoID = modalidadesDeCurso.Single(Function(e) e.Nombre = "Presencial").ID,
-                        .EncargadoDeValidacionID = engargadosDeValidacion.Single(Function(e) e.Nombre = "Reinaldo José Ruiz Chacón").ID,
+                        .EncargadoDeValidacionID = engargadosDeValidacion.Single(Function(e) e.Nombre = "Reinaldo Jose Ruiz Chacon").ID,
                         .FechaInicio = DateTime.Parse("2014-04-10"),
                         .FechaFinal = DateTime.Parse("2014-06-12"),
                         .Periodo = 2,
                         .FechaCreacion = DateTime.Parse("2014-09-10"),
-                        .FechaModificacion = DateTime.Parse("2014-10-10")
+                        .FechaModificacion = DateTime.Parse("2014-10-10"),
+                        .IsDeleted = 0
                     }
                 }
             For Each cur As Curso In cursos
