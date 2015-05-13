@@ -4,6 +4,14 @@
     ViewData("Title") = "Create"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
+  
+<script>
+    $(document).ready(function () {
+
+        $("#FechaEntrega").addClass('form-control text-box single-line valid');
+       
+    })
+</script>
 
 <h3>Recurso</h3>
 <section class="panel">
@@ -93,14 +101,15 @@ End Code
                 <div class="form-group">
                     @Html.LabelFor(Function(model) model.FechaEntrega, New With {.class = "control-label col-md-2"})
                     <div class="col-md-10">
-                        @Html.EditorFor(Function(model) model.FechaEntrega, New With {.htmlAttributes = New With {.class = "form-control"}})
+                        @Html.JQueryUI().DatepickerFor(Function(model) model.FechaEntrega, New With {.htmlAttributes = New With {.class = "form-control", .id = "fechaEntraga"}}).MinDate(DateTime.Today)
+                       
                         @Html.ValidationMessageFor(Function(model) model.FechaEntrega, "", New With {.class = "text-danger"})
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Crear" class="btn btn-default" />
+                        <input type="submit" value="Crear" class="btn btn-default" id="Submit" />
                     </div>
                 </div>
             </div>
