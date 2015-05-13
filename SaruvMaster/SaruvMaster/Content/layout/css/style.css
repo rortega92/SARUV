@@ -891,7 +891,7 @@ div[data-role="editor-toolbar"] {
   border-radius: 0px;
   height: 34px;
   position: relative;  
-  margin: 0 0 19px 0;
+  margin: 0 0 0 0;
   overflow: hidden;
 }
 .breadcrumb li {
@@ -1150,10 +1150,10 @@ div[data-role="editor-toolbar"] {
 .panel .panel-body {
   border-width: 1px 1px 2px;
   border-style: solid;
-  border-top: none;
   border-right-color: #ccc!important;
   border-bottom-color: #ccc!important;
   border-left-color: #ccc!important;
+  border-top-color: #ccc!important;
 }
 .panel .panel-body-map {
   border-width: 1px 1px 2px;
@@ -4938,4 +4938,29 @@ span.customSelect.changed {
 }
 .customSelectInner {
     background:url(../img/customSelect-arrow.gif) no-repeat center right;
+}
+.indexHeader{
+    margin-bottom: 19px
+}
+.filterBox{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 4px;
+    background: #ffffff;
+    height: 50px;
+}
+/* enable absolute positioning */
+.form-control {
+    padding-right: 30px;
+}
+.form-control + .glyphicon {
+    position: absolute;
+    right: 0;
+    padding: 8px 27px;
+}
+#Buscar{
+    display: none;
+}
+#search-panel{
+    padding-left: 0px
 }

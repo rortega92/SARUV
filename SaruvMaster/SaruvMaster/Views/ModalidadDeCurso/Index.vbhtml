@@ -8,36 +8,34 @@ End Code
 <!DOCTYPE html>
 <script>
     $(function () {
-        $("#boton").click(function () {
-            $("#Buscar").show("blind");
-            $("#boton").hide();
-
+        $("#filterButton").click(function () {
+            $("#Buscar").toggle();
         })
-        $("#cancelar").click(function () {
-            $("#Buscar").hide("blind");
-            $("#boton").show();
-
-        })
-        $("#Buscar").hide();
     });
-   
 </script>
 
-<div class="row">
+
+<div class="row indexHeader">
     <div class="col-md-12">
         <header class="panel-heading">
             <h3>Modalidad de Curso</h3>
         </header>
         <div class="breadcrumb">
             @Html.ActionLink("Crear Nueva", "Create") |
-            <a  href ="javascript:void(0)" id="boton"> Buscar</a>
+            <a href="javascript:void(0)" id="filterButton"> Filtrar</a>
         </div>
-        @Using Html.BeginForm("Index", "ModalidadDeCurso", FormMethod.Get)
-
-        End Using
+    </div>
+    <div class="col-md-12" id="Buscar">
+        <div class="filterBox col-md-12">
+            @Using Html.BeginForm("Index", "Modalidad de Curso", FormMethod.Get)
+            @<div class="col-md-2">
+              <input class="form-control" type="search" Placeholder="Buscar"/>
+              <span class="glyphicon glyphicon-search"></span>
+            </div>       
+            End Using                     
+        </div>
     </div>
 </div>
-
 <div id="Buscar" class="row" display:"none" style="margin-bottom:10px">
     <div class="col-xs-3 col-xs-offset-2" style="margin-top:10px">
         @Using Html.BeginForm("Index", "ModalidadDeCurso", FormMethod.Get)

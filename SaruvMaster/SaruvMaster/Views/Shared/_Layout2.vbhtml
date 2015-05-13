@@ -32,10 +32,10 @@
     <![endif]-->
 
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <script href="~/Scripts/app.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jqueryui")
-    
    
 </head>
 
