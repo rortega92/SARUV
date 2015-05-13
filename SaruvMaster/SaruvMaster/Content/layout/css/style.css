@@ -4961,3 +4961,6 @@ span.customSelect.changed {
 #Buscar{
     display: none;
 }
+#search-panel{
+    padding-left: 0px
+}

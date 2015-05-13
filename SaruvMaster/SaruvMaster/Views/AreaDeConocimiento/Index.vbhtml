@@ -11,7 +11,6 @@ End Code
             $("#Buscar").toggle();
         })
     });
-
 </script>
 
 
