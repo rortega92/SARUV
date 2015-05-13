@@ -4,6 +4,7 @@ Public Class ClienteCorporativo
 
     <Required(ErrorMessage:="Este campo es obligatorio"), RegularExpression("^([A-Z][a-zA-Z]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
     <StringLength(255, ErrorMessage:="Este campo permite un máximo de 255 caracteres")>
+     <Display(Name:="Cliente Corporativo")>
     Public Property Nombres As String
 
     <Required(ErrorMessage:="Este campo es obligatorio")>

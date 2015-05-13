@@ -2,7 +2,7 @@
 Public Class ModalidadDeCurso
     Public Property ID As Integer
 
-    <Display(Name:="Nombre"), Required(ErrorMessage:="Este campo es obligatorio")>
+    <Display(Name:="Modalidad de Curso"), Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, ErrorMessage:="Este campo solo permite un máximo de 255 caracteres")>
     <RegularExpression("^([A-Z][a-zA-Z]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y espacios")>
     Public Property Nombre As String
