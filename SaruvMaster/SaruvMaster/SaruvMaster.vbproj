@@ -195,6 +195,7 @@
     <Compile Include="Controllers\AreaDeConocimientoController.vb" />
     <Compile Include="Controllers\ClienteCorporativoController.vb" />
     <Compile Include="Controllers\CursoController.vb" />
+    <Compile Include="Controllers\PersonalUVController.vb" />
     <Compile Include="Controllers\DocenteController.vb" />
     <Compile Include="Controllers\EmpresaController.vb" />
     <Compile Include="Controllers\EncargadoDeValidacionController.vb" />
@@ -1004,6 +1005,7 @@
     <Content Include="Views\Recurso\Details.vbhtml" />
     <Content Include="Views\Recurso\Edit.vbhtml" />
     <Content Include="Views\Recurso\Index.vbhtml" />
+    <Content Include="Views\PersonalUV\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
