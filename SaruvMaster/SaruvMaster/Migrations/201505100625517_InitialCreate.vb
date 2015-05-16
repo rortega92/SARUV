@@ -116,6 +116,18 @@ Namespace Migrations
                 .PrimaryKey(Function(t) t.ID)
 
             CreateTable(
+                "dbo.Departamento",
+                Function(c) New With
+                    {
+                        .ID = c.Int(nullable:=False, identity:=True),
+                        .Nombre = c.String(nullable:=False),
+                        .FechaCreacion = c.DateTime(nullable:=False),
+                        .FechaModificacion = c.DateTime(nullable:=False),
+                        .IsDeleted = c.Int(nullable:=False)
+                    }) _
+                .PrimaryKey(Function(t) t.ID)
+
+            CreateTable(
                 "dbo.Docente",
                 Function(c) New With
                     {
@@ -222,8 +234,7 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "UPDATE [dbo].[AreaDeConocimiento]" & vbCrLf & _
-                    "SET [IsDeleted] = @ID" & vbCrLf & _
+                    "DELETE [dbo].[AreaDeConocimiento]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -277,8 +288,7 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "UPDATE [dbo].[ClienteCorporativo]" & vbCrLf & _
-                    "SET [IsDeleted] = @ID" & vbCrLf & _
+                    "DELETE [dbo].[ClienteCorporativo]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -330,8 +340,7 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "UPDATE [dbo].[Empresa]" & vbCrLf & _
-                    "SET [IsDeleted] = @ID" & vbCrLf & _
+                    "DELETE [dbo].[Empresa]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -391,8 +400,7 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "UPDATE [dbo].[Curso]" & vbCrLf & _
-                    "SET [IsDeleted] = @ID" & vbCrLf & _
+                    "DELETE [dbo].[Curso]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -444,8 +452,7 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "UPDATE [dbo].[EncargadoDeValidacion]" & vbCrLf & _
-                    "SET [IsDeleted] = @ID" & vbCrLf & _
+                    "DELETE [dbo].[EncargadoDeValidacion]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -493,8 +500,7 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "UPDATE [dbo].[Facultad]" & vbCrLf & _
-                    "SET [IsDeleted] = @ID" & vbCrLf & _
+                    "DELETE [dbo].[Facultad]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -544,8 +550,55 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "UPDATE [dbo].[ModalidadDeCurso]" & vbCrLf & _
-                    "SET [IsDeleted] = @ID" & vbCrLf & _
+                    "DELETE [dbo].[ModalidadDeCurso]" & vbCrLf & _
+                    "WHERE ([ID] = @ID)"
+            )
+
+            CreateStoredProcedure(
+                "dbo.Departamento_Insert",
+                Function(p) New With
+                    {
+                        .Nombre = p.String(),
+                        .FechaCreacion = p.DateTime(),
+                        .FechaModificacion = p.DateTime()
+                    },
+                body:=
+                    "INSERT [dbo].[Departamento]([Nombre], [FechaCreacion], [FechaModificacion], [IsDeleted])" & vbCrLf & _
+                    "VALUES (@Nombre, @FechaCreacion, @FechaModificacion, 0)" & vbCrLf & _
+                    "" & vbCrLf & _
+                    "DECLARE @ID int" & vbCrLf & _
+                    "SELECT @ID = [ID]" & vbCrLf & _
+                    "FROM [dbo].[Departamento]" & vbCrLf & _
+                    "WHERE @@ROWCOUNT > 0 AND [ID] = scope_identity()" & vbCrLf & _
+                    "" & vbCrLf & _
+                    "SELECT t0.[ID]" & vbCrLf & _
+                    "FROM [dbo].[Departamento] AS t0" & vbCrLf & _
+                    "WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
+            )
+
+            CreateStoredProcedure(
+                "dbo.Departamento_Update",
+                Function(p) New With
+                    {
+                        .ID = p.Int(),
+                        .Nombre = p.String(),
+                        .FechaCreacion = p.DateTime(),
+                        .FechaModificacion = p.DateTime()
+                    },
+                body:=
+                    "UPDATE [dbo].[Departamento]" & vbCrLf & _
+                    "SET [Nombre] = @Nombre, [FechaCreacion] = @FechaCreacion, [FechaModificacion] = @FechaModificacion" & vbCrLf & _
+                    "WHERE ([ID] = @ID)"
+            )
+
+            CreateStoredProcedure(
+                "dbo.Departamento_Delete",
+                Function(p) New With
+                    {
+                        .ID = p.Int()
+                    },
+                body:=
+                    "DELETE [dbo].[Departamento]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -601,8 +654,7 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "UPDATE [dbo].[Docente]" & vbCrLf & _
-                    "SET [IsDeleted] = @ID" & vbCrLf & _
+                    "DELETE [dbo].[Docente]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
@@ -664,8 +716,7 @@ Namespace Migrations
                         .Id = p.Int()
                     },
                 body:=
-                    "UPDATE [dbo].[Recurso]" & vbCrLf & _
-                    "SET [IsDeleted] = @ID" & vbCrLf & _
+                    "DELETE [dbo].[Recurso]" & vbCrLf & _
                     "WHERE ([Id] = @Id)"
             )
 
@@ -713,8 +764,7 @@ Namespace Migrations
                         .Id = p.Int()
                     },
                 body:=
-                    "UPDATE [dbo].[TipoDeRecurso]" & vbCrLf & _
-                    "SET [IsDeleted] = @ID" & vbCrLf & _
+                    "DELETE [dbo].[TipoDeRecurso]" & vbCrLf & _
                     "WHERE ([Id] = @Id)"
             )
 
@@ -730,6 +780,9 @@ Namespace Migrations
             DropStoredProcedure("dbo.Docente_Delete")
             DropStoredProcedure("dbo.Docente_Update")
             DropStoredProcedure("dbo.Docente_Insert")
+            DropStoredProcedure("dbo.Departamento_Delete")
+            DropStoredProcedure("dbo.Departamento_Update")
+            DropStoredProcedure("dbo.Departamento_Insert")
             DropStoredProcedure("dbo.ModalidadDeCurso_Delete")
             DropStoredProcedure("dbo.ModalidadDeCurso_Update")
             DropStoredProcedure("dbo.ModalidadDeCurso_Insert")
@@ -780,6 +833,7 @@ Namespace Migrations
             DropTable("dbo.TipoDeRecurso")
             DropTable("dbo.Recurso")
             DropTable("dbo.Docente")
+            DropTable("dbo.Departamento")
             DropTable("dbo.ModalidadDeCurso")
             DropTable("dbo.Facultad")
             DropTable("dbo.EncargadoDeValidacion")

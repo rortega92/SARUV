@@ -195,6 +195,7 @@
     <Compile Include="Controllers\AreaDeConocimientoController.vb" />
     <Compile Include="Controllers\ClienteCorporativoController.vb" />
     <Compile Include="Controllers\CursoController.vb" />
+    <Compile Include="Controllers\DepartamentoController.vb" />
     <Compile Include="Controllers\DocenteController.vb" />
     <Compile Include="Controllers\EmpresaController.vb" />
     <Compile Include="Controllers\EncargadoDeValidacionController.vb" />
@@ -217,6 +218,7 @@
     <Compile Include="Models\AreasDeConocimientoModels.vb" />
     <Compile Include="Models\ClienteCorporativo.vb" />
     <Compile Include="Models\Curso.vb" />
+    <Compile Include="Models\Departamento.vb" />
     <Compile Include="Models\Docente.vb" />
     <Compile Include="Models\Empresa.vb" />
     <Compile Include="Models\EncargadoDeValidacion.vb" />
@@ -1004,6 +1006,11 @@
     <Content Include="Views\Recurso\Details.vbhtml" />
     <Content Include="Views\Recurso\Edit.vbhtml" />
     <Content Include="Views\Recurso\Index.vbhtml" />
+    <Content Include="Views\Departamento\Create.vbhtml" />
+    <Content Include="Views\Departamento\Delete.vbhtml" />
+    <Content Include="Views\Departamento\Details.vbhtml" />
+    <Content Include="Views\Departamento\Edit.vbhtml" />
+    <Content Include="Views\Departamento\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

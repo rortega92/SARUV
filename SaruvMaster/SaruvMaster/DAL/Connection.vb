@@ -1,6 +1,8 @@
 ﻿Imports SaruvMaster
 Imports System.Data.Entity
 Imports System.Data.Entity.ModelConfiguration.Conventions
+Imports System.Object
+
 Public Class Connection
     Inherits DbContext
 
@@ -26,9 +28,16 @@ Public Class Connection
 
     Public Property TipoDeRecurso As DbSet(Of TipoDeRecurso)
 
+
+    Public Property Departamento As DbSet(Of Departamento)
+
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
+
+
         modelBuilder.Conventions.Remove(Of PluralizingTableNameConvention)()
         modelBuilder.Entity(Of Facultad).MapToStoredProcedures()
+
+
         modelBuilder.Entity(Of AreaDeConocimiento).MapToStoredProcedures()
         modelBuilder.Entity(Of Empresa).MapToStoredProcedures()
         modelBuilder.Entity(Of EncargadoDeValidacion).MapToStoredProcedures()
@@ -38,6 +47,8 @@ Public Class Connection
         modelBuilder.Entity(Of Curso).MapToStoredProcedures()
         modelBuilder.Entity(Of TipoDeRecurso).MapToStoredProcedures()
         modelBuilder.Entity(Of Recurso).MapToStoredProcedures()
+        modelBuilder.Entity(Of Departamento).MapToStoredProcedures()
+
         modelBuilder.Entity(Of Facultad).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of AreaDeConocimiento).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of Empresa).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
@@ -48,6 +59,10 @@ Public Class Connection
         modelBuilder.Entity(Of Curso).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of TipoDeRecurso).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of Recurso).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
+
+        modelBuilder.Entity(Of Departamento).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
     End Sub
+
     Public Property Recursoes As System.Data.Entity.DbSet(Of Recurso)
+
 End Class
