@@ -120,7 +120,7 @@ Namespace Migrations
                 Function(c) New With
                     {
                         .ID = c.Int(nullable:=False, identity:=True),
-                        .Nombre = c.String(nullable:=False),
+                        .Nombre = c.String(nullable:=False, maxLength:=255),
                         .FechaCreacion = c.DateTime(nullable:=False),
                         .FechaModificacion = c.DateTime(nullable:=False),
                         .IsDeleted = c.Int(nullable:=False)
@@ -189,6 +189,21 @@ Namespace Migrations
                         .IsDeleted = c.Int(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.Id)
+
+            CreateTable(
+                "dbo.RolPorDepartamento",
+                Function(c) New With
+                    {
+                        .ID = c.Int(nullable:=False, identity:=True),
+                        .Nombre = c.String(nullable:=False, maxLength:=255),
+                        .DepartamentoID = c.Int(nullable:=False),
+                        .FechaCreacion = c.DateTime(nullable:=False),
+                        .FechaModificacion = c.DateTime(nullable:=False),
+                        .IsDeleted = c.Int(nullable:=False)
+                    }) _
+                .PrimaryKey(Function(t) t.ID) _
+                .ForeignKey("dbo.Departamento", Function(t) t.DepartamentoID, cascadeDelete:=False) _
+                .Index(Function(t) t.DepartamentoID)
 
             CreateStoredProcedure(
                 "dbo.AreaDeConocimiento_Insert",
@@ -558,7 +573,7 @@ Namespace Migrations
                 "dbo.Departamento_Insert",
                 Function(p) New With
                     {
-                        .Nombre = p.String(),
+                        .Nombre = p.String(maxLength:=255),
                         .FechaCreacion = p.DateTime(),
                         .FechaModificacion = p.DateTime()
                     },
@@ -581,7 +596,7 @@ Namespace Migrations
                 Function(p) New With
                     {
                         .ID = p.Int(),
-                        .Nombre = p.String(),
+                        .Nombre = p.String(maxLength:=255),
                         .FechaCreacion = p.DateTime(),
                         .FechaModificacion = p.DateTime()
                     },
@@ -768,9 +783,63 @@ Namespace Migrations
                     "WHERE ([Id] = @Id)"
             )
 
+            CreateStoredProcedure(
+                "dbo.RolPorDepartamento_Insert",
+                Function(p) New With
+                    {
+                        .Nombre = p.String(maxLength:=255),
+                        .DepartamentoID = p.Int(),
+                        .FechaCreacion = p.DateTime(),
+                        .FechaModificacion = p.DateTime()
+                    },
+                body:=
+                    "INSERT [dbo].[RolPorDepartamento]([Nombre], [DepartamentoID], [FechaCreacion], [FechaModificacion], [IsDeleted])" & vbCrLf & _
+                    "VALUES (@Nombre, @DepartamentoID, @FechaCreacion, @FechaModificacion, 0)" & vbCrLf & _
+                    "" & vbCrLf & _
+                    "DECLARE @ID int" & vbCrLf & _
+                    "SELECT @ID = [ID]" & vbCrLf & _
+                    "FROM [dbo].[RolPorDepartamento]" & vbCrLf & _
+                    "WHERE @@ROWCOUNT > 0 AND [ID] = scope_identity()" & vbCrLf & _
+                    "" & vbCrLf & _
+                    "SELECT t0.[ID]" & vbCrLf & _
+                    "FROM [dbo].[RolPorDepartamento] AS t0" & vbCrLf & _
+                    "WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
+            )
+
+            CreateStoredProcedure(
+                "dbo.RolPorDepartamento_Update",
+                Function(p) New With
+                    {
+                        .ID = p.Int(),
+                        .Nombre = p.String(maxLength:=255),
+                        .DepartamentoID = p.Int(),
+                        .FechaCreacion = p.DateTime(),
+                        .FechaModificacion = p.DateTime()
+                    },
+                body:=
+                    "UPDATE [dbo].[RolPorDepartamento]" & vbCrLf & _
+                    "SET [Nombre] = @Nombre, [DepartamentoID] = @DepartamentoID, [FechaCreacion] = @FechaCreacion, [FechaModificacion] = @FechaModificacion" & vbCrLf & _
+                    "WHERE ([ID] = @ID)"
+            )
+
+            CreateStoredProcedure(
+                "dbo.RolPorDepartamento_Delete",
+                Function(p) New With
+                    {
+                        .ID = p.Int()
+                    },
+                body:=
+                    "UPDATE [dbo].[RolPorDepartamento]" & vbCrLf & _
+                    "SET [IsDeleted] = @ID" & vbCrLf & _
+                    "WHERE ([ID] = @ID)"
+            )
+
         End Sub
 
         Public Overrides Sub Down()
+            DropStoredProcedure("dbo.RolPorDepartamento_Delete")
+            DropStoredProcedure("dbo.RolPorDepartamento_Update")
+            DropStoredProcedure("dbo.RolPorDepartamento_Insert")
             DropStoredProcedure("dbo.TipoDeRecurso_Delete")
             DropStoredProcedure("dbo.TipoDeRecurso_Update")
             DropStoredProcedure("dbo.TipoDeRecurso_Insert")
@@ -804,6 +873,7 @@ Namespace Migrations
             DropStoredProcedure("dbo.AreaDeConocimiento_Delete")
             DropStoredProcedure("dbo.AreaDeConocimiento_Update")
             DropStoredProcedure("dbo.AreaDeConocimiento_Insert")
+            DropForeignKey("dbo.RolPorDepartamento", "DepartamentoID", "dbo.Departamento")
             DropForeignKey("dbo.Recurso", "TipoDeRecursoID", "dbo.TipoDeRecurso")
             DropForeignKey("dbo.Recurso", "ModalidadDeCursoID", "dbo.ModalidadDeCurso")
             DropForeignKey("dbo.Recurso", "EmpresaID", "dbo.Empresa")
@@ -817,6 +887,7 @@ Namespace Migrations
             DropForeignKey("dbo.EncargadoDeValidacion", "FacultadID", "dbo.Facultad")
             DropForeignKey("dbo.Curso", "AreaDeConocimientoID", "dbo.AreaDeConocimiento")
             DropForeignKey("dbo.ClienteCorporativo", "EmpresaID", "dbo.Empresa")
+            DropIndex("dbo.RolPorDepartamento", New String() {"DepartamentoID"})
             DropIndex("dbo.Recurso", New String() {"DocenteID"})
             DropIndex("dbo.Recurso", New String() {"ClienteCorporativoID"})
             DropIndex("dbo.Recurso", New String() {"CursoID"})
@@ -830,6 +901,7 @@ Namespace Migrations
             DropIndex("dbo.Curso", New String() {"ModalidadDeCursoID"})
             DropIndex("dbo.Curso", New String() {"AreaDeConocimientoID"})
             DropIndex("dbo.ClienteCorporativo", New String() {"EmpresaID"})
+            DropTable("dbo.RolPorDepartamento")
             DropTable("dbo.TipoDeRecurso")
             DropTable("dbo.Recurso")
             DropTable("dbo.Docente")

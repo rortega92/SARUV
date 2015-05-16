@@ -203,6 +203,7 @@
     <Compile Include="Controllers\ManageController.vb" />
     <Compile Include="Controllers\ModalidadDeCursoController.vb" />
     <Compile Include="Controllers\RecursoController.vb" />
+    <Compile Include="Controllers\RolPorDepartamentoController.vb" />
     <Compile Include="Controllers\TipoDeRecursoController.vb" />
     <Compile Include="DAL\Connection.vb" />
     <Compile Include="Global.asax.vb">
@@ -228,6 +229,7 @@
     <Compile Include="Models\ManageViewModels.vb" />
     <Compile Include="Models\ModalidadDeCurso.vb" />
     <Compile Include="Models\Recurso.vb" />
+    <Compile Include="Models\RolPorDepartamento.vb" />
     <Compile Include="Models\TipoDeRecurso.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -1011,6 +1013,11 @@
     <Content Include="Views\Departamento\Details.vbhtml" />
     <Content Include="Views\Departamento\Edit.vbhtml" />
     <Content Include="Views\Departamento\Index.vbhtml" />
+    <Content Include="Views\RolPorDepartamento\Create.vbhtml" />
+    <Content Include="Views\RolPorDepartamento\Delete.vbhtml" />
+    <Content Include="Views\RolPorDepartamento\Details.vbhtml" />
+    <Content Include="Views\RolPorDepartamento\Edit.vbhtml" />
+    <Content Include="Views\RolPorDepartamento\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

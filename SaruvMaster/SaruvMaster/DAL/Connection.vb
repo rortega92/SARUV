@@ -31,6 +31,8 @@ Public Class Connection
 
     Public Property Departamento As DbSet(Of Departamento)
 
+    Public Property RolPorDepartamento As DbSet(Of RolPorDepartamento)
+
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
 
 
@@ -48,7 +50,9 @@ Public Class Connection
         modelBuilder.Entity(Of TipoDeRecurso).MapToStoredProcedures()
         modelBuilder.Entity(Of Recurso).MapToStoredProcedures()
         modelBuilder.Entity(Of Departamento).MapToStoredProcedures()
+        modelBuilder.Entity(Of RolPorDepartamento).MapToStoredProcedures()
 
+        modelBuilder.Entity(Of RolPorDepartamento).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of Facultad).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of AreaDeConocimiento).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of Empresa).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
@@ -64,5 +68,4 @@ Public Class Connection
     End Sub
 
     Public Property Recursoes As System.Data.Entity.DbSet(Of Recurso)
-
 End Class
