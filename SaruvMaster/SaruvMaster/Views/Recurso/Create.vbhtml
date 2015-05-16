@@ -13,6 +13,33 @@ End Code
     })
 </script>
 
+<script>
+    function getSelectedValue(ElementID) {
+        var element = document.getElementById(ElementID);
+        var index = element.options[element.selectedIndex];
+        alert(index.innerHTML);
+    }
+    $(document).ready(function () {
+        $("#ModalidadDeCursoID").change(function () {
+            $("select option:selected").each(function () {
+                if ($(this).html() == "Presencial") {
+                    $("label[for=EmpresaID], #EmpresaID").hide();
+                    $("label[for=ClienteCorporativoID], #ClienteCorporativoID").hide();
+                    $("label[for=DocenteID], #DocenteID").show();
+                }
+                if ($(this).html() == "Corporativo" || $(this).html() == "Corporativa") {
+                    $("label[for=EmpresaID], #EmpresaID").show();
+                    $("label[for=ClienteCorporativoID], #ClienteCorporativoID").show();
+                    $("label[for=DocenteID], #DocenteID").hide();
+                }
+                
+            });
+        }).change();
+    });
+</script>   
+
+
+
 <h3>Recurso</h3>
 <section class="panel">
     <header class="panel-heading">
@@ -47,6 +74,7 @@ End Code
                     <div class="col-md-10">
                         @Html.DropDownList("ModalidadDeCursoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
                         @Html.ValidationMessageFor(Function(model) model.ModalidadDeCursoID, "", New With {.class = "text-danger"})
+                                            
                     </div>
                 </div>
 

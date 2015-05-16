@@ -6,6 +6,35 @@ End Code
 <script>
     $("#FechaEntrega").addClass('form-control text-box single-line valid');
  </script>
+<script>
+    function getSelectedValue(ElementID) {
+        var element = document.getElementById(ElementID);
+        var index = element.options[element.selectedIndex];
+        alert(index.innerHTML);
+    }
+    $(document).ready(function () {
+        $("#ModalidadDeCursoID").change(function () {
+            $("select option:selected").each(function () {
+                if ($(this).html() == "Presencial") {
+                    $("label[for=EmpresaID], #EmpresaID").hide();
+                    $("label[for=ClienteCorporativoID], #ClienteCorporativoID").hide();
+                    $("label[for=DocenteID], #DocenteID").show();
+                }
+                if ($(this).html() == "Corporativo" || $(this).html() == "Corporativa") {
+                    $("label[for=EmpresaID], #EmpresaID").show();
+                    $("label[for=ClienteCorporativoID], #ClienteCorporativoID").show();
+                    $("label[for=DocenteID], #DocenteID").hide();
+                }
+
+            });
+        }).change();
+    });
+</script>
+
+
+
+
+
 <h3>Recurso</h3>
 
 <section class="panel">

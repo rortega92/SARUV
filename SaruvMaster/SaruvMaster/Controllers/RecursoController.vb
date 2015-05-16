@@ -40,7 +40,7 @@ Namespace SaruvMaster
             ViewBag.ModalidadDeCursoID = New SelectList(db.ModalidadDeCurso, "ID", "Nombre")
             ViewBag.TipoDeRecursoID = New SelectList(db.TipoDeRecurso, "Id", "Nombre")
             Dim prioridad(3) As String
-            prioridad(0) = "baja"
+            prioridad(0) = "Baja"
             prioridad(1) = "Media"
             prioridad(2) = "Alta"
             ViewBag.prioridad = New SelectList(Prioridad)
@@ -83,7 +83,7 @@ Namespace SaruvMaster
             ViewBag.EmpresaID = New SelectList(db.Empresa, "ID", "Nombre", recurso.EmpresaID)
             ViewBag.ModalidadDeCursoID = New SelectList(db.ModalidadDeCurso, "ID", "Nombre", recurso.ModalidadDeCursoID)
             Dim prioridad(3) As String
-            prioridad(0) = "baja"
+            prioridad(0) = "Baja"
             prioridad(1) = "Media"
             prioridad(2) = "Alta"
             ViewBag.prioridad = New SelectList(prioridad)
