@@ -73,6 +73,7 @@ End Code
 
         @<div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
+             <input type="submit" value="Deshabilitar" class="btn btn-default" />
             @Html.ActionLink("Back to List", "Index")
         </div>
     End Using
