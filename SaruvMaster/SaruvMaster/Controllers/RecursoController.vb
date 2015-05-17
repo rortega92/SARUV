@@ -52,12 +52,12 @@ Namespace SaruvMaster
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include := "Id,Nombre,TipoDeRecursoID,ModalidadDeCursoID,EmpresaID,CursoID,ClienteCorporativoID,DocenteID,Duracion,Prioridad,FechaEntrega")> ByVal recurso As Recurso) As ActionResult
+        Function Create(<Bind(Include:="Id,Nombre,TipoDeRecursoID,ModalidadDeCursoID,EmpresaID,CursoID,ClienteCorporativoID,DocenteID,Duracion,Prioridad,FechaEntrega")> ByVal recurso As Recurso) As ActionResult
             If ModelState.IsValid Then
                 db.Recursoes.Add(recurso)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
-            End If 
+            End If
             ViewBag.ClienteCorporativoID = New SelectList(db.ClienteCorporativo, "ID", "Nombres", recurso.ClienteCorporativoID)
             ViewBag.CursoID = New SelectList(db.Curso, "ID", "Nombres", recurso.CursoID)
             ViewBag.DocenteID = New SelectList(db.Docente, "ID", "Nombres", recurso.DocenteID)
