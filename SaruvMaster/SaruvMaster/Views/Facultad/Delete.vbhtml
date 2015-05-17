@@ -4,17 +4,6 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<script>
-    function ConfirmDelete() {
-        var x = confirm("Los Docentes de esta Facultad también serán eliminados.");
-        if (x)
-            return true;
-        else
-            return false;
-    }
-
-
-</script>
 
 <div>
     <h3>Facultad</h3>
