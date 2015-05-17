@@ -4,47 +4,54 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Details</h2>
+<!DOCTYPE html>
 
 <div>
-    <h4>RolPorDepartamento</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Departamento.Nombre)
-        </dt>
+    <h3>Rol por Departamento</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            Detalles
+        </header>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Departamento.Nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Departamento.Nombre)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Departamento.Nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Nombre)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Nombre)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaCreacion)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaCreacion)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaCreacion)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaCreacion)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaModificacion)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaModificacion)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaModificacion)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaModificacion)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+    </section>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", New With {.id = Model.ID}) |
+    @Html.ActionLink("Resgresar a la lista", "Index")
 </p>
+

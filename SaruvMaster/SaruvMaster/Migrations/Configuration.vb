@@ -289,6 +289,31 @@ Namespace Migrations
                 End Try
             Next
             context.SaveChanges()
+
+            Dim departamentos = New List(Of Departamento)() From {
+                   New Departamento() With {
+                       .Nombre = "Ingenieria",
+                       .FechaCreacion = DateTime.Parse("2010-09-01"),
+                       .FechaModificacion = DateTime.Parse("2010-10-01"),
+                       .IsDeleted = 0
+                   },
+                   New Departamento() With {
+                       .Nombre = "Ciencias De La Salud",
+                       .FechaCreacion = DateTime.Parse("2011-09-01"),
+                       .FechaModificacion = DateTime.Parse("2012-10-01"),
+                       .IsDeleted = 0
+                   },
+                   New Departamento() With {
+                       .Nombre = "Ciencias Administrativas",
+                       .FechaCreacion = DateTime.Parse("2000-09-01"),
+                       .FechaModificacion = DateTime.Parse("2012-10-01"),
+                       .IsDeleted = 0
+                   }
+               }
+            For Each dept In departamentos
+                context.Departamento.AddOrUpdate(Function(p) p.Nombre, dept)
+            Next
+            context.SaveChanges()
         End Sub
 
     End Class

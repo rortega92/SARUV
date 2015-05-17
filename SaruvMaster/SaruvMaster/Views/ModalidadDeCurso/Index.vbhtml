@@ -27,7 +27,7 @@ End Code
     </div>
     <div class="col-md-12" id="Buscar">
         <div class="filterBox col-md-12">
-            @Using Html.BeginForm("Index", "Modalidad de Curso", FormMethod.Get)
+            @Using Html.BeginForm("Index", "ModalidadDeCurso", FormMethod.Get)
             @<div class="col-md-2">
               <input class="form-control" type="search" Placeholder="Buscar"/>
               <span class="glyphicon glyphicon-search"></span>
