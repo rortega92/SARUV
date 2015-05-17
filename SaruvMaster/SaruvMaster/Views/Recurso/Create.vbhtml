@@ -22,15 +22,21 @@ End Code
     $(document).ready(function () {
         $("#ModalidadDeCursoID").change(function () {
             $("select option:selected").each(function () {
-                if ($(this).html() == "Presencial") {
+                if ($(this).html() == "Presencial" || $(this).html() == "Virtual") {
                     $("label[for=EmpresaID], #EmpresaID").hide();
+                    $("#EmpresaID").empty();
                     $("label[for=ClienteCorporativoID], #ClienteCorporativoID").hide();
+                    $("#ClienteCorporativoID").empty();
                     $("label[for=DocenteID], #DocenteID").show();
+                    $("label[for=CursoID], #CursoID").show();
                 }
                 if ($(this).html() == "Corporativo" || $(this).html() == "Corporativa") {
                     $("label[for=EmpresaID], #EmpresaID").show();
                     $("label[for=ClienteCorporativoID], #ClienteCorporativoID").show();
                     $("label[for=DocenteID], #DocenteID").hide();
+                    $("#DocenteID").empty();
+                    $("label[for=CursoID], #CursoID").hide();
+                    $("#CursoID").empty();
                 }
                 
             });
