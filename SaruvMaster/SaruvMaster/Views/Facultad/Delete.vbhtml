@@ -4,6 +4,13 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
+<script>
+    $(function () {
+        $("#botonEliminar").click(function () {
+            $("#dialog").dialog();
+        })
+    });
+</script>
 
 <div>
     <h3>Facultad</h3>
@@ -36,13 +43,15 @@ End Code
                     @Html.DisplayFor(Function(model) model.FechaModificacion)
                 </dd>
             </dl>
-            
+            <div id="dialog" title="Advertencia">
+                <p>Para borrar la Empresa primero debe borrar los Clientes Corporativos de esta empresa </p>
+            </div>
 
             @Using (Html.BeginForm())
                 @Html.AntiForgeryToken()
 
                 @<div class="form-group" >
-                     <input type="submit" value="Eliminar" class="btn btn-default" onclick="return ConfirmDelete();" />
+                     <input type="submit" value="Eliminar" class="btn btn-default" id="botonEliminar" />
                      <input type="submit" value="Deshabilitar" class="btn btn-default" />
                 </div>
             End Using

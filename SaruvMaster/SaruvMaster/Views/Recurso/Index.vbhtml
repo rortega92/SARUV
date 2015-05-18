@@ -129,7 +129,7 @@ End Code
                                 <td>
                                     <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = item.Id})</button>
                                     <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles ", "Details", New With {.id = item.Id}) </button>
-                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles", "Delete", New With {.id = item.Id})</button>
+                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Eliminar", "Delete", New With {.id = item.Id})</button>
                                 </td>
                             </tr>
                         Next

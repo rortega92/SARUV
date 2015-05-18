@@ -5,15 +5,11 @@
 End Code
 
 <script>
-    function ConfirmDelete() {
-        var x = confirm("Los clientes corporativos de esta Empresa también serán eliminados");
-        if (x)
-            return true;
-        else
-            return false;
-    }
-
-
+    $(function () {
+        $("#botonEliminar").click(function () {
+            $("#dialog").dialog();
+        })
+    });
 </script>
 
 <div>
@@ -23,7 +19,11 @@ End Code
             ¿Desea eliminar el registro?
         </header>
         <div class="panel-body">
+            <div id="dialog" title="Advertencia">
+                <p>Para borrar la Empresa primero debe borrar los Clientes Corporativos de esta empresa </p>
+            </div>
             <dl class="dl-horizontal">
+                
                 <dt>
                     @Html.DisplayNameFor(Function(model) model.Nombre)
                 </dt>
@@ -69,7 +69,7 @@ End Code
                 @Html.AntiForgeryToken()
 
                 @<div class="form-group">
-                     <input type="submit" value="Eliminar" class="btn btn-default" onclick="return ConfirmDelete();" />
+                     <input type="submit" value="Eliminar" class="btn btn-default" id="botonEliminar" />
                      <input type="submit" value="Deshabilitar" class="btn btn-default" />
                 </div>
             End Using
