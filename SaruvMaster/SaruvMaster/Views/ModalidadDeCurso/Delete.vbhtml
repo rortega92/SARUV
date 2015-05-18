@@ -36,6 +36,7 @@ End Code
 
                 @<div class="form-actions no-color">
                     <input type="submit" value="Eliminar" class="btn btn-default" />
+                     <input type="submit" value="Deshabilitar" class="btn btn-default" />
                 </div>
             End Using
         </div>

@@ -214,6 +214,10 @@
       <DependentUpon>201505100625517_InitialCreate.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201505100625517_InitialCreate.vb" />
+    <Compile Include="Migrations\201505172228531_FieldsRecurso.Designer.vb">
+      <DependentUpon>201505172228531_FieldsRecurso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505172228531_FieldsRecurso.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -254,6 +258,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201505100625517_InitialCreate.resx">
       <DependentUpon>201505100625517_InitialCreate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505172228531_FieldsRecurso.resx">
+      <DependentUpon>201505172228531_FieldsRecurso.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

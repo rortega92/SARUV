@@ -20,25 +20,25 @@ Public Class Recurso
     Public Overridable Property ModalidadDeCurso As ModalidadDeCurso
 
     <Display(Name:="Empresa")>
-    Public Property EmpresaID As Integer
+    Public Property EmpresaID As Nullable(Of Integer)
 
     <Display(Name:="Empresa")>
     Public Overridable Property Empresa As Empresa
 
     <Display(Name:="Curso")>
-    Public Property CursoID As Integer
+    Public Property CursoID As Nullable(Of Integer)
 
     <Display(Name:="Curso")>
     Public Overridable Property Curso As Curso
 
     <Display(Name:="Cliente Corporativo")>
-    Public Property ClienteCorporativoID As Integer
+    Public Property ClienteCorporativoID As Nullable(Of Integer)
 
     <Display(Name:="Cliente Corporativo")>
     Public Overridable Property ClienteCorporativo As ClienteCorporativo
 
     <Display(Name:="Docente")>
-    Public Property DocenteID As Integer
+    Public Property DocenteID As Nullable(Of Integer)
 
     <Display(Name:="Docente")>
     Public Overridable Property Docente As Docente
@@ -47,7 +47,7 @@ Public Class Recurso
     <Range(1, 10, ErrorMessage:="La semana solo puede ser entre 1 y 10")>
     Public Property Duracion As Integer
 
-    <Display(Name:="Prioidad"), Required(ErrorMessage:="Este campo es obligatorio")>
+    <Display(Name:="Prioridad"), Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, ErrorMessage:="Este campo permite un máximo de 255 caracteres")>
     Public Property Prioridad As String
 

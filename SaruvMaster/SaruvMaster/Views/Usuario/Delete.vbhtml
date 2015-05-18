@@ -73,7 +73,12 @@ End Code
 
         @<div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
+<<<<<<< HEAD
              <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Usuario/Index">Regresar a la lista</a>
+=======
+             <input type="submit" value="Deshabilitar" class="btn btn-default" />
+            @Html.ActionLink("Back to List", "Index")
+>>>>>>> ad4a948f2736ace83dd3c49591d50b5c085268f6
         </div>
     End Using
 </div>
