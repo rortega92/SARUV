@@ -43,5 +43,5 @@ End Code
 </div>
 <p>
     <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = Model.ID}) </button>   
-    <button class="btn btn-default btn-sm"> @Html.ActionLink("Regresar a la lista", "Index") </button>
+    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Departamento/Index">Regresar a la lista</a>
 </p>

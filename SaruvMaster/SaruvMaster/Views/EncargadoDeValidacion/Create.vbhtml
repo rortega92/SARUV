@@ -67,7 +67,7 @@ End Code
 </section>
 
 <div>
-    @Html.ActionLink("Regresar a la Lista", "Index")
+   <a style="color: #007AFF" class="btn btn-default btn-sm" href="/EncargadoDeValidacion/Index">Regresar a la lista</a>
 </div>
 
 @Section Scripts

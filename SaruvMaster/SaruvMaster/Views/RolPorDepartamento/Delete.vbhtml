@@ -49,7 +49,7 @@ End Code
 
         @<div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+             <a style="color: #007AFF" class="btn btn-default btn-sm" href="/RolPorDepartamento/Index">Regresar a la lista</a>
         </div>
     End Using
 </div>

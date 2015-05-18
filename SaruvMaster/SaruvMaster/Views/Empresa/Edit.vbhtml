@@ -70,7 +70,7 @@ End Code
 
 
 <div>
-    @Html.ActionLink("Regresar a la lista", "Index")
+    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Empresa/Index">Regresar a la lista</a>
 </div>
 
 @Section Scripts

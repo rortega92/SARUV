@@ -48,6 +48,6 @@ End Code
         </div>
     </section>
     <div>
-        <button class="btn btn-default btn-sm">Regresar a la lista @Html.ActionLink(Nothing, "Index") </button>
+        <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Departamento/Index">Regresar a la lista</a>
     </div>
 </div>

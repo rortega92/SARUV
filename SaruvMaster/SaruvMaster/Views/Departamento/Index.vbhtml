@@ -19,9 +19,9 @@ End Code
         <header class="panel-heading">
             <h3>Departamentos</h3>
         </header>
-        <div class="breadcrumb">
-            <button class="btn btn-default btn-sm"> @Html.ActionLink("Crear Nueva", "Create") </button>
-            <button style= "color: #007aff" class="btn btn-default btn-sm" id="filterButton">Filtrar</button>
+        <div class="breadcrumb">           
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Departamento/Create">Crear Nuevo</a>
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="javascript:void(0)" id="filterButton"> Filtrar</a>
         </div>
     </div>
     <div class="col-md-12" id="Buscar">
@@ -70,9 +70,9 @@ End Code
                                     @Html.DisplayFor(Function(modelItem) item.FechaModificacion)
                                 </td>
                                 <td>
-                                    <button class="btn btn-default btn-sm">Editar @Html.ActionLink(" ", "Edit", New With {.id = item.ID})</button>
-                                    <button class="btn btn-default btn-sm">Detalles @Html.ActionLink(" ", "Details", New With {.id = item.ID}) </button>
-                                    <button class="btn btn-default btn-sm"> Eliminar @Html.ActionLink(" ", "Delete", New With {.id = item.ID})</button>
+                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = item.ID})</button>
+                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles ", "Details", New With {.id = item.ID}) </button>
+                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles", "Delete", New With {.id = item.ID})</button>
                                 </td>
                             </tr>
                         Next

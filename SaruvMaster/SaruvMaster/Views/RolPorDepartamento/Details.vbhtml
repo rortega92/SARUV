@@ -45,6 +45,6 @@ End Code
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = Model.ID}) </button>
+    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/RolPorDepartamento/Index">Regresar a la lista</a>
 </p>

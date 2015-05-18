@@ -40,10 +40,11 @@ End Code
         <td>
             @Html.DisplayFor(Function(modelItem) item.FechaModificacion)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", New With {.id = item.ID }) |
-            @Html.ActionLink("Details", "Details", New With {.id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", New With {.id = item.ID })
+         <td>
+             <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = item.ID})</button>
+             <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles ", "Details", New With {.id = item.ID}) </button>
+             <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles", "Delete", New With {.id = item.ID})</button>
+         </td>
         </td>
     </tr>
 Next
