@@ -3,7 +3,29 @@
     ViewData("Title") = "Create"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
+<script>
+    $(document).ready(function () {
+        $("#DepartamentoID").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "getRolesByNombreDepartamento",
+                data: {"nombreDepartamento":$("#DepartamentoID option:selected").html()},
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    $("#RolPorDepartamentoID").empty()
+                    $.each(msg, function () {
+                        $("#RolPorDepartamentoID").append($("<option></option>").val(this['ID']).html(this['Nombre']));
+                    });
+                },
+                error: function() {
+                    alert("An error has occurred during processing your request.");
+                }
+            });
+        }).change()
 
+    });
+</script>   
 <h2>Create</h2>
 
 @Using (Html.BeginForm()) 

@@ -127,5 +127,19 @@ Namespace Controllers
             End If
             MyBase.Dispose(disposing)
         End Sub
+
+        Function getRolesByNombreDepartamento(ByVal nombreDepartamento As String) As ActionResult
+            Dim con As New Connection
+            Dim idDepartamento = con.Departamento.Where(Function(e) e.Nombre = nombreDepartamento).First().ID
+            Dim listaRoles = con.RolPorDepartamento.ToList.Where(Function(r) r.DepartamentoID = idDepartamento)
+            Dim returnRoles As New List(Of Dictionary(Of String, String))
+            For i As Integer = 0 To listaRoles.ToArray().Length - 1
+                Dim row As New Dictionary(Of String, String)
+                row.Add("ID", listaRoles.ElementAt(i).ID)
+                row.Add("Nombre", listaRoles.ElementAt(i).Nombre)
+                returnRoles.Add(row)
+            Next
+            Return Json(returnRoles, JsonRequestBehavior.AllowGet)
+        End Function
     End Class
 End Namespace

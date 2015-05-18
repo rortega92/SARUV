@@ -892,6 +892,7 @@ div[data-role="editor-toolbar"] {
   height: 45px;
   position: relative;  
   margin: 0 0 0 0;
+  margin-bottom:10px;
   overflow: hidden;
 }
 .breadcrumb li {
