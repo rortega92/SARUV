@@ -62,7 +62,8 @@ End Code
 End Using
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Usuario/Index">Regresar a la lista</a>
+    
 </div>
 
 @Section Scripts 

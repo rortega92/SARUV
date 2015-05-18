@@ -43,11 +43,12 @@ End Code
 
                 @<div class="form-actions no-color">
                     <input type="submit" value="Eliminar" class="btn btn-default" />
+                     <input type="submit" value="Deshabilitar" class="btn btn-default" />
                 </div>
             End Using
         </div>
     </section>
     <div>
-        @Html.ActionLink("Regresar a la lista", "Index")
+        <a style="color: #007AFF" class="btn btn-default btn-sm" href="/TipoDeRecurso/Index">Regresar a la lista</a>
     </div>
 </div>

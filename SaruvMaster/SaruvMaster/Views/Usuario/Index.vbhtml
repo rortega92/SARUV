@@ -7,7 +7,8 @@ End Code
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Usuario/Create">Crear Nuevo</a>
+    <a style="color: #007AFF" class="btn btn-default btn-sm" href="javascript:void(0)" id="filterButton"> Filtrar</a>
 </p>
 <table class="table">
     <tr>
@@ -59,9 +60,9 @@ End Code
             @Html.DisplayFor(Function(modelItem) item.FechaModificacion)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", New With {.id = item.ID }) |
-            @Html.ActionLink("Details", "Details", New With {.id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", New With {.id = item.ID })
+            <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = item.ID})</button>
+            <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles ", "Details", New With {.id = item.ID}) </button>
+            <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles", "Delete", New With {.id = item.ID})</button>
         </td>
     </tr>
 Next

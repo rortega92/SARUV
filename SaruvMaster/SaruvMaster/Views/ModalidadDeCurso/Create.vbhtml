@@ -50,8 +50,8 @@ End Code
 
 
 <div>
-    @Html.ActionLink("Regresar a la Lista", "Index")
-</div>
+    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/ModalidadDeCurso/Index">Regresar a la lista</a>
+    </div>
 
 @Section Scripts
     @Scripts.Render("~/bundles/jqueryval")

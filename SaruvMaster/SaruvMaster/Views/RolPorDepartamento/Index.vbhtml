@@ -14,6 +14,31 @@ End Code
     });
 </script>
 
+<<<<<<< HEAD
+@For Each item In Model
+    @<tr>
+        <td>
+            @Html.DisplayFor(Function(modelItem) item.Departamento.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(Function(modelItem) item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(Function(modelItem) item.FechaCreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(Function(modelItem) item.FechaModificacion)
+        </td>
+         <td>
+             <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = item.ID})</button>
+             <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles ", "Details", New With {.id = item.ID}) </button>
+             <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles", "Delete", New With {.id = item.ID})</button>
+         </td>
+        </td>
+    </tr>
+Next
+=======
+>>>>>>> ad4a948f2736ace83dd3c49591d50b5c085268f6
 
 <div class="row indexHeader">
     <div class="col-md-12">

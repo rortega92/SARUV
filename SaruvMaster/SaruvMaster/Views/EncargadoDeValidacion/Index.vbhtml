@@ -37,8 +37,8 @@ End Code
             <h3>Encargado de Validación</h3>
         </header>
         <div class="breadcrumb">
-            @Html.ActionLink("Crear Nuevo", "Create") |
-            <a href="javascript:void(0)" id="botonBuscar"> Buscar</a>
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/EncargadoDeValidacion/Create">Crear Nuevo</a>
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="javascript:void(0)" id="botonBuscar"> Buscar</a>
         </div>
     </div>
 </div>
@@ -113,9 +113,9 @@ End Code
                                      @Html.DisplayFor(Function(modelItem) item.correoElectronico)
                                  </td>
                                  <td>
-                                     @Html.ActionLink("Editar", "Edit", New With {.id = item.ID}) |
-                                     @Html.ActionLink("Detalles", "Details", New With {.id = item.ID}) |
-                                     @Html.ActionLink("Eliminar", "Delete", New With {.id = item.ID})
+                                     <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = item.ID})</button>
+                                     <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles ", "Details", New With {.id = item.ID}) </button>
+                                     <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles", "Delete", New With {.id = item.ID})</button>
                                  </td>
                             </tr>
                         Next

@@ -51,7 +51,11 @@ End Code
 
 
 <div>
+<<<<<<< HEAD
+    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/RolPorDepartamento/Index">Regresar a la lista</a>
+=======
     @Html.ActionLink("Regresar a la Lista", "Index")
+>>>>>>> ad4a948f2736ace83dd3c49591d50b5c085268f6
 </div>
 
 @Section Scripts
