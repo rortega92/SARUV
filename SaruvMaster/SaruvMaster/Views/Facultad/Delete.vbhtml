@@ -4,15 +4,27 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<script>
-    $(function () {
-        $("#botonEliminar").click(function () {
-            $("#dialog").dialog();
-        })
-    });
+<script>    
+         $(function() {
+             $( "#dialog" ).dialog({
+                 autoOpen: false, 
+                 hide: "puff",
+                 show : "slide",
+                 height: 200      
+             });
+             $("#botonEliminar").click(function (event) {
+                 event.preventDefault();
+                 event.stopPropagation();
+                 $( "#dialog" ).dialog( "open" );
+             });
+         });
+    
 </script>
 
 <div>
+    <div id="dialog" title="Advertencia">
+        <p>Para borrar la Empresa primero debe borrar los Clientes Corporativos de esta empresa </p>
+    </div>
     <h3>Facultad</h3>
     <section class="panel">
         <header class="panel-heading">
@@ -43,9 +55,7 @@ End Code
                     @Html.DisplayFor(Function(model) model.FechaModificacion)
                 </dd>
             </dl>
-            <div id="dialog" title="Advertencia">
-                <p>Para borrar la Empresa primero debe borrar los Clientes Corporativos de esta empresa </p>
-            </div>
+            
 
             @Using (Html.BeginForm())
                 @Html.AntiForgeryToken()
