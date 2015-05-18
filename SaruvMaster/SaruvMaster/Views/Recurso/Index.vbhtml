@@ -11,7 +11,18 @@ End Code
             $("#Buscar").toggle();
         })
     });
+
+    $(document).ready(function (e) {
+        $('#search-panel .dropdown-menu').find('a').click(function (e) {
+            e.preventDefault();
+            var parametro = $(this).attr("href").replace("#", "");
+            var concepto = $(this).text();
+            $('#search-panel span#search_concept').text(concepto);
+            $('.input-group #search_param').val(parametro);
+        });
+    });
 </script>
+
 <div class="row indexHeader">
     <div class="col-md-12">
         <header class="panel-heading">
