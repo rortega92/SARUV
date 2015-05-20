@@ -4,12 +4,12 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost:1864/" />
-<title>Editar Departamento Criterio1</title>
+<title>Eliminar Rol Por Departamento Correcto</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">Editar Departamento Criterio1</td></tr>
+<tr><td rowspan="1" colspan="3">Eliminar Rol Por Departamento Correcto</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -18,27 +18,22 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//div[@id='sidebar']/ul/li[2]/a/span</td>
+	<td>link=Registro de Datos</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Departamento</td>
+	<td>link=Rol por Departamento</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Editar</td>
+	<td>xpath=(//a[contains(text(),'Eliminar')])[6]</td>
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=Nombre</td>
-	<td>%^&amp;%u*</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>css=input.btn.btn-default</td>
+	<td>clickAndWait</td>
+	<td>//input[@value='Eliminar']</td>
 	<td></td>
 </tr>
 </tbody></table>
