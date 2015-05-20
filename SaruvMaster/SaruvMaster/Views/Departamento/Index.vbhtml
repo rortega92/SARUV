@@ -70,9 +70,9 @@ End Code
                                     @Html.DisplayFor(Function(modelItem) item.FechaModificacion)
                                 </td>
                                 <td>
-                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = item.ID})</button>
-                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles ", "Details", New With {.id = item.ID}) </button>
-                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Eliminar", "Delete", New With {.id = item.ID})</button>
+                                     @Html.ActionLink("Editar", "Edit", New With {.id = item.ID})
+                                     @Html.ActionLink("Detalles ", "Details", New With {.id = item.ID}) 
+                                     @Html.ActionLink("Eliminar", "Delete", New With {.id = item.ID})
                                 </td>
                             </tr>
                         Next
