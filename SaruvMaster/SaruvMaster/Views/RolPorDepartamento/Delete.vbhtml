@@ -52,7 +52,7 @@ End Code
 
                 @<div class="form-actions no-color">
                     <input type="submit" value="Eliminar" class="btn btn-default btn-sm" />
-                     <input type="submit" value="Deshabilitar" class="btn btn-default btn-sm" />
+                     <input type="submit" value="Deshabilitar" class="btn btn-default btn-sm hidden" />
                      
                 </div>
             End Using

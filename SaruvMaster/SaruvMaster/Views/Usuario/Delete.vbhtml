@@ -77,7 +77,7 @@ End Code
 
                 @<div class="form-group">
                     <input type="submit" value="Eliminar" class="btn btn-default" id="botonEliminar" />
-                    <input type="submit" value="Deshabilitar" class="btn btn-default" />
+                    <input type="submit" value="Deshabilitar" class="btn btn-default hidden" />
                 </div>
             End Using
         </div>
