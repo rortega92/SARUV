@@ -229,7 +229,7 @@ Namespace Migrations
                         .IsDeleted = 0
                     },
                     New ModalidadDeCurso() With {
-                        .Nombre = "Internacional",
+                        .Nombre = "Corporativo",
                         .Duracion = 5,
                         .FechaCreacion = DateTime.Parse("2014-09-10"),
                         .FechaModificacion = DateTime.Parse("2014-10-10"),
@@ -289,6 +289,112 @@ Namespace Migrations
                 End Try
             Next
             context.SaveChanges()
+
+            Dim departamentos = New List(Of Departamento)() From {
+                   New Departamento() With {
+                       .Nombre = "Diseno",
+                       .FechaCreacion = DateTime.Parse("2010-09-01"),
+                       .FechaModificacion = DateTime.Parse("2010-10-01"),
+                       .IsDeleted = 0
+                   },
+                   New Departamento() With {
+                       .Nombre = "Correccion",
+                       .FechaCreacion = DateTime.Parse("2011-09-01"),
+                       .FechaModificacion = DateTime.Parse("2012-10-01"),
+                       .IsDeleted = 0
+                   },
+                   New Departamento() With {
+                       .Nombre = "Grabacion",
+                       .FechaCreacion = DateTime.Parse("2003-09-01"),
+                       .FechaModificacion = DateTime.Parse("2012-10-01"),
+                       .IsDeleted = 0
+                   },
+                   New Departamento() With {
+                       .Nombre = "Entrega",
+                       .FechaCreacion = DateTime.Parse("2002-09-01"),
+                       .FechaModificacion = DateTime.Parse("2012-10-01"),
+                       .IsDeleted = 0
+                   }
+               }
+            For Each dept In departamentos
+                context.Departamento.AddOrUpdate(Function(p) p.Nombre, dept)
+            Next
+            context.SaveChanges()
+
+            Dim rolesPorDepartamento = New List(Of RolPorDepartamento)() From {
+                   New RolPorDepartamento() With {
+                       .Nombre = "Jefe D",
+                       .FechaCreacion = DateTime.Parse("2010-09-01"),
+                       .FechaModificacion = DateTime.Parse("2010-10-01"),
+                       .IsDeleted = 0,
+                       .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Diseno").ID
+                   },
+                   New RolPorDepartamento() With {
+                       .Nombre = "Auxiliar D",
+                       .FechaCreacion = DateTime.Parse("2010-09-01"),
+                       .FechaModificacion = DateTime.Parse("2010-10-01"),
+                       .IsDeleted = 0,
+                       .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Diseno").ID
+                   },
+                   New RolPorDepartamento() With {
+                       .Nombre = "Auxiliar C",
+                       .FechaCreacion = DateTime.Parse("2010-09-01"),
+                       .FechaModificacion = DateTime.Parse("2010-10-01"),
+                       .IsDeleted = 0,
+                       .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Correccion").ID
+                   },
+                   New RolPorDepartamento() With {
+                       .Nombre = "Auxiliar G",
+                       .FechaCreacion = DateTime.Parse("2010-09-01"),
+                       .FechaModificacion = DateTime.Parse("2010-10-01"),
+                       .IsDeleted = 0,
+                       .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Grabacion").ID
+                   },
+                   New RolPorDepartamento() With {
+                       .Nombre = "Auxiliar E",
+                       .FechaCreacion = DateTime.Parse("2010-09-01"),
+                       .FechaModificacion = DateTime.Parse("2010-10-01"),
+                       .IsDeleted = 0,
+                       .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Entrega").ID
+                   }
+               }
+            For Each rolDept In rolesPorDepartamento
+                context.RolPorDepartamento.AddOrUpdate(Function(p) p.Nombre, rolDept)
+            Next
+            context.SaveChanges()
+
+            Dim tipoDeRecursos = New List(Of TipoDeRecurso)() From {
+                   New TipoDeRecurso() With {
+                       .Nombre = "Polimedia",
+                       .CodigoRecurso = "POL2015",
+                       .FechaDeCreacion = DateTime.Parse("2010-09-01"),
+                       .IsDeleted = 0
+                   },
+                   New TipoDeRecurso() With {
+                       .Nombre = "Articulate",
+                       .CodigoRecurso = "ART2015",
+                       .FechaDeCreacion = DateTime.Parse("2010-09-01"),
+                       .IsDeleted = 0
+                   },
+                   New TipoDeRecurso() With {
+                       .Nombre = "Revista Digital",
+                       .CodigoRecurso = "RED2015",
+                       .FechaDeCreacion = DateTime.Parse("2010-09-01"),
+                       .IsDeleted = 0
+                   },
+                   New TipoDeRecurso() With {
+                       .Nombre = "Video",
+                       .CodigoRecurso = "VID2015",
+                       .FechaDeCreacion = DateTime.Parse("2010-09-01"),
+                       .IsDeleted = 0
+                   }
+               }
+            For Each tprec In tipoDeRecursos
+                context.TipoDeRecurso.AddOrUpdate(Function(p) p.Nombre, tprec)
+            Next
+            context.SaveChanges()
+
+
         End Sub
 
     End Class

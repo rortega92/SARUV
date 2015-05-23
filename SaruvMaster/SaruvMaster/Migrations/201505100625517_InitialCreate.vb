@@ -205,6 +205,26 @@ Namespace Migrations
                 .ForeignKey("dbo.Departamento", Function(t) t.DepartamentoID, cascadeDelete:=False) _
                 .Index(Function(t) t.DepartamentoID)
 
+            CreateTable(
+                "dbo.Usuario",
+                Function(c) New With
+                    {
+                        .ID = c.Int(nullable:=False, identity:=True),
+                        .Nombre = c.String(nullable:=False, maxLength:=255),
+                        .Apellido = c.String(nullable:=False, maxLength:=255),
+                        .correo = c.String(nullable:=False),
+                        .DepartamentoID = c.Int(nullable:=False),
+                        .RolPorDepartamentoID = c.Int(nullable:=False),
+                        .FechaCreacion = c.DateTime(nullable:=False),
+                        .FechaModificacion = c.DateTime(nullable:=False),
+                        .IsDeleted = c.Int(nullable:=False)
+                    }) _
+                .PrimaryKey(Function(t) t.ID) _
+                .ForeignKey("dbo.Departamento", Function(t) t.DepartamentoID, cascadeDelete:=False) _
+                .ForeignKey("dbo.RolPorDepartamento", Function(t) t.RolPorDepartamentoID, cascadeDelete:=False) _
+                .Index(Function(t) t.DepartamentoID) _
+                .Index(Function(t) t.RolPorDepartamentoID)
+
             CreateStoredProcedure(
                 "dbo.AreaDeConocimiento_Insert",
                 Function(p) New With
@@ -829,14 +849,72 @@ Namespace Migrations
                         .ID = p.Int()
                     },
                 body:=
-                    "UPDATE [dbo].[RolPorDepartamento]" & vbCrLf & _
-                    "SET [IsDeleted] = @ID" & vbCrLf & _
+                    "DELETE [dbo].[RolPorDepartamento]" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
 
-        End Sub
+            CreateStoredProcedure(
+                "dbo.Usuario_Insert",
+                Function(p) New With
+                    {
+                        .Nombre = p.String(maxLength:=255),
+                        .Apellido = p.String(maxLength:=255),
+                        .correo = p.String(),
+                        .DepartamentoID = p.Int(),
+                        .RolPorDepartamentoID = p.Int(),
+                        .FechaCreacion = p.DateTime(),
+                        .FechaModificacion = p.DateTime()
+                    },
+                body:=
+                    "INSERT [dbo].[Usuario]([Nombre], [Apellido], [correo], [DepartamentoID], [RolPorDepartamentoID], [FechaCreacion], [FechaModificacion], [IsDeleted])" & vbCrLf & _
+                    "VALUES (@Nombre, @Apellido, @correo, @DepartamentoID, @RolPorDepartamentoID, @FechaCreacion, @FechaModificacion, 0)" & vbCrLf & _
+                    "" & vbCrLf & _
+                    "DECLARE @ID int" & vbCrLf & _
+                    "SELECT @ID = [ID]" & vbCrLf & _
+                    "FROM [dbo].[Usuario]" & vbCrLf & _
+                    "WHERE @@ROWCOUNT > 0 AND [ID] = scope_identity()" & vbCrLf & _
+                    "" & vbCrLf & _
+                    "SELECT t0.[ID]" & vbCrLf & _
+                    "FROM [dbo].[Usuario] AS t0" & vbCrLf & _
+                    "WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
+            )
 
+            CreateStoredProcedure(
+                "dbo.Usuario_Update",
+                Function(p) New With
+                    {
+                        .ID = p.Int(),
+                        .Nombre = p.String(maxLength:=255),
+                        .Apellido = p.String(maxLength:=255),
+                        .correo = p.String(),
+                        .DepartamentoID = p.Int(),
+                        .RolPorDepartamentoID = p.Int(),
+                        .FechaCreacion = p.DateTime(),
+                        .FechaModificacion = p.DateTime()
+                    },
+                body:=
+                    "UPDATE [dbo].[Usuario]" & vbCrLf & _
+                    "SET [Nombre] = @Nombre, [Apellido] = @Apellido, [correo] = @correo, [DepartamentoID] = @DepartamentoID, [RolPorDepartamentoID] = @RolPorDepartamentoID, [FechaCreacion] = @FechaCreacion, [FechaModificacion] = @FechaModificacion" & vbCrLf & _
+                    "WHERE ([ID] = @ID)"
+            )
+            
+            CreateStoredProcedure(
+                "dbo.Usuario_Delete",
+                Function(p) New With
+                    {
+                        .ID = p.Int()
+                    },
+                body :=
+                    "DELETE [dbo].[Usuario]" & vbCrLf & _
+                    "WHERE ([ID] = @ID)"
+            )
+            
+        End Sub
+        
         Public Overrides Sub Down()
+            DropStoredProcedure("dbo.Usuario_Delete")
+            DropStoredProcedure("dbo.Usuario_Update")
+            DropStoredProcedure("dbo.Usuario_Insert")
             DropStoredProcedure("dbo.RolPorDepartamento_Delete")
             DropStoredProcedure("dbo.RolPorDepartamento_Update")
             DropStoredProcedure("dbo.RolPorDepartamento_Insert")
@@ -873,6 +951,8 @@ Namespace Migrations
             DropStoredProcedure("dbo.AreaDeConocimiento_Delete")
             DropStoredProcedure("dbo.AreaDeConocimiento_Update")
             DropStoredProcedure("dbo.AreaDeConocimiento_Insert")
+            DropForeignKey("dbo.Usuario", "RolPorDepartamentoID", "dbo.RolPorDepartamento")
+            DropForeignKey("dbo.Usuario", "DepartamentoID", "dbo.Departamento")
             DropForeignKey("dbo.RolPorDepartamento", "DepartamentoID", "dbo.Departamento")
             DropForeignKey("dbo.Recurso", "TipoDeRecursoID", "dbo.TipoDeRecurso")
             DropForeignKey("dbo.Recurso", "ModalidadDeCursoID", "dbo.ModalidadDeCurso")
@@ -887,20 +967,23 @@ Namespace Migrations
             DropForeignKey("dbo.EncargadoDeValidacion", "FacultadID", "dbo.Facultad")
             DropForeignKey("dbo.Curso", "AreaDeConocimientoID", "dbo.AreaDeConocimiento")
             DropForeignKey("dbo.ClienteCorporativo", "EmpresaID", "dbo.Empresa")
-            DropIndex("dbo.RolPorDepartamento", New String() {"DepartamentoID"})
-            DropIndex("dbo.Recurso", New String() {"DocenteID"})
-            DropIndex("dbo.Recurso", New String() {"ClienteCorporativoID"})
-            DropIndex("dbo.Recurso", New String() {"CursoID"})
-            DropIndex("dbo.Recurso", New String() {"EmpresaID"})
-            DropIndex("dbo.Recurso", New String() {"ModalidadDeCursoID"})
-            DropIndex("dbo.Recurso", New String() {"TipoDeRecursoID"})
-            DropIndex("dbo.Docente", New String() {"FacultadID"})
-            DropIndex("dbo.Docente", New String() {"AreaDeConocimientoID"})
-            DropIndex("dbo.EncargadoDeValidacion", New String() {"FacultadID"})
-            DropIndex("dbo.Curso", New String() {"EncargadoDeValidacionID"})
-            DropIndex("dbo.Curso", New String() {"ModalidadDeCursoID"})
-            DropIndex("dbo.Curso", New String() {"AreaDeConocimientoID"})
-            DropIndex("dbo.ClienteCorporativo", New String() {"EmpresaID"})
+            DropIndex("dbo.Usuario", New String() { "RolPorDepartamentoID" })
+            DropIndex("dbo.Usuario", New String() { "DepartamentoID" })
+            DropIndex("dbo.RolPorDepartamento", New String() { "DepartamentoID" })
+            DropIndex("dbo.Recurso", New String() { "DocenteID" })
+            DropIndex("dbo.Recurso", New String() { "ClienteCorporativoID" })
+            DropIndex("dbo.Recurso", New String() { "CursoID" })
+            DropIndex("dbo.Recurso", New String() { "EmpresaID" })
+            DropIndex("dbo.Recurso", New String() { "ModalidadDeCursoID" })
+            DropIndex("dbo.Recurso", New String() { "TipoDeRecursoID" })
+            DropIndex("dbo.Docente", New String() { "FacultadID" })
+            DropIndex("dbo.Docente", New String() { "AreaDeConocimientoID" })
+            DropIndex("dbo.EncargadoDeValidacion", New String() { "FacultadID" })
+            DropIndex("dbo.Curso", New String() { "EncargadoDeValidacionID" })
+            DropIndex("dbo.Curso", New String() { "ModalidadDeCursoID" })
+            DropIndex("dbo.Curso", New String() { "AreaDeConocimientoID" })
+            DropIndex("dbo.ClienteCorporativo", New String() { "EmpresaID" })
+            DropTable("dbo.Usuario")
             DropTable("dbo.RolPorDepartamento")
             DropTable("dbo.TipoDeRecurso")
             DropTable("dbo.Recurso")

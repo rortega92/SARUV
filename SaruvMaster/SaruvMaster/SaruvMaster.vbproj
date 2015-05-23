@@ -206,6 +206,7 @@
     <Compile Include="Controllers\RecursoController.vb" />
     <Compile Include="Controllers\RolPorDepartamentoController.vb" />
     <Compile Include="Controllers\TipoDeRecursoController.vb" />
+    <Compile Include="Controllers\UsuarioController.vb" />
     <Compile Include="DAL\Connection.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -214,6 +215,10 @@
       <DependentUpon>201505100625517_InitialCreate.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201505100625517_InitialCreate.vb" />
+    <Compile Include="Migrations\201505172228531_FieldsRecurso.Designer.vb">
+      <DependentUpon>201505172228531_FieldsRecurso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505172228531_FieldsRecurso.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -232,6 +237,7 @@
     <Compile Include="Models\Recurso.vb" />
     <Compile Include="Models\RolPorDepartamento.vb" />
     <Compile Include="Models\TipoDeRecurso.vb" />
+    <Compile Include="Models\Usuario.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -253,6 +259,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201505100625517_InitialCreate.resx">
       <DependentUpon>201505100625517_InitialCreate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505172228531_FieldsRecurso.resx">
+      <DependentUpon>201505172228531_FieldsRecurso.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -1020,6 +1029,11 @@
     <Content Include="Views\RolPorDepartamento\Details.vbhtml" />
     <Content Include="Views\RolPorDepartamento\Edit.vbhtml" />
     <Content Include="Views\RolPorDepartamento\Index.vbhtml" />
+    <Content Include="Views\Usuario\Create.vbhtml" />
+    <Content Include="Views\Usuario\Delete.vbhtml" />
+    <Content Include="Views\Usuario\Details.vbhtml" />
+    <Content Include="Views\Usuario\Edit.vbhtml" />
+    <Content Include="Views\Usuario\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

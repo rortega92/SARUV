@@ -30,7 +30,7 @@ End Code
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Guardar" class="btn btn-default" />
+                        <input type="submit" value="Editar" class="btn btn-default" />
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@ End Code
     </div>
 </section>
 <div>
-    @Html.ActionLink("Regresar a la lista", "Index")
+    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Facultad/Index">Regresar a la lista</a>
 </div>
 
 @Section Scripts 

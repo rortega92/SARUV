@@ -4,52 +4,61 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Delete</h2>
+<!DOCTYPE html>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>RolPorDepartamento</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Departamento.Nombre)
-        </dt>
+    <h3>Rol por Departamento</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            ¿Desea eliminar este rol?
+        </header>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Departamento.Nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Departamento.Nombre)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Departamento.Nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Nombre)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Nombre)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaCreacion)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaCreacion)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaCreacion)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaCreacion)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaModificacion)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaModificacion)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaModificacion)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaModificacion)
+                </dd>
 
-    </dl>
-    @Using (Html.BeginForm())
-        @Html.AntiForgeryToken()
+            </dl>
+            @Using (Html.BeginForm())
+                @Html.AntiForgeryToken()
 
-        @<div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                @<div class="form-actions no-color">
+                    <input type="submit" value="Eliminar" class="btn btn-default btn-sm" />
+                     <input type="submit" value="Deshabilitar" class="btn btn-default btn-sm hidden" />
+                     
+                </div>
+            End Using
         </div>
-    End Using
+    </section>
+    <div>
+        <a style="color: #007AFF" class="btn btn-default btn-sm" href="/RolPorDepartamento/Index">Regresar a la lista</a>
+    </div>
 </div>

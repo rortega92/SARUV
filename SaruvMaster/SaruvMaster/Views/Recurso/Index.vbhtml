@@ -11,15 +11,26 @@ End Code
             $("#Buscar").toggle();
         })
     });
+
+    $(document).ready(function (e) {
+        $('#search-panel .dropdown-menu').find('a').click(function (e) {
+            e.preventDefault();
+            var parametro = $(this).attr("href").replace("#", "");
+            var concepto = $(this).text();
+            $('#search-panel span#search_concept').text(concepto);
+            $('.input-group #search_param').val(parametro);
+        });
+    });
 </script>
+
 <div class="row indexHeader">
     <div class="col-md-12">
         <header class="panel-heading">
             <h3>Recurso</h3>
         </header>
         <div class="breadcrumb">
-            @Html.ActionLink("Crear Nueva", "Create") |
-            <a href="javascript:void(0)" id="filterButton"> Filtrar</a>
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Recurso/Create">Crear Nueva</a>
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="javascript:void(0)" id="filterButton"> Filtrar</a>
         </div>
     </div>
     <div class="col-md-12" id="Buscar">
@@ -127,9 +138,9 @@ End Code
                                     @Html.DisplayFor(Function(modelItem) item.FechaEntrega)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Editar", "Edit", New With {.id = item.Id}) |
-                                    @Html.ActionLink("Detalles", "Details", New With {.id = item.Id}) |
-                                    @Html.ActionLink("Eliminar", "Delete", New With {.id = item.Id})
+                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = item.Id})</button>
+                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles ", "Details", New With {.id = item.Id}) </button>
+                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Eliminar", "Delete", New With {.id = item.Id})</button>
                                 </td>
                             </tr>
                         Next

@@ -38,8 +38,8 @@ End Code
             <h3>Curso</h3>
         </header>
         <div class="breadcrumb">
-            @Html.ActionLink("Crear Nuevo", "Create") |
-            <a href="javascript:void(0)" id="botonBuscar"> Buscar</a>
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Curso/Create">Crear Nuevo</a>
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="javascript:void(0)" id="botonBuscar"> Filtrar</a>
         </div>
     </div>
 </div>
@@ -128,9 +128,9 @@ End Code
                                     </td>
 
                                     <td>
-                                        @Html.ActionLink("Editar", "Edit", New With {.id = item.ID}) |
-                                        @Html.ActionLink("Detalles", "Details", New With {.id = item.ID}) |
-                                        @Html.ActionLink("Eliminar", "Delete", New With {.id = item.ID})
+                                        <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = item.ID}) </button>
+                                        <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles", "Details", New With {.id = item.ID}) </button>
+                                        <button class="btn btn-default btn-sm"> @Html.ActionLink("Eliminar", "Delete", New With {.id = item.ID}) </button>
                                     </td>
                                 </tr>
                             Next

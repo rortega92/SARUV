@@ -100,6 +100,6 @@ End Code
     </section>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", New With {.id = Model.Id}) |
-    @Html.ActionLink("Regresar a la Lista", "Index")
+    <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = Model.Id}) </button>
+    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Recurso/Index">Regresar a la lista</a>
 </p>
