@@ -28,7 +28,7 @@ End Code
             <h3>Usuario</h3>
         </header>
         <div class="breadcrumb">
-            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Usuario/Create">Crear Nueva</a>
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Usuario/Create">Crear Nuevo</a>
             <a style="color: #007AFF" class="btn btn-default btn-sm" href="javascript:void(0)" id="filterButton"> Filtrar</a>
         </div>
     </div>

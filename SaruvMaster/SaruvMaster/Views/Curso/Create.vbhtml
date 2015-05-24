@@ -98,11 +98,11 @@ End Code
                         <select class="form-control" id="Periodo" name="Periodo">
                             <option value="1">1</option>
                             <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
+                            <option value="3">4</option>
+                            <option value="4">5</option>
                         </select>
                             @Html.ValidationMessageFor(Function(model) model.Periodo, "", New With {.class = "text-danger"})
-</div>
+                    </div>
                 </div>
 
                 <div class="form-group">
