@@ -219,10 +219,13 @@
       <DependentUpon>201505172228531_FieldsRecurso.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201505172228531_FieldsRecurso.vb" />
+    <Compile Include="Migrations\201505240424309_TablaIntermediaRecursoPorUsuario.Designer.vb">
+      <DependentUpon>201505240424309_TablaIntermediaRecursoPorUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505240424309_TablaIntermediaRecursoPorUsuario.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
-    <Compile Include="Models\AreasDeConocimientoModels.vb" />
     <Compile Include="Models\ClienteCorporativo.vb" />
     <Compile Include="Models\Curso.vb" />
     <Compile Include="Models\Departamento.vb" />
@@ -230,11 +233,11 @@
     <Compile Include="Models\Empresa.vb" />
     <Compile Include="Models\EncargadoDeValidacion.vb" />
     <Compile Include="Models\Facultad.vb" />
-    <Compile Include="Models\FacultadModels.vb" />
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\ManageViewModels.vb" />
     <Compile Include="Models\ModalidadDeCurso.vb" />
     <Compile Include="Models\Recurso.vb" />
+    <Compile Include="Models\RecursoPorUsuario.vb" />
     <Compile Include="Models\RolPorDepartamento.vb" />
     <Compile Include="Models\TipoDeRecurso.vb" />
     <Compile Include="Models\Usuario.vb" />
@@ -262,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505172228531_FieldsRecurso.resx">
       <DependentUpon>201505172228531_FieldsRecurso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505240424309_TablaIntermediaRecursoPorUsuario.resx">
+      <DependentUpon>201505240424309_TablaIntermediaRecursoPorUsuario.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
