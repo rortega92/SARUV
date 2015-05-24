@@ -394,6 +394,165 @@ Namespace Migrations
             Next
             context.SaveChanges()
 
+            Dim usuarios = New List(Of Usuario)() From {
+                New Usuario() With {
+                    .Nombre = "Cristy",
+                    .Apellido = "Rodriguez",
+                    .correo = "crodriguez@gmail.com",
+                    .DepartamentoID = departamentos.Single(Function(d) d.Nombre = "Diseno").ID,
+                    .RolPorDepartamentoID = rolesPorDepartamento.Single(Function(rd) rd.Nombre = "Jefe D").ID,
+                    .FechaCreacion = DateTime.Parse("2015-05-24"),
+                    .FechaModificacion = DateTime.Parse("2015-05-24"),
+                    .IsDeleted = 0
+                },
+                New Usuario() With {
+                    .Nombre = "Wendy",
+                    .Apellido = "Galdamez",
+                    .correo = "wgadamez@gmail.com",
+                    .DepartamentoID = departamentos.Single(Function(d) d.Nombre = "Diseno").ID,
+                    .RolPorDepartamentoID = rolesPorDepartamento.Single(Function(rd) rd.Nombre = "Auxiliar D").ID,
+                    .FechaCreacion = DateTime.Parse("2015-05-24"),
+                    .FechaModificacion = DateTime.Parse("2015-05-24"),
+                    .IsDeleted = 0
+                },
+                New Usuario() With {
+                    .Nombre = "Clarissa",
+                    .Apellido = "Gomez",
+                    .correo = "cgomez@gmail.com",
+                    .DepartamentoID = departamentos.Single(Function(d) d.Nombre = "Diseno").ID,
+                    .RolPorDepartamentoID = rolesPorDepartamento.Single(Function(rd) rd.Nombre = "Auxiliar D").ID,
+                    .FechaCreacion = DateTime.Parse("2015-05-24"),
+                    .FechaModificacion = DateTime.Parse("2015-05-24"),
+                    .IsDeleted = 0
+                },
+                New Usuario() With {
+                    .Nombre = "Martha",
+                    .Apellido = "Lopez",
+                    .correo = "mcampos@gmail.com",
+                    .DepartamentoID = departamentos.Single(Function(d) d.Nombre = "Correccion").ID,
+                    .RolPorDepartamentoID = rolesPorDepartamento.Single(Function(rd) rd.Nombre = "Auxiliar C").ID,
+                    .FechaCreacion = DateTime.Parse("2015-05-24"),
+                    .FechaModificacion = DateTime.Parse("2015-05-24"),
+                    .IsDeleted = 0
+                },
+                New Usuario() With {
+                    .Nombre = "Carlos",
+                    .Apellido = "Ruiz Lopez",
+                    .correo = "cruiz@gmail.com",
+                    .DepartamentoID = departamentos.Single(Function(d) d.Nombre = "Correccion").ID,
+                    .RolPorDepartamentoID = rolesPorDepartamento.Single(Function(rd) rd.Nombre = "Auxiliar C").ID,
+                    .FechaCreacion = DateTime.Parse("2015-05-24"),
+                    .FechaModificacion = DateTime.Parse("2015-05-24"),
+                    .IsDeleted = 0
+                },
+                New Usuario() With {
+                    .Nombre = "Hector",
+                    .Apellido = "Campos",
+                    .correo = "hcampos@gmail.com",
+                    .DepartamentoID = departamentos.Single(Function(d) d.Nombre = "Grabacion").ID,
+                    .RolPorDepartamentoID = rolesPorDepartamento.Single(Function(rd) rd.Nombre = "Auxiliar G").ID,
+                    .FechaCreacion = DateTime.Parse("2015-05-24"),
+                    .FechaModificacion = DateTime.Parse("2015-05-24"),
+                    .IsDeleted = 0
+                },
+                New Usuario() With {
+                    .Nombre = "Mateo",
+                    .Apellido = "Sevilla",
+                    .correo = "msevilla@gmail.com",
+                    .DepartamentoID = departamentos.Single(Function(d) d.Nombre = "Grabacion").ID,
+                    .RolPorDepartamentoID = rolesPorDepartamento.Single(Function(rd) rd.Nombre = "Auxiliar G").ID,
+                    .FechaCreacion = DateTime.Parse("2015-05-24"),
+                    .FechaModificacion = DateTime.Parse("2015-05-24"),
+                    .IsDeleted = 0
+                },
+                New Usuario() With {
+                    .Nombre = "Rodrigo",
+                    .Apellido = "Sevilla",
+                    .correo = "rsevilla@gmail.com",
+                    .DepartamentoID = departamentos.Single(Function(d) d.Nombre = "Entrega").ID,
+                    .RolPorDepartamentoID = rolesPorDepartamento.Single(Function(rd) rd.Nombre = "Auxiliar E").ID,
+                    .FechaCreacion = DateTime.Parse("2015-05-24"),
+                    .FechaModificacion = DateTime.Parse("2015-05-24"),
+                    .IsDeleted = 0
+                }
+            }
+            For Each usr In usuarios
+                context.Usuario.AddOrUpdate(Function(p) p.Nombre, usr)
+            Next
+            context.SaveChanges()
+
+            Dim recursos = New List(Of Recurso)() From {
+                   New Recurso() With {
+                       .Nombre = "Presentacion Transformada De Laplace",
+                       .TipoDeRecursoID = tipoDeRecursos.Single(Function(tr) tr.Nombre = "Polimedia").Id,
+                       .ModalidadDeCursoID = modalidadesDeCurso.Single(Function(mc) mc.Nombre = "Presencial").ID,
+                       .CursoID = cursos.Single(Function(c) c.Nombres = "Ecuaciones Diferenciales").ID,
+                       .DocenteID = docentes.Single(Function(d) d.Nombres = "Juan Carlos").ID,
+                       .Duracion = 2,
+                       .Prioridad = "Alta",
+                       .FechaEntrega = DateTime.Parse("2015-09-01"),
+                       .IsDeleted = 0
+                   },
+                   New Recurso() With {
+                       .Nombre = "Sea Emprendedor Hoy",
+                       .TipoDeRecursoID = tipoDeRecursos.Single(Function(tr) tr.Nombre = "Video").Id,
+                       .ModalidadDeCursoID = modalidadesDeCurso.Single(Function(mc) mc.Nombre = "Corporativo").ID,
+                       .EmpresaID = empresas.Single(Function(e) e.Nombre = "Kielsa").ID,
+                       .ClienteCorporativoID = clientesCorporativos.Single(Function(d) d.Nombres = "Jeremy Leandro").ID,
+                       .Duracion = 2,
+                       .Prioridad = "Media",
+                       .FechaEntrega = DateTime.Parse("2015-09-03"),
+                       .IsDeleted = 0
+                   },
+                   New Recurso() With {
+                       .Nombre = "Ondas",
+                       .TipoDeRecursoID = tipoDeRecursos.Single(Function(tr) tr.Nombre = "Polimedia").Id,
+                       .ModalidadDeCursoID = modalidadesDeCurso.Single(Function(mc) mc.Nombre = "Presencial").ID,
+                       .CursoID = cursos.Single(Function(c) c.Nombres = "Fisica II").ID,
+                       .DocenteID = docentes.Single(Function(d) d.Nombres = "Karla Cecilia").ID,
+                       .Duracion = 3,
+                       .Prioridad = "Baja",
+                       .FechaEntrega = DateTime.Parse("2015-09-05"),
+                       .IsDeleted = 0
+                   },
+                   New Recurso() With {
+                       .Nombre = "Alcalinos",
+                       .TipoDeRecursoID = tipoDeRecursos.Single(Function(tr) tr.Nombre = "Articulate").Id,
+                       .ModalidadDeCursoID = modalidadesDeCurso.Single(Function(mc) mc.Nombre = "Presencial").ID,
+                       .CursoID = cursos.Single(Function(c) c.Nombres = "Quimica II").ID,
+                       .DocenteID = docentes.Single(Function(d) d.Nombres = "Karla Cecilia").ID,
+                       .Duracion = 2,
+                       .Prioridad = "Media",
+                       .FechaEntrega = DateTime.Parse("2015-09-03"),
+                       .IsDeleted = 0
+                   },
+                   New Recurso() With {
+                       .Nombre = "Como Atender Al Cliente",
+                       .TipoDeRecursoID = tipoDeRecursos.Single(Function(tr) tr.Nombre = "Video").Id,
+                       .ModalidadDeCursoID = modalidadesDeCurso.Single(Function(mc) mc.Nombre = "Corporativo").ID,
+                       .EmpresaID = empresas.Single(Function(e) e.Nombre = "Empresa XY").ID,
+                       .ClienteCorporativoID = clientesCorporativos.Single(Function(d) d.Nombres = "Ana Melissa").ID,
+                       .Duracion = 1,
+                       .Prioridad = "Alta",
+                       .FechaEntrega = DateTime.Parse("2015-09-01"),
+                       .IsDeleted = 0
+                   },
+                   New Recurso() With {
+                       .Nombre = "Que Hacer En Un Simulacro",
+                       .TipoDeRecursoID = tipoDeRecursos.Single(Function(tr) tr.Nombre = "Polimedia").Id,
+                       .ModalidadDeCursoID = modalidadesDeCurso.Single(Function(mc) mc.Nombre = "Corporativo").ID,
+                       .EmpresaID = empresas.Single(Function(e) e.Nombre = "Empresa XY").ID,
+                       .ClienteCorporativoID = clientesCorporativos.Single(Function(d) d.Nombres = "Ana Melissa").ID,
+                       .Duracion = 4,
+                       .Prioridad = "Baja",
+                       .FechaEntrega = DateTime.Parse("2015-09-10"),
+                       .IsDeleted = 0
+                   }
+               }
+            For Each rec In recursos
+                context.Recursoes.AddOrUpdate(Function(p) p.Nombre, rec)
+            Next
+            context.SaveChanges()
 
         End Sub
 

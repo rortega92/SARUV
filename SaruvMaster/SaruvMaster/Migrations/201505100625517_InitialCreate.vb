@@ -923,6 +923,21 @@ Namespace Migrations
                     "WHERE ([ID] = @ID)"
             )
 
+            CreateStoredProcedure(
+                "dbo.RecursoPorUsuario_UpdateEstado",
+                Function(p) New With
+                    {
+                        .ID = p.Int(),
+                        .RecursoID = p.Int(),
+                        .UsuarioID = p.Int(),
+                        .Estado = p.String()
+                    },
+                body:=
+                    "UPDATE [dbo].[RecursoPorUsuario]" & vbCrLf & _
+                    "SET [Estado] = @Estado, [RecursoID] = @RecursoID, [UsuarioID] = @UsuarioID" & vbCrLf & _
+                    "WHERE ([ID] = @ID)"
+            )
+
         End Sub
 
         Public Overrides Sub Down()
