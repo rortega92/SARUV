@@ -145,7 +145,7 @@ End Code
                 </div>
 
                 <div class="form-group">
-                    <label for="Duracion" class="control-label col-md-2">Duración @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <label for="Duracion" class="control-label col-md-2">Duración (Semanas) @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
                         @Html.EditorFor(Function(model) model.Duracion, New With {.htmlAttributes = New With {.class = "form-control"}})
                         @Html.ValidationMessageFor(Function(model) model.Duracion, "", New With {.class = "text-danger"})

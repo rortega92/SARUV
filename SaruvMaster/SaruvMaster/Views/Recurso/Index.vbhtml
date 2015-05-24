@@ -29,7 +29,7 @@ End Code
             <h3>Recurso</h3>
         </header>
         <div class="breadcrumb">
-            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Recurso/Create">Crear Nueva</a>
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Recurso/Create">Crear Nuevo</a>
             <a style="color: #007AFF" class="btn btn-default btn-sm" href="javascript:void(0)" id="filterButton"> Filtrar</a>
         </div>
     </div>
@@ -68,28 +68,12 @@ End Code
             <div class="panel-body">
                 <table class="table table-bordered table-striped">
                     <thead>
-
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(Function(model) model.ClienteCorporativo.Nombres)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.Curso.Nombres)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.Docente.Nombres)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.Empresa.Nombre)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.ModalidadDeCurso.Nombre)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.TipoDeRecurso.Nombre)
-                            </th>
-                            <th>
                                 @Html.DisplayNameFor(Function(model) model.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.TipoDeRecurso)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.Duracion)
@@ -98,41 +82,55 @@ End Code
                                 @Html.DisplayNameFor(Function(model) model.Prioridad)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(Function(model) model.Empresa)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.ClienteCorporativo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.Curso)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.ModalidadDeCurso)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.Docente)
+                            </th>                                                       
+                            <th>
                                 @Html.DisplayNameFor(Function(model) model.FechaEntrega)
                             </th>
-                            <th>Acciones</th>
-                           
+                            <th>Acciones</th>                           
                         </tr>
                         </thead>
                         <tbody>
                         @For Each item In Model
                             @<tr>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.Nombre)
+                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.TipoDeRecurso.Nombre)
+                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.Duracion)
+                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.Prioridad)
+                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.Empresa.Nombre)
+                                 </td>
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.ClienteCorporativo.Nombres)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.Curso.Nombres)
                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.ModalidadDeCurso.Nombre)
+                                 </td>
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.Docente.Nombres)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Empresa.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.ModalidadDeCurso.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.TipoDeRecurso.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Duracion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Prioridad)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.FechaEntrega)
