@@ -35,4 +35,5 @@ Public Class Usuario
     Public Property FechaModificacion As Date
     Public Property IsDeleted As Integer = 0
 
+    Public Overridable Property RecursoPorUsuario As ICollection(Of RecursoPorUsuario)
 End Class

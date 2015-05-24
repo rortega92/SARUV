@@ -59,4 +59,6 @@ Public Class Recurso
 
     Public Property IsDeleted As Integer = 0
 
+    Public Overridable Property RecursoPorUsuario As ICollection(Of RecursoPorUsuario)
+
 End Class
