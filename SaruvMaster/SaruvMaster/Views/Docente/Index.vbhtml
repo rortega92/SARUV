@@ -37,8 +37,8 @@ End Code
             <h3>Docente</h3>
         </header>
         <div class="breadcrumb">
-            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Docente/Create">Crear Nuevo</a>
-            <a style="color: #007AFF" class="btn btn-default btn-sm" href="javascript:void(0)" id="botonBuscar">Filtrar</a>
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Docente/Create"><span class="glyphicon glyphicon-plus"></span> Crear Nuevo</a>
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="javascript:void(0)" id="botonBuscar"><span class="glyphicon glyphicon-filter"></span> Filtrar</a>
         </div>
     </div>
 </div>
@@ -133,9 +133,10 @@ End Code
                                 </td>
 
                                 <td>
-                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = item.ID})</button>
-                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles ", "Details", New With {.id = item.ID}) </button>
-                                    <button class="btn btn-default btn-sm"> @Html.ActionLink("Eliminar", "Delete", New With {.id = item.ID})</button>
+                                    <a class="btn btn-default btn-sm" href="@Url.Action("Edit", New With {.id = item.ID})"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                                    <a class="btn btn-default btn-sm" href="@Url.Action("Details", New With {.id = item.ID})"><span class="glyphicon glyphicon-list-alt"></span> Detalles</a>
+                                    <a class="btn btn-default btn-sm" href="@Url.Action("Delete", New With {.id = item.ID})"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+
                                 </td>
                             </tr>
                         Next

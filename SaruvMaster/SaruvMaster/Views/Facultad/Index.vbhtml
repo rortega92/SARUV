@@ -19,8 +19,8 @@ End Code
             <h3>Facultades</h3>
         </header>
         <div class="breadcrumb">
-            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Facultad/Create">Crear Nueva</a>
-            <a style="color: #007AFF" class="btn btn-default btn-sm" href="javascript:void(0)" id="filterButton"> Filtrar</a>
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Facultad/Create"><span class="glyphicon glyphicon-plus"></span> Crear Nueva</a>
+            <a style="color: #007AFF" class="btn btn-default btn-sm" href="javascript:void(0)" id="filterButton"><span class="glyphicon glyphicon-filter"></span> Filtrar</a>
         </div>
     </div>
     <div class="col-md-12" id="Buscar">
@@ -68,9 +68,9 @@ End Code
                                      @Html.DisplayFor(Function(modelItem) item.FechaModificacion)
                                  </td>
                                 <td>
-                                     <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = item.ID})</button>
-                                     <button class="btn btn-default btn-sm"> @Html.ActionLink("Detalles ", "Details", New With {.id = item.ID}) </button>
-                                     <button class="btn btn-default btn-sm"> @Html.ActionLink("Eliminar", "Delete", New With {.id = item.ID})</button>
+                                    <a class="btn btn-default btn-sm" href="@Url.Action("Edit", New With {.id = item.ID})"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                                    <a class="btn btn-default btn-sm" href="@Url.Action("Details", New With {.id = item.ID})"><span class="glyphicon glyphicon-list-alt"></span> Detalles</a>
+                                    <a class="btn btn-default btn-sm" href="@Url.Action("Delete", New With {.id = item.ID})"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
                                 </td>
                             </tr>
                         Next
