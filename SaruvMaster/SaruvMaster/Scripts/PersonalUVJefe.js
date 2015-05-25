@@ -1,18 +1,49 @@
 ﻿$(document).ready(function () {
+    $(".col-lg-12").css("width", "50%");
+    $(".col-lg-12").css("float", "left");
     $(".tab-bg-primary").css("background", "#394A59");
     $(".tab-bg-primary").css("padding-bottom", "10px");
-    function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
-    var idUsuario = getParameterByName("idUsuario");
-    
     $.ajax({
         type: "GET",
-        url: "getUsuarioById",
-        data: { "idUsuario": idUsuario },
+        url: "getUsuariosByNombreDepartamento",
+        data: { "nombreDepartamento": "Diseno" },
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            $("#NavTabs").empty();
+            $.each(data, function (ind, usuario) {
+                $("#NavTabs").append($("<li></li>").append($("<a data-toggle='tab'></a>").html(usuario['Nombre']).attr("href", "#" + usuario['Nombre'])));
+                $.ajax({
+                    type: "GET",
+                    url: "getRecursosByUsuario",
+                    data: { "idUsuario": data[ind]['ID'] },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (recursosPorUsuario) {
+                        $("#TabContent").append($("<div class='tab-pane'></div>").html('').attr("id", usuario['Nombre']));
+                        $.each(recursosPorUsuario, function (indRec, recurso) {
+                            bindRecurso({
+                                "recurso": recurso,
+                                "usuario": usuario,
+                                "place": "#" + usuario['Nombre']
+                            })
+                        });
+                    },
+                    error: function (dataError) {
+                        alert("An error has occurred during processing your request.");
+                        console.log(dataError)
+                    }
+                });
+            });
+        },
+        error: function () {
+            alert("An error has occurred during processing your request.");
+        }
+    });
+    $.ajax({
+        type: "GET",
+        url: "getIdJefeByNombreDepartamento",
+        data: { "nombreDepartamento": "Diseno" },
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (usuarios) {
@@ -54,7 +85,7 @@
                      '<td class="navbar-right" style="border:0px">' +
                       '<div class="btn-group-vertical">' +
                          '<a id="CambiarEstado" class="btn btn-default btn-sm" data-toggle="modal" href="#modalCambiarEstado_' + jsonData.recurso['ID'] + '">Cambiar estado</a>' +
-                         '<a id="EnviarDepartamento" class="btn btn-default btn-sm" href="javascript:hola();">Enviar al siguiente departamento</a>' +
+                         '<a id="add-regular" class="btn btn-default btn-sm" href="javascript:;">Enviar al siguiente departamento</a>' +
                       '</div>' +
                      '</td>' +
                     '</tr>' +
@@ -71,7 +102,7 @@
                 $.each(recursoPorUsuario, function (ind, recUsr) {
                     $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option").filter(function () {
                         return $(this).text() == recUsr.Estado
-                    }).prop("selected",true);
+                    }).prop("selected", true);
                 });
             },
             error: function (dataError) {
@@ -91,9 +122,6 @@ function cambiarEstado(recursoPorUsuario) {
         dataType: "json",
         success: function () {
         },
-        error: function(dataError){}
+        error: function (dataError) { }
     });
-}
-function hola() {
-    console.log("Hola")
 }

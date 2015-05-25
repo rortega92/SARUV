@@ -195,6 +195,7 @@
     <Compile Include="Controllers\AreaDeConocimientoController.vb" />
     <Compile Include="Controllers\ClienteCorporativoController.vb" />
     <Compile Include="Controllers\CursoController.vb" />
+    <Compile Include="Controllers\HeaderController.vb" />
     <Compile Include="Controllers\PersonalUVController.vb" />
     <Compile Include="Controllers\DepartamentoController.vb" />
     <Compile Include="Controllers\DocenteController.vb" />
@@ -944,6 +945,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Header.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -952,6 +954,7 @@
     <Content Include="Scripts\jquery-ui.unobtrusive-2.2.0.js" />
     <Content Include="Scripts\jquery-ui.unobtrusive-2.2.0.min.js" />
     <Content Include="Scripts\PersonalUV.js" />
+    <Content Include="Scripts\PersonalUVJefe.js" />
     <Content Include="Scripts\Recurso.js" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.vbhtml" />
     <Content Include="Views\Account\ConfirmEmail.vbhtml" />
@@ -1078,6 +1081,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\layout\assets\jquery-file-upload\server\php\files\thumbnail\" />
+    <Folder Include="Views\Head\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1097,7 +1101,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1864</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

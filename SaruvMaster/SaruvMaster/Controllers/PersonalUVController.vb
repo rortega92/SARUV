@@ -16,9 +16,16 @@ Namespace SaruvMaster
         Private db As New Connection
 
         ' GET: /RecursoPorUsuario/
-        Function Index() As ActionResult
+        Function Index(ByVal idUsuario As Integer?) As ActionResult
             Dim recursoPorUsuario = db.RecursoPorUsuario.Include(Function(r) r.Recurso).Include(Function(r) r.Usuario)
-            Return View(recursoPorUsuario.ToList())
+            Dim idRolPorDepartamento = db.Usuario.Where(Function(u) u.ID = idUsuario).First().RolPorDepartamentoID
+            Dim nombreRol = db.RolPorDepartamento.Where(Function(ro) ro.ID = idRolPorDepartamento).First().Nombre
+            If (nombreRol.ToLower.StartsWith("jefe")) Then
+                ViewBag.isJefe = True
+                Return View(recursoPorUsuario.ToList())
+            End If
+            ViewBag.isJefe = False
+            Return View(recursoPorUsuario.Where(Function(ru) ru.UsuarioID = idUsuario).ToList())
         End Function
 
         Function getUsuariosByNombreDepartamento(ByVal nombreDepartamento As String) As ActionResult
@@ -116,6 +123,18 @@ Namespace SaruvMaster
             Dim row As New Dictionary(Of String, String)
             row.Add("updated", res.Equals(1))
             Return Json(row, JsonRequestBehavior.AllowGet)
+        End Function
+
+        Function getUsuarioById(ByVal idUsuario As Integer) As ActionResult
+            Dim serializer As New System.Web.Script.Serialization.JavaScriptSerializer()
+            Dim con As New Connection
+            Dim usuario = con.Usuario.ToList.Where(Function(u) u.ID = idUsuario).First()
+            Dim returnUsuarios As New List(Of Dictionary(Of String, String))
+            Dim row As New Dictionary(Of String, String)
+            row.Add("ID", usuario.ID)
+            row.Add("Nombre", usuario.Nombre)
+            returnUsuarios.Add(row)
+            Return Json(returnUsuarios, JsonRequestBehavior.AllowGet)
         End Function
     End Class
 End Namespace

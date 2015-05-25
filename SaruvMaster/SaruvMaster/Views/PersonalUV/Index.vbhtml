@@ -1,10 +1,15 @@
 ﻿@ModelType IEnumerable(Of SaruvMaster.RecursoPorUsuario)
 @Code
+    Dim isJefe As Boolean = ViewBag.isJefe
     ViewData("Title") = "View"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 <!--Inicio Si es Jefe-->
+@If isJefe = True Then
+@Scripts.Render("~/Scripts/PersonalUVJefe.js")
+Else
 @Scripts.Render("~/Scripts/PersonalUV.js")
+End If
 <!--Fin Si es Jefe-->
 <div class="row">
     <div class="col-lg-12">
@@ -68,25 +73,27 @@ End Code
             </div>
         </section>
     </div>
-    <!--Si es Jefe-->
-    <div class="col-lg-12">
-        <section class="panel">
-            <header class="panel-heading">
-                Personal
-            </header>
-            <div class="panel-body">
-                <section class="panel">
-                    <header class="panel-heading tab-bg-primary ">
-                        <ul id="NavTabs" class="nav nav-tabs">
-                        </ul>
-                    </header>
-                    <div class="panel-body">
-                        <div id="TabContent" class="tab-content">
+    @If isJefe = True Then
+        @<!--Si es Jefe-->
+        @<div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Personal
+                </header>
+                <div class="panel-body">
+                    <section class="panel">
+                        <header class="panel-heading tab-bg-primary ">
+                            <ul id="NavTabs" class="nav nav-tabs">
+                            </ul>
+                        </header>
+                        <div class="panel-body">
+                            <div id="TabContent" class="tab-content">
+                            </div>
                         </div>
-                    </div>
-                </section>
-            </div>
-        </section>
-    </div>
+                    </section>
+                </div>
+            </section>
+        </div>
+    End If
 </div>
 
