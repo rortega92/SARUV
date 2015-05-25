@@ -13,6 +13,13 @@ End Code
         })
     });
 </script>
+<script type="text/javascript">
+    function submitOnEnter(inputElement, event) {
+        if (event.keyCode == 13) { 
+            inputElement.form.submit();
+        }
+    }
+</script>
 
 
 <div class="row indexHeader">
@@ -27,10 +34,11 @@ End Code
     </div>
     <div class="col-md-12" id="Buscar">
         <div class="filterBox col-md-12">
-            @Using Html.BeginForm("Index", "ModalidadDeCurso", FormMethod.Get)
+            @Using Html.BeginForm()
             @<div class="col-md-2">
-              <input class="form-control" type="search" Placeholder="Buscar"/>
+                 <input class="form-control" name="searchString" type="search" placeholder="Buscar" onkeypress="submitOnEnter(this, event);" />
               <span class="glyphicon glyphicon-search"></span>
+            <input type="submit" class="hidden"/>
             </div>       
             End Using                     
         </div>

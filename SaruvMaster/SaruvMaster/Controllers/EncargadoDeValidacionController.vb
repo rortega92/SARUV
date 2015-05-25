@@ -15,9 +15,28 @@ Namespace Controllers
         Private db As New Connection
 
         ' GET: EncargadoDeValidacion
-        Function Index() As ActionResult
-            Dim encargadoDeValidacion = db.EncargadoDeValidacion.Include(Function(e) e.Facultad)
-            Return View(encargadoDeValidacion.ToList())
+        Function Index(ByVal searchString As String, ByVal searchConceptInput As String) As ActionResult
+            Dim encargado = From m In db.EncargadoDeValidacion
+                                   Select m
+
+            If Not String.IsNullOrEmpty(searchString) Then
+
+                Select Case searchConceptInput
+                    Case "Nombre"
+                        encargado = encargado.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Correo Electrónico"
+                        encargado = encargado.Where(Function(m) m.correoElectronico.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Facultad"
+                        encargado = encargado.Where(Function(m) m.Facultad.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Teléfono"
+                        encargado = encargado.Where(Function(m) m.Telefono.ToUpper().Contains(searchString.ToUpper()))
+                    
+                    Case Else
+                        encargado = encargado.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                End Select
+            End If
+
+            Return View(encargado)
         End Function
 
         ' GET: EncargadoDeValidacion/Details/5

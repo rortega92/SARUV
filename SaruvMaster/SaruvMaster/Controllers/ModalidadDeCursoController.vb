@@ -19,7 +19,7 @@ Namespace SaruvMaster
                                    Select m
 
             If Not String.IsNullOrEmpty(searchString) Then
-                modalidadDeCurso = modalidadDeCurso.Where(Function(m) m.Nombre.Equals(searchString))          
+                modalidadDeCurso = modalidadDeCurso.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
             End If
 
             Return View(modalidadDeCurso)

@@ -26,6 +26,7 @@ End Code
             var concepto = $(this).text();
             $('#search-panel span#search_concept').text(concepto);
             $('.input-group #search_param').val(parametro);
+            $("#searchConceptInput").val(concepto);
         });
     });
 
@@ -50,11 +51,12 @@ End Code
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <span id="search_concept">Filtrar Por</span> <span class="caret"></span>
                     </button>
+                    <input type="hidden" value="Nombre" id="searchConceptInput" name="searchConceptInput" />
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#Facultad">Facultad</a></li>
                         <li><a href="#Nombre">Nombre</a></li>                    
-                        <li><a href="#Telefono">Teléfono </a></li>
-                        <li><a href="#email">Correo Electrónico </a></li>                        
+                        <li><a href="#Telefono">Teléfono</a></li>
+                        <li><a href="#email">Correo Electrónico</a></li>                        
                     </ul>
                 </div>
                  

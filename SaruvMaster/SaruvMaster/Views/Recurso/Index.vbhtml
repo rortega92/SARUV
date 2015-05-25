@@ -19,6 +19,7 @@ End Code
             var concepto = $(this).text();
             $('#search-panel span#search_concept').text(concepto);
             $('.input-group #search_param').val(parametro);
+            $("#searchConceptInput").val(concepto);
         });
     });
 </script>
@@ -40,18 +41,19 @@ End Code
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <span id="search_concept">Filtrar Por</span> <span class="caret"></span>
                     </button>
+                    <input type="hidden" value="Nombre" id="searchConceptInput" name="searchConceptInput" />
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#Nombre">Nombre</a></li>
                         <li><a href="#Tipo">Tipo de Recurso</a></li>
-                        <li><a href="#Modalidad">Modalidad </a></li>
-                        <li><a href="#Empresa">Empresa </a></li>
-                        <li><a href="#Curso">Curso </a></li>
-                        <li><a href="#Cliente Corp.">Cliente Corporativo </a></li>
-                        <li><a href="#Docente">Docente </a></li>
-                        <li><a href="#Correo">Correo Electrónico </a></li>
-                        <li><a href="#Duración">Duración </a></li>
-                        <li><a href="#Prioridad">Prioridad </a></li>
-                        <li><a href="#Fecha Entrega">Fecha Entrega </a></li>
+                        <li><a href="#Modalidad">Modalidad</a></li>
+                        <li><a href="#Empresa">Empresa</a></li>
+                        <li><a href="#Curso">Curso</a></li>
+                        <li><a href="#Cliente Corp.">Cliente Corporativo</a></li>
+                        <li><a href="#Docente">Docente</a></li>
+                        <li><a href="#Correo">Correo Electrónico</a></li>
+                        <li><a href="#Duración">Duración</a></li>
+                        <li><a href="#Prioridad">Prioridad</a></li>
+                        <li><a href="#Fecha Entrega">Fecha Entrega</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">

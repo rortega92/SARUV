@@ -27,6 +27,7 @@ End Code
             var concepto = $(this).text();
             $('#search-panel span#search_concept').text(concepto);
             $('.input-group #search_param').val(parametro);
+            $("#searchConceptInput").val(concepto);
         });
     });
 
@@ -46,18 +47,19 @@ End Code
 <div class="container">
     <div id="Buscar" class="row" style="margin-bottom:10px">
         <div class="col-xs-4 col-xs-offset-2" style="margin-top:10px">
-            @Using Html.BeginForm("Index", "Curso", FormMethod.Get)
+            @Using Html.BeginForm()
                 @<div class="input-group">
                     <div class="input-group-btn" id="search-panel">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <span id="search_concept">Filtrar Por</span> <span class="caret"></span>
                         </button>
+                        <input type="hidden" value="Nombre" id="searchConceptInput" name="searchConceptInput" />
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#Nombre">Nombre</a></li>
                             <li><a href="#Modalidad">Modalidad de Curso</a></li>
                             <li><a href="#Área de Conocimiento">Área de Conocimiento</a></li>
-                            <li><a href="#Encargado de Validación">Encargado de Validación </a></li>
-                            <li><a href="#Período">Período </a></li>
+                            <li><a href="#Encargado de Validación">Encargado de Validación</a></li>
+                            <li><a href="#Período">Período</a></li>
                         </ul>
                     </div>                    
                     @Html.TextBox("SearchString", Nothing, htmlAttributes:=New With {.class = "form-control"})

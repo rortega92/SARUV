@@ -27,6 +27,7 @@ End Code
             var concepto = $(this).text();
             $('#search-panel span#search_concept').text(concepto);
             $('.input-group #search_param').val(parametro);
+            $("#searchConceptInput").val(concepto);
         });
     });
 
@@ -45,19 +46,20 @@ End Code
 </div>
 <div id="Buscar" class="row" style="margin-bottom:10px">
     <div class="col-xs-4 col-xs-offset-2" style="margin-top:10px">
-        @Using Html.BeginForm("Index", "ClienteCorporativo", FormMethod.Get)
+        @Using Html.BeginForm()
             @<div class="input-group">
                 <div class="input-group-btn" id="search-panel">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <span id="search_concept">Filtrar Por</span> <span class="caret"></span>
                     </button>
+                    <input type="hidden" value="Nombre" id="searchConceptInput" name="searchConceptInput" />
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#Nombre">Nombre</a></li>
                         <li><a href="#Apellido">Apellido</a></li>
                         <li><a href="#NumID">Número de Identidad</a></li>
-                        <li><a href="#email">Correo Electrónico </a></li>
-                        <li><a href="#Telefono">Teléfono </a></li>
-                        <li><a href="#Empresa">Empresa </a></li>
+                        <li><a href="#email">Correo Electrónico</a></li>
+                        <li><a href="#Telefono">Teléfono</a></li>
+                        <li><a href="#Empresa">Empresa</a></li>
                     </ul>
                 </div>
                

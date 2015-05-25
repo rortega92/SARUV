@@ -15,14 +15,36 @@ Namespace Controllers
         Private db As New Connection
 
         ' GET: Docente
-        Function Index(ByVal filtro As String, ByVal searchString As String) As ActionResult
-            Dim array(2) As String
-            array(0) = "Area de conocimiento"
-            array(1) = "Facultad"
-            ViewBag.filtro = New SelectList(array)
-            Dim docente = db.Docente.Include(Function(d) d.AreaDeConocimiento).Include(Function(d) d.Facultad)
-            Return View(docente.ToList())
+
+        Function Index(ByVal searchString As String, ByVal searchConceptInput As String) As ActionResult
+            Dim docente = From m In db.Docente
+                                   Select m
+
+            If Not String.IsNullOrEmpty(searchString) Then
+
+                Select Case searchConceptInput
+                    Case "Nombre"
+                        docente = docente.Where(Function(m) m.Nombres.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Apellido"
+                        docente = docente.Where(Function(m) m.Apellidos.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Número de Identidad"
+                        docente = docente.Where(Function(m) m.NumeroTalentoHumano.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Correo Electrónico"
+                        docente = docente.Where(Function(m) m.correoElectronico.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Teléfono"
+                        docente = docente.Where(Function(m) m.telefono.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Facultad"
+                        docente = docente.Where(Function(m) m.Facultad.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Área de Conocimiento"
+                        docente = docente.Where(Function(m) m.AreaDeConocimiento.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case Else
+                        docente = docente.Where(Function(m) m.Nombres.ToUpper().Contains(searchString.ToUpper()))
+                End Select
+            End If
+
+            Return View(docente)
         End Function
+
 
         ' GET: Docente/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
