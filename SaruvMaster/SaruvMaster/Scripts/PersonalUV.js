@@ -47,19 +47,19 @@
 
     function bindRecurso(jsonData) {
         var prioridad = jsonData.recurso['Prioridad'] == "Alta" ? "alert alert-danger" : jsonData.recurso['Prioridad'] == "Media" ? "alert alert-warning" : "alert alert-success"
-        $(jsonData.place).append($("<div class='tab-pane'></div>").html('' +
+        $(jsonData.place).append($("<div class='Recurso'></div>").html('' +
             '<div class="' + prioridad + '">' +
                 '<table class="table" ' + 'id=' + '"' + jsonData.usuario['ID'] + '_Table"' + ' style="margin: 0px">' +
                     '<tr><td style="border:0px">' + jsonData.recurso['Nombre'] + '</td>' +
                      '<td class="navbar-right" style="border:0px">' +
                       '<div class="btn-group-vertical">' +
                          '<a id="CambiarEstado" class="btn btn-default btn-sm" data-toggle="modal" href="#modalCambiarEstado_' + jsonData.recurso['ID'] + '">Cambiar estado</a>' +
-                         '<a id="EnviarDepartamento" class="btn btn-default btn-sm" href="javascript:hola();">Enviar al siguiente departamento</a>' +
+                         '<a id="EnviarDepartamento" class="btn btn-default btn-sm" href="javascript:enviarSiguienteDepto(' + jsonData.usuario['ID'] + ',' + jsonData.recurso['ID'] + ');">Enviar al siguiente departamento</a>' +
                       '</div>' +
                      '</td>' +
                     '</tr>' +
                 '</table>' +
-            '</div>').attr("id", jsonData.usuario['Nombre'])
+            '</div>').attr("id", jsonData.usuario['ID']+"_"+jsonData.recurso['ID'])
         );
         $.ajax({
             type: "GET",
@@ -94,6 +94,34 @@ function cambiarEstado(recursoPorUsuario) {
         error: function(dataError){}
     });
 }
-function hola() {
-    console.log("Hola")
+function enviarSiguienteDepto(idUsuario,idRecurso) {
+    $.ajax({
+        type: "GET",
+        url: "getRecursoPorUsuario",
+        data: { "idUsuario": idUsuario, "idRecurso": idRecurso},
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (recursoPorUsuario) {
+            $.each(recursoPorUsuario, function (ind, recUsr) {
+                $.ajax({
+                    type: "GET",
+                    url: "updateUsuarioRecursoPorUsuario",
+                    data: { "usuarioID": idUsuario, "idRecursoPorUsuario": recUsr['ID'] },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function () {
+                        $("#"+idUsuario + "_" + idRecurso).parent().empty();
+                    },
+                    error: function (dataError) {
+                        alert("An error has occurred during processing your request.");
+                        console.log(dataError)
+                    }
+                });
+            });
+        },
+        error: function (dataError) {
+            alert("An error has occurred during processing your request.");
+            console.log(dataError)
+        }
+    });
 }

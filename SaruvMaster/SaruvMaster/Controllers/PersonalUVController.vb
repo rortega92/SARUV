@@ -136,5 +136,50 @@ Namespace SaruvMaster
             returnUsuarios.Add(row)
             Return Json(returnUsuarios, JsonRequestBehavior.AllowGet)
         End Function
+
+        Function updateUsuarioRecursoPorUsuario(ByVal usuarioID As Integer, ByVal idRecursoPorUsuario As Integer)
+            Dim con As New Connection
+
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            Dim idDeptoActual = con.Usuario.Where(Function(u) u.ID = usuarioID).ToList().First().DepartamentoID
+            Dim nombreDeptoActual = con.Departamento.Where(Function(dept) dept.ID = idDeptoActual).ToList().First().Nombre
+            Dim nombreSigDepto As String = ""
+            If (nombreDeptoActual.Equals("Diseno")) Then
+                nombreSigDepto = "Correccion"
+            ElseIf (nombreDeptoActual.Equals("Correccion")) Then
+                nombreSigDepto = "Grabacion"
+            ElseIf (nombreDeptoActual.Equals("Grabacion")) Then
+                nombreSigDepto = "Entrega"
+            End If
+            Dim idSigDepto = con.Departamento.Where(Function(d) d.Nombre = nombreSigDepto).ToList().First().ID
+            Dim idUsuarioSigDepto = con.Usuario.Where(Function(u) u.DepartamentoID = idSigDepto).ToList().First().ID
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cmd.CommandText = "RecursoPorUsuario_UpdateEstado"
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@ID"
+            parm.Value = idRecursoPorUsuario
+            cmd.Parameters.Add(parm)
+            Dim rxu = con.RecursoPorUsuario.Where(Function(ru) ru.ID = idRecursoPorUsuario).ToList().First()
+            Dim parm1 = New SqlParameter()
+            parm1.ParameterName = "@Estado"
+            parm1.Value = rxu.Estado
+            cmd.Parameters.Add(parm1)
+            Dim parm2 = New SqlParameter()
+            parm2.ParameterName = "@RecursoID"
+            parm2.Value = rxu.RecursoID
+            cmd.Parameters.Add(parm2)
+            Dim parm3 = New SqlParameter()
+            parm3.ParameterName = "@UsuarioID"
+            parm3.Value = idUsuarioSigDepto
+            cmd.Parameters.Add(parm3)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+            Dim row As New Dictionary(Of String, String)
+            row.Add("updated", res.Equals(1))
+            Return Json(row, JsonRequestBehavior.AllowGet)
+        End Function
     End Class
 End Namespace

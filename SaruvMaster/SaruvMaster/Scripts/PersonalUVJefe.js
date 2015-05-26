@@ -78,7 +78,7 @@
 
     function bindRecurso(jsonData) {
         var prioridad = jsonData.recurso['Prioridad'] == "Alta" ? "alert alert-danger" : jsonData.recurso['Prioridad'] == "Media" ? "alert alert-warning" : "alert alert-success"
-        $(jsonData.place).append($("<div class='tab-pane'></div>").html('' +
+        $(jsonData.place).append($("<div class='Recurso'></div>").html('' +
             '<div class="' + prioridad + '">' +
                 '<table class="table" ' + 'id=' + '"' + jsonData.usuario['ID'] + '_Table"' + ' style="margin: 0px">' +
                     '<tr><td style="border:0px">' + jsonData.recurso['Nombre'] + '</td>' +
@@ -90,7 +90,7 @@
                      '</td>' +
                     '</tr>' +
                 '</table>' +
-            '</div>').attr("id", jsonData.usuario['Nombre'])
+            '</div>').attr("id", jsonData.usuario['ID'] + "_" + jsonData.recurso['ID'])
         );
         $.ajax({
             type: "GET",
