@@ -6,12 +6,12 @@ Public Class Empresa
 
     <Display(Name:="Empresa"), Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, ErrorMessage:="Este campo solo permite un máximo de 255 caracteres")>
-    <RegularExpression("^([A-Z][a-zA-Z]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y espacios")>
+    <RegularExpression("[A-Z]([A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+\s?)*", ErrorMessage:="Solo se aceptan letras y espacios")>
     Public Property Nombre As String
 
     <Display(Name:="Dirección"), Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, MinimumLength:=5, ErrorMessage:="Solo se puede un mínimo de 5 letras y un máximo de 255 letras")>
-    <RegularExpression("^([A-Z][a-zA-Z\d]+ ?.?)+?$", ErrorMessage:="Solo se aceptan letras, números, punto y un espacio entre palabras")>
+    <RegularExpression("([A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ0-9\#?\.?]+\,?\s?)*", ErrorMessage:="Solo se aceptan letras, números, punto y un espacio entre palabras")>
     Public Property Direccion As String
 
     <Display(Name:="Teléfono"), Required(ErrorMessage:="Este campo es obligatorio")>

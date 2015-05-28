@@ -61,12 +61,8 @@ End Code
                         <li><a href="#Telefono">Teléfono</a></li>
                         <li><a href="#Empresa">Empresa</a></li>
                     </ul>
-                </div>
-               
+                </div>               
                 @Html.TextBox("SearchString", Nothing, htmlAttributes:=New With {.class = "form-control"})
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
             </div>
         End Using
         <a href="javascript:void(0)" id="cancelar">Cancelar</a>

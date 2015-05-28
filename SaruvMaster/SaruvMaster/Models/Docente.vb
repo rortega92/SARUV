@@ -3,12 +3,12 @@ Public Class Docente
     Public Property ID As Integer
     <Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, ErrorMessage:="Este campo solo permite un máximo de 255 caracteres")>
-    <RegularExpression("^([A-Z][a-zA-Z]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y un espacio")>
+    <RegularExpression("([A-ZÀÈÌÒÙÁÉÍÓÚÝÂÊÎÔÛÃÑÕÄËÏÖÜŸÇßØÅÆ][a-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+\s?)*", ErrorMessage:="Solo se aceptan letras y un espacio")>
     Public Property Nombres As String
 
     <Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, ErrorMessage:="Este campo solo permite un máximo de 255 caracteres")>
-    <RegularExpression("^([A-Z][a-z]+\ [A-Z][a-z]+)$", ErrorMessage:="Solo se aceptan letras y un espacio")>
+    <RegularExpression("([A-ZÀÈÌÒÙÁÉÍÓÚÝÂÊÎÔÛÃÑÕÄËÏÖÜŸÇßØÅÆ][a-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+\s?)*", ErrorMessage:="Solo se aceptan letras y un espacio")>
     Public Property Apellidos As String
 
     <Required(ErrorMessage:="Este campo es obligatorio"), RegularExpression("^[\d]+$", ErrorMessage:="Solo se aceptan números")>

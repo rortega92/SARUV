@@ -69,6 +69,41 @@ End If
                             </div>
                         </div>
                     </div>
+                    
+                    @<div class="modal fade" id="modalEnviar_@html.displayfor(function(modelitem) item.Id)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Enviar recurso: "@Html.DisplayFor(Function(modelItem) item.Recurso.Nombre)"</h4>
+                                </div>
+                                <div class="modal-body" style="height:200px">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>                                                    
+                                                    <label class="control-label col-md-12">@Html.DisplayNameFor(Function(model) model.Usuario.Departamento.Nombre)</label>
+                                                </td>
+                                                <td>
+                                                    <div class="col-md-12">
+                                                        <select class="form-control" id="EstadoRecurso" name="Estado">
+                                                            <option value="1">No Empezado</option>
+                                                            <option value="2">En Progreso</option>
+                                                            <option value="3">Terminado</option>
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+                                    <button data-dismiss="modal" class="btn btn-success" type="button" onclick="cambiarEstado( @item.ID )">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 Next
             </div>
         </section>

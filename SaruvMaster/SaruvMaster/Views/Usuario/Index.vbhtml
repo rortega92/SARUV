@@ -62,12 +62,7 @@ End Code
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.Departamento.Nombre)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.RolPorDepartamento.Nombre)
-                            </th>
+                            
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.Nombre)
                             </th>
@@ -76,6 +71,12 @@ End Code
                             </th>
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.correo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.Departamento)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.RolPorDepartamento.Nombre)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.FechaCreacion)
@@ -91,12 +92,6 @@ End Code
                         @For Each item In Model
                             @<tr>
                                 <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Departamento.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.RolPorDepartamento.Nombre)
-                                </td>
-                                <td>
                                     @Html.DisplayFor(Function(modelItem) item.Nombre)
                                 </td>
                                 <td>
@@ -105,6 +100,12 @@ End Code
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.correo)
                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.Departamento.Nombre)
+                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.RolPorDepartamento.Nombre)
+                                 </td>
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.FechaCreacion)
                                 </td>

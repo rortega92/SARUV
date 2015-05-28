@@ -3,8 +3,9 @@ Public Class RolPorDepartamento
 
     Public Property ID As Integer
 
+    <Display(Name:="Rol")>
     <Required(ErrorMessage:="Este campo es obligatorio.")>
-    <RegularExpression("^([a-zA-Z]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
+    <RegularExpression("[A-Z]([A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+\s?)*", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
     <StringLength(255, MinimumLength:=5, ErrorMessage:="Solo se puede un un mínimo de 5 letras y un máximo de 255.")>
     Public Property Nombre As String
 

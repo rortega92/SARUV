@@ -6,7 +6,7 @@ Public Class AreaDeConocimiento
     Public Property ID As Integer
     <Display(Name:="Área de conocimiento"), Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, ErrorMessage:="Este campo permite un máximo de 255 caracteres")>
-    <RegularExpression("^([A-Z][a-zA-Z]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
+    <RegularExpression("[A-Z]([A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+\s?)*", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
     Public Property Nombre As String
 
     <Display(Name:="Fecha de creación")>

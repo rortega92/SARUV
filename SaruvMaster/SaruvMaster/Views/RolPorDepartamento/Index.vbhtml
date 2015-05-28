@@ -58,10 +58,10 @@ End Code
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(Function(model) model.Departamento.Nombre)
+                                @Html.DisplayNameFor(Function(model) model.Nombre)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(Function(model) model.Nombre)
+                                @Html.DisplayNameFor(Function(model) model.Departamento)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.FechaCreacion)
@@ -76,11 +76,11 @@ End Code
                         @For Each item In Model
                             @<tr>
                                 <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Departamento.Nombre)
-                                </td>
-                                <td>
                                     @Html.DisplayFor(Function(modelItem) item.Nombre)
                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.Departamento.Nombre)
+                                 </td>
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.FechaCreacion)
                                 </td>

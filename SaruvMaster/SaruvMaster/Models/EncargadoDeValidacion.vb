@@ -5,7 +5,7 @@ Public Class EncargadoDeValidacion
 
     <Display(Name:="Encargado de Validación"), Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, ErrorMessage:="Este campo solo permite un máximo de 255 caracteres")>
-    <RegularExpression("^([A-Z][a-zA-Z]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y espacios")>
+    <RegularExpression("([A-ZÀÈÌÒÙÁÉÍÓÚÝÂÊÎÔÛÃÑÕÄËÏÖÜŸÇßØÅÆ][a-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+\s?)*", ErrorMessage:="Solo se aceptan letras y espacios")>
     Public Property Nombre As String
 
     <Display(Name:="Facultad")>

@@ -4,7 +4,7 @@ Public Class Recurso
 
     <Display(Name:="Tema de Recurso"), Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, ErrorMessage:="Este campo permite un máximo de 255 caracteres")>
-    <RegularExpression("^([A-Z][a-zA-Z\d]+ ?)+?$", ErrorMessage:="Este es un campo alfanumérico que acepta letras, números y espacios")>
+    <RegularExpression("([A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ0-9]+\s?)*", ErrorMessage:="Este es un campo alfanumérico que acepta letras, números y espacios")>
     Public Property Nombre As String
 
     <Display(Name:="Tipo de Recurso")>

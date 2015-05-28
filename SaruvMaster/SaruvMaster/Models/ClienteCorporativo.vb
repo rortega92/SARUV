@@ -2,14 +2,14 @@
 Public Class ClienteCorporativo
     Public Property ID As Integer
 
-    <Required(ErrorMessage:="Este campo es obligatorio"), RegularExpression("^([A-Z][a-zA-Z]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
+    <Required(ErrorMessage:="Este campo es obligatorio"), RegularExpression("([A-ZÀÈÌÒÙÁÉÍÓÚÝÂÊÎÔÛÃÑÕÄËÏÖÜŸÇßØÅÆ][a-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+\s?)*", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
     <StringLength(255, ErrorMessage:="Este campo permite un máximo de 255 caracteres")>
-     <Display(Name:="Cliente Corporativo")>
+    <Display(Name:="Nombres")>
     Public Property Nombres As String
 
     <Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, ErrorMessage:="Este campo permite un máximo de 255 caracteres")>
-    <RegularExpression("^([A-Z][a-z]+\ [A-Z][a-z]+)$", ErrorMessage:="Solo se aceptan letras y un espacio")>
+    <RegularExpression("([A-ZÀÈÌÒÙÁÉÍÓÚÝÂÊÎÔÛÃÑÕÄËÏÖÜŸÇßØÅÆ][a-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+\s?)*", ErrorMessage:="Solo se aceptan letras y un espacio")>
     Public Property Apellidos As String
 
     <Required(ErrorMessage:="Este campo es obligatorio"), RegularExpression("^[\d]{4}-[\d]{4}-[\d]{5}$", ErrorMessage:="Solo se acepta el formato: 1234-1950-12345")>

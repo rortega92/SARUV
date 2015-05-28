@@ -5,7 +5,7 @@ Public Class TipoDeRecurso
     <StringLength(255, ErrorMessage:="Este campo permite un máximo de 255 caracteres")>
     <Display(Name:="Nombre de Recurso")>
     <Required(ErrorMessage:="Este campo es obligatorio")>
-    <RegularExpression("^([A-Z][a-zA-Z]+ ?)+?$", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
+    <RegularExpression("[A-Z]([A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+\s?)*", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
     Public Property Nombre As String
 
     <Required(ErrorMessage:="Este campo es obligatorio.")>

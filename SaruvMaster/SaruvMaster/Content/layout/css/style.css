@@ -889,7 +889,7 @@ div[data-role="editor-toolbar"] {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
-  height: 45px;
+  /*height: 45px;*/
   position: relative;  
   margin: 0 0 0 0;
   margin-bottom:10px;
@@ -1758,7 +1758,18 @@ div[data-role="editor-toolbar"] {
 
 
 /*search*/
-
+.right-inner-addon {
+    position: relative;
+}
+.right-inner-addon input {
+    padding-right: 30px;    
+}
+.right-inner-addon i {
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
+}
 .search {
     margin-top: 6px ;
     width: 20px;
