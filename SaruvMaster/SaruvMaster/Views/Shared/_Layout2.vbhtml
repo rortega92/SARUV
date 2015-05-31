@@ -60,6 +60,7 @@
     @Scripts.Render("~/Content/layout/js/scripts.js")
 
     @RenderSection("scripts", required:=False)
+    @Scripts.Render("~/Scripts/jquery-ui.js")
 
 </body>
 </html>
