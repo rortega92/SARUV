@@ -4976,3 +4976,12 @@ span.customSelect.changed {
 #search-panel{
     padding-left: 0px
 }
+
+.recurso-content {
+     display: inline-block;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    margin-top: 20px;
+
+}
