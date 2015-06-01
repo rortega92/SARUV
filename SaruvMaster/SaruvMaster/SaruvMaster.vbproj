@@ -224,17 +224,14 @@
       <DependentUpon>201505240424309_TablaIntermediaRecursoPorUsuario.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201505240424309_TablaIntermediaRecursoPorUsuario.vb" />
-<<<<<<< HEAD
     <Compile Include="Migrations\201506010105104_Events.Designer.vb">
       <DependentUpon>201506010105104_Events.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506010105104_Events.vb" />
-=======
     <Compile Include="Migrations\201506010812463_EventosEstudio.Designer.vb">
       <DependentUpon>201506010812463_EventosEstudio.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506010812463_EventosEstudio.vb" />
->>>>>>> main_dev
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -283,13 +280,11 @@
     <EmbeddedResource Include="Migrations\201505240424309_TablaIntermediaRecursoPorUsuario.resx">
       <DependentUpon>201505240424309_TablaIntermediaRecursoPorUsuario.vb</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\201506010105104_Events.resx">
       <DependentUpon>201506010105104_Events.vb</DependentUpon>
-=======
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506010812463_EventosEstudio.resx">
       <DependentUpon>201506010812463_EventosEstudio.vb</DependentUpon>
->>>>>>> main_dev
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
