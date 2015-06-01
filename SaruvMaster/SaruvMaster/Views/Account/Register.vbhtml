@@ -1,6 +1,7 @@
 ﻿@ModelType RegisterViewModel
 @Code
     ViewBag.Title = "Registrarse"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 <script>
     $(document).ready(function () {

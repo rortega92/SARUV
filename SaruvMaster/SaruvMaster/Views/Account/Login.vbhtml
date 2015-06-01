@@ -1,6 +1,7 @@
 ﻿@ModelType LoginViewModel
 @Code
     ViewBag.Title = "Iniciar sesión"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
 <h2>@ViewBag.Title.</h2>

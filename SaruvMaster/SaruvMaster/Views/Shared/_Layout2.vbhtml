@@ -43,16 +43,13 @@
     <!-- container section start -->
     <section id="container" class="">
         <header class="header dark-bg">@Html.Partial("Header")</header>
-        @If User.Identity.IsAuthenticated().Equals(True) Then
-            @Html.Partial("LeftContent")
-        End If
+        @Html.Partial("LeftContent")
         <section id="main-content">
             <section class="wrapper">@RenderBody()</section>
 
         </section>
     </section>
     <!-- javascripts -->
-    ~/Content/layout/css/
     @Scripts.Render("~/Content/layout/js/jquery.js")
     @Scripts.Render("~/Content/layout/js/bootstrap.min.js")
     <!-- nice scroll -->
