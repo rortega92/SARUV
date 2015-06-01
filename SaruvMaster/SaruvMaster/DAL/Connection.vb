@@ -36,6 +36,7 @@ Public Class Connection
     Public Property RolPorDepartamento As DbSet(Of RolPorDepartamento)
     Public Property Usuario As DbSet(Of Usuario)
     Public Property RecursoPorUsuario As DbSet(Of RecursoPorUsuario)
+    Public Property EventosEstudio As DbSet(of EventosEstudio)
 
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
 

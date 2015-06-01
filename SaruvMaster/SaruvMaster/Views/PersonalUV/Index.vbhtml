@@ -17,7 +17,7 @@ End If
             <header class="panel-heading">
                 Recursos
             </header>
-            <div id="recursosPanel" class="panel-body">
+            <div id="recursosPanel" class="panel-body recurso-container">
                 @For Each item In Model
                     @<div class="modal fade" id="modalCambiarEstado_@html.displayfor(function(modelitem) item.Id)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -47,7 +47,7 @@ End If
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <label class="control-label col-md-12">@Html.DisplayNameFor(Function(model) model.Estado)</label>                                                    
+                                                    <label class="control-label col-md-12">@Html.DisplayNameFor(Function(model) model.Estado)</label>
                                                 </td>
                                                 <td>
                                                     <div class="col-md-12">
@@ -69,7 +69,7 @@ End If
                             </div>
                         </div>
                     </div>
-                    
+
                     @<div class="modal fade" id="modalEnviar_@html.displayfor(function(modelitem) item.Id)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -81,7 +81,7 @@ End If
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>                                                    
+                                                <td>
                                                     <label class="control-label col-md-12">@Html.DisplayNameFor(Function(model) model.Usuario.Departamento.Nombre)</label>
                                                 </td>
                                                 <td>
@@ -122,7 +122,7 @@ End If
                             </ul>
                         </header>
                         <div class="panel-body">
-                            <div id="TabContent" class="tab-content">
+                            <div style="min-height:200px; height: auto " id="TabContent" class="tab-content">
                             </div>
                         </div>
                     </section>
