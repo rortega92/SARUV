@@ -226,6 +226,10 @@
       <DependentUpon>201505240424309_TablaIntermediaRecursoPorUsuario.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201505240424309_TablaIntermediaRecursoPorUsuario.vb" />
+    <Compile Include="Migrations\201506010812463_EventosEstudio.Designer.vb">
+      <DependentUpon>201506010812463_EventosEstudio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506010812463_EventosEstudio.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -235,6 +239,7 @@
     <Compile Include="Models\Docente.vb" />
     <Compile Include="Models\Empresa.vb" />
     <Compile Include="Models\EncargadoDeValidacion.vb" />
+    <Compile Include="Models\EventosEstudio.vb" />
     <Compile Include="Models\Facultad.vb" />
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\ManageViewModels.vb" />
@@ -271,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505240424309_TablaIntermediaRecursoPorUsuario.resx">
       <DependentUpon>201505240424309_TablaIntermediaRecursoPorUsuario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506010812463_EventosEstudio.resx">
+      <DependentUpon>201506010812463_EventosEstudio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

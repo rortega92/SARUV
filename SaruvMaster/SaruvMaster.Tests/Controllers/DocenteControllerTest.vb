@@ -36,7 +36,7 @@ Public Class DocenteControllerTest
         ' Arrange
         Dim controller As New DocenteController()
         ' Act
-        Dim result As ActionResult = DirectCast(controller.Index(), ActionResult)
+        Dim result As ActionResult = DirectCast(controller.Index("",""), ActionResult)
         ' Assert
         Assert.IsNotNull(result)
     End Sub

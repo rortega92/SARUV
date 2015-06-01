@@ -20,7 +20,7 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (recursosPorUsuario) {
-                        $("#TabContent").append($("<div class='tab-pane'></div>").html('').attr("id", usuario['Nombre']));
+                        $("#TabContent").append($("<div class='tab-pane recurso-container'></div>").html('').attr("id", usuario['Nombre']));
                         $.each(recursosPorUsuario, function (indRec, recurso) {
                             bindRecurso({
                                 "recurso": recurso,
@@ -92,6 +92,31 @@
                 '</table>' +
             '</div>').attr("id", jsonData.usuario['ID'] + "_" + jsonData.recurso['ID'])
         );
+       
+        $("#" + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).css("width", $("#TabContent").css("width"));       
+            $('.recurso-container').sortable({ connectWith: '.recurso-container' });                  
+        /*
+        $('#' + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).sortable({
+            connectWith: '.tab-pane',
+            cursor: 'pointer'
+        }).droppable({
+            accept: '.button',
+            activeClass: 'highlight',
+            drop: function (event, ui) {
+                 $('#' + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).appendTo(contents);
+            }
+        });
+        /*$('#' + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).draggable({
+            containment: "document", stack: '#' + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID'], revert: true,
+            start: function () {
+                //contents = $(this)
+            }
+        });
+        $('.tab-pane').droppable({
+            drop: function () {
+                $('#' + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).appendTo(contents);
+            }
+        })*/
         $.ajax({
             type: "GET",
             url: "getRecursoPorUsuario",

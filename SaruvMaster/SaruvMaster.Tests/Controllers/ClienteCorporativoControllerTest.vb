@@ -13,7 +13,7 @@ Public Class ClienteCorporativoControllerTest
         ' Arrange
         Dim controller As New ClienteCorporativoController()
         ' Act
-        Dim result As ActionResult = DirectCast(controller.Index(), ActionResult)
+        Dim result As ActionResult = DirectCast(controller.Index("", ""), ActionResult)
         ' Assert
         Assert.IsNotNull(result)
     End Sub
