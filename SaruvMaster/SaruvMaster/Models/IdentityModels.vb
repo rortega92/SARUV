@@ -17,6 +17,10 @@ Public Class ApplicationUser
     Public Property Apellido As String
     Public Property FechaCreacion As Date
     Public Property FechaModificacion As Date
+    Public Property DepartamentoID As Nullable(Of Integer)
+    Public Overridable Property Departamento As Departamento
+    Public Property RolPorDepartamentoID As Nullable(Of Integer)
+    Public Overridable Property RolPorDepartamento As RolPorDepartamento
     Public Property IsDeleted As Integer = 0
 
 End Class

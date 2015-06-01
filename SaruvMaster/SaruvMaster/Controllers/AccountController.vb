@@ -142,7 +142,9 @@ Public Class AccountController
                 .Apellido = model.Apellido,
                 .Nombre = model.Nombre,
                 .FechaCreacion = model.FechaCreacion,
-                .FechaModificacion = model.FechaModificacion
+                .FechaModificacion = model.FechaModificacion,
+                .DepartamentoID = model.DepartamentoID,
+                .RolPorDepartamentoID = model.RolPorDepartamentoID
             }
             ViewBag.RolPorDepartamentoID = New SelectList(db.RolPorDepartamento, "ID", "Nombre", model.RolPorDepartamentoID)
 

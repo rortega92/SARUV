@@ -83,11 +83,11 @@ Public Class RegisterViewModel
 
 
     <Display(Name:="Departamento")>
-    Public Property DepartamentoID As Integer
+    Public Property DepartamentoID As Nullable(Of Integer)
     Public Overridable Property Departamento As Departamento
 
     <Display(Name:="Rol por departamento")>
-    Public Property RolPorDepartamentoID As Integer
+    Public Property RolPorDepartamentoID As Nullable(Of Integer)
     Public Overridable Property RolPorDepartamento As RolPorDepartamento
 
     <Display(Name:="Fecha de creación")>
