@@ -38,6 +38,8 @@ Public Class Connection
 
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
 
+        'modelBuilder.Conventions.Remove(Of OneToManyCascadeDeleteConvention)()
+        'modelBuilder.Conventions.Remove(Of ManyToManyCascadeDeleteConvention)()
         modelBuilder.Conventions.Remove(Of PluralizingTableNameConvention)()
         modelBuilder.Entity(Of Facultad).MapToStoredProcedures()
         modelBuilder.Entity(Of AreaDeConocimiento).MapToStoredProcedures()

@@ -43,7 +43,7 @@
     <!-- container section start -->
     <section id="container" class="">
         <header class="header dark-bg">@Html.Partial("Header")</header>
-            @Html.Partial("LeftContent")
+        @Html.Partial("LeftContent")
         <section id="main-content">
             <section class="wrapper">@RenderBody()</section>
 

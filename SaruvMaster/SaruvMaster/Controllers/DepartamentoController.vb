@@ -9,7 +9,9 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class DepartamentoController
+
         Inherits System.Web.Mvc.Controller
 
         Private db As New Connection

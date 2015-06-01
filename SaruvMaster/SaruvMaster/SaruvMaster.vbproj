@@ -24,6 +24,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -196,6 +197,7 @@
     <Compile Include="Controllers\ClienteCorporativoController.vb" />
     <Compile Include="Controllers\CursoController.vb" />
     <Compile Include="Controllers\HeaderController.vb" />
+    <Compile Include="Controllers\LogFilterAttribute.vb" />
     <Compile Include="Controllers\PersonalUVController.vb" />
     <Compile Include="Controllers\DepartamentoController.vb" />
     <Compile Include="Controllers\DocenteController.vb" />

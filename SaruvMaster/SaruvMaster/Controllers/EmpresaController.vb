@@ -8,7 +8,8 @@ Imports System.Web
 Imports System.Web.Mvc
 Imports SaruvMaster
 
-Namespace Controllers    
+Namespace Controllers
+    <LogFilter>
     Public Class EmpresaController
         Inherits System.Web.Mvc.Controller
 
