@@ -12,7 +12,7 @@
         success: function (data) {
             $("#NavTabs").empty();
             $.each(data, function (ind, usuario) {
-                $("#NavTabs").append($("<li></li>").append($("<a data-toggle='tab'></a>").html(usuario['Nombre']).attr("href", "#" + usuario['Nombre'])));
+                $("#NavTabs").append($("<li></li>").append($("<a data-toggle='tab'></a>").html(usuario['Nombre']).attr("href", "." + usuario['Nombre'])));
                 $.ajax({
                     type: "GET",
                     url: "getRecursosByUsuario",
@@ -20,12 +20,13 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (recursosPorUsuario) {
-                        $("#TabContent").append($("<div class='tab-pane recurso-container'></div>").html('').attr("id", usuario['Nombre']));
+                        $("#TabContent").append($("<div class='tab-pane recurso-container'></div>").html('').attr("id", usuario['ID']));
+                        $("#" +usuario['ID']).addClass(usuario['Nombre'])
                         $.each(recursosPorUsuario, function (indRec, recurso) {
                             bindRecurso({
                                 "recurso": recurso,
                                 "usuario": usuario,
-                                "place": "#" + usuario['Nombre']
+                                "place": "#" + usuario['ID']
                             })
                         });
                     },
@@ -85,38 +86,69 @@
                      '<td class="navbar-right" style="border:0px">' +
                       '<div class="btn-group-vertical">' +
                          '<a id="CambiarEstado" class="btn btn-default btn-sm" data-toggle="modal" href="#modalCambiarEstado_' + jsonData.recurso['ID'] + '">Cambiar estado</a>' +
-                         '<a id="add-regular" class="btn btn-default btn-sm" href="javascript:;">Enviar al siguiente departamento</a>' +
+                         '<a id="add-regular" class="btn btn-default btn-sm" data-toggle="modal" href="#modalEnviar_' + jsonData.recurso['ID'] + '">Enviar al siguiente departamento</a>' +
                       '</div>' +
                      '</td>' +
                     '</tr>' +
                 '</table>' +
             '</div>').attr("id", jsonData.usuario['ID'] + "_" + jsonData.recurso['ID'])
         );
-       
-        $("#" + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).css("width", $("#TabContent").css("width"));       
-            $('.recurso-container').sortable({ connectWith: '.recurso-container' });                  
-        /*
-        $('#' + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).sortable({
-            connectWith: '.tab-pane',
-            cursor: 'pointer'
-        }).droppable({
-            accept: '.button',
-            activeClass: 'highlight',
-            drop: function (event, ui) {
-                 $('#' + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).appendTo(contents);
+        $("#" + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).css("width", $("#TabContent").css("width"));
+        $("#" + jsonData.usuario['Nombre']).css("min-height", "200px")
+        $("#TabContent").children().css("min-height", "200px")
+        $.ajax({
+            type: "GET",
+            url: "getUsuariosDelSigDepto",
+            data: { "usuarioID": jsonData.usuario["ID"] },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (usuarios) {
+                $.each(usuarios, function (indUsr, usuario) {
+                    $("#modalEnviar_" + jsonData.recurso["ID"]).find("#SelectUsuariosDestino").append($("<option></option>").val(usuario['ID']).html(usuario['Nombre']));
+                });
+            },
+            error: function () { }
+        });
+        $('.recurso-container').sortable({ connectWith: '.recurso-container' }).droppable({
+            drop: function (evt, draggableObject) {
+                //console.log(evt,draggableObject)
+                if (evt.target.classList.contains("panel-body")) {
+                    //mover recurso al Jefe
+                    $.ajax({
+                        type: "GET",
+                        url: "getIdJefeByNombreDepartamento",
+                        data: { "nombreDepartamento": "Diseno" },
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (usuarios) {
+                            $.each(usuarios, function (ind, usuario) {
+                                asignarRecursoParaUsuario(draggableObject.draggable.attr("id").split("_")[0], usuario["ID"], draggableObject.draggable.attr("id").split("_")[1]);
+                                draggableObject.draggable.attr("id", usuario["ID"] + "_" + draggableObject.draggable.attr("id").split("_")[1]);
+                            });
+                        },
+                        error: function(errorData) {
+                        }
+                    });
+                } else {
+                    //mover recurso al personal
+                    $.ajax({
+                        type: "GET",
+                        url: "getIdJefeByNombreDepartamento",
+                        data: { "nombreDepartamento": "Diseno" },
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (usuarios) {
+                            $.each(usuarios, function (ind, usuario) {
+                                asignarRecursoParaUsuario(draggableObject.draggable.attr("id").split("_")[0], evt.target.id, draggableObject.draggable.attr("id").split("_")[1]);
+                                draggableObject.draggable.attr("id", evt.target.id + "_" + draggableObject.draggable.attr("id").split("_")[1])
+                            });
+                        },
+                        error: function (errorData) {
+                        }
+                    });
+                }
             }
         });
-        /*$('#' + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).draggable({
-            containment: "document", stack: '#' + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID'], revert: true,
-            start: function () {
-                //contents = $(this)
-            }
-        });
-        $('.tab-pane').droppable({
-            drop: function () {
-                $('#' + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).appendTo(contents);
-            }
-        })*/
         $.ajax({
             type: "GET",
             url: "getRecursoPorUsuario",
@@ -148,5 +180,54 @@ function cambiarEstado(recursoPorUsuario) {
         success: function () {
         },
         error: function (dataError) { }
+    });
+}
+function enviarSiguienteDepto(idRecurso) {
+    var idUsuario = $('#modalEnviar_' + idRecurso + ' select').val()
+    $.ajax({
+        type: "GET",
+        url: "updateRecursoPorUsuario",
+        data: { "usuarioID": idUsuario, "recursoID": idRecurso },
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (res) {
+            $("#" + res.oldUser + "_" + idRecurso).remove();
+        },
+        error: function (dataError) {
+            alert("An error has occurred during processing your request.");
+            console.log(dataError)
+        }
+    });
+}
+
+function asignarRecursoParaUsuario(idUsuarioAnterior,idNuevoUsuario, idRecurso) {
+    $.ajax({
+        type: "GET",
+        url: "getRecursoPorUsuario",
+        data: { "idUsuario": idUsuarioAnterior, "idRecurso": idRecurso },
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (recursoPorUsuario) {
+            $.each(recursoPorUsuario, function (ind, recUsr) {
+                console.log("passed getRecursoPorUsuario")
+                $.ajax({
+                    type: "GET",
+                    url: "updateUsuarioRecursoPorUsuarioAsignar",
+                    data: { "usuarioID": idNuevoUsuario, "idRecursoPorUsuario": recUsr['ID'], "idRecurso": idRecurso },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function () {
+                    },
+                    error: function (dataError) {
+                        alert("An error has occurred during processing your request.");
+                        console.log(dataError)
+                    }
+                });
+            });
+        },
+        error: function (dataError) {
+            alert("An error has occurred during processing your request.");
+            console.log(dataError)
+        }
     });
 }

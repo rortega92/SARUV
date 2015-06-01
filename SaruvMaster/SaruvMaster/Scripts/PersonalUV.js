@@ -54,13 +54,26 @@
                      '<td class="navbar-right" style="border:0px">' +
                       '<div class="btn-group-vertical">' +
                          '<a id="CambiarEstado" class="btn btn-default btn-sm" data-toggle="modal" href="#modalCambiarEstado_' + jsonData.recurso['ID'] + '">Cambiar estado</a>' +
-                         '<a id="EnviarDepartamento" class="btn btn-default btn-sm" href="javascript:enviarSiguienteDepto(' + jsonData.usuario['ID'] + ',' + jsonData.recurso['ID'] + ');">Enviar al siguiente departamento</a>' +
+                         '<a id="EnviarDepartamento" class="btn btn-default btn-sm" data-toggle="modal" href="#modalEnviar_' + jsonData.recurso['ID'] + '">Enviar al siguiente departamento</a>' +
                       '</div>' +
                      '</td>' +
                     '</tr>' +
                 '</table>' +
             '</div>').attr("id", jsonData.usuario['ID']+"_"+jsonData.recurso['ID'])
         );
+        $.ajax({
+            type: "GET",
+            url: "getUsuariosDelSigDepto",
+            data: { "usuarioID": jsonData.usuario["ID"] },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (usuarios) {
+                $.each(usuarios, function (indUsr, usuario) {
+                    $("#modalEnviar_" + jsonData.recurso["ID"]).find("#SelectUsuariosDestino").append($("<option></option>").val(usuario['ID']).html(usuario['Nombre'] + " (" + usuario["NombreDepartamento"] + ")"));
+                });
+            },
+            error: function () { }
+        });
         $.ajax({
             type: "GET",
             url: "getRecursoPorUsuario",
@@ -94,30 +107,16 @@ function cambiarEstado(recursoPorUsuario) {
         error: function(dataError){}
     });
 }
-function enviarSiguienteDepto(idUsuario,idRecurso) {
+function enviarSiguienteDepto(idRecurso) {
+    var idUsuario = $('#modalEnviar_' + idRecurso + ' select').val()
     $.ajax({
         type: "GET",
-        url: "getRecursoPorUsuario",
-        data: { "idUsuario": idUsuario, "idRecurso": idRecurso},
+        url: "updateRecursoPorUsuario",
+        data: { "usuarioID": idUsuario, "recursoID": idRecurso },
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (recursoPorUsuario) {
-            $.each(recursoPorUsuario, function (ind, recUsr) {
-                $.ajax({
-                    type: "GET",
-                    url: "updateUsuarioRecursoPorUsuario",
-                    data: { "usuarioID": idUsuario, "idRecursoPorUsuario": recUsr['ID'] },
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function () {
-                        $("#"+idUsuario + "_" + idRecurso).parent().empty();
-                    },
-                    error: function (dataError) {
-                        alert("An error has occurred during processing your request.");
-                        console.log(dataError)
-                    }
-                });
-            });
+        success: function (res) {
+            $("#" + res.oldUser + "_" + idRecurso).remove();
         },
         error: function (dataError) {
             alert("An error has occurred during processing your request.");

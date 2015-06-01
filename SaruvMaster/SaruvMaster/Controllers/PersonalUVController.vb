@@ -139,7 +139,6 @@ Namespace SaruvMaster
 
         Function updateUsuarioRecursoPorUsuario(ByVal usuarioID As Integer, ByVal idRecursoPorUsuario As Integer)
             Dim con As New Connection
-
             Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
             Dim cmd = New SqlCommand()
             cone.Open()
@@ -181,5 +180,112 @@ Namespace SaruvMaster
             row.Add("updated", res.Equals(1))
             Return Json(row, JsonRequestBehavior.AllowGet)
         End Function
+        Function updateUsuarioRecursoPorUsuarioAsignar(ByVal usuarioID As Integer, ByVal idRecursoPorUsuario As Integer, ByVal idRecurso As Integer)
+            Dim con As New Connection
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cmd.CommandText = "RecursoPorUsuario_UpdateEstado"
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@ID"
+            parm.Value = idRecursoPorUsuario
+            cmd.Parameters.Add(parm)
+            Dim rxu = con.RecursoPorUsuario.Where(Function(ru) ru.ID = idRecursoPorUsuario).ToList().First()
+            Dim parm1 = New SqlParameter()
+            parm1.ParameterName = "@Estado"
+            parm1.Value = rxu.Estado
+            cmd.Parameters.Add(parm1)
+            Dim parm2 = New SqlParameter()
+            parm2.ParameterName = "@RecursoID"
+            parm2.Value = idRecurso
+            cmd.Parameters.Add(parm2)
+            Dim parm3 = New SqlParameter()
+            parm3.ParameterName = "@UsuarioID"
+            parm3.Value = usuarioID
+            cmd.Parameters.Add(parm3)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+            Dim row As New Dictionary(Of String, String)
+            row.Add("updated", res.Equals(1))
+            Return Json(row, JsonRequestBehavior.AllowGet)
+        End Function
+        Function getUsuariosDelSigDepto(ByVal usuarioID As Integer)
+            Dim con As New Connection
+            Dim idDeptoActual = con.Usuario.Where(Function(u) u.ID = usuarioID).ToList().First().DepartamentoID
+            Dim nombreDeptoActual = con.Departamento.Where(Function(dept) dept.ID = idDeptoActual).ToList().First().Nombre
+            Dim nombreSigDepto As String = ""
+            If (nombreDeptoActual.Equals("Diseno")) Then
+                nombreSigDepto = "Correccion"
+            ElseIf (nombreDeptoActual.Equals("Correccion")) Then
+                nombreSigDepto = "Grabacion"
+            ElseIf (nombreDeptoActual.Equals("Grabacion")) Then
+                nombreSigDepto = "Entrega"
+            ElseIf (nombreDeptoActual.Equals("Entrega")) Then
+                Return False
+            End If
+            Dim idAntDepto = con.Departamento.Where(Function(d) d.Nombre = nombreSigDepto).ToList().First().ID
+            Dim idSigDepto = con.Departamento.Where(Function(d) d.Nombre = nombreSigDepto).ToList().First().ID
+            Dim idUsuariosSigDepto = con.Usuario.Where(Function(u) u.DepartamentoID = idSigDepto).ToList()
+            If (nombreDeptoActual.Equals("Correccion")) Then
+                idAntDepto = con.Departamento.Where(Function(d) d.Nombre = "Diseno").ToList().First().ID
+                Dim usuariosDeptoAnterior = con.Usuario.Where(Function(u) u.DepartamentoID = idAntDepto).ToList()
+                For i As Integer = 0 To usuariosDeptoAnterior.ToArray().Length - 1
+                    idUsuariosSigDepto.Add(usuariosDeptoAnterior.ElementAt(i))
+                Next
+            End If
+            If (nombreDeptoActual.Equals("Grabacion")) Then
+                idAntDepto = con.Departamento.Where(Function(d) d.Nombre = "Correccion").ToList().First().ID
+                Dim usuariosDeptoAnterior = con.Usuario.Where(Function(u) u.DepartamentoID = idAntDepto).ToList()
+                For i As Integer = 0 To usuariosDeptoAnterior.ToArray().Length - 1
+                    idUsuariosSigDepto.Add(usuariosDeptoAnterior.ElementAt(i))
+                Next
+            End If
+
+            Dim returnUsuarios As New List(Of Dictionary(Of String, String))
+            For i As Integer = 0 To idUsuariosSigDepto.ToArray().Length - 1
+                Dim row As New Dictionary(Of String, String)
+                row.Add("ID", idUsuariosSigDepto.ElementAt(i).ID)
+                row.Add("Nombre", idUsuariosSigDepto.ElementAt(i).Nombre)
+                row.Add("NombreDepartamento", idUsuariosSigDepto.ElementAt(i).Departamento.Nombre)
+                returnUsuarios.Add(row)
+            Next
+            Return Json(returnUsuarios, JsonRequestBehavior.AllowGet)
+        End Function
+
+        Function updateRecursoPorUsuario(ByVal usuarioID As Integer, ByVal recursoID As Integer)
+            Dim con As New Connection
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cmd.CommandText = "RecursoPorUsuario_UpdateEstado"
+            Dim rxu = con.RecursoPorUsuario.Where(Function(ru) ru.RecursoID = recursoID).ToList().First()
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@ID"
+            parm.Value = rxu.ID
+            cmd.Parameters.Add(parm)
+            Dim parm1 = New SqlParameter()
+            parm1.ParameterName = "@Estado"
+            parm1.Value = rxu.Estado
+            cmd.Parameters.Add(parm1)
+            Dim parm2 = New SqlParameter()
+            parm2.ParameterName = "@RecursoID"
+            parm2.Value = rxu.RecursoID
+            cmd.Parameters.Add(parm2)
+            Dim parm3 = New SqlParameter()
+            parm3.ParameterName = "@UsuarioID"
+            parm3.Value = usuarioID
+            cmd.Parameters.Add(parm3)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+            Dim row As New Dictionary(Of String, String)
+            row.Add("updated", res.Equals(1))
+            row.Add("oldUser", rxu.UsuarioID)
+            Return Json(row, JsonRequestBehavior.AllowGet)
+        End Function
+
     End Class
 End Namespace

@@ -50,7 +50,6 @@
         </section>
     </section>
     <!-- javascripts -->
-    ~/Content/layout/css/
     @Scripts.Render("~/Content/layout/js/jquery.js")
     @Scripts.Render("~/Content/layout/js/bootstrap.min.js")
     <!-- nice scroll -->
