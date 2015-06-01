@@ -290,6 +290,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fullcalendar.css" />
+    <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\layout\assets\chart-master\.gitignore" />
     <Content Include="Content\layout\assets\chart-master\Chart.js" />
     <Content Include="Content\layout\assets\chart-master\Chart.min.js" />
@@ -954,6 +956,9 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <Content Include="Scripts\fullcalendar.js" />
+    <Content Include="Scripts\fullcalendar.min.js" />
+    <Content Include="Scripts\gcal.js" />
     <Content Include="Scripts\Header.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
@@ -1056,6 +1061,7 @@
     <Content Include="Views\Usuario\Details.vbhtml" />
     <Content Include="Views\Usuario\Edit.vbhtml" />
     <Content Include="Views\Usuario\Index.vbhtml" />
+    <Content Include="Views\Home\Calendar.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
