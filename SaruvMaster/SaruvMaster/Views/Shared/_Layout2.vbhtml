@@ -61,6 +61,10 @@
 
     @RenderSection("scripts", required:=False)
     @Scripts.Render("~/Scripts/jquery-ui.js")
+    <!--Full Calendar-->
+    @Scripts.Render("~/Scripts/fullcalendar.js")
+    @Scripts.Render("~/Scripts/fullcalendar.min.js")
+
 
 </body>
 </html>

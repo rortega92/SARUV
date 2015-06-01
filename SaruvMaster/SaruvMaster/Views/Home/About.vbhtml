@@ -1,8 +1,35 @@
 ﻿@Code
-    ViewData("Title") = "About"
+    ViewData("Title") = "Calendar"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/fullcalendarcss")
+@Scripts.Render("~/bundles/fullcalendarjs")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/fullcalendarjs")
 
-<h2>@ViewData("Title").</h2>
-<h3>@ViewData("Message")</h3>
+<script type="text/javascript">
 
-<p>Use this area to provide additional information.</p>
+
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+            theme: false,
+
+            //defaultView: 'agendaDay',
+            editable: true,
+            events: "/home/getevents/"
+        });
+        $('#calendar').fullCalendar('render');
+    });
+
+
+</script>
+
+<!DOCTYPE html>
+
+<h2>Calendar</h2>
+<div id="calendar"></div>
+
+
+    
+  

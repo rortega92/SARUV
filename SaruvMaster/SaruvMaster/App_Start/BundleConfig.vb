@@ -10,6 +10,11 @@ Public Module BundleConfig
         bundles.Add(New ScriptBundle("~/bundles/jqueryval").Include(
                     "~/Scripts/jquery.validate*"))
 
+        bundles.Add(New ScriptBundle("~/bundles/fullcalendarjs").Include(
+                     "~/Scripts/jquery-ui-1.10.4.min.js",
+                     "~/Scripts/fullcalendar.min.js"))
+        bundles.Add(New StyleBundle("~/Content/fullcalendarcss").Include("~/Content/themes/jquery.ui.all.css", "~/Content/fullcalendar.css"))
+
         ' Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
         ' preparado para la producción y podrá utilizar la herramienta de compilación disponible en http://modernizr.com para seleccionar solo las pruebas que necesite.
         bundles.Add(New ScriptBundle("~/bundles/modernizr").Include(

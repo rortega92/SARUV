@@ -224,9 +224,14 @@
       <DependentUpon>201505240424309_TablaIntermediaRecursoPorUsuario.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201505240424309_TablaIntermediaRecursoPorUsuario.vb" />
+    <Compile Include="Migrations\201506010105104_Events.Designer.vb">
+      <DependentUpon>201506010105104_Events.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506010105104_Events.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
+    <Compile Include="Models\Events.vb" />
     <Compile Include="Models\ClienteCorporativo.vb" />
     <Compile Include="Models\Curso.vb" />
     <Compile Include="Models\Departamento.vb" />
@@ -270,6 +275,9 @@
     <EmbeddedResource Include="Migrations\201505240424309_TablaIntermediaRecursoPorUsuario.resx">
       <DependentUpon>201505240424309_TablaIntermediaRecursoPorUsuario.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506010105104_Events.resx">
+      <DependentUpon>201506010105104_Events.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -280,6 +288,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fullcalendar.css" />
+    <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\layout\assets\chart-master\.gitignore" />
     <Content Include="Content\layout\assets\chart-master\Chart.js" />
     <Content Include="Content\layout\assets\chart-master\Chart.min.js" />
@@ -944,6 +954,9 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <Content Include="Scripts\fullcalendar.js" />
+    <Content Include="Scripts\fullcalendar.min.js" />
+    <Content Include="Scripts\gcal.js" />
     <Content Include="Scripts\Header.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />

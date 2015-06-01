@@ -20,6 +20,8 @@ Public Class Connection
 
     Public Property Empresa As DbSet(Of Empresa)
 
+    Public Property Events As DbSet(Of Events)
+
     Public Property ClienteCorporativo As DbSet(Of ClienteCorporativo)
 
     Public Property ModalidadDeCurso As DbSet(Of ModalidadDeCurso)
