@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class EncargadoDeValidacionController
         Inherits System.Web.Mvc.Controller
 
@@ -17,7 +18,7 @@ Namespace Controllers
         ' GET: EncargadoDeValidacion
         Function Index(ByVal searchString As String, ByVal searchConceptInput As String) As ActionResult
             Dim encargado = From m In db.EncargadoDeValidacion
-                                   Select m
+                            Select m
 
             If Not String.IsNullOrEmpty(searchString) Then
 
@@ -30,7 +31,7 @@ Namespace Controllers
                         encargado = encargado.Where(Function(m) m.Facultad.Nombre.ToUpper().Contains(searchString.ToUpper()))
                     Case "Teléfono"
                         encargado = encargado.Where(Function(m) m.Telefono.ToUpper().Contains(searchString.ToUpper()))
-                    
+
                     Case Else
                         encargado = encargado.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
                 End Select

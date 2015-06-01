@@ -13,12 +13,18 @@ Public Class ApplicationUser
         ' Agregar reclamaciones de usuario personalizado aquí
         Return userIdentity
     End Function
+    Public Property Nombre As String
+    Public Property Apellido As String
+    Public Property FechaCreacion As Date
+    Public Property FechaModificacion As Date
+    Public Property IsDeleted As Integer = 0
+
 End Class
 
 Public Class ApplicationDbContext
     Inherits IdentityDbContext(Of ApplicationUser)
     Public Sub New()
-        MyBase.New("DefaultConnection", throwIfV1Schema:=False)
+        MyBase.New("Context", throwIfV1Schema:=False)
     End Sub
 
     Public Shared Function Create() As ApplicationDbContext

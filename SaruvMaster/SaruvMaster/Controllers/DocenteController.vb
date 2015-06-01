@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class DocenteController
         Inherits System.Web.Mvc.Controller
 
@@ -18,7 +19,7 @@ Namespace Controllers
 
         Function Index(ByVal searchString As String, ByVal searchConceptInput As String) As ActionResult
             Dim docente = From m In db.Docente
-                                   Select m
+                          Select m
 
             If Not String.IsNullOrEmpty(searchString) Then
 
@@ -81,7 +82,7 @@ Namespace Controllers
 
                 End If
             Next
-            
+
             If ModelState.IsValid Then
                 db.Docente.Add(docente)
                 db.SaveChanges()

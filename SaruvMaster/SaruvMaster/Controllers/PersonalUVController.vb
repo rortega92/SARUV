@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports System.Data.SqlClient
 
 Namespace SaruvMaster
+    <LogFilter>
     Public Class PersonalUVController
         Inherits Controller
 

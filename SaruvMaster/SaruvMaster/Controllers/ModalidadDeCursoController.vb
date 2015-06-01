@@ -8,6 +8,7 @@ Imports System.Web
 Imports System.Web.Mvc
 
 Namespace SaruvMaster
+    <LogFilter>
     Public Class ModalidadDeCursoController
         Inherits System.Web.Mvc.Controller
 
@@ -47,7 +48,7 @@ Namespace SaruvMaster
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include := "ID,Nombre,Duracion")> ByVal modalidaddecurso As ModalidadDeCurso) As ActionResult
+        Function Create(<Bind(Include:="ID,Nombre,Duracion")> ByVal modalidaddecurso As ModalidadDeCurso) As ActionResult
             For i = 0 To db.ModalidadDeCurso.ToArray.Length - 1
                 If db.ModalidadDeCurso.ToArray(i).Nombre = modalidaddecurso.Nombre Then
                     ModelState.AddModelError(String.Empty, "El nombre de la Modalidad ya existe.")

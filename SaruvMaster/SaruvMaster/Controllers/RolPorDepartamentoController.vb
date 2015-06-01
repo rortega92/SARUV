@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class RolPorDepartamentoController
         Inherits System.Web.Mvc.Controller
 
@@ -45,8 +46,8 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include:="ID,Nombre,DepartamentoID")> ByVal rolPorDepartamento As RolPorDepartamento) As ActionResult
 
-            For i = 0 To db.rolPorDepartamento.ToArray.Length - 1
-                If db.rolPorDepartamento.ToArray(i).Nombre = rolPorDepartamento.Nombre Then
+            For i = 0 To db.RolPorDepartamento.ToArray.Length - 1
+                If db.RolPorDepartamento.ToArray(i).Nombre = rolPorDepartamento.Nombre Then
                     ModelState.AddModelError(String.Empty, "El nombre del rol por departamento ya existe ")
                     ViewBag.DepartamentoID = New SelectList(db.Departamento, "ID", "Nombre", rolPorDepartamento.DepartamentoID)
                     Return View(rolPorDepartamento)

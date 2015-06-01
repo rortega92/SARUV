@@ -9,12 +9,14 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class AreaDeConocimientoController
         Inherits System.Web.Mvc.Controller
 
         Private db As New Connection
 
         ' GET: AreaDeConocimiento
+
         Function Index() As ActionResult
             Return View(db.AreaDeConocimiento.ToList())
         End Function

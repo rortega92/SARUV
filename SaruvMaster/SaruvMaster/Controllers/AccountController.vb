@@ -5,12 +5,14 @@ Imports Microsoft.AspNet.Identity
 Imports Microsoft.AspNet.Identity.Owin
 Imports Microsoft.Owin.Security
 Imports Owin
+Imports System
 
 <Authorize>
 Public Class AccountController
-    Inherits Controller
+    Inherits System.Web.Mvc.Controller
     Private _signInManager As ApplicationSignInManager
     Private _userManager As ApplicationUserManager
+    Private db As New Connection
 
     Public Sub New()
     End Sub
@@ -120,6 +122,8 @@ Public Class AccountController
     ' GET: /Account/Register
     <AllowAnonymous>
     Public Function Register() As ActionResult
+        ViewBag.DepartamentoID = New SelectList(db.Departamento, "ID", "Nombre")
+        ViewBag.RolPorDepartamentoID = New SelectList(db.RolPorDepartamento, "ID", "Nombre")
         Return View()
     End Function
 
@@ -129,14 +133,22 @@ Public Class AccountController
     <AllowAnonymous>
     <ValidateAntiForgeryToken>
     Public Async Function Register(model As RegisterViewModel) As Task(Of ActionResult)
+        model.FechaCreacion = DateTime.Now
+        model.FechaModificacion = model.FechaCreacion
         If ModelState.IsValid Then
             Dim user = New ApplicationUser() With {
                 .UserName = model.Email,
-                .Email = model.Email
+                .Email = model.Email,
+                .Apellido = model.Apellido,
+                .Nombre = model.Nombre,
+                .FechaCreacion = model.FechaCreacion,
+                .FechaModificacion = model.FechaModificacion
             }
+            ViewBag.RolPorDepartamentoID = New SelectList(db.RolPorDepartamento, "ID", "Nombre", model.RolPorDepartamentoID)
+
             Dim result = Await UserManager.CreateAsync(user, model.Password)
             If result.Succeeded Then
-                Await SignInManager.SignInAsync(user, isPersistent := False, rememberBrowser := False)
+                Await SignInManager.SignInAsync(user, isPersistent:=False, rememberBrowser:=False)
 
                 ' Para obtener más información sobre cómo habilitar la confirmación de cuenta y el restablecimiento de contraseña, visite http://go.microsoft.com/fwlink/?LinkID=320771
                 ' Enviar correo electrónico con este vínculo
@@ -151,6 +163,20 @@ Public Class AccountController
 
         ' Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
         Return View(model)
+    End Function
+
+    Function getRolesByNombreDepartamento(ByVal nombreDepartamento As String) As ActionResult
+        Dim con As New Connection
+        Dim idDepartamento = con.Departamento.Where(Function(e) e.Nombre = nombreDepartamento).First().ID
+        Dim listaRoles = con.RolPorDepartamento.ToList.Where(Function(r) r.DepartamentoID = idDepartamento)
+        Dim returnRoles As New List(Of Dictionary(Of String, String))
+        For i As Integer = 0 To listaRoles.ToArray().Length - 1
+            Dim row As New Dictionary(Of String, String)
+            row.Add("ID", listaRoles.ElementAt(i).ID)
+            row.Add("Nombre", listaRoles.ElementAt(i).Nombre)
+            returnRoles.Add(row)
+        Next
+        Return Json(returnRoles, JsonRequestBehavior.AllowGet)
     End Function
 
     '
@@ -432,10 +458,10 @@ Public Class AccountController
                 .RedirectUri = RedirectUri
             }
             If UserId IsNot Nothing Then
-              properties.Dictionary(XsrfKey) = UserId
+                properties.Dictionary(XsrfKey) = UserId
             End If
             context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider)
         End Sub
     End Class
-    #End Region
+#End Region
 End Class

@@ -43,7 +43,9 @@
     <!-- container section start -->
     <section id="container" class="">
         <header class="header dark-bg">@Html.Partial("Header")</header>
+        @If User.Identity.IsAuthenticated().Equals(True) Then
             @Html.Partial("LeftContent")
+        End If
         <section id="main-content">
             <section class="wrapper">@RenderBody()</section>
 

@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class ClienteCorporativoController
         Inherits System.Web.Mvc.Controller
 
@@ -17,7 +18,7 @@ Namespace Controllers
         ' GET: ClienteCorporativo
         Function Index(ByVal searchString As String, ByVal searchConceptInput As String) As ActionResult
             Dim cliente = From m In db.ClienteCorporativo
-                                   Select m
+                          Select m
 
             If Not String.IsNullOrEmpty(searchString) Then
 

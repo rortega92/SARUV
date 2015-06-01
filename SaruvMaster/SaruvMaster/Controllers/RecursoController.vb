@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports System.Web.Services
 
 Namespace SaruvMaster
+    <LogFilter>
     Public Class RecursoController
         Inherits System.Web.Mvc.Controller
 
@@ -17,7 +18,7 @@ Namespace SaruvMaster
         ' GET: /Recurso/
         Function Index(ByVal searchString As String, ByVal searchConceptInput As String) As ActionResult
             Dim recurso = From m In db.Recursoes
-                                   Select m
+                          Select m
 
             If Not String.IsNullOrEmpty(searchString) Then
 

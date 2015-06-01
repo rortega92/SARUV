@@ -8,6 +8,7 @@ Imports System.Web
 Imports System.Web.Mvc
 
 Namespace SaruvMaster
+    <LogFilter>
     Public Class CursoController
         Inherits System.Web.Mvc.Controller
 
@@ -16,7 +17,7 @@ Namespace SaruvMaster
         ' GET: /Curso/
         Function Index(ByVal searchString As String, ByVal searchConceptInput As String) As ActionResult
             Dim curso = From m In db.Curso
-                                   Select m
+                        Select m
 
             If Not String.IsNullOrEmpty(searchString) Then
 
@@ -36,7 +37,7 @@ Namespace SaruvMaster
                 End Select
             End If
 
-            Return View(Curso)
+            Return View(curso)
         End Function
 
         ' GET: /Curso/Details/5
@@ -64,7 +65,7 @@ Namespace SaruvMaster
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include := "ID,Nombres,AreaDeConocimientoID,ModalidadDeCursoID,EncargadoDeValidacionID,FechaInicio,FechaFinal,Periodo")> ByVal curso As Curso) As ActionResult
+        Function Create(<Bind(Include:="ID,Nombres,AreaDeConocimientoID,ModalidadDeCursoID,EncargadoDeValidacionID,FechaInicio,FechaFinal,Periodo")> ByVal curso As Curso) As ActionResult
             For i = 0 To db.Curso.ToArray.Length - 1
                 If db.Curso.ToArray(i).Nombres = curso.Nombres Then
                     ModelState.AddModelError(String.Empty, "El nombre del Curso ya existe ")

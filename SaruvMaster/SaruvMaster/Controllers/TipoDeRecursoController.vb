@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class TipoDeRecursoController
         Inherits System.Web.Mvc.Controller
 
