@@ -155,10 +155,10 @@ Namespace Migrations
                         .Nombre = c.String(nullable:=False, maxLength:=255),
                         .TipoDeRecursoID = c.Int(nullable:=False),
                         .ModalidadDeCursoID = c.Int(nullable:=False),
-                        .EmpresaID = c.Int(nullable:=False),
-                        .CursoID = c.Int(nullable:=False),
-                        .ClienteCorporativoID = c.Int(nullable:=False),
-                        .DocenteID = c.Int(nullable:=False),
+                        .EmpresaID = c.Int(nullable:=True),
+                        .CursoID = c.Int(nullable:=True),
+                        .ClienteCorporativoID = c.Int(nullable:=True),
+                        .DocenteID = c.Int(nullable:=True),
                         .Duracion = c.Int(nullable:=False),
                         .Prioridad = c.String(nullable:=False, maxLength:=255),
                         .FechaEntrega = c.DateTime(nullable:=False),
@@ -980,6 +980,7 @@ Namespace Migrations
             DropStoredProcedure("dbo.AreaDeConocimiento_Delete")
             DropStoredProcedure("dbo.AreaDeConocimiento_Update")
             DropStoredProcedure("dbo.AreaDeConocimiento_Insert")
+            DropStoredProcedure("dbo.RecursoPorUsuario_UpdateEstado")
             DropForeignKey("dbo.Usuario", "RolPorDepartamentoID", "dbo.RolPorDepartamento")
             DropForeignKey("dbo.Usuario", "DepartamentoID", "dbo.Departamento")
             DropForeignKey("dbo.RolPorDepartamento", "DepartamentoID", "dbo.Departamento")
