@@ -19,15 +19,28 @@ End Code
                     });
                 },
                 error: function() {
-                    alert("An error has occurred during processing your request.");
+                    //alert("An error has occurred during processing your request.");
                 }
             });
         }).change()
-
-
+        $("#isAdmin").change(function (oldVal,newVal) {
+            if (this.checked) {
+                $("label[for=DepartamentoID], #DepartamentoID").parent().parent().hide();
+                $("label[for=RolPorDepartamentoID], #RolPorDepartamentoID").parent().parent().hide();
+            } else {
+                $("label[for=DepartamentoID], #DepartamentoID").parent().parent().show();
+                $("label[for=RolPorDepartamentoID], #RolPorDepartamentoID").parent().parent().show();
+            }  
+        });
+        $("#Submit").click(function () {
+            if ($("#isAdmin").checked) {
+                $("#DepartamentoID").empty();
+                $("#RolPorDepartamentoID").empty();
+            }
+        });
     });
 </script>   
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
 <section class="panel">
     <header class="panel-heading">
@@ -81,6 +94,29 @@ End Code
                      <div class="col-md-10">
                        
                          @Html.PasswordFor(Function(m) m.ConfirmPassword, New With {.class = "form-control"})
+                     </div>
+                 </div>
+
+                 <div class="form-group">
+                     <label for="EmpresaID" class="control-label col-md-2">Es Adminsitrador</label>
+                     <div class="col-md-10">
+                         @Html.CheckBox("Admin", htmlAttributes:=New With {.class = "form-control", .id = "isAdmin"})
+                     </div>
+                 </div>
+
+                 <div class="form-group">
+                     <label for="DepartamentoID" class="control-label col-md-2">Departamento</label>
+                     <div class="col-md-10">
+                         @Html.DropDownList("DepartamentoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                         @Html.ValidationMessageFor(Function(model) model.DepartamentoID, "", New With {.class = "text-danger"})
+                     </div>
+                 </div>
+
+                 <div class="form-group">
+                     <label for="RolPorDepartamentoID" class="control-label col-md-2">Rol Por Departamento</label>
+                     <div class="col-md-10">
+                         @Html.DropDownList("RolPorDepartamentoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                         @Html.ValidationMessageFor(Function(model) model.RolPorDepartamentoID, "", New With {.class = "text-danger"})
                      </div>
                  </div>
 

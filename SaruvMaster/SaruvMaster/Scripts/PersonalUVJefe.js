@@ -183,21 +183,24 @@ function cambiarEstado(recursoPorUsuario) {
     });
 }
 function enviarSiguienteDepto(idRecurso) {
-    var idUsuario = $('#modalEnviar_' + idRecurso + ' select').val()
-    $.ajax({
-        type: "GET",
-        url: "updateRecursoPorUsuario",
-        data: { "usuarioID": idUsuario, "recursoID": idRecurso },
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (res) {
-            $("#" + res.oldUser + "_" + idRecurso).remove();
-        },
-        error: function (dataError) {
-            alert("An error has occurred during processing your request.");
-            console.log(dataError)
-        }
-    });
+    var idUsuario = $('#modalEnviar_' + idRecurso + ' select').val();
+    /*var estado = $('#modalCambiarEstado_' + idRecurso + ' select').val() == "1" ? "No Empezado" : $('#modalCambiarEstado_' + idRecurso + ' select').val() == "2" ? "En Progreso" : "Terminado";
+    if (estado == "Terminado") {*/
+        $.ajax({
+            type: "GET",
+            url: "updateRecursoPorUsuario",
+            data: { "usuarioID": idUsuario, "recursoID": idRecurso },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (res) {
+                $("#" + res.oldUser + "_" + idRecurso).remove();
+            },
+            error: function (dataError) {
+                alert("An error has occurred during processing your request.");
+                console.log(dataError)
+            }
+        });
+    //}
 }
 
 function asignarRecursoParaUsuario(idUsuarioAnterior,idNuevoUsuario, idRecurso) {
