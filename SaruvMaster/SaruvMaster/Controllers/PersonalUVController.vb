@@ -17,9 +17,11 @@ Namespace SaruvMaster
         Private db As New Connection
 
         ' GET: /RecursoPorUsuario/
-        Function Index(ByVal idUsuario As Integer?) As ActionResult
-            Dim recursoPorUsuario = db.RecursoPorUsuario.Include(Function(r) r.Recurso).Include(Function(r) r.Usuario)
-            Dim idRolPorDepartamento = db.Usuario.Where(Function(u) u.ID = idUsuario).First().RolPorDepartamentoID
+        Function Index() As ActionResult
+            Dim ctx As New ApplicationDbContext()
+            Dim idUsuario = ctx.Users.Where(Function(u) u.UserName = User.Identity.Name).First().Id
+            Dim recursoPorUsuario = db.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = idUsuario)
+            Dim idRolPorDepartamento = ctx.Users.Where(Function(u) u.Id = idUsuario).First().RolPorDepartamentoID
             Dim nombreRol = db.RolPorDepartamento.Where(Function(ro) ro.ID = idRolPorDepartamento).First().Nombre
             If (nombreRol.ToLower.StartsWith("jefe")) Then
                 ViewBag.isJefe = True

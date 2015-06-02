@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $.ajax({
+    /*$.ajax({
         type: "GET",
         url: "/Header/getUsuarios",
         data: {},
@@ -11,5 +11,5 @@
             })
         },
         error: function (dataError) { }
-    });
+    });*/
 })

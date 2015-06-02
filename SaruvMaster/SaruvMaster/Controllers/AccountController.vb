@@ -147,7 +147,7 @@ Public Class AccountController
                 .RolPorDepartamentoID = model.RolPorDepartamentoID
             }
             ViewBag.RolPorDepartamentoID = New SelectList(db.RolPorDepartamento, "ID", "Nombre", model.RolPorDepartamentoID)
-
+            ViewBag.DepartamentoID = New SelectList(db.Departamento, "ID", "Nombre", model.DepartamentoID)
             Dim result = Await UserManager.CreateAsync(user, model.Password)
             If result.Succeeded Then
                 Await SignInManager.SignInAsync(user, isPersistent:=False, rememberBrowser:=False)

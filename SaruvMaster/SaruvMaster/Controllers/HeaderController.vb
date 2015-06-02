@@ -11,14 +11,15 @@ Namespace Controllers
 
         Function getUsuarios() As ActionResult
             Dim con As New Connection
-            Dim listaUsuarios = db.Usuario.ToList()
+            Dim ctx As New ApplicationDbContext()
+            Dim listaUsuarios = ctx.Users.ToList()
             Dim returnUsuarios As New List(Of Dictionary(Of String, String))
             For i As Integer = 0 To listaUsuarios.ToArray().Length - 1
                 Dim row As New Dictionary(Of String, String)
                 row.Add("ID", listaUsuarios.ElementAt(i).ID)
                 row.Add("Nombre", listaUsuarios.ElementAt(i).Nombre)
                 row.Add("Apellido", listaUsuarios.ElementAt(i).Apellido)
-                row.Add("correo", listaUsuarios.ElementAt(i).correo)
+                row.Add("correo", listaUsuarios.ElementAt(i).Email)
                 row.Add("DepartamentoID", listaUsuarios.ElementAt(i).DepartamentoID)
                 row.Add("RolPorDepartamentoID", listaUsuarios.ElementAt(i).RolPorDepartamentoID)
                 row.Add("FechaCreacion", listaUsuarios.ElementAt(i).FechaCreacion)
