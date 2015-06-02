@@ -9,7 +9,7 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
-    <LogFilter>
+
     Public Class AreaDeConocimientoController
         Inherits System.Web.Mvc.Controller
 

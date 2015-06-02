@@ -70,5 +70,17 @@ Public Class Connection
         modelBuilder.Entity(Of Departamento).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
     End Sub
 
+    Public Overrides Function Savechanges() As Integer
+        Dim changed = ChangeTracker.Entries()
+
+        For Each item In changed.Where(Function(m) m.State.Equals(EntityState.Deleted))
+            item.State = EntityState.Unchanged
+
+            Dim s = ObjectContext.GetObjecitem.GetType()
+
+        Next
+        Return MyBase.SaveChanges()
+    End Function
+
     Public Property Recursoes As System.Data.Entity.DbSet(Of Recurso)
 End Class
