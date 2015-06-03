@@ -13,6 +13,55 @@ End Code
     <h4>Create a new account.</h4>
     <hr />
     @Html.ValidationSummary("", New With {.class = "text-danger"})
+<div class="form-group">
+    @Html.LabelFor(Function(model) model.Nombre, htmlAttributes:=New With {.class = "control-label col-md-2"})
+    <div class="col-md-10">
+        @Html.EditorFor(Function(model) model.Nombre, New With {.htmlAttributes = New With {.class = "form-control"}})
+        @Html.ValidationMessageFor(Function(model) model.Nombre, "", New With {.class = "text-danger"})
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(Function(model) model.Apellido, htmlAttributes:=New With {.class = "control-label col-md-2"})
+    <div class="col-md-10">
+        @Html.EditorFor(Function(model) model.Apellido, New With {.htmlAttributes = New With {.class = "form-control"}})
+        @Html.ValidationMessageFor(Function(model) model.Apellido, "", New With {.class = "text-danger"})
+    </div>
+</div>
+
+
+<div class="form-group">
+    @Html.LabelFor(Function(model) model.DepartamentoID, "DepartamentoID", htmlAttributes:=New With {.class = "control-label col-md-2"})
+    <div class="col-md-10">
+        @Html.DropDownList("DepartamentoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+        @Html.ValidationMessageFor(Function(model) model.DepartamentoID, "", New With {.class = "text-danger"})
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(Function(model) model.RolPorDepartamentoID, "RolPorDepartamentoID", htmlAttributes:=New With {.class = "control-label col-md-2"})
+    <div class="col-md-10">
+        @Html.DropDownList("RolPorDepartamentoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+        @Html.ValidationMessageFor(Function(model) model.RolPorDepartamentoID, "", New With {.class = "text-danger"})
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(Function(model) model.FechaCreacion, htmlAttributes:=New With {.class = "control-label col-md-2"})
+    <div class="col-md-10">
+        @Html.EditorFor(Function(model) model.FechaCreacion, New With {.htmlAttributes = New With {.class = "form-control"}})
+        @Html.ValidationMessageFor(Function(model) model.FechaCreacion, "", New With {.class = "text-danger"})
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(Function(model) model.FechaModificacion, htmlAttributes:=New With {.class = "control-label col-md-2"})
+    <div class="col-md-10">
+        @Html.EditorFor(Function(model) model.FechaModificacion, New With {.htmlAttributes = New With {.class = "form-control"}})
+        @Html.ValidationMessageFor(Function(model) model.FechaModificacion, "", New With {.class = "text-danger"})
+    </div>
+</div>
+
     <div class="form-group">
         @Html.LabelFor(Function(m) m.Email, New With {.class = "col-md-2 control-label"})
         <div class="col-md-10">

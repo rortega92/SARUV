@@ -45,11 +45,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -192,13 +192,25 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="Controllers\AccountController.vb" />
+    <Compile Include="Controllers\DepartamentoController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
+    <Compile Include="Controllers\RolPorDepartamentoController.vb" />
+    <Compile Include="Controllers\UsuarioController.vb" />
+    <Compile Include="DAL\Connection.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506030635473_InitialCreate.Designer.vb">
+      <DependentUpon>201506030635473_InitialCreate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506030635473_InitialCreate.vb" />
+    <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
+    <Compile Include="Models\Departamento.vb" />
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\ManageViewModels.vb" />
+    <Compile Include="Models\RolPorDepartamento.vb" />
+    <Compile Include="Models\Usuario.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -218,6 +230,9 @@
     <Compile Include="Startup.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201506030635473_InitialCreate.resx">
+      <DependentUpon>201506030635473_InitialCreate.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -228,6 +243,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -265,6 +281,24 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.vbhtml" />
     <Content Include="Views\Shared\Lockout.vbhtml" />
     <Content Include="Views\Shared\_LoginPartial.vbhtml" />
+    <Content Include="Views\Usuario\Create.vbhtml" />
+    <Content Include="Views\Usuario\Delete.vbhtml" />
+    <Content Include="Views\Usuario\Details.vbhtml" />
+    <Content Include="Views\Usuario\Edit.vbhtml" />
+    <Content Include="Views\Usuario\Index.vbhtml" />
+    <Content Include="Views\RolPorDepartamento\Create.vbhtml" />
+    <Content Include="Views\RolPorDepartamento\Delete.vbhtml" />
+    <Content Include="Views\RolPorDepartamento\Details.vbhtml" />
+    <Content Include="Views\RolPorDepartamento\Edit.vbhtml" />
+    <Content Include="Views\RolPorDepartamento\Index.vbhtml" />
+    <Content Include="Views\Departamento\Create.vbhtml" />
+    <Content Include="Views\Departamento\Delete.vbhtml" />
+    <Content Include="Views\Departamento\Details.vbhtml" />
+    <Content Include="Views\Departamento\Edit.vbhtml" />
+    <Content Include="Views\Departamento\Index.vbhtml" />
+    <Content Include="Views\Shared\Header.vbhtml" />
+    <Content Include="Views\Shared\LeftContent.vbhtml" />
+    <Content Include="Views\Shared\_Layout2.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -286,7 +320,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\_ViewStart.vbhtml" />
     <Content Include="Views\Home\About.vbhtml" />
@@ -298,6 +331,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\layout\" />
+    <Folder Include="Content\themes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

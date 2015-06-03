@@ -6,12 +6,12 @@ Imports Microsoft.AspNet.Identity.Owin
 Imports Microsoft.Owin.Security
 Imports Owin
 
-<Authorize>
+<Authorize(Roles:="Admin")>
 Public Class AccountController
     Inherits Controller
     Private _signInManager As ApplicationSignInManager
     Private _userManager As ApplicationUserManager
-
+    Private db As New Connection
     Public Sub New()
     End Sub
 
@@ -120,6 +120,8 @@ Public Class AccountController
     ' GET: /Account/Register
     <AllowAnonymous>
     Public Function Register() As ActionResult
+        ViewBag.DepartamentoID = New SelectList(db.Departamento, "ID", "Nombre")
+        ViewBag.RolPorDepartamentoID = New SelectList(db.RolPorDepartamento, "ID", "Nombre")
         Return View()
     End Function
 
@@ -132,11 +134,17 @@ Public Class AccountController
         If ModelState.IsValid Then
             Dim user = New ApplicationUser() With {
                 .UserName = model.Email,
-                .Email = model.Email
+                .Email = model.Email,
+                .Apellido = model.Apellido,
+                .DepartamentoID = model.DepartamentoID,
+                .FechaCreacion = model.FechaCreacion,
+                .FechaModificacion = model.FechaModificacion,
+                .Nombre = model.Nombre,
+                .RolPorDepartamentoID = model.RolPorDepartamentoID
             }
             Dim result = Await UserManager.CreateAsync(user, model.Password)
             If result.Succeeded Then
-                Await SignInManager.SignInAsync(user, isPersistent := False, rememberBrowser := False)
+                Await SignInManager.SignInAsync(user, isPersistent:=False, rememberBrowser:=False)
 
                 ' For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 ' Send an email with this link
@@ -148,6 +156,8 @@ Public Class AccountController
             End If
             AddErrors(result)
         End If
+        ViewBag.DepartamentoID = New SelectList(db.Departamento, "ID", "Nombre")
+        ViewBag.RolPorDepartamentoID = New SelectList(db.RolPorDepartamento, "ID", "Nombre")
 
         ' If we got this far, something failed, redisplay form
         Return View(model)

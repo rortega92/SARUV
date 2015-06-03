@@ -1,4 +1,5 @@
-﻿Imports System.Security.Claims
+﻿Imports System.ComponentModel.DataAnnotations
+Imports System.Security.Claims
 Imports System.Threading.Tasks
 Imports Microsoft.AspNet.Identity
 Imports Microsoft.AspNet.Identity.EntityFramework
@@ -13,12 +14,25 @@ Public Class ApplicationUser
         ' Add custom user claims here
         Return userIdentity
     End Function
+
+    Public Property Nombre As String
+    Public Property Apellido As String
+
+    Public Property DepartamentoID As Integer
+    Public Overridable Property Departamento As Departamento
+
+    Public Property RolPorDepartamentoID As Integer
+    Public Overridable Property RolPorDepartamento As RolPorDepartamento
+
+    Public Property FechaCreacion As Date
+    Public Property FechaModificacion As Date
+    Public Property IsDeleted As Integer = 0
 End Class
 
 Public Class ApplicationDbContext
     Inherits IdentityDbContext(Of ApplicationUser)
     Public Sub New()
-        MyBase.New("DefaultConnection", throwIfV1Schema:=False)
+        MyBase.New("Context", throwIfV1Schema:=False)
     End Sub
 
     Public Shared Function Create() As ApplicationDbContext

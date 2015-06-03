@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel.DataAnnotations
+Imports Microsoft.AspNet.Identity.EntityFramework
 
 Public Class ExternalLoginConfirmationViewModel
     <Required>
@@ -20,13 +21,13 @@ End Class
 Public Class VerifyCodeViewModel
     <Required>
     Public Property Provider As String
-    
+
     <Required>
     <Display(Name:="Code")>
     Public Property Code As String
-    
+
     Public Property ReturnUrl As String
-    
+
     <Display(Name:="Remember this browser?")>
     Public Property RememberBrowser As Boolean
 
@@ -55,6 +56,35 @@ Public Class LoginViewModel
 End Class
 
 Public Class RegisterViewModel
+
+    <Required(ErrorMessage:="Este campo es obligatorio1.")>
+    <StringLength(255, MinimumLength:=5, ErrorMessage:="Solo se puede un mínimo de 5 letras y un máximo de 255.")>
+    <RegularExpression("([A-ZÀÈÌÒÙÁÉÍÓÚÝÂÊÎÔÛÃÑÕÄËÏÖÜŸÇßØÅÆ][a-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+\s?)*", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
+    Public Property Nombre As String
+
+    <Required(ErrorMessage:="Este campo es obligatorio2.")>
+    <StringLength(255, MinimumLength:=5, ErrorMessage:="Solo se puede un mínimo de 5 letras y un máximo de 255.")>
+    <RegularExpression("([A-ZÀÈÌÒÙÁÉÍÓÚÝÂÊÎÔÛÃÑÕÄËÏÖÜŸÇßØÅÆ][a-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+\s?)*", ErrorMessage:="Solo se aceptan letras y un espacio entre palabras")>
+    Public Property Apellido As String
+
+    <Display(Name:="Departamento")>
+    <Required(ErrorMessage:="Este campo es obligatorio4.")>
+    Public Property DepartamentoID As Integer
+    Public Overridable Property Departamento As Departamento
+
+    <Display(Name:="Rol por departamento")>
+    <Required(ErrorMessage:="Este campo es obligatorio5.")>
+    Public Property RolPorDepartamentoID As Integer
+    Public Overridable Property RolPorDepartamento As RolPorDepartamento
+
+    <Display(Name:="Fecha de creación")>
+    <DataType(DataType.DateTime)>
+    Public Property FechaCreacion As Date
+
+    <Display(Name:="Fecha de modificación")>
+    <DataType(DataType.DateTime)>
+    Public Property FechaModificacion As Date
+    Public Property IsDeleted As Integer = 0
     <Required>
     <EmailAddress>
     <Display(Name:="Email")>
