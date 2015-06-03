@@ -189,3 +189,5 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 /SaruvMaster/packages/EntityFramework.6.1.2
+/SaruvMaster/SaruvMaster/Web.config
+Web.config
