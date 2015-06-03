@@ -3,7 +3,7 @@ Imports System.Data.Entity.Migrations
 Imports Microsoft.VisualBasic
 
 Namespace Migrations
-    Public Partial Class InitialCreate
+    Public Partial Class Initial
         Inherits DbMigration
     
         Public Overrides Sub Up()
@@ -56,38 +56,39 @@ Namespace Migrations
                 .PrimaryKey(Function(t) t.ID) _
                 .ForeignKey("dbo.Departamento", Function(t) t.DepartamentoID) _
                 .Index(Function(t) t.DepartamentoID)
-
+            
             CreateTable(
                 "dbo.AspNetUsers",
                 Function(c) New With
                     {
-                        .Id = c.String(nullable:=False, maxLength:=128),
-                        .Email = c.String(maxLength:=256),
-                        .EmailConfirmed = c.Boolean(nullable:=False),
+                        .Id = c.String(nullable := False, maxLength := 128),
+                        .Email = c.String(maxLength := 256),
+                        .EmailConfirmed = c.Boolean(nullable := False),
                         .PasswordHash = c.String(),
                         .SecurityStamp = c.String(),
                         .PhoneNumber = c.String(),
-                        .PhoneNumberConfirmed = c.Boolean(nullable:=False),
-                        .TwoFactorEnabled = c.Boolean(nullable:=False),
+                        .PhoneNumberConfirmed = c.Boolean(nullable := False),
+                        .TwoFactorEnabled = c.Boolean(nullable := False),
                         .LockoutEndDateUtc = c.DateTime(),
-                        .LockoutEnabled = c.Boolean(nullable:=False),
-                        .AccessFailedCount = c.Int(nullable:=False),
-                        .UserName = c.String(nullable:=False, maxLength:=256),
+                        .LockoutEnabled = c.Boolean(nullable := False),
+                        .AccessFailedCount = c.Int(nullable := False),
+                        .UserName = c.String(nullable := False, maxLength := 256),
                         .Nombre = c.String(),
                         .Apellido = c.String(),
                         .DepartamentoID = c.Int(),
                         .RolPorDepartamentoID = c.Int(),
                         .FechaCreacion = c.DateTime(),
                         .FechaModificacion = c.DateTime(),
-                        .IsDeleted = c.Int()
+                        .IsDeleted = c.Int(),
+                        .Discriminator = c.String(nullable := False, maxLength := 128)
                     }) _
                 .PrimaryKey(Function(t) t.Id) _
                 .ForeignKey("dbo.Departamento", Function(t) t.DepartamentoID) _
                 .ForeignKey("dbo.RolPorDepartamento", Function(t) t.RolPorDepartamentoID) _
-                .Index(Function(t) t.UserName, unique:=True, name:="UserNameIndex") _
+                .Index(Function(t) t.UserName, unique := True, name := "UserNameIndex") _
                 .Index(Function(t) t.DepartamentoID) _
                 .Index(Function(t) t.RolPorDepartamentoID)
-
+            
             CreateTable(
                 "dbo.AspNetUserClaims",
                 Function(c) New With
@@ -112,25 +113,6 @@ Namespace Migrations
                 .PrimaryKey(Function(t) New With { t.LoginProvider, t.ProviderKey, t.UserId }) _
                 .ForeignKey("dbo.AspNetUsers", Function(t) t.UserId) _
                 .Index(Function(t) t.UserId)
-            
-            CreateTable(
-                "dbo.Usuario",
-                Function(c) New With
-                    {
-                        .ID = c.Int(nullable := False, identity := True),
-                        .Nombre = c.String(nullable := False, maxLength := 255),
-                        .Apellido = c.String(nullable := False, maxLength := 255),
-                        .DepartamentoID = c.Int(nullable := False),
-                        .RolPorDepartamentoID = c.Int(nullable := False),
-                        .FechaCreacion = c.DateTime(nullable := False),
-                        .FechaModificacion = c.DateTime(nullable := False),
-                        .IsDeleted = c.Int(nullable := False)
-                    }) _
-                .PrimaryKey(Function(t) t.ID) _
-                .ForeignKey("dbo.Departamento", Function(t) t.DepartamentoID) _
-                .ForeignKey("dbo.RolPorDepartamento", Function(t) t.RolPorDepartamentoID) _
-                .Index(Function(t) t.DepartamentoID) _
-                .Index(Function(t) t.RolPorDepartamentoID)
             
             CreateStoredProcedure(
                 "dbo.Departamento_Insert",
@@ -230,74 +212,15 @@ Namespace Migrations
                     "WHERE ([ID] = @ID)"
             )
             
-            CreateStoredProcedure(
-                "dbo.Usuario_Insert",
-                Function(p) New With
-                    {
-                        .Nombre = p.String(maxLength := 255),
-                        .Apellido = p.String(maxLength := 255),
-                        .DepartamentoID = p.Int(),
-                        .RolPorDepartamentoID = p.Int(),
-                        .FechaCreacion = p.DateTime(),
-                        .FechaModificacion = p.DateTime()
-                    },
-                body :=
-                    "INSERT [dbo].[Usuario]([Nombre], [Apellido], [DepartamentoID], [RolPorDepartamentoID], [FechaCreacion], [FechaModificacion], [IsDeleted])" & vbCrLf & _
-                    "VALUES (@Nombre, @Apellido, @DepartamentoID, @RolPorDepartamentoID, @FechaCreacion, @FechaModificacion, 0)" & vbCrLf & _
-                    "" & vbCrLf & _
-                    "DECLARE @ID int" & vbCrLf & _
-                    "SELECT @ID = [ID]" & vbCrLf & _
-                    "FROM [dbo].[Usuario]" & vbCrLf & _
-                    "WHERE @@ROWCOUNT > 0 AND [ID] = scope_identity()" & vbCrLf & _
-                    "" & vbCrLf & _
-                    "SELECT t0.[ID]" & vbCrLf & _
-                    "FROM [dbo].[Usuario] AS t0" & vbCrLf & _
-                    "WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
-            )
-            
-            CreateStoredProcedure(
-                "dbo.Usuario_Update",
-                Function(p) New With
-                    {
-                        .ID = p.Int(),
-                        .Nombre = p.String(maxLength := 255),
-                        .Apellido = p.String(maxLength := 255),
-                        .DepartamentoID = p.Int(),
-                        .RolPorDepartamentoID = p.Int(),
-                        .FechaCreacion = p.DateTime(),
-                        .FechaModificacion = p.DateTime()
-                    },
-                body :=
-                    "UPDATE [dbo].[Usuario]" & vbCrLf & _
-                    "SET [Nombre] = @Nombre, [Apellido] = @Apellido, [DepartamentoID] = @DepartamentoID, [RolPorDepartamentoID] = @RolPorDepartamentoID, [FechaCreacion] = @FechaCreacion, [FechaModificacion] = @FechaModificacion" & vbCrLf & _
-                    "WHERE ([ID] = @ID)"
-            )
-            
-            CreateStoredProcedure(
-                "dbo.Usuario_Delete",
-                Function(p) New With
-                    {
-                        .ID = p.Int()
-                    },
-                body :=
-                    "DELETE [dbo].[Usuario]" & vbCrLf & _
-                    "WHERE ([ID] = @ID)"
-            )
-            
         End Sub
         
         Public Overrides Sub Down()
-            DropStoredProcedure("dbo.Usuario_Delete")
-            DropStoredProcedure("dbo.Usuario_Update")
-            DropStoredProcedure("dbo.Usuario_Insert")
             DropStoredProcedure("dbo.RolPorDepartamento_Delete")
             DropStoredProcedure("dbo.RolPorDepartamento_Update")
             DropStoredProcedure("dbo.RolPorDepartamento_Insert")
             DropStoredProcedure("dbo.Departamento_Delete")
             DropStoredProcedure("dbo.Departamento_Update")
             DropStoredProcedure("dbo.Departamento_Insert")
-            DropForeignKey("dbo.Usuario", "RolPorDepartamentoID", "dbo.RolPorDepartamento")
-            DropForeignKey("dbo.Usuario", "DepartamentoID", "dbo.Departamento")
             DropForeignKey("dbo.AspNetUsers", "RolPorDepartamentoID", "dbo.RolPorDepartamento")
             DropForeignKey("dbo.AspNetUsers", "DepartamentoID", "dbo.Departamento")
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers")
@@ -305,8 +228,6 @@ Namespace Migrations
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers")
             DropForeignKey("dbo.RolPorDepartamento", "DepartamentoID", "dbo.Departamento")
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles")
-            DropIndex("dbo.Usuario", New String() { "RolPorDepartamentoID" })
-            DropIndex("dbo.Usuario", New String() { "DepartamentoID" })
             DropIndex("dbo.AspNetUserLogins", New String() { "UserId" })
             DropIndex("dbo.AspNetUserClaims", New String() { "UserId" })
             DropIndex("dbo.AspNetUsers", New String() { "RolPorDepartamentoID" })
@@ -316,7 +237,6 @@ Namespace Migrations
             DropIndex("dbo.AspNetUserRoles", New String() { "RoleId" })
             DropIndex("dbo.AspNetUserRoles", New String() { "UserId" })
             DropIndex("dbo.AspNetRoles", "RoleNameIndex")
-            DropTable("dbo.Usuario")
             DropTable("dbo.AspNetUserLogins")
             DropTable("dbo.AspNetUserClaims")
             DropTable("dbo.AspNetUsers")

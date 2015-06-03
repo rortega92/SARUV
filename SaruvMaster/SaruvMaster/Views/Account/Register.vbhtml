@@ -46,22 +46,6 @@ End Code
     </div>
 </div>
 
-<div class="form-group">
-    @Html.LabelFor(Function(model) model.FechaCreacion, htmlAttributes:=New With {.class = "control-label col-md-2"})
-    <div class="col-md-10">
-        @Html.EditorFor(Function(model) model.FechaCreacion, New With {.htmlAttributes = New With {.class = "form-control"}})
-        @Html.ValidationMessageFor(Function(model) model.FechaCreacion, "", New With {.class = "text-danger"})
-    </div>
-</div>
-
-<div class="form-group">
-    @Html.LabelFor(Function(model) model.FechaModificacion, htmlAttributes:=New With {.class = "control-label col-md-2"})
-    <div class="col-md-10">
-        @Html.EditorFor(Function(model) model.FechaModificacion, New With {.htmlAttributes = New With {.class = "form-control"}})
-        @Html.ValidationMessageFor(Function(model) model.FechaModificacion, "", New With {.class = "text-danger"})
-    </div>
-</div>
-
     <div class="form-group">
         @Html.LabelFor(Function(m) m.Email, New With {.class = "col-md-2 control-label"})
         <div class="col-md-10">

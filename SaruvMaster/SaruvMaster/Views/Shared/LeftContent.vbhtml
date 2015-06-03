@@ -34,7 +34,6 @@
                     <li> <a Class="" href="/TipoDeRecurso">Tipo de Recurso</a></li>
                     <li> <a Class="" href="/Recurso">Recurso</a></li>
                     <li> <a Class="" href="/RolPorDepartamento">Rol por Departamento</a></li>
-                    <li> <a Class="" href="/Usuario">Usuario</a></li>
                 </ul>
             </li>
             End If
