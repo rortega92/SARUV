@@ -15,8 +15,6 @@ Public Class Connection
 
     Public Property RolPorDepartamento As DbSet(Of RolPorDepartamento)
 
-    Public Property Usuario As DbSet(Of Usuario)
-
 
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
         MyBase.OnModelCreating(modelBuilder)
@@ -26,10 +24,8 @@ Public Class Connection
 
         modelBuilder.Entity(Of Departamento).MapToStoredProcedures()
         modelBuilder.Entity(Of RolPorDepartamento).MapToStoredProcedures()
-        modelBuilder.Entity(Of Usuario).MapToStoredProcedures()
 
 
-        modelBuilder.Entity(Of Usuario).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of RolPorDepartamento).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of Departamento).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
     End Sub

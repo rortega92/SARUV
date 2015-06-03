@@ -131,15 +131,17 @@ Public Class AccountController
     <AllowAnonymous>
     <ValidateAntiForgeryToken>
     Public Async Function Register(model As RegisterViewModel) As Task(Of ActionResult)
+        model.FechaCreacion = DateTime.Now
+        model.FechaModificacion = model.FechaCreacion
         If ModelState.IsValid Then
             Dim user = New ApplicationUser() With {
                 .UserName = model.Email,
                 .Email = model.Email,
-                .Apellido = model.Apellido,
-                .DepartamentoID = model.DepartamentoID,
+                .Nombre = model.Nombre,
+                .Apellido = model.Apellido,                
                 .FechaCreacion = model.FechaCreacion,
                 .FechaModificacion = model.FechaModificacion,
-                .Nombre = model.Nombre,
+                .DepartamentoID = model.DepartamentoID,
                 .RolPorDepartamentoID = model.RolPorDepartamentoID
             }
             Dim result = Await UserManager.CreateAsync(user, model.Password)
