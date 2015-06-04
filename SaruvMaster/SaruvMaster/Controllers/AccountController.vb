@@ -5,6 +5,7 @@ Imports Microsoft.AspNet.Identity
 Imports Microsoft.AspNet.Identity.Owin
 Imports Microsoft.Owin.Security
 Imports Owin
+Imports Microsoft.AspNet.Identity.EntityFramework
 
 <Authorize>
 Public Class AccountController
@@ -25,7 +26,7 @@ Public Class AccountController
             Return If(_signInManager, HttpContext.GetOwinContext().[Get](Of ApplicationSignInManager)())
         End Get
         Private Set(value As ApplicationSignInManager)
-            _signInManager = Value
+            _signInManager = value
         End Set
     End Property
 
@@ -34,7 +35,7 @@ Public Class AccountController
             Return If(_userManager, HttpContext.GetOwinContext().GetUserManager(Of ApplicationUserManager)())
         End Get
         Private Set(value As ApplicationUserManager)
-            _userManager = Value
+            _userManager = value
         End Set
     End Property
 
@@ -130,8 +131,16 @@ Public Class AccountController
     <AllowAnonymous>
     <ValidateAntiForgeryToken>
     Public Async Function Register(model As RegisterViewModel) As Task(Of ActionResult)
+        Dim roleStore = New RoleStore(Of IdentityRole)(db)
+        Dim roleManager = New RoleManager(Of IdentityRole)(roleStore)
         model.FechaCreacion = DateTime.Now
         model.FechaModificacion = model.FechaCreacion
+        Dim isJefe As Integer = 0
+        If Not (model.isJefe Is Nothing) Then
+            If model.isJefe.Equals("Jefe") Then
+                isJefe = 1
+            End If
+        End If
         If ModelState.IsValid Then
             Dim user = New ApplicationUser() With {
                 .UserName = model.Email,
@@ -140,8 +149,23 @@ Public Class AccountController
                 .Apellido = model.Apellido,
                 .FechaCreacion = model.FechaCreacion,
                 .FechaModificacion = model.FechaModificacion,
-                .DepartamentoID = model.DepartamentoID
+                .DepartamentoID = model.DepartamentoID,
+                .isJefe = isJefe
             }
+            If (model.DepartamentoID Is Nothing) Then
+                Dim resRole = Await roleManager.FindByNameAsync("Admin")
+                user.Roles.Add(New IdentityUserRole() With {
+                    .RoleId = resRole.Id,
+                    .UserId = user.Id
+                })
+            Else
+                Dim resRole = Await roleManager.FindByNameAsync("Estándar")
+                user.Roles.Add(New IdentityUserRole() With {
+                    .RoleId = resRole.Id,
+                    .UserId = user.Id
+                })
+            End If
+
             Dim result = Await UserManager.CreateAsync(user, model.Password)
             If result.Succeeded Then
                 Await SignInManager.SignInAsync(user, isPersistent:=False, rememberBrowser:=False)

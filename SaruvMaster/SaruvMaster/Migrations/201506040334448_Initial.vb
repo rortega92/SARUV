@@ -23,11 +23,11 @@ Namespace Migrations
                 "dbo.AspNetRoles",
                 Function(c) New With
                     {
-                        .Id = c.String(nullable := False, maxLength := 128),
-                        .Name = c.String(nullable := False, maxLength := 256)
+                        .Id = c.String(nullable:=False, maxLength:=128),
+                        .Name = c.String(nullable:=False, maxLength:=256)
                     }) _
                 .PrimaryKey(Function(t) t.Id) _
-                .Index(Function(t) t.Name, unique := True, name := "RoleNameIndex")
+                .Index(Function(t) t.Name, unique:=True, name:="RoleNameIndex")
             
             CreateTable(
                 "dbo.AspNetUserRoles",
@@ -63,7 +63,8 @@ Namespace Migrations
                         .DepartamentoID = c.Int(),
                         .FechaCreacion = c.DateTime(),
                         .FechaModificacion = c.DateTime(),
-                        .IsDeleted = c.Int()
+                        .IsDeleted = c.Int(),
+                        .isJefe = c.Int()
                     }) _
                 .PrimaryKey(Function(t) t.Id) _
                 .ForeignKey("dbo.Departamento", Function(t) t.DepartamentoID) _

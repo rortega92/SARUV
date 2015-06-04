@@ -24,6 +24,7 @@ Public Class ApplicationUser
     Public Property FechaCreacion As Date
     Public Property FechaModificacion As Date
     Public Property IsDeleted As Integer = 0
+    Public Property isJefe As Integer
 End Class
 
 Public Class ApplicationDbContext

@@ -40,9 +40,9 @@ End Code
 </div>
 
 <div class="form-group hidden">
-    <label for="Jefe" class="control-label col-md-2">Cargo en Departamento @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+    <label for="isJefe" class="control-label col-md-2">Cargo en Departamento @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
     <div class="col-md-10">
-        <select class="form-control" id="isBoss" name="isBoss">
+        <select class="form-control" id="isJefe" name="isJefe">
             <option value="Jefe">Jefe</option>
             <option value="Regular">Regular</option>
         </select>
@@ -77,7 +77,7 @@ End Code
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-default" value="Register" id="Submit" />
         </div>
     </div>
     </text>
