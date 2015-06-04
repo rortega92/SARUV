@@ -138,7 +138,7 @@ Public Class AccountController
                 .UserName = model.Email,
                 .Email = model.Email,
                 .Nombre = model.Nombre,
-                .Apellido = model.Apellido,                
+                .Apellido = model.Apellido,
                 .FechaCreacion = model.FechaCreacion,
                 .FechaModificacion = model.FechaModificacion,
                 .DepartamentoID = model.DepartamentoID,

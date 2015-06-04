@@ -61,31 +61,30 @@ Namespace Migrations
                 "dbo.AspNetUsers",
                 Function(c) New With
                     {
-                        .Id = c.String(nullable := False, maxLength := 128),
-                        .Email = c.String(maxLength := 256),
-                        .EmailConfirmed = c.Boolean(nullable := False),
+                        .Id = c.String(nullable:=False, maxLength:=128),
+                        .Email = c.String(maxLength:=256),
+                        .EmailConfirmed = c.Boolean(nullable:=False),
                         .PasswordHash = c.String(),
                         .SecurityStamp = c.String(),
                         .PhoneNumber = c.String(),
-                        .PhoneNumberConfirmed = c.Boolean(nullable := False),
-                        .TwoFactorEnabled = c.Boolean(nullable := False),
+                        .PhoneNumberConfirmed = c.Boolean(nullable:=False),
+                        .TwoFactorEnabled = c.Boolean(nullable:=False),
                         .LockoutEndDateUtc = c.DateTime(),
-                        .LockoutEnabled = c.Boolean(nullable := False),
-                        .AccessFailedCount = c.Int(nullable := False),
-                        .UserName = c.String(nullable := False, maxLength := 256),
+                        .LockoutEnabled = c.Boolean(nullable:=False),
+                        .AccessFailedCount = c.Int(nullable:=False),
+                        .UserName = c.String(nullable:=False, maxLength:=256),
                         .Nombre = c.String(),
                         .Apellido = c.String(),
                         .DepartamentoID = c.Int(),
                         .RolPorDepartamentoID = c.Int(),
                         .FechaCreacion = c.DateTime(),
                         .FechaModificacion = c.DateTime(),
-                        .IsDeleted = c.Int(),
-                        .Discriminator = c.String(nullable := False, maxLength := 128)
+                        .IsDeleted = c.Int()
                     }) _
                 .PrimaryKey(Function(t) t.Id) _
                 .ForeignKey("dbo.Departamento", Function(t) t.DepartamentoID) _
                 .ForeignKey("dbo.RolPorDepartamento", Function(t) t.RolPorDepartamentoID) _
-                .Index(Function(t) t.UserName, unique := True, name := "UserNameIndex") _
+                .Index(Function(t) t.UserName, unique:=True, name:="UserNameIndex") _
                 .Index(Function(t) t.DepartamentoID) _
                 .Index(Function(t) t.RolPorDepartamentoID)
             
