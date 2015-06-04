@@ -13,7 +13,6 @@ Public Class Connection
 
     Public Property Departamento As DbSet(Of Departamento)
 
-    Public Property RolPorDepartamento As DbSet(Of RolPorDepartamento)
 
 
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
@@ -23,10 +22,7 @@ Public Class Connection
         modelBuilder.Conventions.Remove(Of PluralizingTableNameConvention)()
 
         modelBuilder.Entity(Of Departamento).MapToStoredProcedures()
-        modelBuilder.Entity(Of RolPorDepartamento).MapToStoredProcedures()
 
-
-        modelBuilder.Entity(Of RolPorDepartamento).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of Departamento).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
     End Sub
 

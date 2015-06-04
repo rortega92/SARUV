@@ -194,21 +194,19 @@
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\DepartamentoController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
-    <Compile Include="Controllers\RolPorDepartamentoController.vb" />
     <Compile Include="DAL\Connection.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506032128417_Initial.Designer.vb">
-      <DependentUpon>201506032128417_Initial.vb</DependentUpon>
+    <Compile Include="Migrations\201506040112487_Initial.Designer.vb">
+      <DependentUpon>201506040112487_Initial.vb</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506032128417_Initial.vb" />
+    <Compile Include="Migrations\201506040112487_Initial.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\Departamento.vb" />
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\ManageViewModels.vb" />
-    <Compile Include="Models\RolPorDepartamento.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -228,8 +226,8 @@
     <Compile Include="Startup.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201506032128417_Initial.resx">
-      <DependentUpon>201506032128417_Initial.vb</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506040112487_Initial.resx">
+      <DependentUpon>201506040112487_Initial.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -259,6 +257,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\register.js" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.vbhtml" />
     <Content Include="Views\Account\ConfirmEmail.vbhtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.vbhtml" />
@@ -279,11 +278,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.vbhtml" />
     <Content Include="Views\Shared\Lockout.vbhtml" />
     <Content Include="Views\Shared\_LoginPartial.vbhtml" />
-    <Content Include="Views\RolPorDepartamento\Create.vbhtml" />
-    <Content Include="Views\RolPorDepartamento\Delete.vbhtml" />
-    <Content Include="Views\RolPorDepartamento\Details.vbhtml" />
-    <Content Include="Views\RolPorDepartamento\Edit.vbhtml" />
-    <Content Include="Views\RolPorDepartamento\Index.vbhtml" />
     <Content Include="Views\Departamento\Create.vbhtml" />
     <Content Include="Views\Departamento\Delete.vbhtml" />
     <Content Include="Views\Departamento\Details.vbhtml" />

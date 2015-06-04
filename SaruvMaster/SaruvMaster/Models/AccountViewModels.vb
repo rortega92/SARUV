@@ -68,14 +68,8 @@ Public Class RegisterViewModel
     Public Property Apellido As String
 
     <Display(Name:="Departamento")>
-    <Required(ErrorMessage:="Este campo es obligatorio4.")>
-    Public Property DepartamentoID As Integer
+    Public Property DepartamentoID As Nullable(Of Integer)
     Public Overridable Property Departamento As Departamento
-
-    <Display(Name:="Rol por departamento")>
-    <Required(ErrorMessage:="Este campo es obligatorio5.")>
-    Public Property RolPorDepartamentoID As Integer
-    Public Overridable Property RolPorDepartamento As RolPorDepartamento
 
     <Display(Name:="Fecha de creación")>
     <DataType(DataType.DateTime)>

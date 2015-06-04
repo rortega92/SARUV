@@ -121,7 +121,6 @@ Public Class AccountController
     <AllowAnonymous>
     Public Function Register() As ActionResult
         ViewBag.DepartamentoID = New SelectList(db.Departamento, "ID", "Nombre")
-        ViewBag.RolPorDepartamentoID = New SelectList(db.RolPorDepartamento, "ID", "Nombre")
         Return View()
     End Function
 
@@ -141,8 +140,7 @@ Public Class AccountController
                 .Apellido = model.Apellido,
                 .FechaCreacion = model.FechaCreacion,
                 .FechaModificacion = model.FechaModificacion,
-                .DepartamentoID = model.DepartamentoID,
-                .RolPorDepartamentoID = model.RolPorDepartamentoID
+                .DepartamentoID = model.DepartamentoID
             }
             Dim result = Await UserManager.CreateAsync(user, model.Password)
             If result.Succeeded Then
@@ -159,7 +157,6 @@ Public Class AccountController
             AddErrors(result)
         End If
         ViewBag.DepartamentoID = New SelectList(db.Departamento, "ID", "Nombre")
-        ViewBag.RolPorDepartamentoID = New SelectList(db.RolPorDepartamento, "ID", "Nombre")
 
         ' If we got this far, something failed, redisplay form
         Return View(model)

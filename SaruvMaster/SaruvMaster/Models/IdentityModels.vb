@@ -18,11 +18,8 @@ Public Class ApplicationUser
     Public Property Nombre As String
     Public Property Apellido As String
 
-    Public Property DepartamentoID As Integer
+    Public Property DepartamentoID As Nullable(Of Integer)
     Public Overridable Property Departamento As Departamento
-
-    Public Property RolPorDepartamentoID As Integer
-    Public Overridable Property RolPorDepartamento As RolPorDepartamento
 
     Public Property FechaCreacion As Date
     Public Property FechaModificacion As Date

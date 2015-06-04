@@ -29,20 +29,31 @@ End Code
     </div>
 </div>
 
-
 <div class="form-group">
+    <label for="Administrador" class="control-label col-md-2">Tipo de Usuario @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+    <div class="col-md-10">
+        <select class="form-control" id="isAdmin" name="isAdmin">
+            <option value="Administrador">Administrador</option>
+            <option value="Estándar">Estándar</option>
+        </select>
+    </div>
+</div>
+
+<div class="form-group hidden">
+    <label for="Jefe" class="control-label col-md-2">Cargo en Departamento @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+    <div class="col-md-10">
+        <select class="form-control" id="isBoss" name="isBoss">
+            <option value="Jefe">Jefe</option>
+            <option value="Regular">Regular</option>
+        </select>
+    </div>
+</div>
+
+<div class="form-group hidden">
     @Html.LabelFor(Function(model) model.DepartamentoID, "DepartamentoID", htmlAttributes:=New With {.class = "control-label col-md-2"})
     <div class="col-md-10">
         @Html.DropDownList("DepartamentoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
         @Html.ValidationMessageFor(Function(model) model.DepartamentoID, "", New With {.class = "text-danger"})
-    </div>
-</div>
-
-<div class="form-group">
-    @Html.LabelFor(Function(model) model.RolPorDepartamentoID, "RolPorDepartamentoID", htmlAttributes:=New With {.class = "control-label col-md-2"})
-    <div class="col-md-10">
-        @Html.DropDownList("RolPorDepartamentoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
-        @Html.ValidationMessageFor(Function(model) model.RolPorDepartamentoID, "", New With {.class = "text-danger"})
     </div>
 </div>
 
@@ -74,4 +85,5 @@ End Using
 
 @section Scripts
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/register.js")
 End Section

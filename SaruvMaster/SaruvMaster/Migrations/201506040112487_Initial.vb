@@ -43,21 +43,6 @@ Namespace Migrations
                 .Index(Function(t) t.RoleId)
             
             CreateTable(
-                "dbo.RolPorDepartamento",
-                Function(c) New With
-                    {
-                        .ID = c.Int(nullable := False, identity := True),
-                        .Nombre = c.String(nullable := False, maxLength := 255),
-                        .DepartamentoID = c.Int(nullable := False),
-                        .FechaCreacion = c.DateTime(nullable := False),
-                        .FechaModificacion = c.DateTime(nullable := False),
-                        .IsDeleted = c.Int(nullable := False)
-                    }) _
-                .PrimaryKey(Function(t) t.ID) _
-                .ForeignKey("dbo.Departamento", Function(t) t.DepartamentoID) _
-                .Index(Function(t) t.DepartamentoID)
-            
-            CreateTable(
                 "dbo.AspNetUsers",
                 Function(c) New With
                     {
@@ -76,17 +61,14 @@ Namespace Migrations
                         .Nombre = c.String(),
                         .Apellido = c.String(),
                         .DepartamentoID = c.Int(),
-                        .RolPorDepartamentoID = c.Int(),
                         .FechaCreacion = c.DateTime(),
                         .FechaModificacion = c.DateTime(),
                         .IsDeleted = c.Int()
                     }) _
                 .PrimaryKey(Function(t) t.Id) _
                 .ForeignKey("dbo.Departamento", Function(t) t.DepartamentoID) _
-                .ForeignKey("dbo.RolPorDepartamento", Function(t) t.RolPorDepartamentoID) _
                 .Index(Function(t) t.UserName, unique:=True, name:="UserNameIndex") _
-                .Index(Function(t) t.DepartamentoID) _
-                .Index(Function(t) t.RolPorDepartamentoID)
+                .Index(Function(t) t.DepartamentoID)
             
             CreateTable(
                 "dbo.AspNetUserClaims",
@@ -161,85 +143,27 @@ Namespace Migrations
                     "WHERE ([ID] = @ID)"
             )
             
-            CreateStoredProcedure(
-                "dbo.RolPorDepartamento_Insert",
-                Function(p) New With
-                    {
-                        .Nombre = p.String(maxLength := 255),
-                        .DepartamentoID = p.Int(),
-                        .FechaCreacion = p.DateTime(),
-                        .FechaModificacion = p.DateTime()
-                    },
-                body :=
-                    "INSERT [dbo].[RolPorDepartamento]([Nombre], [DepartamentoID], [FechaCreacion], [FechaModificacion], [IsDeleted])" & vbCrLf & _
-                    "VALUES (@Nombre, @DepartamentoID, @FechaCreacion, @FechaModificacion, 0)" & vbCrLf & _
-                    "" & vbCrLf & _
-                    "DECLARE @ID int" & vbCrLf & _
-                    "SELECT @ID = [ID]" & vbCrLf & _
-                    "FROM [dbo].[RolPorDepartamento]" & vbCrLf & _
-                    "WHERE @@ROWCOUNT > 0 AND [ID] = scope_identity()" & vbCrLf & _
-                    "" & vbCrLf & _
-                    "SELECT t0.[ID]" & vbCrLf & _
-                    "FROM [dbo].[RolPorDepartamento] AS t0" & vbCrLf & _
-                    "WHERE @@ROWCOUNT > 0 AND t0.[ID] = @ID"
-            )
-            
-            CreateStoredProcedure(
-                "dbo.RolPorDepartamento_Update",
-                Function(p) New With
-                    {
-                        .ID = p.Int(),
-                        .Nombre = p.String(maxLength := 255),
-                        .DepartamentoID = p.Int(),
-                        .FechaCreacion = p.DateTime(),
-                        .FechaModificacion = p.DateTime()
-                    },
-                body :=
-                    "UPDATE [dbo].[RolPorDepartamento]" & vbCrLf & _
-                    "SET [Nombre] = @Nombre, [DepartamentoID] = @DepartamentoID, [FechaCreacion] = @FechaCreacion, [FechaModificacion] = @FechaModificacion" & vbCrLf & _
-                    "WHERE ([ID] = @ID)"
-            )
-            
-            CreateStoredProcedure(
-                "dbo.RolPorDepartamento_Delete",
-                Function(p) New With
-                    {
-                        .ID = p.Int()
-                    },
-                body :=
-                    "DELETE [dbo].[RolPorDepartamento]" & vbCrLf & _
-                    "WHERE ([ID] = @ID)"
-            )
-            
         End Sub
         
         Public Overrides Sub Down()
-            DropStoredProcedure("dbo.RolPorDepartamento_Delete")
-            DropStoredProcedure("dbo.RolPorDepartamento_Update")
-            DropStoredProcedure("dbo.RolPorDepartamento_Insert")
             DropStoredProcedure("dbo.Departamento_Delete")
             DropStoredProcedure("dbo.Departamento_Update")
             DropStoredProcedure("dbo.Departamento_Insert")
-            DropForeignKey("dbo.AspNetUsers", "RolPorDepartamentoID", "dbo.RolPorDepartamento")
             DropForeignKey("dbo.AspNetUsers", "DepartamentoID", "dbo.Departamento")
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers")
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers")
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers")
-            DropForeignKey("dbo.RolPorDepartamento", "DepartamentoID", "dbo.Departamento")
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles")
             DropIndex("dbo.AspNetUserLogins", New String() { "UserId" })
             DropIndex("dbo.AspNetUserClaims", New String() { "UserId" })
-            DropIndex("dbo.AspNetUsers", New String() { "RolPorDepartamentoID" })
             DropIndex("dbo.AspNetUsers", New String() { "DepartamentoID" })
             DropIndex("dbo.AspNetUsers", "UserNameIndex")
-            DropIndex("dbo.RolPorDepartamento", New String() { "DepartamentoID" })
             DropIndex("dbo.AspNetUserRoles", New String() { "RoleId" })
             DropIndex("dbo.AspNetUserRoles", New String() { "UserId" })
             DropIndex("dbo.AspNetRoles", "RoleNameIndex")
             DropTable("dbo.AspNetUserLogins")
             DropTable("dbo.AspNetUserClaims")
             DropTable("dbo.AspNetUsers")
-            DropTable("dbo.RolPorDepartamento")
             DropTable("dbo.AspNetUserRoles")
             DropTable("dbo.AspNetRoles")
             DropTable("dbo.Departamento")
