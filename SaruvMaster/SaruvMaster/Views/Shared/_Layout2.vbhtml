@@ -42,7 +42,12 @@
 <body>
     <!-- container section start -->
     <section id="container" class="">
-        <header class="header dark-bg">@Html.Partial("Header")</header>
+        @Code
+            If ViewBag.pageTitle Is Nothing Then
+                ViewBag.pageTitle=""
+            End If
+        End Code
+        <header class="header dark-bg" style="display:flex">@Html.Partial("Header")</header>
         @Html.Partial("LeftContent")
         <section id="main-content">
             <section class="wrapper">@RenderBody()</section>

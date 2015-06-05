@@ -918,9 +918,23 @@ Namespace Migrations
                     {
                         .Id = p.Int()
                     },
-                body :=
+                body:=
                     "DELETE [dbo].[TipoDeRecurso]" & vbCrLf & _
                     "WHERE ([Id] = @Id)"
+            )
+            CreateStoredProcedure(
+                "dbo.RecursoPorUsuario_UpdateEstado",
+                Function(p) New With
+                    {
+                        .ID = p.Int(),
+                        .RecursoID = p.Int(),
+                        .UsuarioID = p.String(),
+                        .Estado = p.String()
+                    },
+                body:=
+                    "UPDATE [dbo].[RecursoPorUsuario]" & vbCrLf & _
+                    "SET [Estado] = @Estado, [RecursoID] = @RecursoID, [UsuarioID] = @UsuarioID" & vbCrLf & _
+                    "WHERE ([ID] = @ID)"
             )
             
         End Sub

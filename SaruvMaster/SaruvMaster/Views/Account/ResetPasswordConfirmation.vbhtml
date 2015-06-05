@@ -1,12 +1,21 @@
 ﻿@Code
-    ViewBag.Title = "Reset password confirmation"
+    ViewBag.Title = "Confirmación de restablecimiento de contraseña"
 End Code
 
 <hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
+    <h3>Restablecer contraseña</h3>
 </hgroup>
-<div>
-    <p>
-        Your password has been reset. Please @Html.ActionLink("click here to log in", "Login", "Account", routeValues:=Nothing, htmlAttributes:=New With {Key .id = "loginLink"})
-    </p>
-</div>
+
+<section class="panel">
+    <header class="panel-heading"> @ViewBag.Title.
+    </header>
+    <div class="panel-body">
+        <div class="form-horizontal">
+            <div>
+                <p>
+                    Se restableció la contraseña. @Html.ActionLink("Haga clic aquí para iniciar sesión", "Login", "Account", routeValues:=Nothing, htmlAttributes:=New With {Key .id = "loginLink"})
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
