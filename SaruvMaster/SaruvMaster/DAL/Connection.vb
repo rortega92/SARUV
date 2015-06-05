@@ -73,12 +73,25 @@ Public Class Connection
     Public Overrides Function Savechanges() As Integer
 
         Dim changed = ChangeTracker.Entries()
-        For Each item In changed.Where(Function(m) m.State.Equals(EntityState.Deleted))
-            SoftDelete(item, "")
+        For Each item In changed.Where(Function(m) m.State.Equals(EntityState.Deleted) Or m.State.Equals(EntityState.Modified))
+            If item.State.Equals(EntityState.Deleted) Then
+                SoftDelete(item, "")
+            Else
+                SoftDelete(item, "UpdateDate")
+            End If
+
         Next
 
         Return MyBase.SaveChanges()
     End Function
+
+    Public Function UpdateDate(entry As Infrastructure.DbEntityEntry) As Integer
+
+        SoftDelete(entry, "UpdateDate")
+
+        Return MyBase.SaveChanges()
+    End Function
+
     Public Function deshabilitar(value As String) As Integer
         Dim changed = ChangeTracker.Entries()
         For Each item In changed.Where(Function(m) m.State.Equals(EntityState.Deleted))
@@ -92,15 +105,22 @@ Public Class Connection
         Dim tableName As String = GetTableName(entryEntityType)
         Dim primaryKeyName As String = GetPrimaryKeyName(entryEntityType)
 
-        Dim sql As String
+        'Dim sql As String
         If IsNothing(value) Then
-            sql = String.Format("UPDATE {0} SET IsDeleted = 1 WHERE {1} = @id", tableName, primaryKeyName)
+            Dim sql = String.Format("UPDATE {0} SET IsDeleted = 1 WHERE {1} = @id", tableName, primaryKeyName)
+
+            Database.ExecuteSqlCommand(sql, New SqlClient.SqlParameter("@id", entry.OriginalValues(primaryKeyName)))
         Else
-            sql = String.Format("UPDATE {0} SET IsDeleted = 2 WHERE {1} = @id", tableName, primaryKeyName)
+            If value.Equals("UpdateDate") Then
+                Dim sql1 = String.Format("UPDATE {0} SET FechaModificacion = GETDATE() WHERE {1} = @id", tableName, primaryKeyName)
+
+                Database.ExecuteSqlCommand(sql1, New SqlClient.SqlParameter("@id", entry.OriginalValues(primaryKeyName)))
+            End If
+            ' sql = String.Format("UPDATE {0} SET IsDeleted = 2 WHERE {1} = @id", tableName, primaryKeyName)
         End If
 
 
-        Database.ExecuteSqlCommand(sql, New SqlClient.SqlParameter("@id", entry.OriginalValues(primaryKeyName)))
+        'Database.ExecuteSqlCommand(sql, New SqlClient.SqlParameter("@id", entry.OriginalValues(primaryKeyName)))
 
         ' prevent hard delete            
         entry.State = EntityState.Detached
@@ -136,5 +156,4 @@ Public Class Connection
 
         Return _mappingCache(type)
     End Function
-
 End Class

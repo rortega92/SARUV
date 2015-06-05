@@ -9,11 +9,11 @@ Public Class Departamento
 
     <Display(Name:="Fecha de creación")>
     <DataType(DataType.DateTime)>
-    Public Property FechaCreacion As DateTime
+    Public Property FechaCreacion As DateTime = Date.Now
 
     <Display(Name:="Fecha de modificación")>
     <DataType(DataType.DateTime)>
-    Public Property FechaModificacion As DateTime
+    Public Property FechaModificacion As DateTime = Date.Now
     Public Property IsDeleted As Integer = 0
 
 End Class

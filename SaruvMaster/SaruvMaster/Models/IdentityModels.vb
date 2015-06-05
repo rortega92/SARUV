@@ -36,4 +36,9 @@ Public Class ApplicationDbContext
     Public Shared Function Create() As ApplicationDbContext
         Return New ApplicationDbContext()
     End Function
+
+    Public Property ApplicationUsers As System.Data.Entity.DbSet(Of ApplicationUser)
+    Public Property Departamentoes As System.Data.Entity.DbSet(Of Departamento)
+    Public Property EncargadoDeValidacions As System.Data.Entity.DbSet(Of EncargadoDeValidacion)
+    Public Property Facultads As System.Data.Entity.DbSet(Of Facultad)
 End Class

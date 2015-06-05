@@ -44,7 +44,7 @@ Namespace Controllers
         Function Create(<Bind(Include:="ID,Nombre,FechaCreacion,FechaModificacion")> ByVal departamento As Departamento) As ActionResult
             If ModelState.IsValid Then
                 db.Departamento.Add(departamento)
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             Return View(departamento)
@@ -70,7 +70,7 @@ Namespace Controllers
         Function Edit(<Bind(Include:="ID,Nombre,FechaCreacion,FechaModificacion")> ByVal departamento As Departamento) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(departamento).State = EntityState.Modified
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             Return View(departamento)

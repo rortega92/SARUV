@@ -8,16 +8,16 @@ Public Class ModalidadDeCurso
     Public Property Nombre As String
 
     <Display(Name:="Duración de Semanas"), Required(ErrorMessage:="Este campo es obligatorio")>
-    <Range(5, 10, ErrorMessage:="La duración solo puede ser entre 5 y 10 semanas")>
+    <Range(1, 10, ErrorMessage:="La duración solo puede ser entre 5 y 10 semanas")>
     Public Property Duracion As Integer
 
     <Display(Name:="Fecha de creación")>
     <DataType(DataType.DateTime)>
-    Public Property FechaCreacion As Date
+    Public Property FechaCreacion As Date = Date.Now
 
     <Display(Name:="Fecha de modificación")>
     <DataType(DataType.DateTime)>
-    Public Property FechaModificacion As Date
+    Public Property FechaModificacion As Date = Date.Now
 
     Public Property IsDeleted As Integer = 0
 

@@ -46,12 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -192,9 +192,18 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="Controllers\AccountController.vb" />
+    <Compile Include="Controllers\ClienteCorporativoController.vb" />
+    <Compile Include="Controllers\CursoController.vb" />
     <Compile Include="Controllers\DepartamentoController.vb" />
+    <Compile Include="Controllers\DocenteController.vb" />
+    <Compile Include="Controllers\EmpresaController.vb" />
+    <Compile Include="Controllers\EncargadoDeValidacionController.vb" />
+    <Compile Include="Controllers\EventosEstudioController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
+    <Compile Include="Controllers\ModalidadDeCursoController.vb" />
     <Compile Include="Controllers\PersonalUVController.vb" />
+    <Compile Include="Controllers\RecursoController.vb" />
+    <Compile Include="Controllers\TipoDeRecursoController.vb" />
     <Compile Include="DAL\Connection.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -307,6 +316,51 @@
     <Content Include="Views\Shared\LeftContent.vbhtml" />
     <Content Include="Views\Shared\_Layout2.vbhtml" />
     <Content Include="Views\PersonalUV\Index.vbhtml" />
+    <Content Include="Views\Recurso\Create.vbhtml" />
+    <Content Include="Views\Recurso\Delete.vbhtml" />
+    <Content Include="Views\Recurso\Details.vbhtml" />
+    <Content Include="Views\Recurso\Edit.vbhtml" />
+    <Content Include="Views\Recurso\Index.vbhtml" />
+    <Content Include="Views\ClienteCorporativo\Create.vbhtml" />
+    <Content Include="Views\ClienteCorporativo\Delete.vbhtml" />
+    <Content Include="Views\ClienteCorporativo\Details.vbhtml" />
+    <Content Include="Views\ClienteCorporativo\Edit.vbhtml" />
+    <Content Include="Views\ClienteCorporativo\Index.vbhtml" />
+    <Content Include="Views\Curso\Create.vbhtml" />
+    <Content Include="Views\Curso\Delete.vbhtml" />
+    <Content Include="Views\Curso\Details.vbhtml" />
+    <Content Include="Views\Curso\Edit.vbhtml" />
+    <Content Include="Views\Curso\Index.vbhtml" />
+    <Content Include="Views\Docente\Create.vbhtml" />
+    <Content Include="Views\Docente\Delete.vbhtml" />
+    <Content Include="Views\Docente\Details.vbhtml" />
+    <Content Include="Views\Docente\Edit.vbhtml" />
+    <Content Include="Views\Docente\Index.vbhtml" />
+    <Content Include="Views\TipoDeRecurso\Create.vbhtml" />
+    <Content Include="Views\TipoDeRecurso\Delete.vbhtml" />
+    <Content Include="Views\TipoDeRecurso\Details.vbhtml" />
+    <Content Include="Views\TipoDeRecurso\Edit.vbhtml" />
+    <Content Include="Views\TipoDeRecurso\Index.vbhtml" />
+    <Content Include="Views\Empresa\Create.vbhtml" />
+    <Content Include="Views\Empresa\Delete.vbhtml" />
+    <Content Include="Views\Empresa\Details.vbhtml" />
+    <Content Include="Views\Empresa\Edit.vbhtml" />
+    <Content Include="Views\Empresa\Index.vbhtml" />
+    <Content Include="Views\ModalidadDeCurso\Create.vbhtml" />
+    <Content Include="Views\ModalidadDeCurso\Delete.vbhtml" />
+    <Content Include="Views\ModalidadDeCurso\Details.vbhtml" />
+    <Content Include="Views\ModalidadDeCurso\Edit.vbhtml" />
+    <Content Include="Views\ModalidadDeCurso\Index.vbhtml" />
+    <Content Include="Views\EventosEstudio\Create.vbhtml" />
+    <Content Include="Views\EventosEstudio\Delete.vbhtml" />
+    <Content Include="Views\EventosEstudio\Details.vbhtml" />
+    <Content Include="Views\EventosEstudio\Edit.vbhtml" />
+    <Content Include="Views\EventosEstudio\Index.vbhtml" />
+    <Content Include="Views\EncargadoDeValidacion\Create.vbhtml" />
+    <Content Include="Views\EncargadoDeValidacion\Delete.vbhtml" />
+    <Content Include="Views\EncargadoDeValidacion\Details.vbhtml" />
+    <Content Include="Views\EncargadoDeValidacion\Edit.vbhtml" />
+    <Content Include="Views\EncargadoDeValidacion\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
