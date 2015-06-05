@@ -142,7 +142,7 @@ Public Class AccountController
                     isJefe = 1
                 Else
                     ViewBag.DepartamentoID = New SelectList(db.Departamento, "ID", "Nombre")
-                    ModelState.AddModelError(String.Empty, "Ya existe el Jefe.")
+                    ModelState.AddModelError(String.Empty, "Ya existe Jefe para este departamento")
                     Return View(model)
                 End If
             End If
