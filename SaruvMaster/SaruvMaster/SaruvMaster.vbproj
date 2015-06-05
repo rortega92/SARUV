@@ -199,14 +199,10 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506040334448_Initial.Designer.vb">
-      <DependentUpon>201506040334448_Initial.vb</DependentUpon>
+    <Compile Include="Migrations\201506050456449_InitialCreate.Designer.vb">
+      <DependentUpon>201506050456449_InitialCreate.vb</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506040334448_Initial.vb" />
-    <Compile Include="Migrations\201506050032368_ReferenceData.Designer.vb">
-      <DependentUpon>201506050032368_ReferenceData.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506050032368_ReferenceData.vb" />
+    <Compile Include="Migrations\201506050456449_InitialCreate.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -243,11 +239,8 @@
     <Compile Include="Startup.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201506040334448_Initial.resx">
-      <DependentUpon>201506040334448_Initial.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506050032368_ReferenceData.resx">
-      <DependentUpon>201506050032368_ReferenceData.vb</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506050456449_InitialCreate.resx">
+      <DependentUpon>201506050456449_InitialCreate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
