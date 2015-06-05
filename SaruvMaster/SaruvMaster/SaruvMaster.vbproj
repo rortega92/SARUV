@@ -203,11 +203,27 @@
       <DependentUpon>201506040334448_Initial.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506040334448_Initial.vb" />
+    <Compile Include="Migrations\201506050032368_ReferenceData.Designer.vb">
+      <DependentUpon>201506050032368_ReferenceData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506050032368_ReferenceData.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
+    <Compile Include="Models\AreaDeConocimiento.vb" />
+    <Compile Include="Models\ClienteCorporativo.vb" />
+    <Compile Include="Models\Curso.vb" />
     <Compile Include="Models\Departamento.vb" />
+    <Compile Include="Models\Docente.vb" />
+    <Compile Include="Models\Empresa.vb" />
+    <Compile Include="Models\Encargado de Validacion.vb" />
+    <Compile Include="Models\EventosEstudio.vb" />
+    <Compile Include="Models\Facultad.vb" />
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\ManageViewModels.vb" />
+    <Compile Include="Models\ModalidadDeCurso.vb" />
+    <Compile Include="Models\Recurso.vb" />
+    <Compile Include="Models\RecursoPorUsuario.vb" />
+    <Compile Include="Models\TipoDeRecurso.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -229,6 +245,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201506040334448_Initial.resx">
       <DependentUpon>201506040334448_Initial.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506050032368_ReferenceData.resx">
+      <DependentUpon>201506050032368_ReferenceData.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
