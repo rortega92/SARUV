@@ -133,8 +133,6 @@ Public Class AccountController
     Public Async Function Register(model As RegisterViewModel) As Task(Of ActionResult)
         Dim roleStore = New RoleStore(Of IdentityRole)(db)
         Dim roleManager = New RoleManager(Of IdentityRole)(roleStore)
-        model.FechaCreacion = DateTime.Now
-        model.FechaModificacion = model.FechaCreacion
         Dim isJefe As Integer = 0
         If Not (model.isJefe Is Nothing) Then
             If model.isJefe.Equals("Jefe") Then

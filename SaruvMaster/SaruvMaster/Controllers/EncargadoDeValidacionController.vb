@@ -12,12 +12,12 @@ Namespace Controllers
     Public Class EncargadoDeValidacionController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New ApplicationDbContext
+        Private db As New Connection
 
         ' GET: EncargadoDeValidacion
         Function Index() As ActionResult
-            Dim encargadoDeValidacions = db.EncargadoDeValidacions.Include(Function(e) e.Facultad)
-            Return View(encargadoDeValidacions.ToList())
+            Dim encargadoDeValidacion = db.encargadoDeValidacion.Include(Function(e) e.Facultad)
+            Return View(encargadoDeValidacion.ToList())
         End Function
 
         ' GET: EncargadoDeValidacion/Details/5
@@ -25,7 +25,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim encargadoDeValidacion As EncargadoDeValidacion = db.EncargadoDeValidacions.Find(id)
+            Dim encargadoDeValidacion As EncargadoDeValidacion = db.encargadoDeValidacion.Find(id)
             If IsNothing(encargadoDeValidacion) Then
                 Return HttpNotFound()
             End If
@@ -34,7 +34,7 @@ Namespace Controllers
 
         ' GET: EncargadoDeValidacion/Create
         Function Create() As ActionResult
-            ViewBag.FacultadID = New SelectList(db.Facultads, "ID", "Nombre")
+            ViewBag.FacultadID = New SelectList(db.Facultad, "ID", "Nombre")
             Return View()
         End Function
 
@@ -45,11 +45,11 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include:="ID,Nombre,FacultadID,Telefono,Extensión,correoElectronico,FechaCreacion,FechaModificacion")> ByVal encargadoDeValidacion As EncargadoDeValidacion) As ActionResult
             If ModelState.IsValid Then
-                db.EncargadoDeValidacions.Add(encargadoDeValidacion)
-                db.SaveChanges()
+                db.EncargadoDeValidacion.Add(encargadoDeValidacion)
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
-            ViewBag.FacultadID = New SelectList(db.Facultads, "ID", "Nombre", encargadoDeValidacion.FacultadID)
+            ViewBag.FacultadID = New SelectList(db.Facultad, "ID", "Nombre", encargadoDeValidacion.FacultadID)
             Return View(encargadoDeValidacion)
         End Function
 
@@ -58,11 +58,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim encargadoDeValidacion As EncargadoDeValidacion = db.EncargadoDeValidacions.Find(id)
+            Dim encargadoDeValidacion As EncargadoDeValidacion = db.EncargadoDeValidacion.Find(id)
             If IsNothing(encargadoDeValidacion) Then
                 Return HttpNotFound()
             End If
-            ViewBag.FacultadID = New SelectList(db.Facultads, "ID", "Nombre", encargadoDeValidacion.FacultadID)
+            ViewBag.FacultadID = New SelectList(db.Facultad, "ID", "Nombre", encargadoDeValidacion.FacultadID)
             Return View(encargadoDeValidacion)
         End Function
 
@@ -74,10 +74,10 @@ Namespace Controllers
         Function Edit(<Bind(Include:="ID,Nombre,FacultadID,Telefono,Extensión,correoElectronico,FechaCreacion,FechaModificacion")> ByVal encargadoDeValidacion As EncargadoDeValidacion) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(encargadoDeValidacion).State = EntityState.Modified
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
-            ViewBag.FacultadID = New SelectList(db.Facultads, "ID", "Nombre", encargadoDeValidacion.FacultadID)
+            ViewBag.FacultadID = New SelectList(db.Facultad, "ID", "Nombre", encargadoDeValidacion.FacultadID)
             Return View(encargadoDeValidacion)
         End Function
 
@@ -86,7 +86,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim encargadoDeValidacion As EncargadoDeValidacion = db.EncargadoDeValidacions.Find(id)
+            Dim encargadoDeValidacion As EncargadoDeValidacion = db.encargadoDeValidacion.Find(id)
             If IsNothing(encargadoDeValidacion) Then
                 Return HttpNotFound()
             End If
@@ -98,8 +98,8 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim encargadoDeValidacion As EncargadoDeValidacion = db.EncargadoDeValidacions.Find(id)
-            db.EncargadoDeValidacions.Remove(encargadoDeValidacion)
+            Dim encargadoDeValidacion As EncargadoDeValidacion = db.encargadoDeValidacion.Find(id)
+            db.encargadoDeValidacion.Remove(encargadoDeValidacion)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function
