@@ -141,7 +141,9 @@ Public Class AccountController
                 If (userJefe.Count = 0) Then
                     isJefe = 1
                 Else
-                    'Ya existe Jefe
+                    ViewBag.DepartamentoID = New SelectList(db.Departamento, "ID", "Nombre")
+                    ModelState.AddModelError(String.Empty, "Ya existe el Jefe.")
+                    Return View(model)
                 End If
             End If
         End If
