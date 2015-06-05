@@ -138,7 +138,13 @@ Public Class AccountController
         Dim isJefe As Integer = 0
         If Not (model.isJefe Is Nothing) Then
             If model.isJefe.Equals("Jefe") Then
-                isJefe = 1
+                Dim userList = UserManager.Users.Where(Function(u) u.DepartamentoID = model.DepartamentoID).ToList()
+                Dim userJefe = userList.Where(Function(u) u.isJefe = 1).First()
+                If (userJefe Is Nothing) Then
+                    isJefe = 1
+                Else
+                    'Ya existe Jefe
+                End If
             End If
         End If
         If ModelState.IsValid Then

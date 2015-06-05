@@ -194,6 +194,7 @@
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\DepartamentoController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
+    <Compile Include="Controllers\PersonalUVController.vb" />
     <Compile Include="DAL\Connection.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -286,6 +287,7 @@
     <Content Include="Views\Shared\Header.vbhtml" />
     <Content Include="Views\Shared\LeftContent.vbhtml" />
     <Content Include="Views\Shared\_Layout2.vbhtml" />
+    <Content Include="Views\PersonalUV\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
