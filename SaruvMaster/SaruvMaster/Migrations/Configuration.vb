@@ -60,13 +60,166 @@ Namespace Migrations
 
 
             Dim userStore = New UserStore(Of ApplicationUser)(context)
-            Dim userManager = New UserManager(Of ApplicationUser)(userStore)
+            Dim userManager = New ApplicationUserManager(userStore)
             Dim user As New ApplicationUser() With {
+                .Nombre = "Wendy",
+                .Apellido = "Silva",
+                .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Diseño").ID,
+                .Email = "wsilva@gmail.com",
+                .UserName = "wsilva@gmail.com",
+                .PasswordHash = hasher.HashPassword("Hola123!"),
+                .FechaCreacion = DateTime.Now,
+                .FechaModificacion = DateTime.Now,
+                .isJefe = 1
+            }
+            user.Roles.Add(New IdentityUserRole() With {
+                .RoleId = role2.Id,
+                .UserId = user.Id
+            })
+            userManager.Create(user)
+
+            user = New ApplicationUser() With {
                 .Nombre = "Silvia",
                 .Apellido = "Colindres",
                 .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Diseño").ID,
                 .Email = "scolindres@gmail.com",
                 .UserName = "scolindres@gmail.com",
+                .PasswordHash = hasher.HashPassword("Hola123!"),
+                .FechaCreacion = DateTime.Now,
+                .FechaModificacion = DateTime.Now,
+            .isJefe = 0
+            }
+            user.Roles.Add(New IdentityUserRole() With {
+                .RoleId = role2.Id,
+                .UserId = user.Id
+            })
+            userManager.Create(user)
+
+            user = New ApplicationUser() With {
+                .Nombre = "Clarissa",
+                .Apellido = "Lopez",
+                .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Diseño").ID,
+                .Email = "clopez@gmail.com",
+                .UserName = "clopez@gmail.com",
+                .PasswordHash = hasher.HashPassword("Hola123!"),
+                .FechaCreacion = DateTime.Now,
+                .FechaModificacion = DateTime.Now,
+            .isJefe = 0
+            }
+            user.Roles.Add(New IdentityUserRole() With {
+                .RoleId = role2.Id,
+                .UserId = user.Id
+            })
+            userManager.Create(user)
+
+            user = New ApplicationUser() With {
+                .Nombre = "Andrea",
+                .Apellido = "Diaz",
+                .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Corrección").ID,
+                .Email = "adiaz@gmail.com",
+                .UserName = "adiaz@gmail.com",
+                .PasswordHash = hasher.HashPassword("Hola123!"),
+                .FechaCreacion = DateTime.Now,
+                .FechaModificacion = DateTime.Now,
+            .isJefe = 0
+            }
+            user.Roles.Add(New IdentityUserRole() With {
+                .RoleId = role2.Id,
+                .UserId = user.Id
+            })
+            userManager.Create(user)
+
+            user = New ApplicationUser() With {
+                .Nombre = "Roberto",
+                .Apellido = "Martinez",
+                .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Corrección").ID,
+                .Email = "rmartinez@gmail.com",
+                .UserName = "rmartinez@gmail.com",
+                .PasswordHash = hasher.HashPassword("Hola123!"),
+                .FechaCreacion = DateTime.Now,
+                .FechaModificacion = DateTime.Now,
+            .isJefe = 0
+            }
+            user.Roles.Add(New IdentityUserRole() With {
+                .RoleId = role2.Id,
+                .UserId = user.Id
+            })
+            userManager.Create(user)
+
+            user = New ApplicationUser() With {
+                .Nombre = "Camilo",
+                .Apellido = "Colindres",
+                .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Grabación").ID,
+                .Email = "ccolindres@gmail.com",
+                .UserName = "ccolindres@gmail.com",
+                .PasswordHash = hasher.HashPassword("Hola123!"),
+                .FechaCreacion = DateTime.Now,
+                .FechaModificacion = DateTime.Now,
+                .isJefe = 0
+            }
+            user.Roles.Add(New IdentityUserRole() With {
+                .RoleId = role2.Id,
+                .UserId = user.Id
+            })
+            userManager.Create(user)
+
+            user = New ApplicationUser() With {
+                .Nombre = "Gabriel",
+                .Apellido = "Carcamo",
+                .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Grabación").ID,
+                .Email = "gcarcamo@gmail.com",
+                .UserName = "gcarcamo@gmail.com",
+                .PasswordHash = hasher.HashPassword("Hola123!"),
+                .FechaCreacion = DateTime.Now,
+                .FechaModificacion = DateTime.Now,
+            .isJefe = 0
+            }
+            user.Roles.Add(New IdentityUserRole() With {
+                .RoleId = role2.Id,
+                .UserId = user.Id
+            })
+            userManager.Create(user)
+
+            user = New ApplicationUser() With {
+                .Nombre = "Alejandra",
+                .Apellido = "Davila",
+                .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Entrega").ID,
+                .Email = "adavila@gmail.com",
+                .UserName = "adavila@gmail.com",
+                .PasswordHash = hasher.HashPassword("Hola123!"),
+                .FechaCreacion = DateTime.Now,
+                .FechaModificacion = DateTime.Now,
+            .isJefe = 0
+            }
+            user.Roles.Add(New IdentityUserRole() With {
+                .RoleId = role2.Id,
+                .UserId = user.Id
+            })
+            userManager.Create(user)
+
+            user = New ApplicationUser() With {
+                .Nombre = "Marcelo",
+                .Apellido = "Romero",
+                .DepartamentoID = departamentos.Single(Function(e) e.Nombre = "Entrega").ID,
+                .Email = "mromero@gmail.com",
+                .UserName = "mromero@gmail.com",
+                .PasswordHash = hasher.HashPassword("Hola123!"),
+                .FechaCreacion = DateTime.Now,
+                .FechaModificacion = DateTime.Now,
+                .isJefe = 0
+            }
+            user.Roles.Add(New IdentityUserRole() With {
+                .RoleId = role2.Id,
+                .UserId = user.Id
+            })
+            userManager.Create(user)
+
+            'Admin
+            user = New ApplicationUser() With {
+                .Nombre = "Modest",
+                .Apellido = "Musorgski",
+                .Email = "mmusorgski@gmail.com",
+                .UserName = "mmusorgski@gmail.com",
                 .PasswordHash = hasher.HashPassword("Hola123!"),
                 .FechaCreacion = DateTime.Now,
                 .FechaModificacion = DateTime.Now,
@@ -76,9 +229,7 @@ Namespace Migrations
                 .RoleId = role.Id,
                 .UserId = user.Id
             })
-            'userManager.Create(user)
-
-
+            userManager.Create(user)
 
             Dim facultades = New List(Of Facultad)() From {
                     New Facultad() With {
