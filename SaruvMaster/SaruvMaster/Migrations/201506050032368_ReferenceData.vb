@@ -663,7 +663,7 @@ Namespace Migrations
                 "dbo.Recurso_Insert",
                 Function(p) New With
                     {
-                        .Nombre = p.String(maxLength := 255),
+                        .Nombre = p.String(maxLength:=255),
                         .TipoDeRecursoID = p.Int(),
                         .ModalidadDeCursoID = p.Int(),
                         .EmpresaID = p.Int(),
@@ -671,12 +671,12 @@ Namespace Migrations
                         .ClienteCorporativoID = p.Int(),
                         .DocenteID = p.Int(),
                         .Duracion = p.Int(),
-                        .Prioridad = p.String(maxLength := 255),
+                        .Prioridad = p.String(maxLength:=255),
                         .FechaEntrega = p.DateTime(),
                         .FechaCreacion = p.DateTime(),
                         .FechaModificacion = p.DateTime()
                     },
-                body :=
+                body:=
                     "INSERT [dbo].[Recurso]([Nombre], [TipoDeRecursoID], [ModalidadDeCursoID], [EmpresaID], [CursoID], [ClienteCorporativoID], [DocenteID], [Duracion], [Prioridad], [FechaEntrega], [FechaCreacion], [FechaModificacion], [IsDeleted])" & vbCrLf & _
                     "VALUES (@Nombre, @TipoDeRecursoID, @ModalidadDeCursoID, @EmpresaID, @CursoID, @ClienteCorporativoID, @DocenteID, @Duracion, @Prioridad, @FechaEntrega, @FechaCreacion, @FechaModificacion, 0)" & vbCrLf & _
                     "" & vbCrLf & _
@@ -687,7 +687,17 @@ Namespace Migrations
                     "" & vbCrLf & _
                     "SELECT t0.[Id]" & vbCrLf & _
                     "FROM [dbo].[Recurso] AS t0" & vbCrLf & _
-                    "WHERE @@ROWCOUNT > 0 AND t0.[Id] = @Id"
+                    "WHERE @@ROWCOUNT > 0 AND t0.[Id] = @Id" & vbCrLf & _
+                    "Declare @IdDepartamento int" & vbCrLf & _
+                    "Select @IdDepartamento = [Id]" & vbCrLf & _
+                    "From [dbo].[Departamento]" & vbCrLf & _
+                    "Where @@ROWCOUNT > 0 AND [Nombre] = 'Diseño'" & vbCrLf & _
+                    "Declare @IdUsuario varchar" & vbCrLf & _
+                    "Select @IdUsuario = [Id]" & vbCrLf & _
+                    "From [dbo].[AspNetUsers]" & vbCrLf & _
+                    "Where @@ROWCOUNT > 0 AND DepartamentoID = @IdDepartamento AND isJefe = 1" & vbCrLf & _
+                    "INSERT [dbo].[RecursoPorUsuario]([RecursoID],[UsuarioID], [Estado]) " & vbCrLf & _
+                    "VALUES (@Id, @IdUsuario, 'No Empezado')"
             )
             
             CreateStoredProcedure(
@@ -770,9 +780,23 @@ Namespace Migrations
                     {
                         .Id = p.Int()
                     },
-                body :=
+                body:=
                     "DELETE [dbo].[TipoDeRecurso]" & vbCrLf & _
                     "WHERE ([Id] = @Id)"
+            )
+            CreateStoredProcedure(
+                "dbo.RecursoPorUsuario_UpdateEstado",
+                Function(p) New With
+                    {
+                        .ID = p.Int(),
+                        .RecursoID = p.Int(),
+                        .UsuarioID = p.String(),
+                        .Estado = p.String()
+                    },
+                body:=
+                    "UPDATE [dbo].[RecursoPorUsuario]" & vbCrLf & _
+                    "SET [Estado] = @Estado, [RecursoID] = @RecursoID, [UsuarioID] = @UsuarioID" & vbCrLf & _
+                    "WHERE ([ID] = @ID)"
             )
             
         End Sub
