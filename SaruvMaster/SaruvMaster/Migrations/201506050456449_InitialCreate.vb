@@ -244,7 +244,8 @@ Namespace Migrations
                         .FechaCreacion = c.DateTime(),
                         .FechaModificacion = c.DateTime(),
                         .IsDeleted = c.Int(),
-                        .isJefe = c.Int()
+                        .isJefe = c.Int(),
+                        .Discriminator = c.String(nullable:=True, maxLength:=128)
                     }) _
                 .PrimaryKey(Function(t) t.Id) _
                 .ForeignKey("dbo.Departamento", Function(t) t.DepartamentoID) _
