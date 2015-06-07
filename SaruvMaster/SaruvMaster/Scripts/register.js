@@ -8,7 +8,7 @@
             $("#isJefe").parent().parent().removeClass("hidden");
         }
     }).change();
-    $("#Submit").click(function () {
+    $(":submit").click(function () {
         if ($("#isAdmin").val() === "Administrador") {
             $("#DepartamentoID").empty();
             $("#isJefe").empty();
