@@ -2,31 +2,7 @@
 @Code
     ViewBag.Title = "Registrarse"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
-End Code
-<script>
-    $(document).ready(function () {
-        $("#DepartamentoID").change(function () {
-            $.ajax({
-                type: "GET",
-                url: "getRolesByNombreDepartamento",
-                data: {"nombreDepartamento":$("#DepartamentoID option:selected").html()},
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (msg) {
-                    $("#RolPorDepartamentoID").empty()
-                    $.each(msg, function () {
-                        $("#RolPorDepartamentoID").append($("<option></option>").val(this['ID']).html(this['Nombre']));
-                    });
-                },
-                error: function() {
-                    alert("An error has occurred during processing your request.");
-                }
-            });
-        }).change()
-
-
-    });
-</script>   
+End Code 
 
 
 <h3>@ViewBag.Title</h3>
@@ -57,6 +33,33 @@ End Code
                         @Html.ValidationMessageFor(Function(model) model.Apellido, "", New With {.class = "text-danger"})
                     </div>
                 </div>
+                 <div class="form-group">
+                     <label for="Administrador" class="control-label col-md-2">Tipo de Usuario @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                     <div class="col-md-10">
+                         <select class="form-control" id="isAdmin" name="isAdmin">
+                             <option value="Administrador">Administrador</option>
+                             <option value="Estándar">Estándar</option>
+                         </select>
+                     </div>
+                 </div>
+
+                 <div class="form-group hidden">
+                     <label for="isJefe" class="control-label col-md-2">Cargo en Departamento @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                     <div class="col-md-10">
+                         <select class="form-control" id="isJefe" name="isJefe">
+                             <option value="Jefe">Jefe</option>
+                             <option value="Regular">Regular</option>
+                         </select>
+                     </div>
+                 </div>
+
+                 <div class="form-group hidden">
+                     @Html.LabelFor(Function(model) model.DepartamentoID, "DepartamentoID", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                     <div class="col-md-10">
+                         @Html.DropDownList("DepartamentoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                         @Html.ValidationMessageFor(Function(model) model.DepartamentoID, "", New With {.class = "text-danger"})
+                     </div>
+                 </div>
 
                 <div class="form-group">
                     <label for="Nombre" class="control-label col-md-2">Correo Electronico @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
@@ -96,4 +99,5 @@ End Code
 
 @section Scripts
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/register.js")
 End Section

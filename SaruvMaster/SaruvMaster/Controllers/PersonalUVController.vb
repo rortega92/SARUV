@@ -43,10 +43,21 @@ Namespace SaruvMaster
             ViewBag.pageTitle = "Departamento de " + departamento.Nombre
             If (usuario.isJefe = 1) Then
                 ViewBag.isJefe = True
-                Return View(recursoPorUsuario.ToList())
+                'Retornar la lista de los recursos de todos los usuarios de su departamento
+                Dim idsUsuariosDeptoActual = UserManager.Users.Where(Function(us) us.DepartamentoID = departamento.ID).ToList()
+                Dim recursoPorUsuarioList As New List(Of RecursoPorUsuario)
+                For i As Integer = 0 To idsUsuariosDeptoActual.ToArray().Length - 1
+                    Dim currentUsuarioId = idsUsuariosDeptoActual.ToList().ElementAt(i).Id
+                    Dim recursoPorUsuarioDeptoActual = db.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = currentUsuarioId).ToList()
+                    If (recursoPorUsuarioDeptoActual.ToArray().Length = 0) Then
+                    Else
+                        recursoPorUsuarioList.Add(recursoPorUsuarioDeptoActual.ElementAt(0))
+                    End If
+                Next
+                Return View(recursoPorUsuarioList)
             End If
             ViewBag.isJefe = False
-            Return View(recursoPorUsuario.Where(Function(ru) ru.UsuarioID = usuario.Id).ToList())
+            Return View(recursoPorUsuario.ToList())
         End Function
 
         Function getUsuariosByNombreDepartamento(ByVal nombreDepartamento As String) As ActionResult
@@ -67,18 +78,23 @@ Namespace SaruvMaster
             Dim serializer As New System.Web.Script.Serialization.JavaScriptSerializer()
             Dim con As New Connection
             Dim idsRecursos = con.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = idUsuario).Select(Function(ru) ru.RecursoID)
+            Dim estadosRecursos = con.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = idUsuario).Select(Function(ru) ru.Estado)
             Dim recursos = con.Recurso
             Dim listaRecursos = New List(Of Recurso)
+            Dim listaEstadosRecurso = New List(Of String)
             For i As Integer = 0 To idsRecursos.ToArray().Length - 1
                 Dim it = i
                 Dim current = idsRecursos.ToArray().ElementAt(it)
+                Dim currentEstado = estadosRecursos.ToArray().ElementAt(it)
                 listaRecursos.Add(recursos.Where(Function(r) r.Id = current).ToList().First())
+                listaEstadosRecurso.Add(currentEstado)
             Next
             Dim returnRecursos As New List(Of Dictionary(Of String, String))
             For i As Integer = 0 To listaRecursos.ToArray().Length - 1
                 Dim row As New Dictionary(Of String, String)
                 row.Add("ID", listaRecursos.ElementAt(i).Id)
                 row.Add("Nombre", listaRecursos.ElementAt(i).Nombre)
+                row.Add("Estado", listaEstadosRecurso.ElementAt(i))
                 row.Add("Prioridad", listaRecursos.ElementAt(i).Prioridad)
                 returnRecursos.Add(row)
             Next
@@ -317,6 +333,17 @@ Namespace SaruvMaster
             row.Add("ID", usuarioID)
             returnUsuarios.Add(row)
             Return Json(returnUsuarios, JsonRequestBehavior.AllowGet)
+        End Function
+
+        Function getCurrentDepartamento() As ActionResult
+            Dim usuario = UserManager.Users.Where(Function(u) u.UserName = My.User.Name).First()
+            Dim deptoActual = db.Departamento.Where(Function(dept) dept.ID = usuario.DepartamentoID).First()
+            Dim returnDepto As New List(Of Dictionary(Of String, String))
+            Dim row As New Dictionary(Of String, String)
+            row.Add("ID", deptoActual.ID)
+            row.Add("Nombre", deptoActual.Nombre)
+            returnDepto.Add(row)
+            Return Json(returnDepto, JsonRequestBehavior.AllowGet)
         End Function
     End Class
 End Namespace

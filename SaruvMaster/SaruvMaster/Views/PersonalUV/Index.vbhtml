@@ -26,7 +26,7 @@ End If
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title">Cambiar estado de: "@Html.DisplayFor(Function(modelItem) item.Recurso.Nombre)"</h4>
                                 </div>
-                                <div class="modal-body" style="height:200px">
+                                <div class="modal-body" style="height:100%">
                                     <table>
                                         <tbody>
                                             <tr>
@@ -77,7 +77,7 @@ End If
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title">Enviar recurso: "@Html.DisplayFor(Function(modelItem) item.Recurso.Nombre)"</h4>
                                 </div>
-                                <div class="modal-body" style="height:200px">
+                                <div class="modal-body" style="height:100%">
                                     <table>
                                         <tbody>
                                             <tr>
@@ -102,6 +102,22 @@ End If
                         </div>
                     </div>
                 Next
+            <a id="linkAviso" class="btn btn-default btn-sm" data-toggle="modal" href="#aviso" style="display:none"></a>
+                <div class="modal fade" id="aviso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Aviso</h4>
+                            </div>
+                            <div class="modal-body" style="height:100%">
+                            </div>
+                            <div class="modal-footer">
+                                <button data-dismiss="modal" data-target="#aviso" class="btn btn-default" type="button">Aceptar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
@@ -118,7 +134,7 @@ End If
                             <ul id="NavTabs" class="nav nav-tabs"></ul>
                         </header>
                         <div class="panel-body">
-                            <div style="min-height:200px; height: auto " id="TabContent" class="tab-content">
+                            <div style="height:100%; min-height:200px" id="TabContent" class="tab-content">
                             </div>
                         </div>
                     </section>
