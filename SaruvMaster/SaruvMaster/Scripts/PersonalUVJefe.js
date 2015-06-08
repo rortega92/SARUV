@@ -115,6 +115,10 @@ $(document).ready(function () {
 
     function bindRecurso(jsonData) {
         var btnEnviar = '<a id="EnviarDepartamento" class="btn btn-default btn-sm" data-toggle="modal" href="#modalEnviar_' + jsonData.recurso['ID'] + '">Enviar al siguiente departamento</a>';
+        var btnFuente = '<a id="OperacionesFuente" class="btn btn-default btn-sm" data-toggle="modal" href="#modalFuente_' + jsonData.recurso['ID'] + '">Fuente</a>';
+        if (DepartamentoActual.Nombre == "Grabación" || DepartamentoActual.Nombre == "Entrega") {
+            btnFuente = "";
+        }
         if (DepartamentoActual.Nombre == "Entrega") {
             btnEnviar = "";
         }
@@ -126,7 +130,7 @@ $(document).ready(function () {
                      '<td class="navbar-right" style="border:0px">' +
                       '<div class="btn-group-vertical">' +
                          '<a id="CambiarEstado" class="btn btn-default btn-sm" data-toggle="modal" href="#modalCambiarEstado_' + jsonData.recurso['ID'] + '">Cambiar estado</a>' +
-                         btnEnviar+
+                         btnEnviar+" "+btnFuente+
                       '</div>' +
                      '</td>' +
                     '</tr>' +

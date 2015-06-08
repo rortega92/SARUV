@@ -101,6 +101,48 @@ End If
                             </div>
                         </div>
                     </div>
+                    
+                    @<div class="modal fade" id="modalFuente_@Html.DisplayFor(Function(modelitem) item.Recurso.Id)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Especificación del recurso: "@Html.DisplayFor(Function(modelItem) item.Recurso.Nombre)"</h4>
+                                </div>
+                                <div class="modal-body" style="height:100%">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    
+                                                    @Using (Html.BeginForm("Upload", "FTP", FormMethod.Post, New With {Key .enctype = "multipart/form-data"}))
+                                                        @<input type="file" name="file" />
+                                                        @<input type="submit" name="Submit" id="Submit" value="Upload" />
+                                                    End Using
+                                                </td>
+                                                <td>
+                                                    <form method="GET">
+                                                        <button id="btnBajarFuente_@Html.DisplayFor(Function(modelitem) item.Recurso.Id)" class="btn">Bajar</button>
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <form method="POST">
+                                                        <button id="btnEliminarFuente_@Html.DisplayFor(Function(modelitem) item.Recurso.Id)" class="btn">Eliminar</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+
+                                    <button data-dismiss="modal" class="btn btn-success" type="button" onclick="enviarSiguienteDepto( @item.ID )">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 Next
             <a id="linkAviso" class="btn btn-default btn-sm" data-toggle="modal" href="#aviso" style="display:none"></a>
                 <div class="modal fade" id="aviso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

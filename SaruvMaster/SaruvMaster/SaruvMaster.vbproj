@@ -199,6 +199,7 @@
     <Compile Include="Controllers\EmpresaController.vb" />
     <Compile Include="Controllers\EncargadoDeValidacionController.vb" />
     <Compile Include="Controllers\EventosEstudioController.vb" />
+    <Compile Include="Controllers\FTPController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
     <Compile Include="Controllers\ModalidadDeCursoController.vb" />
     <Compile Include="Controllers\PersonalUVController.vb" />
@@ -409,6 +410,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\layout\" />
     <Folder Include="Content\themes\" />
+    <Folder Include="Views\FTP\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
