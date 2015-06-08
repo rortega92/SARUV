@@ -3,83 +3,163 @@
     ViewData("Title") = "Create"
 End Code
 
-<h2>Create</h2>
+<h3>Evento Estudio</h3>
 
-@Using (Html.BeginForm())
-    @Html.AntiForgeryToken()
-    
-    @<div class="form-horizontal">
-        <h4>EventosEstudio</h4>
-        <hr />
-        @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.Evento, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.Evento, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.Evento, "", New With { .class = "text-danger" })
-            </div>
-        </div>
+<section class="panel">
+    <header class="panel-heading">
+        Crear
+    </header>
+    <div class="panel-body">
 
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.DocenteID, "DocenteID", htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DocenteID", Nothing, htmlAttributes:= New With { .class = "form-control" })
-                @Html.ValidationMessageFor(Function(model) model.DocenteID, "", New With { .class = "text-danger" })
-            </div>
-        </div>
+        @Using (Html.BeginForm())
+            @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.ClienteCorporativoID, "ClienteCorporativoID", htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ClienteCorporativoID", Nothing, htmlAttributes:= New With { .class = "form-control" })
-                @Html.ValidationMessageFor(Function(model) model.ClienteCorporativoID, "", New With { .class = "text-danger" })
-            </div>
-        </div>
+            @<div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.FechaReserva, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.FechaReserva, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.FechaReserva, "", New With { .class = "text-danger" })
-            </div>
-        </div>
+                <hr />
+                @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
+                <div class="form-group">
+                    <label for="Evento" class="control-label col-md-2">Evento @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(Function(model) model.Evento, New With {.htmlAttributes = New With {.class = "form-control"}})
+                        @Html.ValidationMessageFor(Function(model) model.Evento, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default">
+                                <input type="radio" name="options" value="docenteToggle" autocomplete="off" checked> Docente
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="options" value="clienteToggle" autocomplete="off"> Cliente Corporativo
+                            </label>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.HoraInicio, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.HoraInicio, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.HoraInicio, "", New With { .class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group" id="docenteForm">
+                    @Html.LabelFor(Function(model) model.DocenteID, "Docente", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.DropDownList("DocenteID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                        @Html.ValidationMessageFor(Function(model) model.DocenteID, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.HoraFinal, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.HoraFinal, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.HoraFinal, "", New With { .class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group" id="clienteForm">
+                    @Html.LabelFor(Function(model) model.ClienteCorporativoID, "Cliente", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.DropDownList("ClienteCorporativoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                        @Html.ValidationMessageFor(Function(model) model.ClienteCorporativoID, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.IsDeleted, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.IsDeleted, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.IsDeleted, "", New With { .class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    <label for="FechaReserva" class="control-label col-md-2">Fecha de Reserva @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        @Html.JQueryUI().DatepickerFor(Function(model) model.FechaReserva, New With {.htmlAttributes = New With {.class = "form-control", .id = "fechaEntraga"}}).MinDate(DateTime.Today)
+                        @Html.ValidationMessageFor(Function(model) model.FechaReserva, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <div class="form-group">
+                    <label for="HoraInicio" class="control-label col-md-2">Hora Inicio @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        <select name="HoraInicio" class="form-control valid" id="HoraInicio">
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                        </select>
+                        @Html.ValidationMessageFor(Function(model) model.HoraInicio, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="HoraFinal" class="control-label col-md-2">Hora Final @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        <select name="HoraFinal" class="form-control valid" id="HoraFinal">
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                        </select>
+                        @Html.ValidationMessageFor(Function(model) model.HoraFinal, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" id="saveBtn" class="btn btn-default" value="Crear" />
+                    </div>
+                </div>
+
+
             </div>
-        </div>
+
+
+
+        End Using
+
     </div>
-End Using
-
+</section>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a class="btn btn-default btn-sm" href="/EventosEstudio/Index">Regresar al Calendario</a>
 </div>
 
-@Section Scripts 
+<script>
+    $(document).ready(function () {
+        $("#clienteForm").hide();
+        $("input[name=options]").change(function () {
+            if ($(this).val() == "docenteToggle") {
+                $("#docenteToggle").attr("checked", "checked")
+                $("#clienteToggle").removeAttr('checked');
+                $("label[for=ClienteCorporativoID], #ClienteCorporativoID").parent().hide();
+                $("label[for=DocenteID], #DocenteID").parent().show();
+            } else
+                if ($(this).val() == "clienteToggle") {
+                    $("#clienteToggle").attr("checked", "checked")
+                    $("#docenteToggle").removeAttr('checked');
+                    $("label[for=ClienteCorporativoID], #ClienteCorporativoID").parent().show();
+                    $("label[for=DocenteID], #DocenteID").parent().hide();
+                }
+        });
+    });
+
+    $("#saveBtn").click(function () {
+
+        if ($('#docenteToggle').is(':checked')) {
+            $("#ClienteCorporativoID").empty();
+        }
+        if ($('#clienteToggle').is(':checked')) {
+            $("#DocenteID").empty();
+        }
+
+    });
+</script>
+@Section Scripts
     @Scripts.Render("~/bundles/jqueryval")
 End Section

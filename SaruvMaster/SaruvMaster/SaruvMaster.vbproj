@@ -53,6 +53,9 @@
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JQueryUIHelpers">
+      <HintPath>..\packages\jQueryUIHelpers.Mvc5.2.2.0\lib\net45\JQueryUIHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -212,6 +215,10 @@
       <DependentUpon>201506050456449_InitialCreate.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506050456449_InitialCreate.vb" />
+    <Compile Include="Migrations\201506081900204_prueba2.Designer.vb">
+      <DependentUpon>201506081900204_prueba2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506081900204_prueba2.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -250,6 +257,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201506050456449_InitialCreate.resx">
       <DependentUpon>201506050456449_InitialCreate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506081900204_prueba2.resx">
+      <DependentUpon>201506081900204_prueba2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

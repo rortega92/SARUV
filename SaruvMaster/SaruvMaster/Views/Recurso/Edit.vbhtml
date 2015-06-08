@@ -156,9 +156,10 @@ End Code
                 </div>
 
                 <div class="form-group">
-                    <label for="Prioridad" class="control-label col-md-2">Fecha de Entrega @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <label for="FechaEntraga" class="control-label col-md-2">Fecha de Entrega @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
-                        @Html.EditorFor(Function(model) model.FechaEntrega, New With {.htmlAttributes = New With {.class = "form-control"}})
+                        @Html.JQueryUI().DatepickerFor(Function(model) model.FechaEntrega, New With {.htmlAttributes = New With {.class = "form-control", .id = "fechaEntrega"}}).MinDate(DateTime.Today)
+                        <span style="color:#FF2D55 " id="finalError"></span>
                         @Html.ValidationMessageFor(Function(model) model.FechaEntrega, "", New With {.class = "text-danger"})
                     </div>
                 </div>

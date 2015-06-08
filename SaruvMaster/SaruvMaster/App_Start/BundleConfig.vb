@@ -34,6 +34,13 @@ Public Module BundleConfig
         bundles.Add(New StyleBundle("~/Content/css").Include(
                   "~/Content/bootstrap.css",
                   "~/Content/site.css"))
+        bundles.Add(New ScriptBundle("~/bundles/jqueryui").Include(
+            "~/Scripts/jquery-ui-{version}.js",
+            "~/Scripts/jquery-ui.unobtrusive-{version}.js"))
+        bundles.Add(New StyleBundle("~/Content/themes/base/css").Include(
+        "~/Content/themes/base/jquery.ui.core.css",
+        "~/Content/themes/base/jquery.ui.datepicker.css",
+        "~/Content/themes/base/jquery.ui.theme.css"))
     End Sub
 End Module
 

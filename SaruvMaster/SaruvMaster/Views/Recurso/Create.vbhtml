@@ -3,7 +3,14 @@
     ViewData("Title") = "Create"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
-
+<script>
+    function getSelectedValue(ElementID) {
+        var element = document.getElementById(ElementID);
+        var index = element.options[element.selectedIndex];
+        alert(index.innerHTML);
+    }
+</script>
+@Scripts.Render("~/Scripts/Recurso.js")
 <h3>Recurso</h3>
 <section class="panel">
     <header class="panel-heading">
@@ -93,7 +100,8 @@ End Code
                 <div class="form-group">
                     <label for="Prioridad" class="control-label col-md-2">Fecha de Entrega @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
-                        @Html.EditorFor(Function(model) model.FechaEntrega, New With {.htmlAttributes = New With {.class = "form-control"}})
+                        @Html.JQueryUI().DatepickerFor(Function(model) model.FechaEntrega, New With {.htmlAttributes = New With {.class = "form-control", .id = "fechaEntraga"}}).MinDate(DateTime.Today)
+                        <span style="color:#FF2D55 " id="finalError"></span>
                         @Html.ValidationMessageFor(Function(model) model.FechaEntrega, "", New With {.class = "text-danger"})
                     </div>
                 </div>
@@ -109,7 +117,7 @@ End Code
 </section>
 
 <div>
-    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Recurso/Index">Regresar a la lista</a>
+    <a class="btn btn-default btn-sm" href="/Recurso/Index">Regresar a la lista</a>
 </div>
 
 

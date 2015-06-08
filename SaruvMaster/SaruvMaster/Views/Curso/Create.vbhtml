@@ -76,7 +76,7 @@ End Code
                     <label for="Nombre" class="control-label col-md-2">Fecha Inicio @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
 
-                        @Html.EditorFor(Function(model) model.FechaInicio, New With {.htmlAttributes = New With {.class = "form-control"}})
+                        @Html.JQueryUI().DatepickerFor(Function(model) model.FechaInicio, New With {.htmlAttributes = New With {.class = "form-control", .id = "inicio"}})
                         @Html.ValidationMessageFor(Function(model) model.FechaInicio, "", New With {.class = "text-danger"})
                     </div>
                 </div>
@@ -84,7 +84,8 @@ End Code
                 <div class="form-group">
                     <label for="Nombre" class="control-label col-md-2">Fecha Final @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
-                        @Html.EditorFor(Function(model) model.FechaFinal, New With {.htmlAttributes = New With {.class = "form-control"}})
+                       @Html.JQueryUI().DatepickerFor(Function(model) model.FechaFinal, New With {.htmlAttributes = New With {.class = "form-control", .id = "final", .oninput = "Test()"}})
+                    <span style="color:#FF2D55 " id="finalError"></span>
                         @Html.ValidationMessageFor(Function(model) model.FechaFinal, "", New With {.class = "text-danger"})
                     </div>
                 </div>

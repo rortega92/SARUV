@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h3>Evento</h3>
+<h3>Eventos Estudio</h3>
 
 <section class="panel">
     <header class="panel-heading">
@@ -17,7 +17,7 @@ End Code
                 <hr />
                 @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
                 <div class="form-group">
-                    <label for="Nombre" class="control-label col-md-2">Evento @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <label for="Evento" class="control-label col-md-2">Evento @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
                         @Html.EditorFor(Function(model) model.Evento, New With {.htmlAttributes = New With {.class = "form-control"}})
                         @Html.ValidationMessageFor(Function(model) model.Evento, "", New With {.class = "text-danger"})
@@ -56,7 +56,7 @@ End Code
                 <div class="form-group">
                     <label for="FechaReserva" class="control-label col-md-2">Fecha de Reserva @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
-                        @Html.JQueryUI().DatepickerFor(Function(model) model.FechaReserva, New With {.htmlAttributes = New With {.class = "form-control", .id = "inicio"}})
+                       @Html.JQueryUI().DatepickerFor(Function(model) model.FechaReserva, New With {.htmlAttributes = New With {.class = "form-control", .id = "fechaEntraga"}}).MinDate(DateTime.Today)
                         @Html.ValidationMessageFor(Function(model) model.FechaReserva, "", New With {.class = "text-danger"})
                     </div>
                 </div>
@@ -111,7 +111,7 @@ End Code
 
                 <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" id="saveBtn" class="btn btn-default" value="Guardar" />
+                        <input type="submit" id="saveBtn" class="btn btn-default" value="Editar" />
                         </div>
                     </div>
 
