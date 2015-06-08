@@ -142,7 +142,7 @@ End Code
                         <div class="form-group">
                             <label for="FechaReserva" class="control-label col-md-2">Fecha de Reserva @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                             <div class="col-md-10">
-                                @Html.JQueryUI().DatepickerFor(Function(model) model.FechaReserva, New With {.htmlAttributes = New With {.class = "form-control", .id = "inicio"}})
+                                @Html.JQueryUI().DatepickerFor(Function(model) model.FechaReserva, New With {.htmlAttributes = New With {.class = "form-control", .id = "inicio"}}).MinDate(DateTime.Today)
                                 @Html.ValidationMessageFor(Function(model) model.FechaReserva, "", New With {.class = "text-danger"})
                             </div>
                         </div>
