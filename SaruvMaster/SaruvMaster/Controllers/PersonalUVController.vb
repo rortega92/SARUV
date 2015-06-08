@@ -51,7 +51,9 @@ Namespace SaruvMaster
                     Dim recursoPorUsuarioDeptoActual = db.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = currentUsuarioId).ToList()
                     If (recursoPorUsuarioDeptoActual.ToArray().Length = 0) Then
                     Else
-                        recursoPorUsuarioList.Add(recursoPorUsuarioDeptoActual.ElementAt(0))
+                        For j As Integer = 0 To recursoPorUsuarioDeptoActual.ToArray().Length - 1
+                            recursoPorUsuarioList.Add(recursoPorUsuarioDeptoActual.ElementAt(j))
+                        Next
                     End If
                 Next
                 Return View(recursoPorUsuarioList)
