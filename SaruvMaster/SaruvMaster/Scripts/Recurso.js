@@ -29,7 +29,7 @@
             }
         });
     });
-    $("#EmpresaID").change(function () {
+    /*$("#EmpresaID").change(function () {
         $.ajax({
             type: "GET",
             url: "getClientesByNombreEmpresa",
@@ -47,6 +47,6 @@
                 alert("An error has occurred during processing your request.");
             }
         });
-    }).change()
+    }).change()*/
 
 });
