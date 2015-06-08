@@ -4,8 +4,8 @@
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h3>Docente</h3>
 
+<h3>Docente</h3>
 <section class="panel">
     <header class="panel-heading">
         Crear

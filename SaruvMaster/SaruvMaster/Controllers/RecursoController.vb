@@ -40,6 +40,11 @@ Namespace Controllers
             ViewBag.EmpresaID = New SelectList(db.Empresa, "ID", "Nombre")
             ViewBag.ModalidadDeCursoID = New SelectList(db.ModalidadDeCurso, "ID", "Nombre")
             ViewBag.TipoDeRecursoID = New SelectList(db.TipoDeRecurso, "Id", "Nombre")
+            Dim prioridad(2) As String
+            prioridad(0) = "Baja"
+            prioridad(1) = "Media"
+            prioridad(2) = "Alta"
+            ViewBag.prioridad = New SelectList(prioridad)
             Return View()
         End Function
 
@@ -77,7 +82,13 @@ Namespace Controllers
             ViewBag.DocenteID = New SelectList(db.Docente, "ID", "Nombres", recurso.DocenteID)
             ViewBag.EmpresaID = New SelectList(db.Empresa, "ID", "Nombre", recurso.EmpresaID)
             ViewBag.ModalidadDeCursoID = New SelectList(db.ModalidadDeCurso, "ID", "Nombre", recurso.ModalidadDeCursoID)
+            Dim prioridad(2) As String
+            prioridad(0) = "Baja"
+            prioridad(1) = "Media"
+            prioridad(2) = "Alta"
+            ViewBag.prioridad = New SelectList(prioridad)
             ViewBag.TipoDeRecursoID = New SelectList(db.TipoDeRecurso, "Id", "Nombre", recurso.TipoDeRecursoID)
+           
             Return View(recurso)
         End Function
 

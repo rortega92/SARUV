@@ -77,10 +77,11 @@ Public Class Connection
             If item.State.Equals(EntityState.Deleted) Then
                 SoftDelete(item, "")
             Else
-                SoftDelete(item, "UpdateDate")
+                Return MyBase.SaveChanges()
             End If
 
         Next
+
 
         Return MyBase.SaveChanges()
     End Function
@@ -110,11 +111,13 @@ Public Class Connection
             Dim sql = String.Format("UPDATE {0} SET IsDeleted = 1 WHERE {1} = @id", tableName, primaryKeyName)
 
             Database.ExecuteSqlCommand(sql, New SqlClient.SqlParameter("@id", entry.OriginalValues(primaryKeyName)))
+            entry.State = EntityState.Detached
         Else
             If value.Equals("UpdateDate") Then
                 Dim sql1 = String.Format("UPDATE {0} SET FechaModificacion = GETDATE() WHERE {1} = @id", tableName, primaryKeyName)
 
                 Database.ExecuteSqlCommand(sql1, New SqlClient.SqlParameter("@id", entry.OriginalValues(primaryKeyName)))
+                entry.State = EntityState.Modified
             End If
             ' sql = String.Format("UPDATE {0} SET IsDeleted = 2 WHERE {1} = @id", tableName, primaryKeyName)
         End If
@@ -123,7 +126,7 @@ Public Class Connection
         'Database.ExecuteSqlCommand(sql, New SqlClient.SqlParameter("@id", entry.OriginalValues(primaryKeyName)))
 
         ' prevent hard delete            
-        entry.State = EntityState.Detached
+
     End Sub
 
 

@@ -1,6 +1,7 @@
 ﻿@ModelType IEnumerable(Of SaruvMaster.Curso)
 @Code
     ViewData("Title") = "Index"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
 <script>

@@ -92,7 +92,8 @@ End Code
                 <div class="form-group">
                     <label for="Prioridad" class="control-label col-md-2">Prioridad @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
-                        @Html.EditorFor(Function(model) model.Prioridad, New With {.htmlAttributes = New With {.class = "form-control"}})
+                        @Html.DropDownList("Prioridad", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                        
                         @Html.ValidationMessageFor(Function(model) model.Prioridad, "", New With {.class = "text-danger"})
                     </div>
                 </div>
