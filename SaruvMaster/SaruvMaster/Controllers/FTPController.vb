@@ -1,5 +1,6 @@
 ﻿Imports System.Web.Mvc
 Imports System.IO
+Imports System.Net
 
 Namespace Controllers
     Public Class FTPController
@@ -11,39 +12,38 @@ Namespace Controllers
         End Function
 
 
-        <HttpPost> _
-        Public Function Upload(file As HttpPostedFileBase) As ActionResult
+        <HttpPost>
+        Public Function Upload(file2 As HttpPostedFileBase) As ActionResult
 
-            If file IsNot Nothing AndAlso file.ContentLength > 0 Then
-                Dim path = System.IO.Path.GetFullPath(file.FileName)
-                Dim myFtpWebRequest As System.Net.FtpWebRequest
-                Dim myFtpWebResponse As System.Net.FtpWebResponse
-                Dim myStreamWriter As System.IO.StreamWriter
-                Dim file1 = Path
-                Dim c = 0
+            Dim fileName = Path.GetFullPath(file2.FileName)
+            Path.GetFullPath(file2.FileName)
+            Dim request As System.Net.FtpWebRequest = DirectCast(System.Net.WebRequest.Create("ftp://torneo-web.hostei.com/" + fileName), System.Net.FtpWebRequest)
+            request.Credentials = New System.Net.NetworkCredential("a8250648", "base_datos")
+            request.Method = System.Net.WebRequestMethods.Ftp.UploadFile
 
-                Dim splitted() As String = Split(file1, "\")
-                Dim fileName = splitted(splitted.Length - 1)
+            Dim file() As Byte = System.IO.File.ReadAllBytes("C:\Users\Francisco\Documents\ArchivosSARUV\" + file2.FileName)
+
+            Dim strz As System.IO.Stream = request.GetRequestStream()
+            strz.Write(file, 0, file.Length)
+            strz.Close()
+            strz.Dispose()
+            Return RedirectToAction("#")
+        End Function
 
 
-                myFtpWebRequest = System.Net.WebRequest.Create("ftp://torneo-web.hostei.com/" + fileName)
+        <HttpGet>
+        Public Function download() As ActionResult
 
-                myFtpWebRequest.Credentials = New System.Net.NetworkCredential("a8250648", "base_datos")
+            Dim db As New Connection
+            Dim list = From m In db.RecursoPorUsuario
+                       Select m
 
-                myFtpWebRequest.Method = System.Net.WebRequestMethods.Ftp.UploadFile
-                myFtpWebRequest.UseBinary = True
-
-                myStreamWriter = New System.IO.StreamWriter(myFtpWebRequest.GetRequestStream())
-                myStreamWriter.Write(New System.IO.StreamReader(file.InputStream, True).ReadToEnd)
-                myStreamWriter.Close()
-
-                myFtpWebResponse = myFtpWebRequest.GetResponse()
-
-                JavaScript(myFtpWebResponse.StatusDescription)
-
-                myFtpWebResponse.Close()
-            End If
-
+            list = list.Where()
+            Dim items As IEnumerable(Of SelectListItem) = db.RecursoPorUsuario.Select(Function(c) New SelectListItem() With {
+    .Value = c..ToString(),
+    .Text = c.CategoryName
+})
+            ViewBag.CategoryID = items
             Return RedirectToAction("#")
         End Function
     End Class

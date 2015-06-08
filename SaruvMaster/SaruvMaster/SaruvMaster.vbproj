@@ -373,6 +373,7 @@
     <Content Include="Views\EncargadoDeValidacion\Details.vbhtml" />
     <Content Include="Views\EncargadoDeValidacion\Edit.vbhtml" />
     <Content Include="Views\EncargadoDeValidacion\Index.vbhtml" />
+    <Content Include="Views\FTP\BajarFTP.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -410,7 +411,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\layout\" />
     <Folder Include="Content\themes\" />
-    <Folder Include="Views\FTP\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
