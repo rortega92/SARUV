@@ -1,49 +1,57 @@
 ﻿@ModelType SaruvMaster.TipoDeRecurso
 @Code
     ViewData("Title") = "Details"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Details</h2>
-
 <div>
-    <h4>TipoDeRecurso</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Nombre)
-        </dt>
+    <h3>Tipo de Recurso</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            Detalles
+        </header>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(Function(model) model.Nombre)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Nombre)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(Function(model) model.Nombre)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.CodigoRecurso)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(Function(model) model.CodigoRecurso)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.CodigoRecurso)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(Function(model) model.CodigoRecurso)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaCreacion)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(Function(model) model.FechaCreacion)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaCreacion)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(Function(model) model.FechaCreacion)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaModificacion)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(Function(model) model.FechaModificacion)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaModificacion)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(Function(model) model.FechaModificacion)
+                    </dd>
 
-    </dl>
+                </dl>
+        </div>
+    </section>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a class="btn btn-default btn-sm" href="@Url.Action("Edit", New With {.id = Model.ID})"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+    <a class="btn btn-default btn-sm" href="/TipoDeRecurso/Index">Regresar a la lista</a>
 </p>
+
+

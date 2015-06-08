@@ -1,94 +1,102 @@
 ﻿@ModelType SaruvMaster.Docente
 @Code
     ViewData("Title") = "Delete"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Docente</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento.Nombre)
-        </dt>
+    <h3>Docente</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            ¿Desea eliminar el Docente?
+        </header>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.AreaDeConocimiento.Nombre)
-        </dd>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.AreaDeConocimiento.Nombre)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Facultad.Nombre)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.AreaDeConocimiento.Nombre)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Facultad.Nombre)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Facultad.Nombre)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Nombres)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Facultad.Nombre)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Nombres)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Nombres)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Apellidos)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Nombres)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Apellidos)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Apellidos)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.NumeroTalentoHumano)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Apellidos)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.NumeroTalentoHumano)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.NumeroTalentoHumano)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.correoElectronico)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.NumeroTalentoHumano)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.correoElectronico)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.correoElectronico)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.telefono)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.correoElectronico)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.telefono)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.telefono)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaCreacion)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.telefono)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaCreacion)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaCreacion)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaModificacion)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaCreacion)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaModificacion)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaModificacion)
+                </dt>
 
-    </dl>
-    @Using (Html.BeginForm())
-        @Html.AntiForgeryToken()
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaModificacion)
+                </dd>
 
-        @<div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            </dl>
+            @Using (Html.BeginForm())
+                @Html.AntiForgeryToken()
+
+                @<div class="form-actions no-color">
+                    <input type="submit" value="Eliminar" class="btn btn-default" />
+                    <input type="submit" value="Deshabilitar" class="btn btn-default" />
+                </div>
+            End Using
         </div>
-    End Using
+    </section>
+    <div>
+        <a  class="btn btn-default btn-sm" href="/Docente/Index">Regresar a la lista</a>
+    </div>
 </div>

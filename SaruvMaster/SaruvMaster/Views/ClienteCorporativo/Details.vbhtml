@@ -3,79 +3,83 @@
     ViewData("Title") = "Details"
 End Code
 
-<h2>Details</h2>
-
 <div>
-    <h4>ClienteCorporativo</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Empresa.Nombre)
-        </dt>
+    <h3>Cliente Corporativo</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            Detalles
+        </header>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Empresa.Nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Empresa.Nombre)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Empresa.Nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Nombre)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Nombre)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Apellidos)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Apellidos)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Apellidos)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Apellidos)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.NumeroIdentidad)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.NumeroIdentidad)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.NumeroIdentidad)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.NumeroIdentidad)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.CorreoElectronico)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.CorreoElectronico)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.CorreoElectronico)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.CorreoElectronico)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Telefono)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Telefono)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Telefono)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Telefono)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaCreacion)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaCreacion)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaCreacion)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaCreacion)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaModificacion)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaModificacion)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaModificacion)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaModificacion)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+    </section>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a  class="btn btn-default btn-sm" href="@Url.Action("Edit", New With {.id = Model.ID})"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+    <a  class="btn btn-default btn-sm" href="/ClienteCorporativo/Index">Regresar a la lista</a>
 </p>

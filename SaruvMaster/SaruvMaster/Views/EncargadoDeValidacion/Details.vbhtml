@@ -1,73 +1,79 @@
 ﻿@ModelType SaruvMaster.EncargadoDeValidacion
 @Code
     ViewData("Title") = "Details"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
 
-<h2>Details</h2>
-
 <div>
-    <h4>EncargadoDeValidacion</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Facultad.Nombre)
-        </dt>
+    <h3>Encargado de Validación</h3>
+    <section class="panel">
+        <header class="panel-heading">
+            Detalles
+        </header>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Facultad.Nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Facultad.Nombre)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Facultad.Nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Nombre)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Nombre)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Telefono)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Telefono)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Telefono)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Telefono)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Extensión)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.Extensión)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Extensión)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.Extensión)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.correoElectronico)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.correoElectronico)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.correoElectronico)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.correoElectronico)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaCreacion)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaCreacion)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaCreacion)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaCreacion)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FechaModificacion)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(Function(model) model.FechaModificacion)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FechaModificacion)
-        </dd>
-    
-    </dl>
+                <dd>
+                    @Html.DisplayFor(Function(model) model.FechaModificacion)
+                </dd>
+
+            </dl>
+        </div>
+    </section>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", New With {.id = Model.ID}) |
-    @Html.ActionLink("Back to List", "Index")
+    <a class="btn btn-default btn-sm" href="@Url.Action("Edit", New With {.id = Model.ID})"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+    <a class="btn btn-default btn-sm" href="/EncargadoDeValidacion/Index">Regresar a la lista</a>
 </p>
+

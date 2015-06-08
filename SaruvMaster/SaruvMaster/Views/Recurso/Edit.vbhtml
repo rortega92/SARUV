@@ -1,111 +1,181 @@
 ﻿@ModelType SaruvMaster.Recurso
 @Code
     ViewData("Title") = "Edit"
+    Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
+<script>
+    $("#FechaEntrega").addClass('form-control text-box single-line valid');
+</script>
 
-<h2>Edit</h2>
+<script>
+    function getSelectedValue(ElementID) {
+        var element = document.getElementById(ElementID);
+        var index = element.options[element.selectedIndex];
+        alert(index.innerHTML);
+    }
+    $(document).ready(function () {
+        $("#ModalidadDeCursoID").change(function () {
+            $("select option:selected").each(function () {
+                if ($(this).html() == "Presencial" || $(this).html() == "Virtual" || $(this).html() == "Internacional") {
+                    $("label[for=EmpresaID], #EmpresaID").parent().hide();
+                    $("label[for=ClienteCorporativoID], #ClienteCorporativoID").parent().hide();
+                    $("label[for=DocenteID], #DocenteID").parent().show();
+                    $("label[for=CursoID], #CursoID").parent().show();
+                } else
+                    if ($(this).html() == "Corporativo" || $(this).html() == "Corporativa") {
+                        $("label[for=EmpresaID], #EmpresaID").parent().show();
+                        $("label[for=ClienteCorporativoID], #ClienteCorporativoID").parent().show();
+                        $("label[for=DocenteID], #DocenteID").parent().hide();
+                        $("label[for=CursoID], #CursoID").parent().hide();
+                    }
 
-@Using (Html.BeginForm())
-    @Html.AntiForgeryToken()
-    
-    @<div class="form-horizontal">
-        <h4>Recurso</h4>
-        <hr />
-        @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
-        @Html.HiddenFor(Function(model) model.Id)
+            });
+        }).change();
+        $("#Submit").click(function () {
+            $("select option:selected").each(function () {
+                if ($(this).html() == "Presencial" || $(this).html() == "Virtual") {
+                    $("#EmpresaID").empty();
+                    $("#ClienteCorporativoID").empty();
+                }
+                if ($(this).html() == "Corporativo" || $(this).html() == "Corporativa") {
+                    $("#DocenteID").empty();
+                    $("#CursoID").empty();
+                }
+            });
+        });
+        $("#EmpresaID").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Recurso/getClientesByNombreEmpresa",
+                data: { "nombreEmpresa": $("#EmpresaID option:selected").html() },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    console.log(msg[0])
+                    $("#ClienteCorporativoID").empty()
+                    $.each(msg, function () {
+                        $("#ClienteCorporativoID").append($("<option></option>").val(this['ID']).html(this['Nombres']));
+                    });
+                },
+                error: function () {
+                    alert("An error has occurred during processing your request.");
+                }
+            });
+        }).change()
 
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.Nombre, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.Nombre, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.Nombre, "", New With { .class = "text-danger" })
+    });
+</script>
+
+<h3>Recurso</h3>
+
+<section class="panel">
+    <header class="panel-heading">
+        Editar
+    </header>
+    <div class="panel-body">
+
+        @Using (Html.BeginForm())
+            @Html.AntiForgeryToken()
+
+            @<div class="form-horizontal">
+
+                <hr />
+                @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
+                @Html.HiddenFor(Function(model) model.Id)
+
+                <div class="form-group">
+                    <label for="Nombre" class="control-label col-md-2">Nombre @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(Function(model) model.Nombre, New With {.htmlAttributes = New With {.class = "form-control"}})
+                        @Html.ValidationMessageFor(Function(model) model.Nombre, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="TipoDeRecursoID" class="control-label col-md-2">Tipo de Recurso @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("TipoDeRecursoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                        @Html.ValidationMessageFor(Function(model) model.TipoDeRecursoID, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ModalidadDeCursoID" class="control-label col-md-2">Modalidad @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("ModalidadDeCursoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                        @Html.ValidationMessageFor(Function(model) model.ModalidadDeCursoID, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="EmpresaID" class="control-label col-md-2">Empresa @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("EmpresaID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                        @Html.ValidationMessageFor(Function(model) model.EmpresaID, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="CursoID" class="control-label col-md-2">Curso @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("CursoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                        @Html.ValidationMessageFor(Function(model) model.CursoID, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ClienteCorporativoID" class="control-label col-md-2">Cliente Corporativo @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("ClienteCorporativoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                        @Html.ValidationMessageFor(Function(model) model.ClienteCorporativoID, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="DocenteID" class="control-label col-md-2">Docente @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("DocenteID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                        @Html.ValidationMessageFor(Function(model) model.DocenteID, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Duracion" class="control-label col-md-2">Duración (Semanas) @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(Function(model) model.Duracion, New With {.htmlAttributes = New With {.class = "form-control"}})
+                        @Html.ValidationMessageFor(Function(model) model.Duracion, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Prioridad" class="control-label col-md-2">Prioridad @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(Function(model) model.Prioridad, New With {.htmlAttributes = New With {.class = "form-control"}})
+                        @Html.ValidationMessageFor(Function(model) model.Prioridad, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Prioridad" class="control-label col-md-2">Fecha de Entrega @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(Function(model) model.FechaEntrega, New With {.htmlAttributes = New With {.class = "form-control"}})
+                        @Html.ValidationMessageFor(Function(model) model.FechaEntrega, "", New With {.class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Editar" class="btn btn-default" id="Submit" />
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.TipoDeRecursoID, "TipoDeRecursoID", htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("TipoDeRecursoID", Nothing, htmlAttributes:= New With { .class = "form-control" })
-                @Html.ValidationMessageFor(Function(model) model.TipoDeRecursoID, "", New With { .class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.ModalidadDeCursoID, "ModalidadDeCursoID", htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ModalidadDeCursoID", Nothing, htmlAttributes:= New With { .class = "form-control" })
-                @Html.ValidationMessageFor(Function(model) model.ModalidadDeCursoID, "", New With { .class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.EmpresaID, "EmpresaID", htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("EmpresaID", Nothing, htmlAttributes:= New With { .class = "form-control" })
-                @Html.ValidationMessageFor(Function(model) model.EmpresaID, "", New With { .class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.CursoID, "CursoID", htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CursoID", Nothing, htmlAttributes:= New With { .class = "form-control" })
-                @Html.ValidationMessageFor(Function(model) model.CursoID, "", New With { .class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.ClienteCorporativoID, "ClienteCorporativoID", htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ClienteCorporativoID", Nothing, htmlAttributes:= New With { .class = "form-control" })
-                @Html.ValidationMessageFor(Function(model) model.ClienteCorporativoID, "", New With { .class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.DocenteID, "DocenteID", htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DocenteID", Nothing, htmlAttributes:= New With { .class = "form-control" })
-                @Html.ValidationMessageFor(Function(model) model.DocenteID, "", New With { .class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.Duracion, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.Duracion, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.Duracion, "", New With { .class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.Prioridad, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.Prioridad, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.Prioridad, "", New With { .class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.FechaEntrega, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.FechaEntrega, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.FechaEntrega, "", New With {.class = "text-danger"})
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+        End Using
     </div>
-End Using
-
+</section>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a  class="btn btn-default btn-sm" href="/Recurso/Index">Regresar a la lista</a>
 </div>
 
-@Section Scripts 
+@Section Scripts
     @Scripts.Render("~/bundles/jqueryval")
 End Section
