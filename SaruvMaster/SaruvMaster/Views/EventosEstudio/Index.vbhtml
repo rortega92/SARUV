@@ -1,138 +1,263 @@
-﻿@ModelType IEnumerable(Of SaruvMaster.EventosEstudio)
+﻿@ModelType SaruvMaster.EventosEstudio
 @Code
-    ViewData("Title") = "Index"
+    ViewData("Title") = "Calendar"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/fullcalendarcss")
+@Scripts.Render("~/bundles/fullcalendarjs")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/fullcalendarjs")
 
-<script>
 
+<script type="text/javascript">
     $(function () {
-        $("#botonBuscar").click(function () {
-            $("#Buscar").show("blind");
-            $("#botonBuscar").hide();
-
-        })
-        $("#cancelar").click(function () {
-            $("#Buscar").hide("blind");
-            $("#botonBuscar").show();
-
-        })
-        $("#Buscar").hide();
-    });
-    $(document).ready(function (e) {
-        $('#search-panel .dropdown-menu').find('a').click(function (e) {
-            e.preventDefault();
-            var parametro = $(this).attr("href").replace("#", "");
-            var concepto = $(this).text();
-            $('#search-panel span#search_concept').text(concepto);
-            $('.input-group #search_param').val(parametro);
-            $("#searchConceptInput").val(concepto);
+        $('#addToggle').click(function (e) {
+            $('#eventAdd').modal();
         });
     });
 
+    $(document).ready(function () {
+        
+        $('#calendar').fullCalendar({
+            theme: false,
+            header: {
+                left: '',
+                center: 'prev title next',
+                right: 'month agendaWeek agendaDay'
+            },
+            eventRender: function (event, element) {
+                
+                if (event.isDeleted != 0) return false;
+            },
+            eventClick: function (event, jsEvent, view) {
+                $('#modalTitle').html(event.title);
+                if (event.cliente != null) {
+                    $('#modalEncargado').html("<label class='control-label col-md-2'>Cliente: </label> " + event.cliente);
+                }
+                if (event.docente != null) {
+                    $('#modalDocente').html("<label class='control-label col-md-2'>Docente: </label> " + event.docente);
+                }
+                $('#modalHoraInicio').html("<label class='control-label col-md-2'>Inicio: </label> " + event.start);
+                $('#modalHoraFinal').html("<label class='control-label col-md-2'>Fin: </label> " + event.end);
+                var hreflink1 = $('#modalDelete');
+                hreflink1.attr('href', "/EventosEstudio/Delete/" + event.id);
+                var hreflink2 = $('#modalEdit');
+                hreflink2.attr('href', "/EventosEstudio/Edit/" + event.id);
+                $('#fullCalModal').modal();
+            },
+            //defaultView: 'agendaDay',
+            editable: false,
+            events: "/eventosestudio/getevents/"
+
+        });
+
+    });
+    
+
 </script>
-<div class="row">
-    <div class="col-md-12">
-        <header class="panel-heading">
-            <h3>Encargado de Validación</h3>
-        </header>
-        <div class="breadcrumb">
-            <a class="btn btn-default btn-sm" href="/EventosEstudio/Create"><span class="glyphicon glyphicon-plus"></span> Crear Nuevo</a>
-            <a class="btn btn-default btn-sm" href="javascript:void(0)" id="botonBuscar"><span class="glyphicon glyphicon-filter"></span> Filtrar</a>
+
+<!DOCTYPE html>
+<div class="panel-body">
+    <div id="fullCalModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                    <h4 id="modalTitle" class="modal-title"></h4>
+                </div>
+                <div id="modalBody" class="modal-body">
+                    <div id="modalEncargado" class="form-group"></div>            
+                    <div id="modalDocente" class="form-group"></div>
+                    <div id="modalHoraInicio" class="form-group"></div>
+                    <div id="modalHoraFinal" class="form-group"></div>
+
+                    <div class="form-group">
+                        <div class="modal-footer">
+                            <a class="btn btn-default btn-sm" id="modalEdit" href="/EventosEstudio/Edit/"><span class="glyphicon glyphicon-trash"></span> Editar</a>
+                            <a class="btn btn-default btn-sm" id="modalDelete" href="/EventosEstudio/Delete/"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+            
+            
+            </div>
         </div>
     </div>
-</div>
-<div id="Buscar" class="row" style="margin-bottom:10px">
-    <div class="col-xs-4 col-xs-offset-2" style="margin-top:10px">
-        @Using Html.BeginForm("Index", "EncargadoDeValidacion", FormMethod.Get)
-            @<div class="input-group">
-                <div class="input-group-btn" id="search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span id="search_concept">Filtrar Por</span> <span class="caret"></span>
-                    </button>
-                    <input type="hidden" value="Nombre" id="searchConceptInput" name="searchConceptInput" />
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#Evento">Evento</a></li>
-                        <li><a href="#Docente">Docente</a></li>
-                        <li><a href="#ClienteCorporativo">Cliente Corporativo</a></li>
-                        <li><a href="#FechaReserva">Fecha de Reserva</a></li>
-                    </ul>
+
+    <div id="eventAdd" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">Cerrar</span></button>
+                    <h4 id="modalTitle" class="modal-title">Add</h4>
+                </div>
+                <div id="modalBody" class="modal-body">
+
+                    @Using (Html.BeginForm("Create", "EventosEstudio"))
+                        @Html.AntiForgeryToken()
+                        @<div class="form-horizontal">
+                            <hr />
+                            @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
+                            <div class="form-group">
+                                <label for="Nombre" class="control-label col-md-2">Evento @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(Function(model) model.Evento, New With {.htmlAttributes = New With {.class = "form-control"}})
+                                    @Html.ValidationMessageFor(Function(model) model.Evento, "", New With {.class = "text-danger"})
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                 <div class="col-md-offset-2 col-md-10">
+                                     <div class="btn-group" data-toggle="buttons">
+                                         <label class="btn btn-default">
+                                             <input type="radio" name="options" value="docenteToggle" id="docenteToggle" autocomplete="off" checked> Docente
+                                         </label>
+                                         <label class="btn btn-default">
+                                             <input type="radio" name="options" value="clienteToggle" id="clienteToggle" autocomplete="off"> Cliente Corporativo
+                                         </label>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="form-group" id="docenteForm">
+                                 @Html.LabelFor(Function(model) model.DocenteID, "Docente", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                                 <div class="col-md-10">
+                                     
+                                     @Html.DropDownList("DocenteID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                                     @Html.ValidationMessageFor(Function(model) model.DocenteID, "", New With {.class = "text-danger"})
+                                 </div>
+                             </div>
+
+                             <div class="form-group" id="clienteForm">
+                                 @Html.LabelFor(Function(model) model.ClienteCorporativoID, "Cliente", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                                 <div class="col-md-10">
+                                     @Html.DropDownList("ClienteCorporativoID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                                     @Html.ValidationMessageFor(Function(model) model.ClienteCorporativoID, "", New With {.class = "text-danger"})
+                                 </div>
+                             </div>
+
+                            <div class="form-group">
+                                <label for="FechaReserva" class="control-label col-md-2">Fecha de Reserva @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                                <div class="col-md-10">
+                                    @Html.JQueryUI().DatepickerFor(Function(model) model.FechaReserva, New With {.htmlAttributes = New With {.class = "form-control", .id = "inicio"}})
+                                    @Html.ValidationMessageFor(Function(model) model.FechaReserva, "", New With {.class = "text-danger"})
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                 <label for="HoraInicio" class="control-label col-md-2">Hora Inicio @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                                 <div class="col-md-10">
+                                     <select name="HoraInicio" class="form-control valid" id="HoraInicio">
+                                         <option value="10:00">10:00</option>
+                                         <option value="10:30">10:30</option>
+                                         <option value="11:00">11:00</option>
+                                         <option value="11:30">11:30</option>
+                                         <option value="12:00">12:00</option>
+                                         <option value="12:30">12:30</option>
+                                         <option value="13:00">13:00</option>
+                                         <option value="13:30">13:30</option>
+                                         <option value="14:00">14:00</option>
+                                         <option value="14:30">14:30</option>
+                                         <option value="15:00">15:00</option>
+                                         <option value="15:30">15:30</option>
+                                         <option value="16:00">16:00</option>
+                                         <option value="16:30">16:30</option>
+                                         <option value="17:00">17:00</option>
+                                         <option value="17:30">17:30</option>
+                                     </select>
+                                     @Html.ValidationMessageFor(Function(model) model.HoraInicio, "", New With {.class = "text-danger"})
+                                 </div>
+                             </div>
+                             <div class="form-group">
+                                 <label for="HoraFinal" class="control-label col-md-2">Hora Final @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
+                                 <div class="col-md-10">
+                                     <select name="HoraFinal" class="form-control valid" id="HoraFinal">
+                                         <option value="10:00">10:00</option>
+                                         <option value="10:30">10:30</option>
+                                         <option value="11:00">11:00</option>
+                                         <option value="11:30">11:30</option>
+                                         <option value="12:00">12:00</option>
+                                         <option value="12:30">12:30</option>
+                                         <option value="13:00">13:00</option>
+                                         <option value="13:30">13:30</option>
+                                         <option value="14:00">14:00</option>
+                                         <option value="14:30">14:30</option>
+                                         <option value="15:00">15:00</option>
+                                         <option value="15:30">15:30</option>
+                                         <option value="16:00">16:00</option>
+                                         <option value="16:30">16:30</option>
+                                         <option value="17:00">17:00</option>
+                                         <option value="17:30">17:30</option>
+                                     </select>
+                                     @Html.ValidationMessageFor(Function(model) model.HoraFinal, "", New With {.class = "text-danger"})
+                                 </div>
+                             </div>
+                               
+                    <div class="form-group">
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" id="saveBtn" value="Crear" />
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+
+                    </div>
                 </div>
 
-                @Html.TextBox("SearchString", Nothing, htmlAttributes:=New With {.class = "form-control"})
+
+                        </div>
+                        
+                        
+
+                    End Using
+
+                </div>
+                
             </div>
-        End Using
-        <a href="javascript:void(0)" id="cancelar">Cancelar</a>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <section class="panel">
-            <div class="panel-body">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.ClienteCorporativo.Nombre)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.Docente.Nombres)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.Evento)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.FechaReserva)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.HoraInicio)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.HoraFinal)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.IsDeleted)
-                            </th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
 
 
-                        @For Each item In Model
-                            @<tr>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.ClienteCorporativo.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Docente.Nombres)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Evento)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.FechaReserva)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.HoraInicio)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.HoraFinal)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.IsDeleted)
-                                </td>
-                                <td>
-                                    <a class="btn btn-default btn-sm" href="@Url.Action("Edit", New With {.id = item.ID})"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-                                    <a class="btn btn-default btn-sm" href="@Url.Action("Details", New With {.id = item.ID})"><span class="glyphicon glyphicon-list-alt"></span> Detalles</a>
-                                    <a class="btn btn-default btn-sm" href="@Url.Action("Delete", New With {.id = item.ID})"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
-
-                                </td>
-                            </tr>
-                        Next
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    <header class="panel-heading">
+        Calendario
+    </header>
+    <div class="breadcrumb">
+        <a style="color: #007AFF" class="btn btn-default btn-sm" id="addToggle"><span class="glyphicon glyphicon-plus"></span> Crear Evento</a>
     </div>
+    <div id="calendar"></div>
+
+
 </div>
+
+<script>
+    $(document).ready(function () {
+        $("#clienteForm").hide();
+        $("input[name=options]").change(function () {
+            if ($(this).val() == "docenteToggle") {
+                $("#docenteToggle").attr("checked","checked")
+                $("#clienteToggle").removeAttr('checked');
+                $("label[for=ClienteCorporativoID], #ClienteCorporativoID").parent().hide();
+                $("label[for=DocenteID], #DocenteID").parent().show();
+            } else
+                if ($(this).val() == "clienteToggle") {
+                    $("#clienteToggle").attr("checked", "checked")
+                    $("#docenteToggle").removeAttr('checked');
+                    $("label[for=ClienteCorporativoID], #ClienteCorporativoID").parent().show();
+                    $("label[for=DocenteID], #DocenteID").parent().hide();
+                }
+        });
+    });
+
+    $("#saveBtn").click(function () {
+
+        if ($('#docenteToggle').is(':checked')) {
+            $("#ClienteCorporativoID").empty();
+        }
+        if ($('#clienteToggle').is(':checked')) {
+            $("#DocenteID").empty();
+        }
+
+    });
+
+
+</script>

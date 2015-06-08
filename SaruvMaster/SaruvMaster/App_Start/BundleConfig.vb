@@ -4,6 +4,18 @@ Public Module BundleConfig
     ' For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
     Public Sub RegisterBundles(ByVal bundles As BundleCollection)
 
+        'Calendar css file
+        bundles.Add(New StyleBundle("~/Content/fullcalendarcss").Include(
+                 "~/Content/themes/jquery.ui.all.css",
+                 "~/Content/fullcalendar.css"))
+
+        'Calendar Script file
+
+        bundles.Add(New ScriptBundle("~/bundles/fullcalendarjs").Include(
+                  "~/Scripts/jquery-ui-1.10.4.min.js",
+                  "~/Scripts/fullcalendar.min.js"))
+
+
         bundles.Add(New ScriptBundle("~/bundles/jquery").Include(
                     "~/Scripts/jquery-{version}.js"))
 

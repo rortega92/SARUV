@@ -3,7 +3,11 @@ Public Class EventosEstudio
 
     Public Property ID As Integer
 
+    <StringLength(255, ErrorMessage:="Este campo solo permite un máximo de 255 caracteres")>
     Public Property Evento As String
+
+    Public Property StartString As String
+    Public Property EndString As String
 
     Public Property DocenteID As Nullable(Of Integer)
 

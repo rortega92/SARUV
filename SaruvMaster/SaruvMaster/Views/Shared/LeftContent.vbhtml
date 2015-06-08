@@ -11,7 +11,7 @@
                 </a>
                 <ul Class="sub">
                     <li> <a Class="" href="#">Reporte de Tareas</a></li>
-                    <li> <a Class="" href="#">Estudio de Grabación</a></li>
+                    <li> <a Class="" href="/EventosEstudio">Estudio de Grabación</a></li>
                     <li> <a Class="" href="#">Eventos UV</a></li>
                 </ul>
             </li>
