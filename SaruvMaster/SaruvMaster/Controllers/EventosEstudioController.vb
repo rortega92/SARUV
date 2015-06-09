@@ -36,7 +36,7 @@ Namespace Controllers
 
         ' GET: EventosEstudio/Create
         Function Create() As ActionResult
-            ViewBag.ClienteCorporativoID = New SelectList(db.ClienteCorporativo, "ID", "Nombres")
+            ViewBag.ClienteCorporativoID = New SelectList(db.ClienteCorporativo, "ID", "Nombre")
             ViewBag.DocenteID = New SelectList(db.Docente, "ID", "Nombres")
             Return View()
         End Function
@@ -56,7 +56,7 @@ Namespace Controllers
                 db.Savechanges()
                 Return RedirectToAction("Index")
             End If
-            ViewBag.ClienteCorporativoID = New SelectList(db.ClienteCorporativo, "ID", "Nombres", eventosEstudio.ClienteCorporativoID)
+            ViewBag.ClienteCorporativoID = New SelectList(db.ClienteCorporativo, "ID", "Nombre", eventosEstudio.ClienteCorporativoID)
             ViewBag.DocenteID = New SelectList(db.Docente, "ID", "Nombres", eventosEstudio.DocenteID)
             Return View(eventosEstudio)
         End Function
@@ -70,7 +70,7 @@ Namespace Controllers
             If IsNothing(eventosEstudio) Then
                 Return HttpNotFound()
             End If
-            ViewBag.ClienteCorporativoID = New SelectList(db.ClienteCorporativo, "ID", "Nombres", eventosEstudio.ClienteCorporativoID)
+            ViewBag.ClienteCorporativoID = New SelectList(db.ClienteCorporativo, "ID", "Nombre", eventosEstudio.ClienteCorporativoID)
             ViewBag.DocenteID = New SelectList(db.Docente, "ID", "Nombres", eventosEstudio.DocenteID)
             Return View(eventosEstudio)
         End Function
@@ -90,7 +90,7 @@ Namespace Controllers
                 db.Savechanges()
                 Return RedirectToAction("Index")
             End If
-            ViewBag.ClienteCorporativoID = New SelectList(db.ClienteCorporativo, "ID", "Nombres", eventosEstudio.ClienteCorporativoID)
+            ViewBag.ClienteCorporativoID = New SelectList(db.ClienteCorporativo, "ID", "Nombre", eventosEstudio.ClienteCorporativoID)
             ViewBag.DocenteID = New SelectList(db.Docente, "ID", "Nombres", eventosEstudio.DocenteID)
             Return View(eventosEstudio)
         End Function
