@@ -195,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="Controllers\AccountController.vb" />
+    <Compile Include="Controllers\AreaDeConocimientoController.vb" />
     <Compile Include="Controllers\ClienteCorporativoController.vb" />
     <Compile Include="Controllers\CursoController.vb" />
     <Compile Include="Controllers\DepartamentoController.vb" />
@@ -383,6 +384,11 @@
     <Content Include="Views\EncargadoDeValidacion\Edit.vbhtml" />
     <Content Include="Views\EncargadoDeValidacion\Index.vbhtml" />
     <Content Include="Web.config" />
+    <Content Include="Views\AreaDeConocimiento\Create.vbhtml" />
+    <Content Include="Views\AreaDeConocimiento\Delete.vbhtml" />
+    <Content Include="Views\AreaDeConocimiento\Details.vbhtml" />
+    <Content Include="Views\AreaDeConocimiento\Edit.vbhtml" />
+    <Content Include="Views\AreaDeConocimiento\Index.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

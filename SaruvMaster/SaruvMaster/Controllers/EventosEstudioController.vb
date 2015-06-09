@@ -17,7 +17,7 @@ Namespace Controllers
         ' GET: EventosEstudio
         Function Index() As ActionResult
             Dim eventosEstudio = db.EventosEstudio.Include(Function(e) e.ClienteCorporativo).Include(Function(e) e.Docente)
-            ViewBag.ClienteCorporativoID = New SelectList(db.ClienteCorporativo, "ID", "Nombres")
+            ViewBag.ClienteCorporativoID = New SelectList(db.ClienteCorporativo, "ID", "Nombre")
             ViewBag.DocenteID = New SelectList(db.Docente, "ID", "Nombres")
             Return View()
         End Function
