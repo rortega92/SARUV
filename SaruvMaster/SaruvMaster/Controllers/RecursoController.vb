@@ -141,5 +141,20 @@ Namespace Controllers
             End If
             MyBase.Dispose(disposing)
         End Sub
+
+        Function getClientesByNombreEmpresa(ByVal nombreEmpresa As String) As ActionResult
+            Dim serializer As New System.Web.Script.Serialization.JavaScriptSerializer()
+            Dim con As New Connection
+            Dim idEmpresa = con.Empresa.Where(Function(e) e.Nombre = nombreEmpresa).First().ID
+            Dim listaClientes = con.ClienteCorporativo.ToList.Where(Function(c) c.EmpresaID = idEmpresa)
+            Dim returnClientes As New List(Of Dictionary(Of String, String))
+            For i As Integer = 0 To listaClientes.ToArray().Length - 1
+                Dim row As New Dictionary(Of String, String)
+                row.Add("ID", listaClientes.ElementAt(i).ID)
+                row.Add("Nombres", listaClientes.ElementAt(i).Nombre)
+                returnClientes.Add(row)
+            Next
+            Return Json(returnClientes, JsonRequestBehavior.AllowGet)
+        End Function
     End Class
 End Namespace
