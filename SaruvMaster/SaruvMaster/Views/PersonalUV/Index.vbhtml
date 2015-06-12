@@ -116,14 +116,14 @@ End If
                                                 <td>
                                                     
                                                     @Using (Html.BeginForm("Upload", "FTP", FormMethod.Post, New With {Key .enctype = "multipart/form-data"}))
-                                                        @<input type="file" name="file" />
+                                                        @<input type="file" name="file2" />
                                                         @<input type="submit" name="Submit" id="Submit" value="Upload" />
                                                     End Using
                                                 </td>
                                                 <td>
-                                                    <form method="GET">
-                                                        <button id="btnBajarFuente_@Html.DisplayFor(Function(modelitem) item.Recurso.Id)" class="btn">Bajar</button>
-                                                    </form>
+                                                    @Using (Html.BeginForm("download", "FTP", FormMethod.Post, New With {.id = item.ID}))
+                                                        @<input type="submit" name="Submit" id="Submit" value="download" />
+                                                    End Using
                                                 </td>
                                                 <td>
                                                     <form method="POST">
