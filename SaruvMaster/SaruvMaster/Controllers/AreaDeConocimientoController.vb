@@ -54,8 +54,6 @@ Namespace Controllers
 
                 End If
             Next
-            areaDeConocimiento.FechaCreacion = DateTime.Now
-            areaDeConocimiento.FechaModificacion = areaDeConocimiento.FechaCreacion
             If ModelState.IsValid Then
                 db.AreaDeConocimiento.Add(areaDeConocimiento)
                 db.SaveChanges()
@@ -82,10 +80,9 @@ Namespace Controllers
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Edit(<Bind(Include:="ID,Nombre,FechaCreacion, FechaModificacion")> ByVal areaDeConocimiento As AreaDeConocimiento) As ActionResult
-            areaDeConocimiento.FechaModificacion = DateTime.Now
             If ModelState.IsValid Then
                 db.Entry(areaDeConocimiento).State = EntityState.Modified
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             Return View(areaDeConocimiento)
