@@ -106,27 +106,22 @@ Public Class Connection
         Dim tableName As String = GetTableName(entryEntityType)
         Dim primaryKeyName As String = GetPrimaryKeyName(entryEntityType)
 
-        'Dim sql As String
+        Dim sql As String
         If IsNothing(value) Then
-            Dim sql = String.Format("UPDATE {0} SET IsDeleted = 1 WHERE {1} = @id", tableName, primaryKeyName)
+            sql = String.Format("UPDATE {0} SET IsDeleted = 1 WHERE {1} = @id", tableName, primaryKeyName)
 
-            Database.ExecuteSqlCommand(sql, New SqlClient.SqlParameter("@id", entry.OriginalValues(primaryKeyName)))
-            entry.State = EntityState.Detached
+
         Else
-            If value.Equals("UpdateDate") Then
-                Dim sql1 = String.Format("UPDATE {0} SET FechaModificacion = GETDATE() WHERE {1} = @id", tableName, primaryKeyName)
 
-                Database.ExecuteSqlCommand(sql1, New SqlClient.SqlParameter("@id", entry.OriginalValues(primaryKeyName)))
-                entry.State = EntityState.Modified
-            End If
-            ' sql = String.Format("UPDATE {0} SET IsDeleted = 2 WHERE {1} = @id", tableName, primaryKeyName)
+            sql = String.Format("UPDATE {0} SET IsDeleted = 2 WHERE {1} = @id", tableName, primaryKeyName)
         End If
 
 
-        'Database.ExecuteSqlCommand(sql, New SqlClient.SqlParameter("@id", entry.OriginalValues(primaryKeyName)))
+        Database.ExecuteSqlCommand(Sql, New SqlClient.SqlParameter("@id", entry.OriginalValues(primaryKeyName)))
 
-        ' prevent hard delete            
+        ' prevent hard delete     
 
+        entry.State = EntityState.Detached
     End Sub
 
 
