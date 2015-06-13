@@ -24,7 +24,7 @@ $(document).ready(function () {
                 success: function (data) {
                     $("#NavTabs").empty();
                     $.each(data, function (ind, usuario) {
-                        $("#NavTabs").append($("<li></li>").append($("<a data-toggle='tab'></a>").html(usuario['Nombre']).attr("href", "." + usuario['Nombre'])));
+                        $("#NavTabs").append($("<li></li>").append($("<a data-toggle='tab'></a>").html(usuario['Nombre']).attr("href", "." + usuario['Nombre'].split(" ").join("_") )));
                         $.ajax({
                             type: "GET",
                             url: "/PersonalUV/getRecursosByUsuario",
@@ -33,7 +33,7 @@ $(document).ready(function () {
                             dataType: "json",
                             success: function (recursosPorUsuario) {
                                 $("#TabContent").append($("<div class='tab-pane recurso-container'></div>").html('').attr("id", usuario['ID']));
-                                $("#" +usuario['ID']).addClass(usuario['Nombre'])
+                                $("#" +usuario['ID']).addClass(usuario['Nombre'].split(" ").join("_"))
                                 $.each(recursosPorUsuario, function (indRec, recurso) {
                                     bindRecurso({
                                         "recurso": recurso,
