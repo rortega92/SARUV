@@ -77,7 +77,15 @@ Public Class Connection
             If item.State.Equals(EntityState.Deleted) Then
                 SoftDelete(item, "")
             Else
-                Return MyBase.SaveChanges()
+                If item.State.Equals(EntityState.Modified) Then
+                    Dim number = MyBase.SaveChanges()
+                    If number.CompareTo(1) Then
+                        Return MyBase.SaveChanges()
+
+                    Else
+                        SoftDelete(item, "Update")
+                    End If
+                End If
             End If
 
         Next
@@ -86,20 +94,24 @@ Public Class Connection
         Return MyBase.SaveChanges()
     End Function
 
-    Public Function UpdateDate(entry As Infrastructure.DbEntityEntry) As Integer
+    'Public Function UpdateDate(entry As Infrastructure.DbEntityEntry) As Integer
 
-        SoftDelete(entry, "UpdateDate")
+    '    SoftDelete(entry, "UpdateDate")
 
-        Return MyBase.SaveChanges()
-    End Function
+    '    Return MyBase.SaveChanges()
+    'End Function
 
     Public Function deshabilitar(value As String) As Integer
         Dim changed = ChangeTracker.Entries()
-        For Each item In changed.Where(Function(m) m.State.Equals(EntityState.Deleted))
-            SoftDelete(item, value)
+        For Each item In changed.Where(Function(m) m.State.Equals(EntityState.Deleted) Or m.State.Equals(EntityState.Modified))
+            If item.State = EntityState.Modified Then
+                SoftDelete(item, value)
+            End If
+
         Next
         Return MyBase.SaveChanges()
     End Function
+
     Private Sub SoftDelete(entry As Infrastructure.DbEntityEntry, value As String)
 
         Dim entryEntityType As Type = entry.Entity.[GetType]()
@@ -107,13 +119,14 @@ Public Class Connection
         Dim primaryKeyName As String = GetPrimaryKeyName(entryEntityType)
 
         Dim sql As String
-        If IsNothing(value) Then
+        If value.Equals(String.Empty) Then
             sql = String.Format("UPDATE {0} SET IsDeleted = 1 WHERE {1} = @id", tableName, primaryKeyName)
 
 
-        Else
-
-            sql = String.Format("UPDATE {0} SET IsDeleted = 2 WHERE {1} = @id", tableName, primaryKeyName)
+        ElseIf value.Equals("Update")
+            Debug.WriteLine("Entro a update")
+            sql = String.Format("UPDATE {0} SET FechaModificacion = GetDate() WHERE {1} = @id", tableName, primaryKeyName)
+            'sql = String.Format("UPDATE {0} SET IsDeleted = 2 WHERE {1} = @id", tableName, primaryKeyName)
         End If
 
 
