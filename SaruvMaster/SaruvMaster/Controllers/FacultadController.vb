@@ -9,7 +9,6 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
-    <LogFilter>
     Public Class FacultadController
         Inherits System.Web.Mvc.Controller
 

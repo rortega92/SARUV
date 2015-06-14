@@ -203,6 +203,7 @@
     <Compile Include="Controllers\EmpresaController.vb" />
     <Compile Include="Controllers\EncargadoDeValidacionController.vb" />
     <Compile Include="Controllers\EventosEstudioController.vb" />
+    <Compile Include="Controllers\FacultadController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
     <Compile Include="Controllers\ModalidadDeCursoController.vb" />
     <Compile Include="Controllers\PersonalUVController.vb" />
@@ -216,10 +217,14 @@
       <DependentUpon>201506050456449_InitialCreate.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506050456449_InitialCreate.vb" />
-    <Compile Include="Migrations\201506081900204_prueba2.Designer.vb">
-      <DependentUpon>201506081900204_prueba2.vb</DependentUpon>
+    <Compile Include="Migrations\201506081900204_EventoEstudio.Designer.vb">
+      <DependentUpon>201506081900204_EventoEstudio.vb</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506081900204_prueba2.vb" />
+    <Compile Include="Migrations\201506081900204_EventoEstudio.vb" />
+    <Compile Include="Migrations\201506142017081_EventoGeneral.Designer.vb">
+      <DependentUpon>201506142017081_EventoGeneral.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506142017081_EventoGeneral.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -230,6 +235,7 @@
     <Compile Include="Models\Empresa.vb" />
     <Compile Include="Models\Encargado de Validacion.vb" />
     <Compile Include="Models\EventosEstudio.vb" />
+    <Compile Include="Models\EventosGenerales.vb" />
     <Compile Include="Models\Facultad.vb" />
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\ManageViewModels.vb" />
@@ -259,8 +265,11 @@
     <EmbeddedResource Include="Migrations\201506050456449_InitialCreate.resx">
       <DependentUpon>201506050456449_InitialCreate.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506081900204_prueba2.resx">
-      <DependentUpon>201506081900204_prueba2.vb</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506081900204_EventoEstudio.resx">
+      <DependentUpon>201506081900204_EventoEstudio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506142017081_EventoGeneral.resx">
+      <DependentUpon>201506142017081_EventoGeneral.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -391,6 +400,11 @@
     <Content Include="Views\AreaDeConocimiento\Details.vbhtml" />
     <Content Include="Views\AreaDeConocimiento\Edit.vbhtml" />
     <Content Include="Views\AreaDeConocimiento\Index.vbhtml" />
+    <Content Include="Views\Facultad\Create.vbhtml" />
+    <Content Include="Views\Facultad\Delete.vbhtml" />
+    <Content Include="Views\Facultad\Details.vbhtml" />
+    <Content Include="Views\Facultad\Edit.vbhtml" />
+    <Content Include="Views\Facultad\Index.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
