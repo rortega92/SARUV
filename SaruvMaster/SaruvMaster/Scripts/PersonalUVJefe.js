@@ -237,6 +237,19 @@ $(document).ready(function () {
                 console.log(dataError)
             }
         });
+        $.ajax({
+            type: "GET",
+            url: "/FTP/getArchivoFuenteByRecursoId",
+            data: { "recursoId": jsonData.recurso.ID, "tipo": 0 },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (archivos) {
+                $.each(archivos, function (ind, archivo) {
+                    $("#modalFuente_" + jsonData.recurso["ID"]).find("#selectArchivosFuente_"+jsonData.recurso.ID).append($("<option></option>").val(archivo['ID']).html(archivo['NombreArchivo']));
+                });
+            },
+            error: function () { console.log("error archivos")}
+        })
     }
 });
 function cambiarEstado(recursoPorUsuario) {
@@ -354,4 +367,10 @@ function asignarRecursoParaUsuario(idUsuarioAnterior,idNuevoUsuario, idRecurso) 
             console.log(dataError)
         }
     });
+}
+function descargarFuente(recursoId) {
+        var url = "/FTP/download/"
+        var idArchivo = $('#selectArchivosFuente_'+recursoId).val()
+        $("#" + recursoId + ".frmDesFuente").prop("action", url + "?archivoId=" + idArchivo);
+        return true;
 }

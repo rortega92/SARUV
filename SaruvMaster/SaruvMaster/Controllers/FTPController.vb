@@ -2,6 +2,8 @@
 Imports System.IO
 Imports System.Net
 Imports Microsoft.AspNet.Identity.Owin
+Imports System.Data.SqlClient
+Imports SaruvMaster.SaruvMaster
 
 Namespace Controllers
     Public Class FTPController
@@ -24,7 +26,7 @@ Namespace Controllers
 
 
         <HttpPost>
-        Public Function Upload(file2 As HttpPostedFileBase) As ActionResult
+        Public Function Upload(file2 As HttpPostedFileBase, ByVal recursoId As Integer, ByVal tipo As Integer) As ActionResult
             'Dim file1 = Path.GetFullPath(file2.FileName)
             'Dim c = 0
 
@@ -47,7 +49,9 @@ Namespace Controllers
             'strz.Close()
             'strz.Dispose()
             Dim uploadurl = "ftp://ftp.adress.com/"
-            Dim uploadfilename = file2.FileName
+            Dim splitted() As String = Split(file2.FileName, ".")
+            Dim fileName = splitted(0) + "_" + DateTime.Now.Ticks.ToString() + "." + splitted(splitted.Length - 1)
+            Dim uploadfilename = fileName
             Dim username = "ftpusername"
             Dim password = "ftppassword"
             Dim streamObj As Stream = file2.InputStream
@@ -55,7 +59,7 @@ Namespace Controllers
             streamObj.Read(buffer, 0, buffer.Length)
             streamObj.Close()
             streamObj = Nothing
-            Dim ftpurl = "ftp://torneo-web.hostei.com/" + file2.FileName
+            Dim ftpurl = "ftp://torneo-web.hostei.com/" + fileName
             Dim requestObj = TryCast(FtpWebRequest.Create(ftpurl), FtpWebRequest)
             requestObj.Method = WebRequestMethods.Ftp.UploadFile
             requestObj.Credentials = New NetworkCredential(user, pass)
@@ -64,25 +68,16 @@ Namespace Controllers
             requestStream.Flush()
             requestStream.Close()
             requestObj = Nothing
+            insertArchivo(fileName, tipo, recursoId)
 
-            '=======================================================
-            'Service provided by Telerik (www.telerik.com)
-            'Conversion powered by NRefactory.
-            'Twitter: @telerik
-            'Facebook: facebook.com/telerik
-            '=======================================================
-
-
-
-            Return RedirectToAction("#")
+            Return RedirectToAction("Index", "PersonalUV")
         End Function
 
 
         <HttpPost>
-        Public Function download(ByVal id As Integer?) As ActionResult
+        Public Function download(ByVal archivoId As Integer) As ActionResult
             Dim usuario = UserManager.Users.Where(Function(u) u.UserName = User.Identity.Name).First()
-            Dim recurso = db.Recurso.Where(Function(m) m.Id = 1).First().Nombre
-
+            Dim archivo = db.UserFile.Where(Function(m) m.ID = archivoId).First().NombreArchivo
 
             'Dim file1 = file_textBox.Text
             Dim c = 0
@@ -90,7 +85,7 @@ Namespace Controllers
             'Dim splitted() As String = Split(file1, "\")
             ' Dim fileName = splitted(splitted.Length - 1)
 
-            Dim oFTP As FtpWebRequest = CType(FtpWebRequest.Create("ftp://torneo-web.hostei.com/" + recurso + ".txt"), FtpWebRequest)
+            Dim oFTP As FtpWebRequest = CType(FtpWebRequest.Create("ftp://torneo-web.hostei.com/" + archivo), FtpWebRequest)
             oFTP.Credentials = New NetworkCredential("a8250648", "base_datos")
             oFTP.Method = WebRequestMethods.Ftp.DownloadFile
             oFTP.KeepAlive = True
@@ -114,8 +109,8 @@ Namespace Controllers
             'responseStream.Close()
             'response.Close()
             'oFTP = Nothing
-            
-            Return File(responseStream, System.Net.Mime.MediaTypeNames.Application.Octet, "A.txt")
+
+            Return File(responseStream, System.Net.Mime.MediaTypeNames.Application.Octet, archivo)
         End Function
 
 
@@ -140,6 +135,55 @@ Namespace Controllers
         'Facebook: facebook.com/telerik
         '=======================================================
 
+
+        Function insertArchivo(ByVal nombre As String, ByVal tipo As Integer, ByVal recursoID As Integer)
+            Dim con As New Connection
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cmd.CommandText = "ArchivoUsuario_Insert"
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@NombreArchivo"
+            parm.Value = nombre
+            cmd.Parameters.Add(parm)
+            Dim parm1 = New SqlParameter()
+            parm1.ParameterName = "@TipoArchivo"
+            parm1.Value = tipo
+            cmd.Parameters.Add(parm1)
+            Dim parm2 = New SqlParameter()
+            parm2.ParameterName = "@RecursoID"
+            parm2.Value = recursoID
+            cmd.Parameters.Add(parm2)
+            Dim parm3 = New SqlParameter()
+            parm3.ParameterName = "@FechaCreacion"
+            parm3.Value = DateTime.Now
+            cmd.Parameters.Add(parm3)
+            Dim parm4 = New SqlParameter()
+            parm4.ParameterName = "@FechaModificacion"
+            parm4.Value = DateTime.Now
+            cmd.Parameters.Add(parm4)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+            Dim row As New Dictionary(Of String, String)
+            row.Add("inserted", res.Equals(1))
+            Return Json(row, JsonRequestBehavior.AllowGet)
+        End Function
+
+        Function getArchivoFuenteByRecursoId(ByVal recursoId As Integer, ByVal tipo As Integer) As ActionResult
+            Dim archivos = db.UserFile.Where(Function(a) a.RecursoID = recursoId And a.TipoArchivo = tipo).ToList()
+            Dim returnArchivos As New List(Of Dictionary(Of String, String))
+            For i As Integer = 0 To archivos.ToArray().Length - 1
+                Dim row As New Dictionary(Of String, String)
+                row.Add("ID", archivos.ElementAt(i).ID)
+                row.Add("NombreArchivo", archivos.ElementAt(i).NombreArchivo)
+                row.Add("TipoArchivo", archivos.ElementAt(i).TipoArchivo)
+                row.Add("RecursoID", archivos.ElementAt(i).RecursoID)
+                returnArchivos.Add(row)
+            Next
+            Return Json(returnArchivos, JsonRequestBehavior.AllowGet)
+        End Function
     End Class
 
 End Namespace

@@ -113,7 +113,7 @@ End If
                                     <table>
                                         <tbody>
                                             <tr>
-                                                    @Using (Html.BeginForm("Upload", "FTP", FormMethod.Post, New With {Key .enctype = "multipart/form-data"}))
+                                                    @Using (Html.BeginForm("Upload", "FTP", New With {.recursoId = item.RecursoID, .tipo = 0}, FormMethod.Post, New With {Key .enctype = "multipart/form-data"}))
                                                     @<td>
                                                          <input type="file" name="file2" class="col-md-12" />
                                                     </td>
@@ -125,12 +125,17 @@ End If
                                             <tr>
                                                 <td>
                                                     <div class="col-md-12">
-                                                        <select class="form-control" id="selectArchivosFuente" name="ArchivosFuenteDescargar"></select>
+                                                        <p>Versión</p>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    @Using (Html.BeginForm("download", "FTP", FormMethod.Post, New With {.id = item.RecursoID}))
-                                                        @<input type="submit" name="Submit" id="Submit" value="Descargar" class="btn btn-default col-md-12" />
+                                                    <div class="col-md-12">
+                                                        <select class="form-control" id="selectArchivosFuente_@item.RecursoID" name="ArchivosFuenteDescargar"></select>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    @Using (Html.BeginForm("download", "FTP", New With {.archivoId = 1}, FormMethod.Post, New With {.id = item.RecursoID, .class = "frmDesFuente"}))
+                                                        @<input type="submit" name="Submit" id="Submit" value="Descargar" class="btn btn-default col-md-12" onclick="descargarFuente(@item.RecursoID)"/>
                                                     End Using
                                                 </td>            
                                                 <td>
