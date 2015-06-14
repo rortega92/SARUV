@@ -86,6 +86,8 @@ Namespace Controllers
                 requestObj = Nothing
                 insertArchivo(fileName, tipo, recursoId)
 
+
+
             Catch ex As Exception
                 'aqui se muestra toast que ocurrio un problema'
                 Console.Write(ex.ToString)
@@ -117,6 +119,9 @@ Namespace Controllers
             oFTP.UseBinary = True
             Dim response As FtpWebResponse = CType(oFTP.GetResponse, FtpWebResponse)
             Dim responseStream As Stream = response.GetResponseStream
+            If (response.StatusCode.Equals(FtpStatusCode.OpeningData)) Then
+                Console.Write(response)
+            End If
 
             'Dim fs As New FileStream("C:\Users\Francisco\Documents\" + recurso + ".txt", FileMode.Create)
 
@@ -215,7 +220,7 @@ Namespace Controllers
 
                 ftpRequest.Method = WebRequestMethods.Ftp.DeleteFile
                 Dim responseFileDelete As FtpWebResponse = DirectCast(ftpRequest.GetResponse(), FtpWebResponse)
-
+               
                 If (responseFileDelete.StatusCode.Equals(FtpStatusCode.FileActionOK)) Then
                     'toate de todo buen'
                     Console.Write("listo")
