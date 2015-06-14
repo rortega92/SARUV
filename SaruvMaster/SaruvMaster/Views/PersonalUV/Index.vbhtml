@@ -113,7 +113,7 @@ End If
                                     <table>
                                         <tbody>
                                             <tr>
-                                                    @Using (Html.BeginForm("Upload", "FTP", New With {.recursoId = item.RecursoID, .tipo = 0}, FormMethod.Post, New With {Key .enctype = "multipart/form-data"}))
+                                                    @Using (Html.BeginForm("Upload", "FTP", New With {.recursoId = item.RecursoID, .tipo = 0}, FormMethod.Post, New With {Key .enctype = "multipart/form-data", .id = item.RecursoID, .class = "frmUpFuente"}))
                                                     @<td>
                                                          <input type="file" name="file2" class="col-md-12" />
                                                     </td>
@@ -125,11 +125,6 @@ End If
                                             <tr>
                                                 <td>
                                                     <div class="col-md-12">
-                                                        <p>Versión</p>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="col-md-12">
                                                         <select class="form-control" id="selectArchivosFuente_@item.RecursoID" name="ArchivosFuenteDescargar"></select>
                                                     </div>
                                                 </td>
@@ -139,9 +134,9 @@ End If
                                                     End Using
                                                 </td>            
                                                 <td>
-                                                    <form method="POST">
-                                                        <button id="btnEliminarFuente_@Html.DisplayFor(Function(modelitem) item.Recurso.Id)" class="btn btn-default col-md-12">Eliminar</button>
-                                                    </form>
+                                                    @Using (Html.BeginForm("delete", "FTP", New With {.archivoId = 1}, FormMethod.Post, New With {.id = item.RecursoID, .class = "frmDelFuente"}))
+                                                        @<input type="submit" name="Submit" id="Submit" value="Eliminar" class="btn btn-default col-md-12" onclick="eliminarFuente(@item.RecursoID)" />
+                                                    End Using
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -155,7 +150,55 @@ End If
                             </div>
                         </div>
                     </div>
-Next
+                    @<div class="modal fade" id="modalRecurso_@Html.DisplayFor(Function(modelitem) item.Recurso.Id)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Recurso: "@Html.DisplayFor(Function(modelItem) item.Recurso.Nombre)"</h4>
+                                </div>
+                                <div class="modal-body" style="height:100%">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                @Using (Html.BeginForm("Upload", "FTP", New With {.recursoId = item.RecursoID, .tipo = 1}, FormMethod.Post, New With {Key .enctype = "multipart/form-data", .id = item.RecursoID, .class = "frmUpRecurso"}))
+                                                    @<td>
+                                                         <input type="file" name="file2" class="col-md-12" />
+                                                    </td>
+                                                    @<td>
+                                                        <input type="submit" name="Submit" id="Submit" value="Subir" class="btn btn-default col-md-12" />
+                                                    </td>
+                                                End Using
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="col-md-12">
+                                                        <select class="form-control" id="selectArchivosRecurso_@item.RecursoID" name="ArchivosRecursoDescargar"></select>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    @Using (Html.BeginForm("download", "FTP", New With {.archivoId = 1}, FormMethod.Post, New With {.id = item.RecursoID, .class = "frmDesRecurso"}))
+                                                        @<input type="submit" name="Submit" id="Submit" value="Descargar" class="btn btn-default col-md-12" onclick="descargarRecurso(@item.RecursoID)" />
+                                                    End Using
+                                                </td>
+                                                <td>
+                                                    @Using (Html.BeginForm("delete", "FTP", New With {.archivoId = 1}, FormMethod.Post, New With {.id = item.RecursoID, .class = "frmDelRecurso"}))
+                                                        @<input type="submit" name="Submit" id="Submit" value="Eliminar" class="btn btn-default col-md-12" onclick="eliminarRecurso(@item.RecursoID)" />
+                                                    End Using
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+
+                                    <button data-dismiss="modal" class="btn btn-success" type="button" onclick="enviarSiguienteDepto( @item.ID )">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                Next
             <a id="linkAviso" class="btn btn-default btn-sm" data-toggle="modal" href="#aviso" style="display:none"></a>
                 <div class="modal fade" id="aviso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">

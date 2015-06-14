@@ -171,8 +171,8 @@ Namespace Controllers
             Return Json(row, JsonRequestBehavior.AllowGet)
         End Function
 
-        Function getArchivoFuenteByRecursoId(ByVal recursoId As Integer, ByVal tipo As Integer) As ActionResult
-            Dim archivos = db.UserFile.Where(Function(a) a.RecursoID = recursoId And a.TipoArchivo = tipo).ToList()
+        Function getArchivosByRecursoId(ByVal recursoId As Integer) As ActionResult
+            Dim archivos = db.UserFile.Where(Function(a) a.RecursoID = recursoId).ToList()
             Dim returnArchivos As New List(Of Dictionary(Of String, String))
             For i As Integer = 0 To archivos.ToArray().Length - 1
                 Dim row As New Dictionary(Of String, String)
@@ -183,6 +183,37 @@ Namespace Controllers
                 returnArchivos.Add(row)
             Next
             Return Json(returnArchivos, JsonRequestBehavior.AllowGet)
+        End Function
+
+
+        Public Function delete(ByVal archivoId As Integer) As ActionResult
+            Dim user = "a8250648"
+            Dim pass = "base_datos"
+            Dim archivo = db.UserFile.Where(Function(m) m.ID = archivoId).First().NombreArchivo
+            Dim ftpRequest As FtpWebRequest = DirectCast(WebRequest.Create("ftp://torneo-web.hostei.com/" + archivo), FtpWebRequest)
+            ftpRequest.Credentials = New NetworkCredential(user, pass)
+            ftpRequest.Method = WebRequestMethods.Ftp.DeleteFile
+            Dim responseFileDelete As FtpWebResponse = DirectCast(ftpRequest.GetResponse(), FtpWebResponse)
+            deleteArchivo(archivoId)
+            Return RedirectToAction("Index", "PersonalUV")
+        End Function
+        Function deleteArchivo(ByVal archivoId As Integer)
+            Dim con As New Connection
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cmd.CommandText = "ArchivoUsuario_Delete"
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@ID"
+            parm.Value = archivoId
+            cmd.Parameters.Add(parm)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+            Dim row As New Dictionary(Of String, String)
+            row.Add("deleted", res.Equals(1))
+            Return Json(row, JsonRequestBehavior.AllowGet)
         End Function
     End Class
 

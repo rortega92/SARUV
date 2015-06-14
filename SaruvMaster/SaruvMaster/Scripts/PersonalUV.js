@@ -8,7 +8,14 @@ $(document).ready(function () {
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }    
+    }
+    var $overlay = $('<div class="ui-overlay"><div class="ui-widget-overlay" style="background:#111111"><img src="Content/layout/loader.gif" style="position: absolute;top: 50%; left: 50%; width: 50px; height: 50px;"></div></div>').hide().appendTo('body');
+    $overlay.fadeIn();
+
+    $(window).resize(function () {
+        $overlay.width($(document).width());
+        $overlay.height($(document).height());
+    });
     $.ajax({
         type: "GET",
         url: "/PersonalUV/getCurrentUsuarioId",
@@ -64,6 +71,9 @@ $(document).ready(function () {
     
     function bindRecurso(jsonData) {
         var btnEnviar = '<a id="EnviarDepartamento" class="btn btn-default btn-sm" data-toggle="modal" href="#modalEnviar_' + jsonData.recurso['ID'] + '">Enviar al siguiente departamento</a>';
+        var btnFuente = '<a id="SubirFuente" class="btn btn-default btn-sm" data-toggle="modal" href="#modalFuente_' + jsonData.recurso['ID'] + '">Fuente</a>';
+        var btnRecurso = '<a id="SubirRecurso" class="btn btn-default btn-sm" data-toggle="modal" href="#modalRecurso_' + jsonData.recurso['ID'] + '">Recurso</a>';
+
         if (DepartamentoActual.Nombre == "Entrega") {
             btnEnviar = "";
         }
@@ -75,7 +85,9 @@ $(document).ready(function () {
                      '<td class="navbar-right" style="border:0px">' +
                       '<div class="btn-group-vertical">' +
                          '<a id="CambiarEstado" class="btn btn-default btn-sm" data-toggle="modal" href="#modalCambiarEstado_' + jsonData.recurso['ID'] + '">Cambiar estado</a>' +
-                          btnEnviar+
+                         btnFuente +
+                         btnRecurso +
+                         btnEnviar +
                       '</div>' +
                      '</td>' +
                     '</tr>' +
@@ -113,6 +125,38 @@ $(document).ready(function () {
                 console.log(dataError)
             }
         });
+        $.ajax({
+            type: "GET",
+            url: "/FTP/getArchivosByRecursoId",
+            data: { "recursoId": jsonData.recurso.ID },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (archivos) {
+                var contFuente = 0;
+                var contRecurso = 0;
+                $.each(archivos, function (ind, archivo) {
+                    if (archivo.TipoArchivo == 0) {
+                        contFuente++;
+                        $("#modalFuente_" + jsonData.recurso["ID"]).find("input:file").on('change', function () { $("#" + jsonData.recurso.ID + ".frmUpFuente").parent().find("#Submit").removeProp("disabled") })
+                        $("#modalFuente_" + jsonData.recurso["ID"]).find("#selectArchivosFuente_" + jsonData.recurso.ID).append($("<option></option>").val(archivo['ID']).html(archivo['NombreArchivo']));
+                    } else {
+                        contRecurso++;
+                        $("#modalRecurso_" + jsonData.recurso["ID"]).find("input:file").on('change', function () { $("#" + jsonData.recurso.ID + ".frmUpRecurso").parent().find("#Submit").removeProp("disabled") })
+                        $("#modalRecurso_" + jsonData.recurso["ID"]).find("#selectArchivosRecurso_" + jsonData.recurso.ID).append($("<option></option>").val(archivo['ID']).html(archivo['NombreArchivo']));
+                    }
+                });
+                if (contFuente == 0) {
+                    $("#" + jsonData.recurso.ID + ".frmDesFuente").find("#Submit").prop("disabled", "disabled");
+                    $("#" + jsonData.recurso.ID + ".frmDelFuente").find("#Submit").prop("disabled", "disabled");
+                }
+                if (contRecurso == 0) {
+                    $("#" + jsonData.recurso.ID + ".frmDesRecurso").find("#Submit").prop("disabled", "disabled");
+                    $("#" + jsonData.recurso.ID + ".frmDelRecurso").find("#Submit").prop("disabled", "disabled");
+                }
+                $overlay.fadeOut();
+            },
+            error: function () { console.log("error archivos") }
+        })
     }
 });
 function cambiarEstado(idRecursoPorUsuario) {
@@ -175,4 +219,30 @@ function enviarSiguienteDepto(idRecurso) {
         }
     });
     
+}
+function descargarFuente(recursoId) {
+    var url = "/FTP/download/";
+    var idArchivo = $('#selectArchivosFuente_' + recursoId).val();
+    $("#" + recursoId + ".frmDesFuente").prop("action", url + "?archivoId=" + idArchivo);
+    return true;
+}
+function eliminarFuente(recursoId) {
+    var url = "/FTP/delete/"
+    var idArchivo = $('#selectArchivosFuente_' + recursoId).val()
+    $('#selectArchivosFuente_' + recursoId).remove(idArchivo);
+    $("#" + recursoId + ".frmDelFuente").prop("action", url + "?archivoId=" + idArchivo);
+    return true;
+}
+function descargarRecurso(recursoId) {
+    var url = "/FTP/download/";
+    var idArchivo = $('#selectArchivosRecurso_' + recursoId).val();
+    $("#" + recursoId + ".frmDesRecurso").prop("action", url + "?archivoId=" + idArchivo);
+    return true;
+}
+function eliminarRecurso(recursoId) {
+    var url = "/FTP/delete/"
+    var idArchivo = $('#selectArchivosRecurso_' + recursoId).val()
+    $('#selectArchivosRecurso_' + recursoId).remove(idArchivo);
+    $("#" + recursoId + ".frmDelRecurso").prop("action", url + "?archivoId=" + idArchivo);
+    return true;
 }
