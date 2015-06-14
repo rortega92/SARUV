@@ -67,21 +67,22 @@ Namespace Controllers
             Dim response As FtpWebResponse = CType(oFTP.GetResponse, FtpWebResponse)
             Dim responseStream As Stream = response.GetResponseStream
 
-            Dim fs As New FileStream("C:\" + recurso + ".txt", FileMode.Create)
+            'Dim fs As New FileStream("C:\" + recurso + ".txt", FileMode.Create)
 
-            Dim buffer(2047) As Byte
-            Dim read As Integer = 1
-            While read <> 0
-                read = responseStream.Read(buffer, 0, buffer.Length)
-                fs.Write(buffer, 0, read)
-            End While
-            responseStream.Close()
-            fs.Flush()
-            fs.Close()
-            responseStream.Close()
-            response.Close()
-            oFTP = Nothing
-            Return RedirectToAction("#")
+            'Dim buffer(2047) As Byte
+            'Dim read As Integer = 1
+            'While read <> 0
+            '    read = responseStream.Read(buffer, 0, buffer.Length)
+            '    fs.Write(buffer, 0, read)
+            'End While
+            'responseStream.Close()
+            'fs.Flush()
+            'fs.Close()
+            'responseStream.Close()
+            'response.Close()
+            'oFTP = Nothing
+            
+            Return File(responseStream, System.Net.Mime.MediaTypeNames.Application.Octet, "A.txt")
         End Function
     End Class
 End Namespace

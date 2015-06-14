@@ -113,21 +113,29 @@ End If
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>
-
                                                     @Using (Html.BeginForm("Upload", "FTP", FormMethod.Post, New With {Key .enctype = "multipart/form-data"}))
-                                                        @<input type="file" name="file2" />
-                                                        @<input type="submit" name="Submit" id="Submit" value="Upload" />
+                                                    @<td>
+                                                         <input type="file" name="file2" class="col-md-12" />
+                                                    </td>
+                                                    @<td>
+                                                         <input type="submit" name="Submit" id="Submit" value="Subir" class="btn btn-default col-md-12" />  
+                                                    </td>
                                                     End Using
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="col-md-12">
+                                                        <select class="form-control" id="selectArchivosFuente" name="ArchivosFuenteDescargar"></select>
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    @Using (Html.BeginForm("download", "FTP", FormMethod.Post, New With {.id = item.ID}))
-                                                        @<input type="submit" name="Submit" id="Submit" value="download" />
+                                                    @Using (Html.BeginForm("download", "FTP", FormMethod.Post, New With {.id = item.RecursoID}))
+                                                        @<input type="submit" name="Submit" id="Submit" value="Descargar" class="btn btn-default col-md-12" />
                                                     End Using
-                                                </td>
+                                                </td>            
                                                 <td>
                                                     <form method="POST">
-                                                        <button id="btnEliminarFuente_@Html.DisplayFor(Function(modelitem) item.Recurso.Id)" class="btn">Eliminar</button>
+                                                        <button id="btnEliminarFuente_@Html.DisplayFor(Function(modelitem) item.Recurso.Id)" class="btn btn-default col-md-12">Eliminar</button>
                                                     </form>
                                                 </td>
                                             </tr>
