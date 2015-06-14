@@ -37,6 +37,8 @@ Public Class Connection
 
     Public Property Departamento As DbSet(Of Departamento)
 
+    Public Property UserFile As DbSet(Of ArchivoUsuario)
+
 
 
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
@@ -45,6 +47,7 @@ Public Class Connection
         modelBuilder.Conventions.Remove(Of ManyToManyCascadeDeleteConvention)()
         modelBuilder.Conventions.Remove(Of PluralizingTableNameConvention)()
 
+        modelBuilder.Entity(Of ArchivoUsuario).MapToStoredProcedures()
         modelBuilder.Entity(Of Departamento).MapToStoredProcedures()
         modelBuilder.Entity(Of Facultad).MapToStoredProcedures()
         modelBuilder.Entity(Of AreaDeConocimiento).MapToStoredProcedures()
@@ -58,6 +61,7 @@ Public Class Connection
         modelBuilder.Entity(Of Recurso).MapToStoredProcedures()
 
         modelBuilder.Entity(Of Departamento).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
+        modelBuilder.Entity(Of ArchivoUsuario).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of Facultad).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of AreaDeConocimiento).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of Empresa).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)

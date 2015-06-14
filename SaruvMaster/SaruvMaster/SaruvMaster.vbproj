@@ -221,6 +221,10 @@
       <DependentUpon>201506081900204_prueba2.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506081900204_prueba2.vb" />
+    <Compile Include="Migrations\201506140456118_UserFile.Designer.vb">
+      <DependentUpon>201506140456118_UserFile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506140456118_UserFile.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -238,6 +242,7 @@
     <Compile Include="Models\Recurso.vb" />
     <Compile Include="Models\RecursoPorUsuario.vb" />
     <Compile Include="Models\TipoDeRecurso.vb" />
+    <Compile Include="Models\ArchivoUsuario.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -262,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506081900204_prueba2.resx">
       <DependentUpon>201506081900204_prueba2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506140456118_UserFile.resx">
+      <DependentUpon>201506140456118_UserFile.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
