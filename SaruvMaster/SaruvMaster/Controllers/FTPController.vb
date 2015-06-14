@@ -29,46 +29,67 @@ Namespace Controllers
         Public Function Upload(file2 As HttpPostedFileBase, ByVal recursoId As Integer, ByVal tipo As Integer) As ActionResult
             'Dim file1 = Path.GetFullPath(file2.FileName)
             'Dim c = 0
+            Try
 
-            Dim user = "a8250648"
-            Dim pass = "base_datos"
-            'Dim splitted() As String = Split(file1, "\")
-            'Dim fileName = splitted(splitted.Length - 1)
-            'Dim pasdas = file2.FileName
-            'Dim request As System.Net.FtpWebRequest = DirectCast(System.Net.WebRequest.Create("ftp://torneo-web.hostei.com/" + fileName), System.Net.FtpWebRequest)
-            'request.Credentials = New System.Net.NetworkCredential(user, pass)
-            'request.Method = System.Net.WebRequestMethods.Ftp.UploadFile
-            'Dim ruta = "C:\Users\Francisco\Documents\ArchivosSARUV\" + fileName
-            'Dim ftp = "ftp://torneo-web.hostei.com/FRANCISCO"
-            'Dim result = FtpDirectoryExists(ftp, user, pass)
 
-            'Dim file() As Byte = System.IO.File.ReadAllBytes("C:\Users\Francisco\Documents\ArchivosSARUV\" + fileName)
+                Dim user = "a8250648"
+                Dim pass = "base_datos"
+                'Dim splitted() As String = Split(file1, "\")
+                'Dim fileName = splitted(splitted.Length - 1)
+                'Dim pasdas = file2.FileName
+                'Dim request As System.Net.FtpWebRequest = DirectCast(System.Net.WebRequest.Create("ftp://torneo-web.hostei.com/" + fileName), System.Net.FtpWebRequest)
+                'request.Credentials = New System.Net.NetworkCredential(user, pass)
+                'request.Method = System.Net.WebRequestMethods.Ftp.UploadFile
+                'Dim ruta = "C:\Users\Francisco\Documents\ArchivosSARUV\" + fileName
+                'Dim ftp = "ftp://torneo-web.hostei.com/FRANCISCO"
+                'Dim result = FtpDirectoryExists(ftp, user, pass)
 
-            'Dim strz As System.IO.Stream = request.GetRequestStream()
-            'strz.Write(file, 0, file.Length)
-            'strz.Close()
-            'strz.Dispose()
-            Dim uploadurl = "ftp://ftp.adress.com/"
-            Dim splitted() As String = Split(file2.FileName, ".")
-            Dim fileName = splitted(0) + "_" + DateTime.Now.Ticks.ToString() + "." + splitted(splitted.Length - 1)
-            Dim uploadfilename = fileName
-            Dim username = "ftpusername"
-            Dim password = "ftppassword"
-            Dim streamObj As Stream = file2.InputStream
-            Dim buffer As Byte() = New Byte(file2.ContentLength - 1) {}
-            streamObj.Read(buffer, 0, buffer.Length)
-            streamObj.Close()
-            streamObj = Nothing
-            Dim ftpurl = "ftp://torneo-web.hostei.com/" + fileName
-            Dim requestObj = TryCast(FtpWebRequest.Create(ftpurl), FtpWebRequest)
-            requestObj.Method = WebRequestMethods.Ftp.UploadFile
-            requestObj.Credentials = New NetworkCredential(user, pass)
-            Dim requestStream As Stream = requestObj.GetRequestStream()
-            requestStream.Write(buffer, 0, buffer.Length)
-            requestStream.Flush()
-            requestStream.Close()
-            requestObj = Nothing
-            insertArchivo(fileName, tipo, recursoId)
+                'Dim file() As Byte = System.IO.File.ReadAllBytes("C:\Users\Francisco\Documents\ArchivosSARUV\" + fileName)
+
+                'Dim strz As System.IO.Stream = request.GetRequestStream()
+                'strz.Write(file, 0, file.Length)
+                'strz.Close()
+                'strz.Dispose()
+
+                Dim myFtpWebResponse As System.Net.FtpWebResponse
+                Dim uploadurl = "ftp://ftp.adress.com/"
+                Dim splitted() As String = Split(file2.FileName, ".")
+                Dim fileName = splitted(0) + "_" + DateTime.Now.Ticks.ToString() + "." + splitted(splitted.Length - 1)
+                Dim uploadfilename = fileName
+                Dim username = "ftpusername"
+                Dim password = "ftppassword"
+
+
+                Dim streamObj As Stream = file2.InputStream
+                Dim buffer As Byte() = New Byte(file2.ContentLength - 1) {}
+                streamObj.Read(buffer, 0, buffer.Length)
+                streamObj.Close()
+                streamObj = Nothing
+                Dim ftpurl = "ftp://torneo-web.hostei.com/" + fileName
+                Dim requestObj = TryCast(FtpWebRequest.Create(ftpurl), FtpWebRequest)
+
+
+                requestObj.Method = WebRequestMethods.Ftp.UploadFile
+                requestObj.Credentials = New NetworkCredential(user, pass)
+                myFtpWebResponse = requestObj.GetResponse()
+                Console.Write(myFtpWebResponse.StatusCode)
+                Dim requestStream As Stream = requestObj.GetRequestStream()
+                requestStream.Write(buffer, 0, buffer.Length)
+                requestStream.Flush()
+                requestStream.Close()
+
+
+                If myFtpWebResponse.StatusCode.Equals(FtpStatusCode.ClosingData) Then
+                    'aqui se muestra toast de correcto'
+                    Console.Write("listo")
+                End If
+                requestObj = Nothing
+                insertArchivo(fileName, tipo, recursoId)
+
+            Catch ex As Exception
+                'aqui se muestra toast que ocurrio un problema'
+                Console.Write(ex.ToString)
+            End Try
 
             Return RedirectToAction("Index", "PersonalUV")
         End Function
@@ -76,6 +97,8 @@ Namespace Controllers
 
         <HttpPost>
         Public Function download(ByVal archivoId As Integer) As ActionResult
+
+
             Dim usuario = UserManager.Users.Where(Function(u) u.UserName = User.Identity.Name).First()
             Dim archivo = db.UserFile.Where(Function(m) m.ID = archivoId).First().NombreArchivo
 
@@ -111,6 +134,7 @@ Namespace Controllers
             'oFTP = Nothing
 
             Return File(responseStream, System.Net.Mime.MediaTypeNames.Application.Octet, archivo)
+
         End Function
 
 
@@ -127,13 +151,6 @@ Namespace Controllers
             End Try
             Return IsExists
         End Function
-
-        '=======================================================
-        'Service provided by Telerik (www.telerik.com)
-        'Conversion powered by NRefactory.
-        'Twitter: @telerik
-        'Facebook: facebook.com/telerik
-        '=======================================================
 
 
         Function insertArchivo(ByVal nombre As String, ByVal tipo As Integer, ByVal recursoID As Integer)
@@ -187,14 +204,27 @@ Namespace Controllers
 
 
         Public Function delete(ByVal archivoId As Integer) As ActionResult
-            Dim user = "a8250648"
-            Dim pass = "base_datos"
-            Dim archivo = db.UserFile.Where(Function(m) m.ID = archivoId).First().NombreArchivo
-            Dim ftpRequest As FtpWebRequest = DirectCast(WebRequest.Create("ftp://torneo-web.hostei.com/" + archivo), FtpWebRequest)
-            ftpRequest.Credentials = New NetworkCredential(user, pass)
-            ftpRequest.Method = WebRequestMethods.Ftp.DeleteFile
-            Dim responseFileDelete As FtpWebResponse = DirectCast(ftpRequest.GetResponse(), FtpWebResponse)
-            deleteArchivo(archivoId)
+            Try
+                Dim user = "a8250648"
+                Dim pass = "base_datos"
+                Dim archivo = db.UserFile.Where(Function(m) m.ID = archivoId).First().NombreArchivo
+                Dim ftpRequest As FtpWebRequest = DirectCast(WebRequest.Create("ftp://torneo-web.hostei.com/" + archivo), FtpWebRequest)
+
+                ftpRequest.Credentials = New NetworkCredential(user, pass)
+
+
+                ftpRequest.Method = WebRequestMethods.Ftp.DeleteFile
+                Dim responseFileDelete As FtpWebResponse = DirectCast(ftpRequest.GetResponse(), FtpWebResponse)
+
+                If (responseFileDelete.StatusCode.Equals(FtpStatusCode.FileActionOK)) Then
+                    'toate de todo buen'
+                    Console.Write("listo")
+                End If
+                deleteArchivo(archivoId)
+
+            Catch ex As Exception
+                'toast de que ocurrio un error'
+            End Try
             Return RedirectToAction("Index", "PersonalUV")
         End Function
         Function deleteArchivo(ByVal archivoId As Integer)

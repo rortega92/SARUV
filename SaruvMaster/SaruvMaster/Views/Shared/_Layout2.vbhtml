@@ -70,6 +70,7 @@
     <!--Full Calendar-->
     @Scripts.Render("~/Scripts/fullcalendar.js")
     @Scripts.Render("~/Scripts/fullcalendar.min.js")
+    @Scripts.Render("~/bundles/toastr")
 
 
 </body>
