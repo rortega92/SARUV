@@ -5,6 +5,13 @@ $(document).ready(function () {
     $(".col-lg-12").css("float", "left");
     $(".tab-bg-primary").css("background", "#394A59");
     $(".tab-bg-primary").css("padding-bottom", "10px");
+    var $overlay = $('<div class="ui-overlay"><div class="ui-widget-overlay" style="background:#111111"><img src="Content/layout/loader.gif" style="position: absolute;top: 50%; left: 50%; width: 50px; height: 50px;"></div></div>').hide().appendTo('body');
+    $overlay.fadeIn();
+
+    $(window).resize(function () {
+        $overlay.width($(document).width());
+        $overlay.height($(document).height());
+    });
 
     $.ajax({
         type: "GET",
@@ -43,17 +50,17 @@ $(document).ready(function () {
                                 });
                                 if (recursosPorUsuario.length == 0) {
                                     $("#" + usuario['ID']).append("<div id='NoRecursos' style='margin-left:40%; margin-right:40%; text-align:center;'>No hay recursos</div>");
-                                }
+                                }                                
                             },
                             error: function (dataError) {
-                                alert("An error has occurred during processing your request.");
+                                toastr.error("Ha ocurrido un error por parte del servidor");
                                 console.log(dataError)
                             }
                         });
                     });
                 },
                 error: function () {
-                    alert("An error has occurred during processing your request.");
+                    toastr.error("Ha ocurrido un error por parte del servidor");
                 }
             });
             $.ajax({
@@ -83,7 +90,7 @@ $(document).ready(function () {
                                 }
                             },
                             error: function (dataError) {
-                                alert("An error has occurred during processing your request.");
+                                toastr.error("Ha ocurrido un error por parte del servidor");
                                 console.log(dataError)
                             }
                         });
@@ -101,12 +108,14 @@ $(document).ready(function () {
                     });
                 },
                 error: function (dataError) {
-                    alert("An error has occurred during processing your request.");
+                    toastr.error("Ha ocurrido un error por parte del servidor");
                     console.log(dataError)
                 }
             });
         },
-        error: function (dataError) { }
+        error: function (dataError) {
+            toastr.error("Ha ocurrido un error por parte del servidor");
+        }
     });
 
 
@@ -115,6 +124,9 @@ $(document).ready(function () {
 
     function bindRecurso(jsonData) {
         var btnEnviar = '<a id="EnviarDepartamento" class="btn btn-default btn-sm" data-toggle="modal" href="#modalEnviar_' + jsonData.recurso['ID'] + '">Enviar al siguiente departamento</a>';
+        var btnFuente = '<a id="SubirFuente" class="btn btn-default btn-sm" data-toggle="modal" href="#modalFuente_' + jsonData.recurso['ID'] + '">Fuente</a>';
+        var btnRecurso = '<a id="SubirRecurso" class="btn btn-default btn-sm" data-toggle="modal" href="#modalRecurso_' + jsonData.recurso['ID'] + '">Recurso</a>';
+
         if (DepartamentoActual.Nombre == "Entrega") {
             btnEnviar = "";
         }
@@ -126,7 +138,9 @@ $(document).ready(function () {
                      '<td class="navbar-right" style="border:0px">' +
                       '<div class="btn-group-vertical">' +
                          '<a id="CambiarEstado" class="btn btn-default btn-sm" data-toggle="modal" href="#modalCambiarEstado_' + jsonData.recurso['ID'] + '">Cambiar estado</a>' +
-                         btnEnviar+
+                         ((DepartamentoActual.Nombre === "Diseño" || DepartamentoActual.Nombre === "Corrección")? btnFuente : ' ') +
+                         btnRecurso +
+                         btnEnviar +
                       '</div>' +
                      '</td>' +
                     '</tr>' +
@@ -148,7 +162,9 @@ $(document).ready(function () {
                     $("#modalEnviar_" + jsonData.recurso["ID"]).find("#SelectUsuariosDestino").append($("<option></option>").val(usuario['ID']).html(usuario['Nombre'] + " (" + usuario["NombreDepartamento"] + ")"));
                 });
             },
-            error: function () { }
+            error: function () {
+                toastr.error("Ha ocurrido un error por parte del servidor");
+            }
         });
         $('.recurso-container').sortable({ connectWith: '.recurso-container' }).droppable({
             drop: function (evt, draggableObject) {
@@ -181,7 +197,8 @@ $(document).ready(function () {
 
                             });
                         },
-                        error: function(errorData) {
+                        error: function (errorData) {
+                            toastr.error("Ha ocurrido un error por parte del servidor");
                         }
                     });
                 } else {
@@ -212,6 +229,7 @@ $(document).ready(function () {
                             });
                         },
                         error: function (errorData) {
+                            toastr.error("Ha ocurrido un error por parte del servidor");
                         }
                     });
                 }
@@ -228,17 +246,59 @@ $(document).ready(function () {
                     $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option").filter(function () {
                         return $(this).text() == recUsr.Estado
                     }).prop("selected", true);
+                    if (recUsr.Estado == "No Empezado") {
+                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[2].remove();
+                    }
+                    if (recUsr.Estado == "En Progreso") {
+                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[0].remove();
+                    }
+                    if (recUsr.Estado == "Terminado") {
+                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[0].remove();
+                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[0].remove();
+                    }
                 });
             },
             error: function (dataError) {
-                alert("An error has occurred during processing your request.");
+                toastr.error("Ha ocurrido un error por parte del servidor");
                 console.log(dataError)
             }
         });
+        $.ajax({
+            type: "GET",
+            url: "/FTP/getArchivosByRecursoId",
+            data: { "recursoId": jsonData.recurso.ID },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (archivos) {
+                var contFuente = 0;
+                var contRecurso = 0;
+                $.each(archivos, function (ind, archivo) {
+                    if (archivo.TipoArchivo == 0) {
+                        contFuente++;
+                        $("#modalFuente_" + jsonData.recurso["ID"]).find("input:file").on('change', function () { $("#"+jsonData.recurso.ID+".frmUpFuente").parent().find("#Submit").removeProp("disabled")})
+                        $("#modalFuente_" + jsonData.recurso["ID"]).find("#selectArchivosFuente_" + jsonData.recurso.ID).append($("<option></option>").val(archivo['ID']).html(archivo['NombreArchivo']));
+                    } else {
+                        contRecurso++;
+                        $("#modalRecurso_" + jsonData.recurso["ID"]).find("input:file").on('change', function () { $("#" + jsonData.recurso.ID + ".frmUpRecurso").parent().find("#Submit").removeProp("disabled") })
+                        $("#modalRecurso_" + jsonData.recurso["ID"]).find("#selectArchivosRecurso_" + jsonData.recurso.ID).append($("<option></option>").val(archivo['ID']).html(archivo['NombreArchivo']));
+                    }
+                });
+                if (contFuente == 0) {
+                    $("#" + jsonData.recurso.ID + ".frmDesFuente").find("#Submit").prop("disabled", "disabled");
+                    $("#" + jsonData.recurso.ID + ".frmDelFuente").find("#Submit").prop("disabled", "disabled");
+                }
+                if (contRecurso == 0) {
+                    $("#" + jsonData.recurso.ID + ".frmDesRecurso").find("#Submit").prop("disabled", "disabled");
+                    $("#" + jsonData.recurso.ID + ".frmDelRecurso").find("#Submit").prop("disabled", "disabled");
+                }
+                $overlay.fadeOut();
+            },
+            error: function () { toastr.error("Ha ocurrido un error por parte del servidor"); }
+        })
     }
 });
 function cambiarEstado(recursoPorUsuario) {
-    var estado = $('#modalCambiarEstado_' + recursoPorUsuario + ' select').val() == "1" ? "No Empezado" : $('#modalCambiarEstado_' + recursoPorUsuario + ' select').val() == "2" ? "En Progreso" : "Terminado";
+    var estado = $('#modalCambiarEstado_' + recursoPorUsuario + ' select').val();
     $.ajax({
         type: "GET",
         url: "/PersonalUV/updateEstadoRecursoPorUsuario",
@@ -247,10 +307,11 @@ function cambiarEstado(recursoPorUsuario) {
         dataType: "json",
         success: function () {
             if (DepartamentoActual.Nombre == "Entrega" && estado == "Terminado") {
-                $("#" + IDUsuarioActual + "_" + idRecursoPorUsuario).remove();
+                $("#" + IDUsuarioActual + "_" + recursoPorUsuario).remove();
             }
+            toastr.success("El estado del recurso ha sido actualizado")
         },
-        error: function (dataError) { }
+        error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); }
     });
 }
 /*function enviarSiguienteDepto(idRecurso) {
@@ -300,12 +361,13 @@ function enviarSiguienteDepto(idRecurso) {
                                 dataType: "json",
                                 success: function () {
                                     $("#" + res.oldUser + "_" + idRecurso).remove();
+                                    toastr.success("El recurso ha sido enviado a otro departamento ")
                                 },
-                                error: function (dataError) { }
+                                error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); }
                             });
                         },
                         error: function (dataError) {
-                            alert("An error has occurred during processing your request.");
+                            toastr.error("Ha ocurrido un error por parte del servidor");
                             console.log(dataError)
                         }
                     });
@@ -316,7 +378,7 @@ function enviarSiguienteDepto(idRecurso) {
                 }
             });
         }, error: function () {
-            console.log(dataError)
+            toastr.error("Ha ocurrido un error por parte del servidor");
         }
     });
 
@@ -341,15 +403,41 @@ function asignarRecursoParaUsuario(idUsuarioAnterior,idNuevoUsuario, idRecurso) 
                     success: function () {
                     },
                     error: function (dataError) {
-                        alert("An error has occurred during processing your request.");
+                        toastr.error("Ha ocurrido un error por parte del servidor");
                         console.log(dataError)
                     }
                 });
             });
         },
         error: function (dataError) {
-            alert("An error has occurred during processing your request.");
+            toastr.error("Ha ocurrido un error por parte del servidor");
             console.log(dataError)
         }
     });
+}
+function descargarFuente(recursoId) {
+    var url = "/FTP/download/";
+    var idArchivo = $('#selectArchivosFuente_' + recursoId).val();
+    $("#" + recursoId + ".frmDesFuente").prop("action", url + "?archivoId=" + idArchivo);
+    return true;
+}
+function eliminarFuente(recursoId) {
+    var url = "/FTP/delete/"
+    var idArchivo = $('#selectArchivosFuente_' + recursoId).val()
+    $('#selectArchivosFuente_' + recursoId).remove(idArchivo);
+    $("#" + recursoId + ".frmDelFuente").prop("action", url + "?archivoId=" + idArchivo);
+    return true;
+}
+function descargarRecurso(recursoId) {
+    var url = "/FTP/download/";
+    var idArchivo = $('#selectArchivosRecurso_' + recursoId).val();
+    $("#" + recursoId + ".frmDesRecurso").prop("action", url + "?archivoId=" + idArchivo);
+    return true;
+}
+function eliminarRecurso(recursoId) {
+    var url = "/FTP/delete/"
+    var idArchivo = $('#selectArchivosRecurso_' + recursoId).val()
+    $('#selectArchivosRecurso_' + recursoId).remove(idArchivo);
+    $("#" + recursoId + ".frmDelRecurso").prop("action", url + "?archivoId=" + idArchivo);
+    return true;
 }
