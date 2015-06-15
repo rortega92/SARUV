@@ -3,7 +3,7 @@ Imports System.Data.Entity.Migrations
 Imports Microsoft.VisualBasic
 
 Namespace Migrations
-    Public Partial Class CalendarioEventos
+    Public Partial Class CalendarioEvento
         Inherits DbMigration
     
         Public Overrides Sub Up()
@@ -13,6 +13,7 @@ Namespace Migrations
                     {
                         .ID = c.Int(nullable := False, identity := True),
                         .Evento = c.String(maxLength := 255),
+                        .Description = c.String(),
                         .StartString = c.String(),
                         .EndString = c.String(),
                         .FechaReserva = c.DateTime(nullable := False),

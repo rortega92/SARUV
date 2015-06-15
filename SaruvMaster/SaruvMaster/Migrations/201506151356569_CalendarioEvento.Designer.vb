@@ -6,14 +6,14 @@ Imports System.Resources
 
 Namespace Migrations
     <GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")>
-    Public NotInheritable Partial Class CalendarioEventos
+    Public NotInheritable Partial Class CalendarioEvento
         Implements IMigrationMetadata
     
-        Private ReadOnly Resources As New ResourceManager(GetType(CalendarioEventos))
+        Private ReadOnly Resources As New ResourceManager(GetType(CalendarioEvento))
         
         Private ReadOnly Property IMigrationMetadata_Id() As String Implements IMigrationMetadata.Id
             Get
-                Return "201506140351294_CalendarioEventos"
+                Return "201506151356569_CalendarioEvento"
             End Get
         End Property
         

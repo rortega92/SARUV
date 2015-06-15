@@ -222,17 +222,6 @@
     <Compile Include="Migrations\201506081900204_EventoEstudio.Designer.vb">
       <DependentUpon>201506081900204_EventoEstudio.vb</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Migrations\201506081900204_prueba2.vb" />
-    <Compile Include="Migrations\201506140351294_CalendarioEventos.Designer.vb">
-      <DependentUpon>201506140351294_CalendarioEventos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506140351294_CalendarioEventos.vb" />
-    <Compile Include="Migrations\201506150252219_EvetosEstudio.Designer.vb">
-      <DependentUpon>201506150252219_EvetosEstudio.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506150252219_EvetosEstudio.vb" />
-=======
     <Compile Include="Migrations\201506081900204_EventoEstudio.vb" />
     <Compile Include="Migrations\201506142017081_EventoGeneral.Designer.vb">
       <DependentUpon>201506142017081_EventoGeneral.vb</DependentUpon>
@@ -242,7 +231,10 @@
       <DependentUpon>201506150303488_files.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506150303488_files.vb" />
->>>>>>> ec25fc122c500792a0ddae87d8d838114767d19c
+    <Compile Include="Migrations\201506151356569_CalendarioEvento.Designer.vb">
+      <DependentUpon>201506151356569_CalendarioEvento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506151356569_CalendarioEvento.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -294,11 +286,8 @@
     <EmbeddedResource Include="Migrations\201506150303488_files.resx">
       <DependentUpon>201506150303488_files.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506140351294_CalendarioEventos.resx">
-      <DependentUpon>201506140351294_CalendarioEventos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506150252219_EvetosEstudio.resx">
-      <DependentUpon>201506150252219_EvetosEstudio.vb</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506151356569_CalendarioEvento.resx">
+      <DependentUpon>201506151356569_CalendarioEvento.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -437,19 +426,16 @@
     <Content Include="Views\AreaDeConocimiento\Details.vbhtml" />
     <Content Include="Views\AreaDeConocimiento\Edit.vbhtml" />
     <Content Include="Views\AreaDeConocimiento\Index.vbhtml" />
-<<<<<<< HEAD
     <Content Include="Views\EventosCalendarios\Create.vbhtml" />
     <Content Include="Views\EventosCalendarios\Delete.vbhtml" />
     <Content Include="Views\EventosCalendarios\Details.vbhtml" />
     <Content Include="Views\EventosCalendarios\Edit.vbhtml" />
     <Content Include="Views\EventosCalendarios\Index.vbhtml" />
-=======
     <Content Include="Views\Facultad\Create.vbhtml" />
     <Content Include="Views\Facultad\Delete.vbhtml" />
     <Content Include="Views\Facultad\Details.vbhtml" />
     <Content Include="Views\Facultad\Edit.vbhtml" />
     <Content Include="Views\Facultad\Index.vbhtml" />
->>>>>>> ec25fc122c500792a0ddae87d8d838114767d19c
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
