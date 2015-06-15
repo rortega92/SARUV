@@ -52,9 +52,9 @@ End If
                                                 <td>
                                                     <div class="col-md-12">
                                                         <select class="form-control" id="EstadoRecurso" name="Estado">
-                                                            <option value="1">No Empezado</option>
-                                                            <option value="2">En Progreso</option>
-                                                            <option value="3">Terminado</option>
+                                                            <option value="No Empezado">No Empezado</option>
+                                                            <option value="En Progreso">En Progreso</option>
+                                                            <option value="Terminado">Terminado</option>
                                                         </select>
                                                     </div>
                                                 </td>
@@ -101,6 +101,7 @@ End If
                             </div>
                         </div>
                     </div>
+                    
 
                     @<div class="modal fade" id="modalFuente_@Html.DisplayFor(Function(modelitem) item.Recurso.Id)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -112,7 +113,8 @@ End If
                                 <div class="modal-body" style="height:100%">
                                     <table>
                                         <tbody>
-                                            <tr>
+                                        @If ViewBag.departamento.Equals("Corrección") Or (ViewBag.departamento.Equals("Diseño") And ViewBag.isJefe) Then
+                                            @<tr>                    
                                                     @Using (Html.BeginForm("Upload", "FTP", New With {.recursoId = item.RecursoID, .tipo = 0}, FormMethod.Post, New With {Key .enctype = "multipart/form-data", .id = item.RecursoID, .class = "frmUpFuente"}))
                                                     @<td>
                                                          <input type="file" name="file2" class="col-md-12" />
@@ -122,7 +124,9 @@ End If
                                                     </td>
                                                     End Using
                                             </tr>
-                                            <tr>
+                                        End If
+                                        @If ViewBag.departamento.Equals("Corrección") Or (ViewBag.departamento.Equals("Diseño")) Then
+                                            @<tr>
                                                 <td>
                                                     <div class="col-md-12">
                                                         <select class="form-control" id="selectArchivosFuente_@item.RecursoID" name="ArchivosFuenteDescargar"></select>
@@ -132,20 +136,23 @@ End If
                                                     @Using (Html.BeginForm("download", "FTP", New With {.archivoId = 1}, FormMethod.Post, New With {.id = item.RecursoID, .class = "frmDesFuente"}))
                                                         @<input type="submit" name="Submit" id="Submit" value="Descargar" class="btn btn-default col-md-12" onclick="descargarFuente(@item.RecursoID)"/>
                                                     End Using
-                                                </td>            
-                                                <td>
+                                                </td>
+                                            @If ViewBag.departamento.Equals("Corrección") Or (ViewBag.departamento.Equals("Diseño") And ViewBag.isJefe) Then
+                                                @<td>
                                                     @Using (Html.BeginForm("delete", "FTP", New With {.archivoId = 1}, FormMethod.Post, New With {.id = item.RecursoID, .class = "frmDelFuente"}))
                                                         @<input type="submit" name="Submit" id="Submit" value="Eliminar" class="btn btn-default col-md-12" onclick="eliminarFuente(@item.RecursoID)" />
                                                     End Using
                                                 </td>
+                                            End If
+
                                             </tr>
+                                        End If
+                                        
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="modal-footer">
                                     <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
-
-                                    <button data-dismiss="modal" class="btn btn-success" type="button" onclick="enviarSiguienteDepto( @item.ID )">Enviar</button>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +167,8 @@ End If
                                 <div class="modal-body" style="height:100%">
                                     <table>
                                         <tbody>
-                                            <tr>
+                                            @If ViewBag.departamento.Equals("Corrección") or ViewBag.departamento.Equals("Diseño")
+                                            @<tr>
                                                 @Using (Html.BeginForm("Upload", "FTP", New With {.recursoId = item.RecursoID, .tipo = 1}, FormMethod.Post, New With {Key .enctype = "multipart/form-data", .id = item.RecursoID, .class = "frmUpRecurso"}))
                                                     @<td>
                                                          <input type="file" name="file2" class="col-md-12" />
@@ -170,6 +178,7 @@ End If
                                                     </td>
                                                 End Using
                                             </tr>
+                                            End If
                                             <tr>
                                                 <td>
                                                     <div class="col-md-12">
@@ -181,19 +190,20 @@ End If
                                                         @<input type="submit" name="Submit" id="Submit" value="Descargar" class="btn btn-default col-md-12" onclick="descargarRecurso(@item.RecursoID)" />
                                                     End Using
                                                 </td>
-                                                <td>
+
+                                                @If ViewBag.departamento.Equals("Corrección") Or ViewBag.departamento.Equals("Diseño") Then
+                                                @<td>
                                                     @Using (Html.BeginForm("delete", "FTP", New With {.archivoId = 1}, FormMethod.Post, New With {.id = item.RecursoID, .class = "frmDelRecurso"}))
                                                         @<input type="submit" name="Submit" id="Submit" value="Eliminar" class="btn btn-default col-md-12" onclick="eliminarRecurso(@item.RecursoID)" />
                                                     End Using
                                                 </td>
+                                                End If                  
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="modal-footer">
                                     <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
-
-                                    <button data-dismiss="modal" class="btn btn-success" type="button" onclick="enviarSiguienteDepto( @item.ID )">Enviar</button>
                                 </div>
                             </div>
                         </div>

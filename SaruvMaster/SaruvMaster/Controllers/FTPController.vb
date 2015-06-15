@@ -81,6 +81,7 @@ Namespace Controllers
 
                 If myFtpWebResponse.StatusCode.Equals(FtpStatusCode.ClosingData) Then
                     'aqui se muestra toast de correcto'
+                    JavaScript("toastr.success('El archivo se subió correctamente')")
                     Console.Write("listo")
                 End If
                 requestObj = Nothing
@@ -91,6 +92,7 @@ Namespace Controllers
             Catch ex As Exception
                 'aqui se muestra toast que ocurrio un problema'
                 Console.Write(ex.ToString)
+                JavaScript("toastr.error('No se pudo subir el archivo ')")
             End Try
 
             Return RedirectToAction("Index", "PersonalUV")

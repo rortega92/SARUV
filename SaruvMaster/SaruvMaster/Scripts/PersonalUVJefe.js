@@ -53,14 +53,14 @@ $(document).ready(function () {
                                 }                                
                             },
                             error: function (dataError) {
-                                alert("An error has occurred during processing your request.");
+                                toastr.error("Ha ocurrido un error por parte del servidor");
                                 console.log(dataError)
                             }
                         });
                     });
                 },
                 error: function () {
-                    alert("An error has occurred during processing your request.");
+                    toastr.error("Ha ocurrido un error por parte del servidor");
                 }
             });
             $.ajax({
@@ -90,7 +90,7 @@ $(document).ready(function () {
                                 }
                             },
                             error: function (dataError) {
-                                alert("An error has occurred during processing your request.");
+                                toastr.error("Ha ocurrido un error por parte del servidor");
                                 console.log(dataError)
                             }
                         });
@@ -108,12 +108,14 @@ $(document).ready(function () {
                     });
                 },
                 error: function (dataError) {
-                    alert("An error has occurred during processing your request.");
+                    toastr.error("Ha ocurrido un error por parte del servidor");
                     console.log(dataError)
                 }
             });
         },
-        error: function (dataError) { }
+        error: function (dataError) {
+            toastr.error("Ha ocurrido un error por parte del servidor");
+        }
     });
 
 
@@ -136,7 +138,7 @@ $(document).ready(function () {
                      '<td class="navbar-right" style="border:0px">' +
                       '<div class="btn-group-vertical">' +
                          '<a id="CambiarEstado" class="btn btn-default btn-sm" data-toggle="modal" href="#modalCambiarEstado_' + jsonData.recurso['ID'] + '">Cambiar estado</a>' +
-                         btnFuente +
+                         ((DepartamentoActual.Nombre === "Diseño" || DepartamentoActual.Nombre === "Corrección")? btnFuente : ' ') +
                          btnRecurso +
                          btnEnviar +
                       '</div>' +
@@ -160,7 +162,9 @@ $(document).ready(function () {
                     $("#modalEnviar_" + jsonData.recurso["ID"]).find("#SelectUsuariosDestino").append($("<option></option>").val(usuario['ID']).html(usuario['Nombre'] + " (" + usuario["NombreDepartamento"] + ")"));
                 });
             },
-            error: function () { }
+            error: function () {
+                toastr.error("Ha ocurrido un error por parte del servidor");
+            }
         });
         $('.recurso-container').sortable({ connectWith: '.recurso-container' }).droppable({
             drop: function (evt, draggableObject) {
@@ -193,7 +197,8 @@ $(document).ready(function () {
 
                             });
                         },
-                        error: function(errorData) {
+                        error: function (errorData) {
+                            toastr.error("Ha ocurrido un error por parte del servidor");
                         }
                     });
                 } else {
@@ -224,6 +229,7 @@ $(document).ready(function () {
                             });
                         },
                         error: function (errorData) {
+                            toastr.error("Ha ocurrido un error por parte del servidor");
                         }
                     });
                 }
@@ -240,10 +246,20 @@ $(document).ready(function () {
                     $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option").filter(function () {
                         return $(this).text() == recUsr.Estado
                     }).prop("selected", true);
+                    if (recUsr.Estado == "No Empezado") {
+                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[2].remove();
+                    }
+                    if (recUsr.Estado == "En Progreso") {
+                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[0].remove();
+                    }
+                    if (recUsr.Estado == "Terminado") {
+                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[0].remove();
+                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[0].remove();
+                    }
                 });
             },
             error: function (dataError) {
-                alert("An error has occurred during processing your request.");
+                toastr.error("Ha ocurrido un error por parte del servidor");
                 console.log(dataError)
             }
         });
@@ -277,12 +293,12 @@ $(document).ready(function () {
                 }
                 $overlay.fadeOut();
             },
-            error: function () { console.log("error archivos")}
+            error: function () { toastr.error("Ha ocurrido un error por parte del servidor"); }
         })
     }
 });
 function cambiarEstado(recursoPorUsuario) {
-    var estado = $('#modalCambiarEstado_' + recursoPorUsuario + ' select').val() == "1" ? "No Empezado" : $('#modalCambiarEstado_' + recursoPorUsuario + ' select').val() == "2" ? "En Progreso" : "Terminado";
+    var estado = $('#modalCambiarEstado_' + recursoPorUsuario + ' select').val();
     $.ajax({
         type: "GET",
         url: "/PersonalUV/updateEstadoRecursoPorUsuario",
@@ -291,10 +307,11 @@ function cambiarEstado(recursoPorUsuario) {
         dataType: "json",
         success: function () {
             if (DepartamentoActual.Nombre == "Entrega" && estado == "Terminado") {
-                $("#" + IDUsuarioActual + "_" + idRecursoPorUsuario).remove();
+                $("#" + IDUsuarioActual + "_" + recursoPorUsuario).remove();
             }
+            toastr.success("El estado del recurso ha sido actualizado")
         },
-        error: function (dataError) { }
+        error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); }
     });
 }
 /*function enviarSiguienteDepto(idRecurso) {
@@ -344,12 +361,13 @@ function enviarSiguienteDepto(idRecurso) {
                                 dataType: "json",
                                 success: function () {
                                     $("#" + res.oldUser + "_" + idRecurso).remove();
+                                    toastr.success("El recurso ha sido enviado a otro departamento ")
                                 },
-                                error: function (dataError) { }
+                                error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); }
                             });
                         },
                         error: function (dataError) {
-                            alert("An error has occurred during processing your request.");
+                            toastr.error("Ha ocurrido un error por parte del servidor");
                             console.log(dataError)
                         }
                     });
@@ -360,7 +378,7 @@ function enviarSiguienteDepto(idRecurso) {
                 }
             });
         }, error: function () {
-            console.log(dataError)
+            toastr.error("Ha ocurrido un error por parte del servidor");
         }
     });
 
@@ -385,14 +403,14 @@ function asignarRecursoParaUsuario(idUsuarioAnterior,idNuevoUsuario, idRecurso) 
                     success: function () {
                     },
                     error: function (dataError) {
-                        alert("An error has occurred during processing your request.");
+                        toastr.error("Ha ocurrido un error por parte del servidor");
                         console.log(dataError)
                     }
                 });
             });
         },
         error: function (dataError) {
-            alert("An error has occurred during processing your request.");
+            toastr.error("Ha ocurrido un error por parte del servidor");
             console.log(dataError)
         }
     });
