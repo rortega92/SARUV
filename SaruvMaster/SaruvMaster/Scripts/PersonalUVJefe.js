@@ -50,6 +50,7 @@ $(document).ready(function () {
                                 });
                                 if (recursosPorUsuario.length == 0) {
                                     $("#" + usuario['ID']).append("<div id='NoRecursos' style='margin-left:40%; margin-right:40%; text-align:center;'>No hay recursos</div>");
+                                    $overlay.fadeOut();
                                 }                                
                             },
                             error: function (dataError) {
@@ -87,6 +88,7 @@ $(document).ready(function () {
                                 });
                                 if (recursos.length == 0) {
                                     $("#recursosPanel").append("<div id='NoRecursos' style='margin-left:40%; margin-right:40%; text-align:center;'>No hay recursos</div>");
+                                    $overlay.fadeOut();
                                 }
                             },
                             error: function (dataError) {

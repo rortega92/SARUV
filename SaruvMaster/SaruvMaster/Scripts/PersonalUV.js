@@ -50,7 +50,9 @@ $(document).ready(function () {
                                     });
                                     if (recursos.length == 0) {
                                         $("#recursosPanel").append("<div id='NoRecursos' style='margin-left:40%; margin-right:40%; text-align:center;'>No hay recursos</div>");
+                                        $overlay.fadeOut();
                                     }
+                                    
                                 },
                                 error: function (dataError) {
                                     toastr.error("Ha ocurrido un error por parte del servidor");
@@ -126,7 +128,7 @@ $(document).ready(function () {
                     }
                     if (recUsr.Estado == "Terminado") {
                         $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[0].remove();
-                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[1].remove();
+                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[0].remove();
                     }
                 });
             },
