@@ -8,62 +8,72 @@ $(document).ready(function () {
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }    
+    }
+    var $overlay = $('<div class="ui-overlay"><div class="ui-widget-overlay" style="background:#111111"><img src="Content/layout/loader.gif" style="position: absolute;top: 50%; left: 50%; width: 50px; height: 50px;"></div></div>').hide().appendTo('body');
+    $overlay.fadeIn();
+
+    $(window).resize(function () {
+        $overlay.width($(document).width());
+        $overlay.height($(document).height());
+    });
     $.ajax({
         type: "GET",
-        url: "/PersonalUV/getCurrentUsuarioId",
+        url: "/PersonalUV/getCurrentDepartamento",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (usuarios) {
-            $.each(usuarios, function (indUsr, usuario) {
-                IDUsuarioActual=usuario['ID']
+        success: function (res) {
+            $.each(res, function (ind, ele) {
+                DepartamentoActual = { "ID": ele.ID, "Nombre": ele.Nombre }
                 $.ajax({
                     type: "GET",
-                    url: "/PersonalUV/getRecursosByUsuario",
-                    data: { "idUsuario": usuarios[indUsr]['ID'] },
+                    url: "/PersonalUV/getCurrentUsuarioId",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    success: function (recursos) {
-                        $.each(recursos, function (indRec, recurso) {
-                            if (!(DepartamentoActual.Nombre == "Entrega" && recurso.Estado == "Terminado")) {
-                                bindRecurso({
-                                    "recurso": recurso,
-                                    "usuario": usuario,
-                                    "place": "#recursosPanel"
-                                })
-                            }
-                        });
-                        if (recursos.length == 0) {
-                            $("#recursosPanel").append("<div id='NoRecursos' style='margin-left:40%; margin-right:40%; text-align:center;'>No hay recursos</div>");
-                        }
+                    success: function (usuarios) {
+                        $.each(usuarios, function (indUsr, usuario) {
+                            IDUsuarioActual=usuario['ID']
+                            $.ajax({
+                                type: "GET",
+                                url: "/PersonalUV/getRecursosByUsuario",
+                                data: { "idUsuario": usuarios[indUsr]['ID'] },
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (recursos) {
+                                    $.each(recursos, function (indRec, recurso) {
+                                        if (!(DepartamentoActual.Nombre == "Entrega" && recurso.Estado == "Terminado")) {
+                                            bindRecurso({
+                                                "recurso": recurso,
+                                                "usuario": usuario,
+                                                "place": "#recursosPanel"
+                                            })
+                                        }
+                                    });
+                                    if (recursos.length == 0) {
+                                        $("#recursosPanel").append("<div id='NoRecursos' style='margin-left:40%; margin-right:40%; text-align:center;'>No hay recursos</div>");
+                                    }
+                                },
+                                error: function (dataError) {
+                                    toastr.error("Ha ocurrido un error por parte del servidor");
+                                    console.log(dataError)
+                                }
+                            });//end getRecursosByUsuario
+                        });                    
                     },
                     error: function (dataError) {
-                        alert("An error has occurred during processing your request.");
+                        toastr.error("Ha ocurrido un error por parte del servidor");
                         console.log(dataError)
                     }
-                });
-            });
-            $.ajax({
-                type: "GET",
-                url: "/PersonalUV/getCurrentDepartamento",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (res) {
-                    $.each(res, function (ind, ele) {
-                        DepartamentoActual = { "ID": ele.ID, "Nombre": ele.Nombre }
-                    });
-                },
-                error: function (dataError) { }
+                })//end getCurrentUsuarioId
             });
         },
-        error: function (dataError) {
-            alert("An error has occurred during processing your request.");
-            console.log(dataError)
-        }
-    });
+        error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); }
+    });//end getCurrentDepto
     
     function bindRecurso(jsonData) {
         var btnEnviar = '<a id="EnviarDepartamento" class="btn btn-default btn-sm" data-toggle="modal" href="#modalEnviar_' + jsonData.recurso['ID'] + '">Enviar al siguiente departamento</a>';
+        var btnFuente = '<a id="SubirFuente" class="btn btn-default btn-sm" data-toggle="modal" href="#modalFuente_' + jsonData.recurso['ID'] + '">Fuente</a>';
+        var btnRecurso = '<a id="SubirRecurso" class="btn btn-default btn-sm" data-toggle="modal" href="#modalRecurso_' + jsonData.recurso['ID'] + '">Recurso</a>';
+
         if (DepartamentoActual.Nombre == "Entrega") {
             btnEnviar = "";
         }
@@ -75,7 +85,9 @@ $(document).ready(function () {
                      '<td class="navbar-right" style="border:0px">' +
                       '<div class="btn-group-vertical">' +
                          '<a id="CambiarEstado" class="btn btn-default btn-sm" data-toggle="modal" href="#modalCambiarEstado_' + jsonData.recurso['ID'] + '">Cambiar estado</a>' +
-                          btnEnviar+
+                         ((DepartamentoActual.Nombre == "Diseño" || DepartamentoActual.Nombre == "Corrección")?btnFuente:'') +
+                         btnRecurso +
+                         btnEnviar +
                       '</div>' +
                      '</td>' +
                     '</tr>' +
@@ -105,18 +117,60 @@ $(document).ready(function () {
                 $.each(recursoPorUsuario, function (ind, recUsr) {
                     $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option").filter(function () {
                         return $(this).text() == recUsr.Estado
-                    }).prop("selected",true);
+                    }).prop("selected", true);
+                    if (recUsr.Estado == "No Empezado") {
+                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[2].remove();
+                    }
+                    if (recUsr.Estado == "En Progreso") {
+                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[0].remove();
+                    }
+                    if (recUsr.Estado == "Terminado") {
+                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[0].remove();
+                        $("#modalCambiarEstado_" + jsonData.recurso.ID + " select option")[1].remove();
+                    }
                 });
             },
             error: function (dataError) {
-                alert("An error has occurred during processing your request.");
+                toastr.error("Ha ocurrido un error por parte del servidor");
                 console.log(dataError)
             }
         });
+        $.ajax({
+            type: "GET",
+            url: "/FTP/getArchivosByRecursoId",
+            data: { "recursoId": jsonData.recurso.ID },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (archivos) {
+                var contFuente = 0;
+                var contRecurso = 0;
+                $.each(archivos, function (ind, archivo) {
+                    if (archivo.TipoArchivo == 0) {
+                        contFuente++;
+                        $("#modalFuente_" + jsonData.recurso["ID"]).find("input:file").on('change', function () { $("#" + jsonData.recurso.ID + ".frmUpFuente").parent().find("#Submit").removeProp("disabled") })
+                        $("#modalFuente_" + jsonData.recurso["ID"]).find("#selectArchivosFuente_" + jsonData.recurso.ID).append($("<option></option>").val(archivo['ID']).html(archivo['NombreArchivo']));
+                    } else {
+                        contRecurso++;
+                        $("#modalRecurso_" + jsonData.recurso["ID"]).find("input:file").on('change', function () { $("#" + jsonData.recurso.ID + ".frmUpRecurso").parent().find("#Submit").removeProp("disabled") })
+                        $("#modalRecurso_" + jsonData.recurso["ID"]).find("#selectArchivosRecurso_" + jsonData.recurso.ID).append($("<option></option>").val(archivo['ID']).html(archivo['NombreArchivo']));
+                    }
+                });
+                if (contFuente == 0) {
+                    $("#" + jsonData.recurso.ID + ".frmDesFuente").find("#Submit").prop("disabled", "disabled");
+                    $("#" + jsonData.recurso.ID + ".frmDelFuente").find("#Submit").prop("disabled", "disabled");
+                }
+                if (contRecurso == 0) {
+                    $("#" + jsonData.recurso.ID + ".frmDesRecurso").find("#Submit").prop("disabled", "disabled");
+                    $("#" + jsonData.recurso.ID + ".frmDelRecurso").find("#Submit").prop("disabled", "disabled");
+                }
+                $overlay.fadeOut();
+            },
+            error: function (error) { toastr.error("Ha ocurrido un error por parte del servidor"); console.log("Error con Archivos",error) }
+        })
     }
 });
 function cambiarEstado(idRecursoPorUsuario) {
-    var estado = $('#modalCambiarEstado_' + idRecursoPorUsuario + ' select').val() == "1" ? "No Empezado" : $('#modalCambiarEstado_' + idRecursoPorUsuario + ' select').val() == "2" ? "En Progreso" : "Terminado";
+    var estado = $('#modalCambiarEstado_' + idRecursoPorUsuario + ' select').val()
     $.ajax({
         type: "GET",
         url: "/PersonalUV/updateEstadoRecursoPorUsuario",
@@ -127,8 +181,9 @@ function cambiarEstado(idRecursoPorUsuario) {
             if (DepartamentoActual.Nombre == "Entrega" && estado == "Terminado") {
                 $("#" + IDUsuarioActual + "_" + idRecursoPorUsuario).remove();
             }
+            toastr.success("El estado del recurso ha sido actualizado")
         },
-        error: function(dataError){}
+        error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); console.log(dataError)}
     });
 }
 function enviarSiguienteDepto(idRecurso) {
@@ -157,22 +212,51 @@ function enviarSiguienteDepto(idRecurso) {
                                 dataType: "json",
                                 success: function () {
                                     $("#" + res.oldUser + "_" + idRecurso).remove();
+                                    toastr.success("El recurso ha sido enviado a otro departamento ")
                                 },
-                                error: function (dataError) { }
+                                error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); console.log(dataError) }
                             });
                         },
                         error: function (dataError) {
-                            alert("An error has occurred during processing your request.");
+                            toastr.error("Ha ocurrido un error por parte del servidor");
                             console.log(dataError)
                         }
                     });
                 } else {
-                    $('<div title="Aviso">Debe Cambiar el estado del recurso a terminado para poder enviar al siguiente departamento</div>').dialog({"class":"modal-dialog modal"});
+                    $("#linkAviso").click();
+                    $("#aviso .modal-body").html("Debe Cambiar el estado del recurso a terminado para poder enviar al siguiente departamento");
                 }
             });            
-        }, error: function(){
-            console.log(dataError)
+        }, error: function(errorData){
+            toastr.error("Ha ocurrido un error por parte del servidor");
+            console.log(errorData)
         }
     });
     
+}
+function descargarFuente(recursoId) {
+    var url = "/FTP/download/";
+    var idArchivo = $('#selectArchivosFuente_' + recursoId).val();
+    $("#" + recursoId + ".frmDesFuente").prop("action", url + "?archivoId=" + idArchivo);
+    return true;
+}
+function eliminarFuente(recursoId) {
+    var url = "/FTP/delete/"
+    var idArchivo = $('#selectArchivosFuente_' + recursoId).val()
+    $('#selectArchivosFuente_' + recursoId).remove(idArchivo);
+    $("#" + recursoId + ".frmDelFuente").prop("action", url + "?archivoId=" + idArchivo);
+    return true;
+}
+function descargarRecurso(recursoId) {
+    var url = "/FTP/download/";
+    var idArchivo = $('#selectArchivosRecurso_' + recursoId).val();
+    $("#" + recursoId + ".frmDesRecurso").prop("action", url + "?archivoId=" + idArchivo);
+    return true;
+}
+function eliminarRecurso(recursoId) {
+    var url = "/FTP/delete/"
+    var idArchivo = $('#selectArchivosRecurso_' + recursoId).val()
+    $('#selectArchivosRecurso_' + recursoId).remove(idArchivo);
+    $("#" + recursoId + ".frmDelRecurso").prop("action", url + "?archivoId=" + idArchivo);
+    return true;
 }

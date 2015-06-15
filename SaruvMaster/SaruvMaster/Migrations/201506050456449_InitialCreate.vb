@@ -973,6 +973,7 @@ Namespace Migrations
             DropStoredProcedure("dbo.AreaDeConocimiento_Delete")
             DropStoredProcedure("dbo.AreaDeConocimiento_Update")
             DropStoredProcedure("dbo.AreaDeConocimiento_Insert")
+            DropStoredProcedure("dbo.RecursoPorUsuario_UpdateEstado")
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers")
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers")
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers")

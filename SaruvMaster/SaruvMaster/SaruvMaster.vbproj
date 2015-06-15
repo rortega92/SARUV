@@ -204,6 +204,8 @@
     <Compile Include="Controllers\EncargadoDeValidacionController.vb" />
     <Compile Include="Controllers\EventosCalendariosController.vb" />
     <Compile Include="Controllers\EventosEstudioController.vb" />
+    <Compile Include="Controllers\FacultadController.vb" />
+    <Compile Include="Controllers\FTPController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
     <Compile Include="Controllers\ModalidadDeCursoController.vb" />
     <Compile Include="Controllers\PersonalUVController.vb" />
@@ -217,9 +219,10 @@
       <DependentUpon>201506050456449_InitialCreate.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506050456449_InitialCreate.vb" />
-    <Compile Include="Migrations\201506081900204_prueba2.Designer.vb">
-      <DependentUpon>201506081900204_prueba2.vb</DependentUpon>
+    <Compile Include="Migrations\201506081900204_EventoEstudio.Designer.vb">
+      <DependentUpon>201506081900204_EventoEstudio.vb</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Migrations\201506081900204_prueba2.vb" />
     <Compile Include="Migrations\201506140351294_CalendarioEventos.Designer.vb">
       <DependentUpon>201506140351294_CalendarioEventos.vb</DependentUpon>
@@ -229,6 +232,17 @@
       <DependentUpon>201506150252219_EvetosEstudio.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506150252219_EvetosEstudio.vb" />
+=======
+    <Compile Include="Migrations\201506081900204_EventoEstudio.vb" />
+    <Compile Include="Migrations\201506142017081_EventoGeneral.Designer.vb">
+      <DependentUpon>201506142017081_EventoGeneral.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506142017081_EventoGeneral.vb" />
+    <Compile Include="Migrations\201506150303488_files.Designer.vb">
+      <DependentUpon>201506150303488_files.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506150303488_files.vb" />
+>>>>>>> ec25fc122c500792a0ddae87d8d838114767d19c
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -240,6 +254,7 @@
     <Compile Include="Models\Encargado de Validacion.vb" />
     <Compile Include="Models\EventosCalendario.vb" />
     <Compile Include="Models\EventosEstudio.vb" />
+    <Compile Include="Models\EventosGenerales.vb" />
     <Compile Include="Models\Facultad.vb" />
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\ManageViewModels.vb" />
@@ -247,6 +262,7 @@
     <Compile Include="Models\Recurso.vb" />
     <Compile Include="Models\RecursoPorUsuario.vb" />
     <Compile Include="Models\TipoDeRecurso.vb" />
+    <Compile Include="Models\ArchivoUsuario.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -269,8 +285,14 @@
     <EmbeddedResource Include="Migrations\201506050456449_InitialCreate.resx">
       <DependentUpon>201506050456449_InitialCreate.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506081900204_prueba2.resx">
-      <DependentUpon>201506081900204_prueba2.vb</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506081900204_EventoEstudio.resx">
+      <DependentUpon>201506081900204_EventoEstudio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506142017081_EventoGeneral.resx">
+      <DependentUpon>201506142017081_EventoGeneral.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506150303488_files.resx">
+      <DependentUpon>201506150303488_files.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506140351294_CalendarioEventos.resx">
       <DependentUpon>201506140351294_CalendarioEventos.vb</DependentUpon>
@@ -290,11 +312,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\fullcalendar.print.css" />
+    <Content Include="Content\layout\loader.gif" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -327,6 +354,9 @@
     <Content Include="Scripts\PersonalUVJefe.js" />
     <Content Include="Scripts\Recurso.js" />
     <Content Include="Scripts\register.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\toastrImp.js" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.vbhtml" />
     <Content Include="Views\Account\ConfirmEmail.vbhtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.vbhtml" />
@@ -407,11 +437,19 @@
     <Content Include="Views\AreaDeConocimiento\Details.vbhtml" />
     <Content Include="Views\AreaDeConocimiento\Edit.vbhtml" />
     <Content Include="Views\AreaDeConocimiento\Index.vbhtml" />
+<<<<<<< HEAD
     <Content Include="Views\EventosCalendarios\Create.vbhtml" />
     <Content Include="Views\EventosCalendarios\Delete.vbhtml" />
     <Content Include="Views\EventosCalendarios\Details.vbhtml" />
     <Content Include="Views\EventosCalendarios\Edit.vbhtml" />
     <Content Include="Views\EventosCalendarios\Index.vbhtml" />
+=======
+    <Content Include="Views\Facultad\Create.vbhtml" />
+    <Content Include="Views\Facultad\Delete.vbhtml" />
+    <Content Include="Views\Facultad\Details.vbhtml" />
+    <Content Include="Views\Facultad\Edit.vbhtml" />
+    <Content Include="Views\Facultad\Index.vbhtml" />
+>>>>>>> ec25fc122c500792a0ddae87d8d838114767d19c
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -444,7 +482,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\layout\" />
     <Folder Include="Content\themes\" />
   </ItemGroup>
   <ItemGroup>
