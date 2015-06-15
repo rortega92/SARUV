@@ -167,4 +167,5 @@ Public Class Connection
 
         Return _mappingCache(type)
     End Function
+    Public Property EventosCalendarios As System.Data.Entity.DbSet(Of EventosCalendario)
 End Class

@@ -202,6 +202,7 @@
     <Compile Include="Controllers\DocenteController.vb" />
     <Compile Include="Controllers\EmpresaController.vb" />
     <Compile Include="Controllers\EncargadoDeValidacionController.vb" />
+    <Compile Include="Controllers\EventosCalendariosController.vb" />
     <Compile Include="Controllers\EventosEstudioController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
     <Compile Include="Controllers\ModalidadDeCursoController.vb" />
@@ -220,6 +221,14 @@
       <DependentUpon>201506081900204_prueba2.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506081900204_prueba2.vb" />
+    <Compile Include="Migrations\201506140351294_CalendarioEventos.Designer.vb">
+      <DependentUpon>201506140351294_CalendarioEventos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506140351294_CalendarioEventos.vb" />
+    <Compile Include="Migrations\201506150252219_EvetosEstudio.Designer.vb">
+      <DependentUpon>201506150252219_EvetosEstudio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506150252219_EvetosEstudio.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -229,6 +238,7 @@
     <Compile Include="Models\Docente.vb" />
     <Compile Include="Models\Empresa.vb" />
     <Compile Include="Models\Encargado de Validacion.vb" />
+    <Compile Include="Models\EventosCalendario.vb" />
     <Compile Include="Models\EventosEstudio.vb" />
     <Compile Include="Models\Facultad.vb" />
     <Compile Include="Models\IdentityModels.vb" />
@@ -261,6 +271,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506081900204_prueba2.resx">
       <DependentUpon>201506081900204_prueba2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506140351294_CalendarioEventos.resx">
+      <DependentUpon>201506140351294_CalendarioEventos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506150252219_EvetosEstudio.resx">
+      <DependentUpon>201506150252219_EvetosEstudio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -391,6 +407,11 @@
     <Content Include="Views\AreaDeConocimiento\Details.vbhtml" />
     <Content Include="Views\AreaDeConocimiento\Edit.vbhtml" />
     <Content Include="Views\AreaDeConocimiento\Index.vbhtml" />
+    <Content Include="Views\EventosCalendarios\Create.vbhtml" />
+    <Content Include="Views\EventosCalendarios\Delete.vbhtml" />
+    <Content Include="Views\EventosCalendarios\Details.vbhtml" />
+    <Content Include="Views\EventosCalendarios\Edit.vbhtml" />
+    <Content Include="Views\EventosCalendarios\Index.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
