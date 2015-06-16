@@ -12,7 +12,7 @@
                 <ul Class="sub">
                     <li> <a Class="" href="#">Reporte de Tareas</a></li>
                     <li> <a Class="" href="/EventosEstudio">Estudio de Grabación</a></li>
-                    <li> <a Class="" href="#">Eventos UV</a></li>
+                    <li> <a class="" href="/EventosCalendarios">Eventos UV</a></li>
                 </ul>
             </li>
 
@@ -38,14 +38,14 @@
             </li>
             End If
 
-            @If User.IsInRole("Estandar").Equals(True) Then
+            @If User.IsInRole("Estándar").Equals(True) Then
             @<li Class="sub-menu">
                 <a href = " javascript:;" Class="">
                     <i Class="icon_document_alt"></i>
                     <span> Universidad Virtual</span>
                 </a>
                 <ul Class="sub">
-                    <li> <a Class="" href="#">Eventos UV</a></li>
+                    <li> <a class="" href="/EventosCalendarios">Eventos UV</a></li>
                 </ul>
             </li>
             Else

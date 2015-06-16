@@ -74,9 +74,11 @@ End Code
 
                     <div class="form-group">
                         <div class="modal-footer">
-                            <a class="btn btn-default btn-sm" id="modalEdit" href="/EventosEstudio/Edit/"><span class="glyphicon glyphicon-trash"></span> Editar</a>
-                            <a class="btn btn-default btn-sm" id="modalDelete" href="/EventosEstudio/Delete/"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            @If User.IsInRole("Admin").Equals(True) Then
+                                @<a class="btn btn-default btn-sm" id="modalEdit" href="/EventosEstudio/Edit/"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                                @<a class="btn btn-default btn-sm" id="modalDelete" href="/EventosEstudio/Delete/"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+                            End If 
+                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cerrar</button>
 
                         </div>
                     </div>
@@ -91,7 +93,7 @@ End Code
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">Cerrar</span></button>
-                <h4 id="modalTitle" class="modal-title">Add</h4>
+                <h4 id="modalTitle" class="modal-title">Crear reservación</h4>
             </div>
             <div id="modalBody" class="modal-body">
 
@@ -209,11 +211,13 @@ End Code
 
 
 <header class="panel-heading">
-    Calendario
+    <h3>Reservaciones del Estudio de Grabación</h3>
 </header>
-<div class="breadcrumb">
-    <a style="color: #007AFF" class="btn btn-default btn-sm" id="addToggle"><span class="glyphicon glyphicon-plus"></span> Crear Evento</a>
-</div>
+@If User.IsInRole("Admin").Equals(True) Then
+    @<div class="breadcrumb">
+        <a style="color: #007AFF" class="btn btn-default btn-sm" id="addToggle"><span class="glyphicon glyphicon-plus"></span> Crear Evento</a>
+    </div>
+End If
 <div id="calendar"></div>
 
 <script>
