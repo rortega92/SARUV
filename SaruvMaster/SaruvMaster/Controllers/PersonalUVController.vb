@@ -36,7 +36,7 @@ Namespace SaruvMaster
         ' GET: /RecursoPorUsuario/
 
         Function Index() As ActionResult
-            If User.Identity.IsAuthenticated Then
+            If User.Identity.IsAuthenticated And User.IsInRole("Estándar") Then
                 Dim usuario = UserManager.Users.Where(Function(u) u.UserName = User.Identity.Name).First()
                 Dim recursoPorUsuario = db.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = usuario.Id)
                 Dim departamento = db.Departamento.Where(Function(dep) dep.ID = usuario.DepartamentoID).First()
