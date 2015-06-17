@@ -237,9 +237,14 @@
       <DependentUpon>201506151356569_CalendarioEvento.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506151356569_CalendarioEvento.vb" />
+    <Compile Include="Migrations\201506172134026_CicloDeVida.Designer.vb">
+      <DependentUpon>201506172134026_CicloDeVida.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506172134026_CicloDeVida.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
+    <Compile Include="Models\CicloDeVida.vb" />
     <Compile Include="Models\ClienteCorporativo.vb" />
     <Compile Include="Models\Curso.vb" />
     <Compile Include="Models\Departamento.vb" />
@@ -290,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506151356569_CalendarioEvento.resx">
       <DependentUpon>201506151356569_CalendarioEvento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506172134026_CicloDeVida.resx">
+      <DependentUpon>201506172134026_CicloDeVida.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
