@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class EmpresaController
         Inherits System.Web.Mvc.Controller
 
@@ -44,7 +45,7 @@ Namespace Controllers
         Function Create(<Bind(Include:="ID,Nombre,Direccion,Telefono,Ciudad,Departamento,FechaCreacion,FechaModificacion")> ByVal empresa As Empresa) As ActionResult
             If ModelState.IsValid Then
                 db.Empresa.Add(empresa)
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             Return View(empresa)
@@ -70,7 +71,7 @@ Namespace Controllers
         Function Edit(<Bind(Include:="ID,Nombre,Direccion,Telefono,Ciudad,Departamento,FechaCreacion,FechaModificacion")> ByVal empresa As Empresa) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(empresa).State = EntityState.Modified
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             Return View(empresa)
@@ -95,7 +96,7 @@ Namespace Controllers
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
             Dim empresa As Empresa = db.Empresa.Find(id)
             db.Empresa.Remove(empresa)
-            db.SaveChanges()
+            db.Savechanges()
             Return RedirectToAction("Index")
         End Function
 

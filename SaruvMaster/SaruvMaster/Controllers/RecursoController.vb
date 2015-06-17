@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class RecursoController
         Inherits System.Web.Mvc.Controller
 
@@ -88,7 +89,7 @@ Namespace Controllers
             prioridad(2) = "Alta"
             ViewBag.prioridad = New SelectList(prioridad)
             ViewBag.TipoDeRecursoID = New SelectList(db.TipoDeRecurso, "Id", "Nombre", recurso.TipoDeRecursoID)
-           
+
             Return View(recurso)
         End Function
 

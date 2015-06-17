@@ -9,7 +9,9 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class FacultadController
+
         Inherits System.Web.Mvc.Controller
 
         Private db As New Connection
@@ -55,7 +57,7 @@ Namespace Controllers
             facultad.FechaModificacion = facultad.FechaCreacion
             If ModelState.IsValid Then
                 db.Facultad.Add(facultad)
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             Return View(facultad)
@@ -82,7 +84,7 @@ Namespace Controllers
             facultad.FechaModificacion = DateTime.Now
             If ModelState.IsValid Then
                 db.Entry(facultad).State = EntityState.Modified
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             Return View(facultad)
@@ -107,7 +109,7 @@ Namespace Controllers
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
             Dim facultad As Facultad = db.Facultad.Find(id)
             db.Facultad.Remove(facultad)
-            db.SaveChanges()
+            db.Savechanges()
             Return RedirectToAction("Index")
         End Function
 

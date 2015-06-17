@@ -196,6 +196,8 @@
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\AreaDeConocimientoController.vb" />
+    <Compile Include="Controllers\LogFilterEstandarAttribute.vb" />
+    <Compile Include="Controllers\LogFilterAttribute.vb" />
     <Compile Include="Controllers\ClienteCorporativoController.vb" />
     <Compile Include="Controllers\CursoController.vb" />
     <Compile Include="Controllers\DepartamentoController.vb" />

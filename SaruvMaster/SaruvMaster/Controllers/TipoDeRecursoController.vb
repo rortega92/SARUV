@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class TipoDeRecursoController
         Inherits System.Web.Mvc.Controller
 
@@ -44,7 +45,7 @@ Namespace Controllers
         Function Create(<Bind(Include:="Id,Nombre,CodigoRecurso,FechaCreacion,FechaModificacion")> ByVal tipoDeRecurso As TipoDeRecurso) As ActionResult
             If ModelState.IsValid Then
                 db.TipoDeRecurso.Add(tipoDeRecurso)
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             Return View(tipoDeRecurso)
@@ -70,7 +71,7 @@ Namespace Controllers
         Function Edit(<Bind(Include:="Id,Nombre,CodigoRecurso,FechaCreacion,FechaModificacion")> ByVal tipoDeRecurso As TipoDeRecurso) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(tipoDeRecurso).State = EntityState.Modified
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             Return View(tipoDeRecurso)
@@ -95,7 +96,7 @@ Namespace Controllers
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
             Dim tipoDeRecurso As TipoDeRecurso = db.TipoDeRecurso.Find(id)
             db.TipoDeRecurso.Remove(tipoDeRecurso)
-            db.SaveChanges()
+            db.Savechanges()
             Return RedirectToAction("Index")
         End Function
 

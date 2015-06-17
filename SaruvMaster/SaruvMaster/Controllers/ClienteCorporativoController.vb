@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class ClienteCorporativoController
         Inherits System.Web.Mvc.Controller
 
@@ -46,7 +47,7 @@ Namespace Controllers
         Function Create(<Bind(Include:="ID,Nombre,Apellidos,NumeroIdentidad,CorreoElectronico,Telefono,EmpresaID,FechaCreacion,FechaModificacion")> ByVal clienteCorporativo As ClienteCorporativo) As ActionResult
             If ModelState.IsValid Then
                 db.ClienteCorporativo.Add(clienteCorporativo)
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             ViewBag.EmpresaID = New SelectList(db.Empresa, "ID", "Nombre", clienteCorporativo.EmpresaID)
@@ -74,7 +75,7 @@ Namespace Controllers
         Function Edit(<Bind(Include:="ID,Nombre,Apellidos,NumeroIdentidad,CorreoElectronico,Telefono,EmpresaID,FechaCreacion,FechaModificacion")> ByVal clienteCorporativo As ClienteCorporativo) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(clienteCorporativo).State = EntityState.Modified
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             ViewBag.EmpresaID = New SelectList(db.Empresa, "ID", "Nombre", clienteCorporativo.EmpresaID)
@@ -100,7 +101,7 @@ Namespace Controllers
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
             Dim clienteCorporativo As ClienteCorporativo = db.ClienteCorporativo.Find(id)
             db.ClienteCorporativo.Remove(clienteCorporativo)
-            db.SaveChanges()
+            db.Savechanges()
             Return RedirectToAction("Index")
         End Function
 

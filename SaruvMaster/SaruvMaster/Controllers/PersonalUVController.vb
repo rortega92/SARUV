@@ -18,8 +18,7 @@ Imports Microsoft.AspNet.Identity.EntityFramework
 
 
 Namespace SaruvMaster
-
-
+    <LogFilterEstandar>
     Public Class PersonalUVController
         Inherits Controller
 
@@ -35,31 +34,35 @@ Namespace SaruvMaster
             End Set
         End Property
         ' GET: /RecursoPorUsuario/
+
         Function Index() As ActionResult
-            Dim usuario = UserManager.Users.Where(Function(u) u.UserName = User.Identity.Name).First()
-            Dim recursoPorUsuario = db.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = usuario.Id)
-            Dim departamento = db.Departamento.Where(Function(dep) dep.ID = usuario.DepartamentoID).First()
-            ViewBag.departamento = departamento.Nombre
-            ViewBag.pageTitle = "Departamento de " + departamento.Nombre
-            If (usuario.isJefe = 1) Then
-                ViewBag.isJefe = True
-                'Retornar la lista de los recursos de todos los usuarios de su departamento
-                Dim idsUsuariosDeptoActual = UserManager.Users.Where(Function(us) us.DepartamentoID = departamento.ID).ToList()
-                Dim recursoPorUsuarioList As New List(Of RecursoPorUsuario)
-                For i As Integer = 0 To idsUsuariosDeptoActual.ToArray().Length - 1
-                    Dim currentUsuarioId = idsUsuariosDeptoActual.ToList().ElementAt(i).Id
-                    Dim recursoPorUsuarioDeptoActual = db.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = currentUsuarioId).ToList()
-                    If (recursoPorUsuarioDeptoActual.ToArray().Length = 0) Then
-                    Else
-                        For j As Integer = 0 To recursoPorUsuarioDeptoActual.ToArray().Length - 1
-                            recursoPorUsuarioList.Add(recursoPorUsuarioDeptoActual.ElementAt(j))
-                        Next
-                    End If
-                Next
-                Return View(recursoPorUsuarioList)
+            If User.Identity.IsAuthenticated Then
+                Dim usuario = UserManager.Users.Where(Function(u) u.UserName = User.Identity.Name).First()
+                Dim recursoPorUsuario = db.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = usuario.Id)
+                Dim departamento = db.Departamento.Where(Function(dep) dep.ID = usuario.DepartamentoID).First()
+                ViewBag.departamento = departamento.Nombre
+                ViewBag.pageTitle = "Departamento de " + departamento.Nombre
+                If (usuario.isJefe = 1) Then
+                    ViewBag.isJefe = True
+                    'Retornar la lista de los recursos de todos los usuarios de su departamento
+                    Dim idsUsuariosDeptoActual = UserManager.Users.Where(Function(us) us.DepartamentoID = departamento.ID).ToList()
+                    Dim recursoPorUsuarioList As New List(Of RecursoPorUsuario)
+                    For i As Integer = 0 To idsUsuariosDeptoActual.ToArray().Length - 1
+                        Dim currentUsuarioId = idsUsuariosDeptoActual.ToList().ElementAt(i).Id
+                        Dim recursoPorUsuarioDeptoActual = db.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = currentUsuarioId).ToList()
+                        If (recursoPorUsuarioDeptoActual.ToArray().Length = 0) Then
+                        Else
+                            For j As Integer = 0 To recursoPorUsuarioDeptoActual.ToArray().Length - 1
+                                recursoPorUsuarioList.Add(recursoPorUsuarioDeptoActual.ElementAt(j))
+                            Next
+                        End If
+                    Next
+                    Return View(recursoPorUsuarioList)
+                End If
+                ViewBag.isJefe = False
+                Return View(recursoPorUsuario.ToList())
             End If
-            ViewBag.isJefe = False
-            Return View(recursoPorUsuario.ToList())
+            Return RedirectToAction("Index", "Home")
         End Function
 
         Function getUsuariosByNombreDepartamento(ByVal nombreDepartamento As String) As ActionResult
@@ -70,7 +73,7 @@ Namespace SaruvMaster
             Dim returnUsuarios As New List(Of Dictionary(Of String, String))
             For i As Integer = 0 To listaUsuarios.ToArray().Length - 1
                 Dim row As New Dictionary(Of String, String)
-                row.Add("ID", listaUsuarios.ElementAt(i).ID)
+                row.Add("ID", listaUsuarios.ElementAt(i).Id)
                 row.Add("Nombre", listaUsuarios.ElementAt(i).Nombre)
                 returnUsuarios.Add(row)
             Next
@@ -110,7 +113,7 @@ Namespace SaruvMaster
             Dim returnUsuarios As New List(Of Dictionary(Of String, String))
             For i As Integer = 0 To listaUsuarios.ToArray().Length - 1
                 Dim row As New Dictionary(Of String, String)
-                row.Add("ID", listaUsuarios.ElementAt(i).ID)
+                row.Add("ID", listaUsuarios.ElementAt(i).Id)
                 row.Add("Nombre", listaUsuarios.ElementAt(i).Nombre)
                 returnUsuarios.Add(row)
             Next
@@ -170,7 +173,7 @@ Namespace SaruvMaster
             Dim usuario = UserManager.Users.Where(Function(u) u.Id = idUsuario).First()
             Dim returnUsuarios As New List(Of Dictionary(Of String, String))
             Dim row As New Dictionary(Of String, String)
-            row.Add("ID", usuario.ID)
+            row.Add("ID", usuario.Id)
             row.Add("Nombre", usuario.Nombre)
             returnUsuarios.Add(row)
             Return Json(returnUsuarios, JsonRequestBehavior.AllowGet)

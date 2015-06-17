@@ -9,14 +9,16 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class EncargadoDeValidacionController
+
         Inherits System.Web.Mvc.Controller
 
         Private db As New Connection
 
         ' GET: EncargadoDeValidacion
         Function Index() As ActionResult
-            Dim encargadoDeValidacion = db.encargadoDeValidacion.Include(Function(e) e.Facultad)
+            Dim encargadoDeValidacion = db.EncargadoDeValidacion.Include(Function(e) e.Facultad)
             Return View(encargadoDeValidacion.ToList())
         End Function
 
@@ -25,7 +27,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim encargadoDeValidacion As EncargadoDeValidacion = db.encargadoDeValidacion.Find(id)
+            Dim encargadoDeValidacion As EncargadoDeValidacion = db.EncargadoDeValidacion.Find(id)
             If IsNothing(encargadoDeValidacion) Then
                 Return HttpNotFound()
             End If
@@ -86,7 +88,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim encargadoDeValidacion As EncargadoDeValidacion = db.encargadoDeValidacion.Find(id)
+            Dim encargadoDeValidacion As EncargadoDeValidacion = db.EncargadoDeValidacion.Find(id)
             If IsNothing(encargadoDeValidacion) Then
                 Return HttpNotFound()
             End If
@@ -98,9 +100,9 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim encargadoDeValidacion As EncargadoDeValidacion = db.encargadoDeValidacion.Find(id)
-            db.encargadoDeValidacion.Remove(encargadoDeValidacion)
-            db.SaveChanges()
+            Dim encargadoDeValidacion As EncargadoDeValidacion = db.EncargadoDeValidacion.Find(id)
+            db.EncargadoDeValidacion.Remove(encargadoDeValidacion)
+            db.Savechanges()
             Return RedirectToAction("Index")
         End Function
 
