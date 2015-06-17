@@ -23,6 +23,8 @@ Public Class Connection
 
     Public Property ClienteCorporativo As DbSet(Of ClienteCorporativo)
 
+    Public Property CicloDeVida As DbSet(Of CicloDeVida)
+
     Public Property ModalidadDeCurso As DbSet(Of ModalidadDeCurso)
 
     Public Property EncargadoDeValidacion As DbSet(Of EncargadoDeValidacion)
@@ -40,6 +42,7 @@ Public Class Connection
     Public Property Departamento As DbSet(Of Departamento)
 
     Public Property UserFile As DbSet(Of ArchivoUsuario)
+
 
 
 

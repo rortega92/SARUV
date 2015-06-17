@@ -229,6 +229,19 @@ $(document).ready(function () {
                                     error: function (dataError) { alert("An error has occurred during processing your request."); console.log(dataError) }
                                 });*/
                             });
+                            $.ajax({
+                                type: "GET",
+                                url: "/PersonalUV/updateCicloDeVidaAsignacion",
+                                data: { "usuarioID": evt.target.id, "recursoID": draggableObject.draggable.attr("id").split("_")[1]},
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (usuarios) {
+                                    console.log("Success");
+                                },
+                                error: function (errorData) {
+                                    console.log("ErrorData");
+                                }
+                            });
                         },
                         error: function (errorData) {
                             toastr.error("Ha ocurrido un error por parte del servidor");
@@ -308,6 +321,7 @@ function cambiarEstado(recursoPorUsuario) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function () {
+            updateCicloDeVida(recursoPorUsuario)
             if (DepartamentoActual.Nombre == "Entrega" && estado == "Terminado") {
                 $("#" + IDUsuarioActual + "_" + recursoPorUsuario).remove();
             }
@@ -316,6 +330,21 @@ function cambiarEstado(recursoPorUsuario) {
         error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); }
     });
 }
+
+/*function updateCicloDeVida(recursoPorUsuario) {
+    var estado = $('#modalCambiarEstado_' + recursoPorUsuario + ' select').val();
+    $.ajax({
+        type: "GET",
+        url: "/PersonalUV/updateCicloDeVida",
+        data: { "recursoID": recursoPorUsuario, "estado": estado },
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function () {
+            console.log("Success");
+        },
+        error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); }
+    });
+}*/
 /*function enviarSiguienteDepto(idRecurso) {
     var idUsuario = $('#modalEnviar_' + idRecurso + ' select').val();
     //var estado = $('#modalCambiarEstado_' + idRecurso + ' select').val() == "1" ? "No Empezado" : $('#modalCambiarEstado_' + idRecurso + ' select').val() == "2" ? "En Progreso" : "Terminado";

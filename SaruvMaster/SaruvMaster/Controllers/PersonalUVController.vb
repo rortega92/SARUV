@@ -350,5 +350,43 @@ Namespace SaruvMaster
             returnDepto.Add(row)
             Return Json(returnDepto, JsonRequestBehavior.AllowGet)
         End Function
+
+        Function updateCicloDeVidaAsignacion(ByVal usuarioID As String, ByVal recursoID As Integer) As ActionResult
+            Dim manager = UserManager.Users.Where(Function(e) e.UserName = My.User.Name).First().Id
+            Dim row = db.CicloDeVida.Where(Function(e) e.RecursoID = recursoID And e.UsuarioID = manager).First()
+            Dim userName = UserManager.Users.Where(Function(e) e.Id = usuarioID).First().Nombre
+            Dim userSurname = UserManager.Users.Where(Function(e) e.Id = usuarioID).First().Apellido
+
+            Dim con As New Connection
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cmd.CommandText = "CicloDeVida_InsertNewState"
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@RecursoID"
+            parm.Value = recursoID
+            cmd.Parameters.Add(parm)
+            Dim parm1 = New SqlParameter()
+            parm1.ParameterName = "@UsuarioID"
+            parm1.Value = usuarioID
+            cmd.Parameters.Add(parm1)
+            Dim parm2 = New SqlParameter()
+            parm2.ParameterName = "@Estado"
+            parm2.Value = row.Estado
+            cmd.Parameters.Add(parm2)
+            Dim parm3 = New SqlParameter()
+            parm3.ParameterName = "@FechaModificacion"
+            parm3.Value = Date.Now
+            cmd.Parameters.Add(parm3)
+            Dim parm4 = New SqlParameter()
+            parm4.ParameterName = "@Observacion"
+            parm4.Value = "Se asigno a " + userName + " " + userSurname
+            cmd.Parameters.Add(parm4)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+            Return Json(True, JsonRequestBehavior.AllowGet)
+        End Function
     End Class
 End Namespace
