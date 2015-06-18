@@ -241,6 +241,10 @@
       <DependentUpon>201506172134026_CicloDeVida.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506172134026_CicloDeVida.vb" />
+    <Compile Include="Migrations\201506182152064_RecursoObservacion.Designer.vb">
+      <DependentUpon>201506182152064_RecursoObservacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506182152064_RecursoObservacion.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -259,6 +263,7 @@
     <Compile Include="Models\ManageViewModels.vb" />
     <Compile Include="Models\ModalidadDeCurso.vb" />
     <Compile Include="Models\Recurso.vb" />
+    <Compile Include="Models\RecursoObservacion.vb" />
     <Compile Include="Models\RecursoPorUsuario.vb" />
     <Compile Include="Models\TipoDeRecurso.vb" />
     <Compile Include="Models\ArchivoUsuario.vb" />
@@ -298,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506172134026_CicloDeVida.resx">
       <DependentUpon>201506172134026_CicloDeVida.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506182152064_RecursoObservacion.resx">
+      <DependentUpon>201506182152064_RecursoObservacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
