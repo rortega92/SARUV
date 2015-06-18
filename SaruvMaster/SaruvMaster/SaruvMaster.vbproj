@@ -196,6 +196,9 @@
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\AreaDeConocimientoController.vb" />
+    <Compile Include="Controllers\CicloDeVidaController.vb" />
+    <Compile Include="Controllers\LogFilterEstandarAttribute.vb" />
+    <Compile Include="Controllers\LogFilterAttribute.vb" />
     <Compile Include="Controllers\ClienteCorporativoController.vb" />
     <Compile Include="Controllers\CursoController.vb" />
     <Compile Include="Controllers\DepartamentoController.vb" />
@@ -235,9 +238,18 @@
       <DependentUpon>201506151356569_CalendarioEvento.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506151356569_CalendarioEvento.vb" />
+    <Compile Include="Migrations\201506172134026_CicloDeVida.Designer.vb">
+      <DependentUpon>201506172134026_CicloDeVida.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506172134026_CicloDeVida.vb" />
+    <Compile Include="Migrations\201506182152064_RecursoObservacion.Designer.vb">
+      <DependentUpon>201506182152064_RecursoObservacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506182152064_RecursoObservacion.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
+    <Compile Include="Models\CicloDeVida.vb" />
     <Compile Include="Models\ClienteCorporativo.vb" />
     <Compile Include="Models\Curso.vb" />
     <Compile Include="Models\Departamento.vb" />
@@ -252,6 +264,7 @@
     <Compile Include="Models\ManageViewModels.vb" />
     <Compile Include="Models\ModalidadDeCurso.vb" />
     <Compile Include="Models\Recurso.vb" />
+    <Compile Include="Models\RecursoObservacion.vb" />
     <Compile Include="Models\RecursoPorUsuario.vb" />
     <Compile Include="Models\TipoDeRecurso.vb" />
     <Compile Include="Models\ArchivoUsuario.vb" />
@@ -288,6 +301,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506151356569_CalendarioEvento.resx">
       <DependentUpon>201506151356569_CalendarioEvento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506172134026_CicloDeVida.resx">
+      <DependentUpon>201506172134026_CicloDeVida.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506182152064_RecursoObservacion.resx">
+      <DependentUpon>201506182152064_RecursoObservacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -436,7 +455,11 @@
     <Content Include="Views\Facultad\Details.vbhtml" />
     <Content Include="Views\Facultad\Edit.vbhtml" />
     <Content Include="Views\Facultad\Index.vbhtml" />
+<<<<<<< HEAD
     <Content Include="Views\Recurso\RecursosCompletos.vbhtml" />
+=======
+    <Content Include="Views\CicloDeVida\Index.vbhtml" />
+>>>>>>> 84ae59533f27da288a4b8dc306d0e8bc61917f6c
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

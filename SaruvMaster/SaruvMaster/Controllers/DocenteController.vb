@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class DocenteController
         Inherits System.Web.Mvc.Controller
 
@@ -47,7 +48,7 @@ Namespace Controllers
         Function Create(<Bind(Include:="ID,Nombres,Apellidos,NumeroTalentoHumano,correoElectronico,telefono,AreaDeConocimientoID,FacultadID,FechaCreacion,FechaModificacion")> ByVal docente As Docente) As ActionResult
             If ModelState.IsValid Then
                 db.Docente.Add(docente)
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             ViewBag.AreaDeConocimientoID = New SelectList(db.AreaDeConocimiento, "ID", "Nombre", docente.AreaDeConocimientoID)
@@ -77,7 +78,7 @@ Namespace Controllers
         Function Edit(<Bind(Include:="ID,Nombres,Apellidos,NumeroTalentoHumano,correoElectronico,telefono,AreaDeConocimientoID,FacultadID,FechaCreacion,FechaModificacion")> ByVal docente As Docente) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(docente).State = EntityState.Modified
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             ViewBag.AreaDeConocimientoID = New SelectList(db.AreaDeConocimiento, "ID", "Nombre", docente.AreaDeConocimientoID)
@@ -104,7 +105,7 @@ Namespace Controllers
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
             Dim docente As Docente = db.Docente.Find(id)
             db.Docente.Remove(docente)
-            db.SaveChanges()
+            db.Savechanges()
             Return RedirectToAction("Index")
         End Function
 

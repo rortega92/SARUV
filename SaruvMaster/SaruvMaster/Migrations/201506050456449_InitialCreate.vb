@@ -835,7 +835,9 @@ Namespace Migrations
                     "From [dbo].[AspNetUsers]" & vbCrLf & _
                     "Where @@ROWCOUNT > 0 AND DepartamentoID = @IdDepartamento AND isJefe = 1" & vbCrLf & _
                     "INSERT [dbo].[RecursoPorUsuario]([RecursoID],[UsuarioID], [Estado]) " & vbCrLf & _
-                    "VALUES (@Id, @IdUsuario, 'No Empezado')"
+                    "VALUES (@Id, @IdUsuario, 'No Empezado')" & vbCrLf & _
+                    "INSERT [dbo].[CicloDeVida]([RecursoID],[UsuarioID], [Estado], [FechaModificacion], [Observacion]) " & vbCrLf & _
+                    "VALUES (@Id, @IdUsuario, 'No Empezado', @FechaCreacion, 'Se creo el recurso')"
             )
             
             CreateStoredProcedure(
@@ -936,6 +938,45 @@ Namespace Migrations
                     "SET [Estado] = @Estado, [RecursoID] = @RecursoID, [UsuarioID] = @UsuarioID" & vbCrLf & _
                     "WHERE ([ID] = @ID)"
             )
+            CreateStoredProcedure(
+                "dbo.CicloDeVida_InsertNewState",
+                Function(p) New With
+                    {
+                        .RecursoID = p.Int(),
+                        .UsuarioID = p.String(),
+                        .Estado = p.String(),
+                        .FechaModificacion = p.DateTime(),
+                        .Observacion = p.String()
+                    },
+                    body:=
+                    "INSERT [dbo].[CicloDeVida]([RecursoID], [UsuarioID], [Estado], [FechaModificacion], [Observacion])" & vbCrLf & _
+                    "VALUES (@RecursoID, @UsuarioID, @Estado, @FechaModificacion, @Observacion)"
+            )
+            CreateStoredProcedure(
+                "dbo.RecursoObservacion_Insert",
+                Function(p) New With
+                    {
+                        .RecursoID = p.Int(),
+                        .Observacion = p.String(),
+                        .isRead = p.Int()
+                    },
+                    body:=
+                    "INSERT [dbo].[RecursoObservacion]([RecursoID], [Observacion], [isRead])" & vbCrLf & _
+                    "VALUES (@RecursoID, @Observacion, @isRead)"
+            )
+            CreateStoredProcedure(
+                "dbo.RecursoObservacion_Update",
+                Function(p) New With
+                    {
+                        .RecursoID = p.Int(),
+                        .Observacion = p.String(),
+                        .isRead = p.Int()
+                    },
+                    body:=
+                    "UPDATE [dbo].[RecursoObservacion]" & vbCrLf & _
+                    "SET [Observacion] = @Observacion, [isRead] = @isRead" & vbCrLf & _
+                    "WHERE ([RecursoID] = @RecursoID)"
+            )
             
         End Sub
         
@@ -943,6 +984,7 @@ Namespace Migrations
             DropStoredProcedure("dbo.TipoDeRecurso_Delete")
             DropStoredProcedure("dbo.TipoDeRecurso_Update")
             DropStoredProcedure("dbo.TipoDeRecurso_Insert")
+            DropStoredProcedure("CicloDeVida_InsertNewState")
             DropStoredProcedure("dbo.Recurso_Delete")
             DropStoredProcedure("dbo.Recurso_Update")
             DropStoredProcedure("dbo.Recurso_Insert")
@@ -974,6 +1016,9 @@ Namespace Migrations
             DropStoredProcedure("dbo.AreaDeConocimiento_Update")
             DropStoredProcedure("dbo.AreaDeConocimiento_Insert")
             DropStoredProcedure("dbo.RecursoPorUsuario_UpdateEstado")
+            DropStoredProcedure("dbo.CicloDeVida_InsertNewState")
+            DropStoredProcedure("dbo.RecursoObservacion_Insert")
+            DropStoredProcedure("dbo.RecursoObservacion_Update")
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers")
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers")
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers")

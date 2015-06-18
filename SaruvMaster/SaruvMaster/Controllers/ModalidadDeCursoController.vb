@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
+    <LogFilter>
     Public Class ModalidadDeCursoController
         Inherits System.Web.Mvc.Controller
 
@@ -44,7 +45,7 @@ Namespace Controllers
         Function Create(<Bind(Include:="ID,Nombre,Duracion,FechaCreacion,FechaModificacion")> ByVal modalidadDeCurso As ModalidadDeCurso) As ActionResult
             If ModelState.IsValid Then
                 db.ModalidadDeCurso.Add(modalidadDeCurso)
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             Return View(modalidadDeCurso)
@@ -70,7 +71,7 @@ Namespace Controllers
         Function Edit(<Bind(Include:="ID,Nombre,Duracion,FechaCreacion,FechaModificacion")> ByVal modalidadDeCurso As ModalidadDeCurso) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(modalidadDeCurso).State = EntityState.Modified
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             Return View(modalidadDeCurso)
@@ -95,7 +96,7 @@ Namespace Controllers
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
             Dim modalidadDeCurso As ModalidadDeCurso = db.ModalidadDeCurso.Find(id)
             db.ModalidadDeCurso.Remove(modalidadDeCurso)
-            db.SaveChanges()
+            db.Savechanges()
             Return RedirectToAction("Index")
         End Function
 

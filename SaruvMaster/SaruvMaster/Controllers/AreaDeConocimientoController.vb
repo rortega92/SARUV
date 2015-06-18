@@ -9,7 +9,7 @@ Imports System.Web.Mvc
 Imports SaruvMaster
 
 Namespace Controllers
-
+    <LogFilter>
     Public Class AreaDeConocimientoController
         Inherits System.Web.Mvc.Controller
 
@@ -56,7 +56,7 @@ Namespace Controllers
             Next
             If ModelState.IsValid Then
                 db.AreaDeConocimiento.Add(areaDeConocimiento)
-                db.SaveChanges()
+                db.Savechanges()
                 Return RedirectToAction("Index")
             End If
             Return View(areaDeConocimiento)
@@ -107,7 +107,7 @@ Namespace Controllers
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
             Dim areaDeConocimiento As AreaDeConocimiento = db.AreaDeConocimiento.Find(id)
             db.AreaDeConocimiento.Remove(areaDeConocimiento)
-            db.SaveChanges()
+            db.Savechanges()
             Return RedirectToAction("Index")
         End Function
 

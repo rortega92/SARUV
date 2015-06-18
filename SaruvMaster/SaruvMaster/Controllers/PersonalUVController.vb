@@ -18,8 +18,7 @@ Imports Microsoft.AspNet.Identity.EntityFramework
 
 
 Namespace SaruvMaster
-
-
+    <LogFilterEstandar>
     Public Class PersonalUVController
         Inherits Controller
 
@@ -35,31 +34,35 @@ Namespace SaruvMaster
             End Set
         End Property
         ' GET: /RecursoPorUsuario/
+
         Function Index() As ActionResult
-            Dim usuario = UserManager.Users.Where(Function(u) u.UserName = User.Identity.Name).First()
-            Dim recursoPorUsuario = db.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = usuario.Id)
-            Dim departamento = db.Departamento.Where(Function(dep) dep.ID = usuario.DepartamentoID).First()
-            ViewBag.departamento = departamento.Nombre
-            ViewBag.pageTitle = "Departamento de " + departamento.Nombre
-            If (usuario.isJefe = 1) Then
-                ViewBag.isJefe = True
-                'Retornar la lista de los recursos de todos los usuarios de su departamento
-                Dim idsUsuariosDeptoActual = UserManager.Users.Where(Function(us) us.DepartamentoID = departamento.ID).ToList()
-                Dim recursoPorUsuarioList As New List(Of RecursoPorUsuario)
-                For i As Integer = 0 To idsUsuariosDeptoActual.ToArray().Length - 1
-                    Dim currentUsuarioId = idsUsuariosDeptoActual.ToList().ElementAt(i).Id
-                    Dim recursoPorUsuarioDeptoActual = db.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = currentUsuarioId).ToList()
-                    If (recursoPorUsuarioDeptoActual.ToArray().Length = 0) Then
-                    Else
-                        For j As Integer = 0 To recursoPorUsuarioDeptoActual.ToArray().Length - 1
-                            recursoPorUsuarioList.Add(recursoPorUsuarioDeptoActual.ElementAt(j))
-                        Next
-                    End If
-                Next
-                Return View(recursoPorUsuarioList)
+            If User.Identity.IsAuthenticated And User.IsInRole("Estándar") Then
+                Dim usuario = UserManager.Users.Where(Function(u) u.UserName = User.Identity.Name).First()
+                Dim recursoPorUsuario = db.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = usuario.Id)
+                Dim departamento = db.Departamento.Where(Function(dep) dep.ID = usuario.DepartamentoID).First()
+                ViewBag.departamento = departamento.Nombre
+                ViewBag.pageTitle = "Departamento de " + departamento.Nombre
+                If (usuario.isJefe = 1) Then
+                    ViewBag.isJefe = True
+                    'Retornar la lista de los recursos de todos los usuarios de su departamento
+                    Dim idsUsuariosDeptoActual = UserManager.Users.Where(Function(us) us.DepartamentoID = departamento.ID).ToList()
+                    Dim recursoPorUsuarioList As New List(Of RecursoPorUsuario)
+                    For i As Integer = 0 To idsUsuariosDeptoActual.ToArray().Length - 1
+                        Dim currentUsuarioId = idsUsuariosDeptoActual.ToList().ElementAt(i).Id
+                        Dim recursoPorUsuarioDeptoActual = db.RecursoPorUsuario.Where(Function(ru) ru.UsuarioID = currentUsuarioId).ToList()
+                        If (recursoPorUsuarioDeptoActual.ToArray().Length = 0) Then
+                        Else
+                            For j As Integer = 0 To recursoPorUsuarioDeptoActual.ToArray().Length - 1
+                                recursoPorUsuarioList.Add(recursoPorUsuarioDeptoActual.ElementAt(j))
+                            Next
+                        End If
+                    Next
+                    Return View(recursoPorUsuarioList)
+                End If
+                ViewBag.isJefe = False
+                Return View(recursoPorUsuario.ToList())
             End If
-            ViewBag.isJefe = False
-            Return View(recursoPorUsuario.ToList())
+            Return RedirectToAction("Index", "Home")
         End Function
 
         Function getUsuariosByNombreDepartamento(ByVal nombreDepartamento As String) As ActionResult
@@ -70,7 +73,7 @@ Namespace SaruvMaster
             Dim returnUsuarios As New List(Of Dictionary(Of String, String))
             For i As Integer = 0 To listaUsuarios.ToArray().Length - 1
                 Dim row As New Dictionary(Of String, String)
-                row.Add("ID", listaUsuarios.ElementAt(i).ID)
+                row.Add("ID", listaUsuarios.ElementAt(i).Id)
                 row.Add("Nombre", listaUsuarios.ElementAt(i).Nombre)
                 returnUsuarios.Add(row)
             Next
@@ -110,7 +113,7 @@ Namespace SaruvMaster
             Dim returnUsuarios As New List(Of Dictionary(Of String, String))
             For i As Integer = 0 To listaUsuarios.ToArray().Length - 1
                 Dim row As New Dictionary(Of String, String)
-                row.Add("ID", listaUsuarios.ElementAt(i).ID)
+                row.Add("ID", listaUsuarios.ElementAt(i).Id)
                 row.Add("Nombre", listaUsuarios.ElementAt(i).Nombre)
                 returnUsuarios.Add(row)
             Next
@@ -170,7 +173,7 @@ Namespace SaruvMaster
             Dim usuario = UserManager.Users.Where(Function(u) u.Id = idUsuario).First()
             Dim returnUsuarios As New List(Of Dictionary(Of String, String))
             Dim row As New Dictionary(Of String, String)
-            row.Add("ID", usuario.ID)
+            row.Add("ID", usuario.Id)
             row.Add("Nombre", usuario.Nombre)
             returnUsuarios.Add(row)
             Return Json(returnUsuarios, JsonRequestBehavior.AllowGet)
@@ -346,6 +349,157 @@ Namespace SaruvMaster
             row.Add("Nombre", deptoActual.Nombre)
             returnDepto.Add(row)
             Return Json(returnDepto, JsonRequestBehavior.AllowGet)
+        End Function
+
+        Function updateCicloDeVidaAsignacion(ByVal usuarioID As String, ByVal recursoID As Integer) As ActionResult
+            Dim manager = UserManager.Users.Where(Function(e) e.UserName = My.User.Name).First().Id
+            Dim row = db.CicloDeVida.Where(Function(e) e.RecursoID = recursoID And e.UsuarioID = manager).First()
+            Dim userName = UserManager.Users.Where(Function(e) e.Id = usuarioID).First().Nombre
+            Dim userSurname = UserManager.Users.Where(Function(e) e.Id = usuarioID).First().Apellido
+
+            Dim con As New Connection
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cmd.CommandText = "CicloDeVida_InsertNewState"
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@RecursoID"
+            parm.Value = recursoID
+            cmd.Parameters.Add(parm)
+            Dim parm1 = New SqlParameter()
+            parm1.ParameterName = "@UsuarioID"
+            parm1.Value = usuarioID
+            cmd.Parameters.Add(parm1)
+            Dim parm2 = New SqlParameter()
+            parm2.ParameterName = "@Estado"
+            parm2.Value = row.Estado
+            cmd.Parameters.Add(parm2)
+            Dim parm3 = New SqlParameter()
+            parm3.ParameterName = "@FechaModificacion"
+            parm3.Value = Date.Now
+            cmd.Parameters.Add(parm3)
+            Dim parm4 = New SqlParameter()
+            parm4.ParameterName = "@Observacion"
+            parm4.Value = "Se asignó a " + userName + " " + userSurname
+            cmd.Parameters.Add(parm4)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+            Dim returnJson As New Dictionary(Of String, String)
+            returnJson.Add("MyUserName", My.User.Name)
+            Return Json(returnJson, JsonRequestBehavior.AllowGet)
+        End Function
+        Function updateCicloDeVidaEstado(ByVal recursoID As Integer, ByVal estado As String) As ActionResult
+            Dim UsuarioID = UserManager.Users.Where(Function(e) e.UserName = My.User.Name).First().Id
+            Dim row = db.CicloDeVida.Where(Function(e) e.RecursoID = recursoID And e.UsuarioID = UsuarioID).First()
+
+            Dim con As New Connection
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cmd.CommandText = "CicloDeVida_InsertNewState"
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@RecursoID"
+            parm.Value = recursoID
+            cmd.Parameters.Add(parm)
+            Dim parm1 = New SqlParameter()
+            parm1.ParameterName = "@UsuarioID"
+            parm1.Value = usuarioID
+            cmd.Parameters.Add(parm1)
+            Dim parm2 = New SqlParameter()
+            parm2.ParameterName = "@Estado"
+            parm2.Value = row.Estado
+            cmd.Parameters.Add(parm2)
+            Dim parm3 = New SqlParameter()
+            parm3.ParameterName = "@FechaModificacion"
+            parm3.Value = Date.Now
+            cmd.Parameters.Add(parm3)
+            Dim parm4 = New SqlParameter()
+            parm4.ParameterName = "@Observacion"
+            parm4.Value = "Cambió al estado " + estado
+            cmd.Parameters.Add(parm4)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+            Dim returnJson As New Dictionary(Of String, String)
+            returnJson.Add("MyUserName", My.User.Name)
+            Return Json(returnJson, JsonRequestBehavior.AllowGet)
+        End Function
+        Function updateObservacion(ByVal observacion As String, ByVal recursoID As Integer) As ActionResult
+            Dim UsuarioID = UserManager.Users.Where(Function(e) e.UserName = My.User.Name).First().Id
+            Dim row = db.RecursoObservacion.Where(Function(e) e.ID = recursoID)
+
+            Dim con As New Connection
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            If (row.ToArray().Length = 0) Then
+                cmd.CommandText = "RecursoObservacion_Insert"
+            Else
+                cmd.CommandText = "RecursoObservacion_Update"
+            End If
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@RecursoID"
+            parm.Value = recursoID
+            cmd.Parameters.Add(parm)
+            Dim parm2 = New SqlParameter()
+            parm2.ParameterName = "@Observacion"
+            parm2.Value = observacion
+            cmd.Parameters.Add(parm2)
+            Dim parm3 = New SqlParameter()
+            parm3.ParameterName = "@isRead"
+            parm3.Value = 0
+            cmd.Parameters.Add(parm3)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+            Dim returnJson As New Dictionary(Of String, String)
+            If (row.ToArray().Length = 0) Then
+                returnJson.Add("Inserted", res.Equals(1))
+            Else
+                returnJson.Add("Updated", res.Equals(1))
+            End If
+            Return Json(returnJson, JsonRequestBehavior.AllowGet)
+        End Function
+        Function mostrarObservacion(ByVal recursoID As Integer) As ActionResult
+            Dim recurso = db.RecursoObservacion.Where(Function(e) e.RecursoID = recursoID And e.isRead = 0)
+            If (recurso.ToArray().Length = 0) Then
+                Dim returnJson1 As New Dictionary(Of String, String)
+                returnJson1.Add("isRead", True)
+                Return Json(returnJson1, JsonRequestBehavior.AllowGet)
+            End If
+            Dim recursoObservacion = recurso.First()
+            'Actualizar como ya leído
+
+
+            Dim con As New Connection
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cmd.CommandText = "RecursoObservacion_Update"
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@RecursoID"
+            parm.Value = recursoID
+            cmd.Parameters.Add(parm)
+            Dim parm2 = New SqlParameter()
+            parm2.ParameterName = "@Observacion"
+            parm2.Value = recursoObservacion.Observacion
+            cmd.Parameters.Add(parm2)
+            Dim parm3 = New SqlParameter()
+            parm3.ParameterName = "@isRead"
+            parm3.Value = 1
+            cmd.Parameters.Add(parm3)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+
+            Dim returnJson As New Dictionary(Of String, String)
+            returnJson.Add("Observacion", recursoObservacion.Observacion)
+            Return Json(returnJson, JsonRequestBehavior.AllowGet)
         End Function
     End Class
 End Namespace
