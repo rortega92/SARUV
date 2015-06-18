@@ -369,6 +369,43 @@ Namespace SaruvMaster
             cmd.Parameters.Add(parm)
             Dim parm1 = New SqlParameter()
             parm1.ParameterName = "@UsuarioID"
+            parm1.Value = manager
+            cmd.Parameters.Add(parm1)
+            Dim parm2 = New SqlParameter()
+            parm2.ParameterName = "@Estado"
+            parm2.Value = row.Estado
+            cmd.Parameters.Add(parm2)
+            Dim parm3 = New SqlParameter()
+            parm3.ParameterName = "@FechaModificacion"
+            parm3.Value = Date.Now
+            cmd.Parameters.Add(parm3)
+            Dim parm4 = New SqlParameter()
+            parm4.ParameterName = "@Observacion"
+            parm4.Value = "Se asignó a " + userName + " " + userSurname
+            cmd.Parameters.Add(parm4)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+            Dim returnJson As New Dictionary(Of String, String)
+            returnJson.Add("MyUserName", My.User.Name)
+            Return Json(returnJson, JsonRequestBehavior.AllowGet)
+        End Function
+        Function updateCicloDeVidaEstado(ByVal recursoID As Integer, ByVal estado As String) As ActionResult
+            Dim UsuarioID = UserManager.Users.Where(Function(e) e.UserName = My.User.Name).First().Id
+            Dim row = db.CicloDeVida.Where(Function(e) e.RecursoID = recursoID And e.UsuarioID = UsuarioID).First()
+
+            Dim con As New Connection
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cmd.CommandText = "CicloDeVida_InsertNewState"
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@RecursoID"
+            parm.Value = recursoID
+            cmd.Parameters.Add(parm)
+            Dim parm1 = New SqlParameter()
+            parm1.ParameterName = "@UsuarioID"
             parm1.Value = usuarioID
             cmd.Parameters.Add(parm1)
             Dim parm2 = New SqlParameter()
@@ -381,12 +418,14 @@ Namespace SaruvMaster
             cmd.Parameters.Add(parm3)
             Dim parm4 = New SqlParameter()
             parm4.ParameterName = "@Observacion"
-            parm4.Value = "Se asigno a " + userName + " " + userSurname
+            parm4.Value = "Cambió al estado " + estado
             cmd.Parameters.Add(parm4)
             cmd.Connection = cone
             Dim res = cmd.ExecuteNonQuery()
             cone.Close()
-            Return Json(True, JsonRequestBehavior.AllowGet)
+            Dim returnJson As New Dictionary(Of String, String)
+            returnJson.Add("MyUserName", My.User.Name)
+            Return Json(returnJson, JsonRequestBehavior.AllowGet)
         End Function
     End Class
 End Namespace

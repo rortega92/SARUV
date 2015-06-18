@@ -146,17 +146,28 @@ $(document).ready(function () {
             success: function (archivos) {
                 var contFuente = 0;
                 var contRecurso = 0;
+                var files = []
                 $.each(archivos, function (ind, archivo) {
-                    if (archivo.TipoArchivo == 0) {
+                    files.push(archivo)
+                });
+                var filesSorted = [];
+                while (files.length > 0) {
+                    filesSorted.push(files.pop())
+                }
+                filesSorted.forEach(function (ele, idx) {
+                    //console.log(ele.NombreArchivo.split("_")[1].split(".")[0])
+                    if (ele.TipoArchivo == 0) {
                         contFuente++;
                         $("#modalFuente_" + jsonData.recurso["ID"]).find("input:file").on('change', function () { $("#" + jsonData.recurso.ID + ".frmUpFuente").parent().find("#Submit").removeProp("disabled") })
-                        $("#modalFuente_" + jsonData.recurso["ID"]).find("#selectArchivosFuente_" + jsonData.recurso.ID).append($("<option></option>").val(archivo['ID']).html(archivo['NombreArchivo']));
+                        //if(contFuente<=1) //Mostrar solo el último Archivo subido
+                        $("#modalFuente_" + jsonData.recurso["ID"]).find("#selectArchivosFuente_" + jsonData.recurso.ID).append($("<option></option>").val(ele['ID']).html(ele['NombreArchivo']));
                     } else {
                         contRecurso++;
                         $("#modalRecurso_" + jsonData.recurso["ID"]).find("input:file").on('change', function () { $("#" + jsonData.recurso.ID + ".frmUpRecurso").parent().find("#Submit").removeProp("disabled") })
-                        $("#modalRecurso_" + jsonData.recurso["ID"]).find("#selectArchivosRecurso_" + jsonData.recurso.ID).append($("<option></option>").val(archivo['ID']).html(archivo['NombreArchivo']));
+                        //if(contRecurso<=1) //Mostrar solo el último Archivo subido
+                        $("#modalRecurso_" + jsonData.recurso["ID"]).find("#selectArchivosRecurso_" + jsonData.recurso.ID).append($("<option></option>").val(ele['ID']).html(ele['NombreArchivo']));
                     }
-                });
+                })
                 if (contFuente == 0) {
                     $("#" + jsonData.recurso.ID + ".frmDesFuente").find("#Submit").prop("disabled", "disabled");
                     $("#" + jsonData.recurso.ID + ".frmDelFuente").find("#Submit").prop("disabled", "disabled");
@@ -180,6 +191,7 @@ function cambiarEstado(idRecursoPorUsuario) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function () {
+            updateCicloDeVida(idRecursoPorUsuario)
             if (DepartamentoActual.Nombre == "Entrega" && estado == "Terminado") {
                 $("#" + IDUsuarioActual + "_" + idRecursoPorUsuario).remove();
             }
@@ -218,6 +230,17 @@ function enviarSiguienteDepto(idRecurso) {
                                 },
                                 error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); console.log(dataError) }
                             });
+                            $.ajax({
+                                type: "GET",
+                                url: "/PersonalUV/updateCicloDeVidaAsignacion",
+                                data: { "usuarioID": idUsuario, "recursoID": idRecurso },
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (usuarios) {
+                                },
+                                error: function (errorData) {
+                                }
+                            });
                         },
                         error: function (dataError) {
                             toastr.error("Ha ocurrido un error por parte del servidor");
@@ -235,6 +258,20 @@ function enviarSiguienteDepto(idRecurso) {
         }
     });
     
+}
+
+function updateCicloDeVida(recursoPorUsuario) {
+    var estado = $('#modalCambiarEstado_' + recursoPorUsuario + ' select').val();
+    $.ajax({
+        type: "GET",
+        url: "/PersonalUV/updateCicloDeVidaEstado",
+        data: { "recursoID": recursoPorUsuario, "Estado": estado },
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function () {
+        },
+        error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); }
+    });
 }
 function descargarFuente(recursoId) {
     var url = "/FTP/download/";
