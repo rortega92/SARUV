@@ -241,6 +241,17 @@ function enviarSiguienteDepto(idRecurso) {
                                 error: function (errorData) {
                                 }
                             });
+                            $.ajax({
+                                type: "GET",
+                                url: "/PersonalUV/updateObservacion",
+                                data: { "observacion": $('#txtObservacion_'+idRecurso).val(), "recursoID": idRecurso },
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (usuarios) {
+                                },
+                                error: function (errorData) {
+                                }
+                            });
                         },
                         error: function (dataError) {
                             toastr.error("Ha ocurrido un error por parte del servidor");
