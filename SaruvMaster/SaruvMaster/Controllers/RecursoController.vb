@@ -20,6 +20,11 @@ Namespace Controllers
             Return View(recurso.ToList())
         End Function
 
+        Function RecursosCompletos() As ActionResult
+            Dim recurso = db.Recurso.Include(Function(r) r.ClienteCorporativo).Include(Function(r) r.Curso).Include(Function(r) r.Docente).Include(Function(r) r.Empresa).Include(Function(r) r.ModalidadDeCurso).Include(Function(r) r.TipoDeRecurso)
+            Return View(recurso.ToList())
+        End Function
+
         ' GET: Recurso/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then

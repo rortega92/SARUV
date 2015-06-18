@@ -11,7 +11,7 @@ End Code
         Editar
     </header>
     <div class="panel-body">
-        @Using (Html.BeginForm("Create", "EventosEstudio"))
+        @Using (Html.BeginForm("Edit", "EventosEstudio"))
             @Html.AntiForgeryToken()
             @<div class="form-horizontal">
                 <hr />

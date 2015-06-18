@@ -436,6 +436,7 @@
     <Content Include="Views\Facultad\Details.vbhtml" />
     <Content Include="Views\Facultad\Edit.vbhtml" />
     <Content Include="Views\Facultad\Index.vbhtml" />
+    <Content Include="Views\Recurso\RecursosCompletos.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
