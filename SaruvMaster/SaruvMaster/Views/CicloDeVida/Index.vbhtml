@@ -1,56 +1,67 @@
 ﻿@ModelType IEnumerable(Of SaruvMaster.CicloDeVida)
 @Code
-ViewData("Title") = "Index"
+    ViewData("Title") = "Index"
+
 End Code
+<div class="row indexHeader">
+    <div class="col-md-12">
+        <header class="panel-heading">
+            <h3>Ciclo de Vida</h3>
+        </header>
+        <div class="breadcrumb">
 
-<h2>Index</h2>
+        </div>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Recurso.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Usuario.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Estado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.FechaModificacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Observacion)
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-md-12">
+        <section class="panel">
+            <div class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <th>
+                        @Html.DisplayNameFor(Function(model) model.Recurso.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Function(model) model.Usuario.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Function(model) model.Estado)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Function(model) model.FechaModificacion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Function(model) model.Observacion)
+                    </th>
 
-@For Each item In Model
-    @<tr>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.Recurso.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.Usuario.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.FechaModificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.Observacion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", New With {.id = item.ID }) |
-            @Html.ActionLink("Details", "Details", New With {.id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", New With {.id = item.ID })
-        </td>
-    </tr>
-Next
+                    </thead>
+                    <tbody>
 
-</table>
+                        @For Each item In Model
+                            @<tr>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Recurso.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Usuario.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Estado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.FechaModificacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Observacion)
+                                </td>
+
+                            </tr>
+                        Next
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
