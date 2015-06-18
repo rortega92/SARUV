@@ -171,7 +171,6 @@ $(document).ready(function () {
         $('.recurso-container').sortable({ connectWith: '.recurso-container' }).droppable({
             drop: function (evt, draggableObject) {
                 //console.log(evt,draggableObject)
-                evt.preventDefault();
                 if (evt.target.classList.contains("panel-body")) {
                     //mover recurso al Jefe
                     $.ajax({
@@ -182,32 +181,34 @@ $(document).ready(function () {
                         dataType: "json",
                         success: function (usuarios) {
                             $.each(usuarios, function (ind, usuario) {
-                                asignarRecursoParaUsuario(draggableObject.draggable.attr("id").split("_")[0], usuario["ID"], draggableObject.draggable.attr("id").split("_")[1]);
-                                draggableObject.draggable.attr("id", usuario["ID"] + "_" + draggableObject.draggable.attr("id").split("_")[1]);
-                                //quitar el #NoRecursos
-                                $("#recursosPanel #NoRecursos").remove();
-                                //Ver si el usuario desde donde se movió el recurso quedó vacio
-                                /*$.ajax({
-                                    type: "GET", url: "/PersonalUV/getRecursosByUsuario",
-                                    data: { "idUsuario": draggableObject.draggable.attr("id").split("_")[0] }, contentType: "application/json; charset=utf-8", dataType: "json",
-                                    success: function (recursosPorUsuario) {
-                                        if (recursosPorUsuario.length == 0) {
-                                            $("#" + draggableObject.draggable.attr("id").split("_")[0]).append("<div id='NoRecursos' style='margin-left:40%; margin-right:40%; text-align:center;'>No hay recursos</div>");
+                                if (draggableObject.draggable.attr("id").split("_")[0] !== usuario["ID"]) {
+                                    asignarRecursoParaUsuario(draggableObject.draggable.attr("id").split("_")[0], usuario["ID"], draggableObject.draggable.attr("id").split("_")[1]);
+                                    draggableObject.draggable.attr("id", usuario["ID"] + "_" + draggableObject.draggable.attr("id").split("_")[1]);
+                                    //quitar el #NoRecursos
+                                    $("#recursosPanel #NoRecursos").remove();
+                                    //Ver si el usuario desde donde se movió el recurso quedó vacio
+                                    /*$.ajax({
+                                        type: "GET", url: "/PersonalUV/getRecursosByUsuario",
+                                        data: { "idUsuario": draggableObject.draggable.attr("id").split("_")[0] }, contentType: "application/json; charset=utf-8", dataType: "json",
+                                        success: function (recursosPorUsuario) {
+                                            if (recursosPorUsuario.length == 0) {
+                                                $("#" + draggableObject.draggable.attr("id").split("_")[0]).append("<div id='NoRecursos' style='margin-left:40%; margin-right:40%; text-align:center;'>No hay recursos</div>");
+                                            }
+                                        },
+                                        error: function (dataError) {alert("An error has occurred during processing your request.");console.log(dataError)}
+                                    });*/
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "/PersonalUV/updateCicloDeVidaAsignacion",
+                                        data: { "usuarioID": usuario["ID"], "recursoID": draggableObject.draggable.attr("id").split("_")[1] },
+                                        contentType: "application/json; charset=utf-8",
+                                        dataType: "json",
+                                        success: function (usuarios) {
+                                        },
+                                        error: function (errorData) {
                                         }
-                                    },
-                                    error: function (dataError) {alert("An error has occurred during processing your request.");console.log(dataError)}
-                                });*/
-                                $.ajax({
-                                    type: "GET",
-                                    url: "/PersonalUV/updateCicloDeVidaAsignacion",
-                                    data: { "usuarioID": usuario["ID"], "recursoID": draggableObject.draggable.attr("id").split("_")[1] },
-                                    contentType: "application/json; charset=utf-8",
-                                    dataType: "json",
-                                    success: function (usuarios) {
-                                    },
-                                    error: function (errorData) {
-                                    }
-                                });
+                                    });
+                                }
                             });                            
                         },
                         error: function (errorData) {
@@ -223,34 +224,36 @@ $(document).ready(function () {
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (usuarios) {
+                            
                             $.each(usuarios, function (ind, usuario) {
-                                asignarRecursoParaUsuario(draggableObject.draggable.attr("id").split("_")[0], evt.target.id, draggableObject.draggable.attr("id").split("_")[1]);
-                                draggableObject.draggable.attr("id", evt.target.id + "_" + draggableObject.draggable.attr("id").split("_")[1])
-                                //quitar el #NoRecursos
-                                $("#" + evt.target.id + " #NoRecursos").remove();
-                                //Ver si el usuario desde donde se movió el recurso quedó vacio
-                                /*$.ajax({
-                                    type: "GET", url: "/PersonalUV/getRecursosByUsuario",
-                                    data: { "idUsuario": draggableObject.draggable.attr("id").split("_")[0] }, contentType: "application/json; charset=utf-8", dataType: "json",
-                                    success: function (recursosPorUsuario) {
-                                        if (recursosPorUsuario.length == 0) {
-                                            $("#recursosPanel").append("<div id='NoRecursos' style='margin-left:40%; margin-right:40%; text-align:center;'>No hay recursos</div>");
-                                        }
+                                    asignarRecursoParaUsuario(draggableObject.draggable.attr("id").split("_")[0], evt.target.id, draggableObject.draggable.attr("id").split("_")[1]);
+                                    draggableObject.draggable.attr("id", evt.target.id + "_" + draggableObject.draggable.attr("id").split("_")[1])
+                                    //quitar el #NoRecursos
+                                    $("#" + evt.target.id + " #NoRecursos").remove();
+                                    //Ver si el usuario desde donde se movió el recurso quedó vacio
+                                    /*$.ajax({
+                                        type: "GET", url: "/PersonalUV/getRecursosByUsuario",
+                                        data: { "idUsuario": draggableObject.draggable.attr("id").split("_")[0] }, contentType: "application/json; charset=utf-8", dataType: "json",
+                                        success: function (recursosPorUsuario) {
+                                            if (recursosPorUsuario.length == 0) {
+                                                $("#recursosPanel").append("<div id='NoRecursos' style='margin-left:40%; margin-right:40%; text-align:center;'>No hay recursos</div>");
+                                            }
+                                        },
+                                        error: function (dataError) { alert("An error has occurred during processing your request."); console.log(dataError) }
+                                    });*/
+                                });
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/PersonalUV/updateCicloDeVidaAsignacion",
+                                    data: { "usuarioID": evt.target.id, "recursoID": draggableObject.draggable.attr("id").split("_")[1]},
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function (usuarios) {
                                     },
-                                    error: function (dataError) { alert("An error has occurred during processing your request."); console.log(dataError) }
-                                });*/
-                            });
-                            $.ajax({
-                                type: "GET",
-                                url: "/PersonalUV/updateCicloDeVidaAsignacion",
-                                data: { "usuarioID": evt.target.id, "recursoID": draggableObject.draggable.attr("id").split("_")[1]},
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                success: function (usuarios) {
-                                },
-                                error: function (errorData) {
-                                }
-                            });
+                                    error: function (errorData) {
+                                    }
+                                });
+                            
                         },
                         error: function (errorData) {
                             toastr.error("Ha ocurrido un error por parte del servidor");

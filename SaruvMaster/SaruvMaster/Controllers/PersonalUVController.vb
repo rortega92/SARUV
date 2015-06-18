@@ -369,7 +369,7 @@ Namespace SaruvMaster
             cmd.Parameters.Add(parm)
             Dim parm1 = New SqlParameter()
             parm1.ParameterName = "@UsuarioID"
-            parm1.Value = manager
+            parm1.Value = usuarioID
             cmd.Parameters.Add(parm1)
             Dim parm2 = New SqlParameter()
             parm2.ParameterName = "@Estado"
