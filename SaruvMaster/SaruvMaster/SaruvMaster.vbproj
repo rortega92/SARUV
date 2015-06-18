@@ -196,6 +196,7 @@
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\AreaDeConocimientoController.vb" />
+    <Compile Include="Controllers\CicloDeVidaController.vb" />
     <Compile Include="Controllers\LogFilterEstandarAttribute.vb" />
     <Compile Include="Controllers\LogFilterAttribute.vb" />
     <Compile Include="Controllers\ClienteCorporativoController.vb" />
@@ -446,6 +447,7 @@
     <Content Include="Views\Facultad\Details.vbhtml" />
     <Content Include="Views\Facultad\Edit.vbhtml" />
     <Content Include="Views\Facultad\Index.vbhtml" />
+    <Content Include="Views\CicloDeVida\Index.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
