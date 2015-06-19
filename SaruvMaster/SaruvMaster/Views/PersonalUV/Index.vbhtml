@@ -96,7 +96,7 @@ End If
                                 <div class="modal-footer">
                                     <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
 
-                                    <button data-dismiss="modal" class="btn btn-success" type="button" onclick="enviarSiguienteDepto( @item.ID )">Enviar</button>
+                                    <button data-dismiss="modal" class="btn btn-success" type="button" onclick="validarEnviarSiguienteDepto(@item.RecursoID)">Enviar</button>
                                 </div>
                             </div>
                         </div>
@@ -208,8 +208,27 @@ End If
                             </div>
                         </div>
                     </div>
+                    @<a id="linkEscribaObservacion_@item.RecursoID" class="btn btn-default btn-sm" data-toggle="modal" href="#escribaObservacion_@item.RecursoID" style="display:none"></a>
+                    @<div class="modal fade" id="escribaObservacion_@item.RecursoID" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Ingrese una observación</h4>
+                                </div>
+                                <form>
+                                    <div class="modal-body" style="height:100%">
+                                        <textarea id="txtObservacion_@item.RecursoID" style="width:100%" required></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button value="Submit" data-dismiss="modal" data-target="#escribaObservacion" class="btn btn-default" type="button" onclick="enviarSiguienteDepto(@item.RecursoID)">Aceptar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 Next
-            <a id="linkAviso" class="btn btn-default btn-sm" data-toggle="modal" href="#aviso" style="display:none"></a>
+                <a id="linkAviso" class="btn btn-default btn-sm" data-toggle="modal" href="#aviso" style="display:none"></a>
                 <div class="modal fade" id="aviso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">

@@ -39,6 +39,8 @@ Public Class Connection
 
     Public Property Recurso As System.Data.Entity.DbSet(Of Recurso)
 
+    Public Property RecursoObservacion As DbSet(Of RecursoObservacion)
+
     Public Property Departamento As DbSet(Of Departamento)
 
     Public Property UserFile As DbSet(Of ArchivoUsuario)
