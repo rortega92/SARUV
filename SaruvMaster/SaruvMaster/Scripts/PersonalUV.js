@@ -180,6 +180,12 @@ $(document).ready(function () {
             },
             error: function (error) { toastr.error("Ha ocurrido un error por parte del servidor"); console.log("Error con Archivos",error) }
         })
+
+    
+
+        $("#"+jsonData.usuario['ID']+"_"+jsonData.recurso['ID']).click(function(e){
+            mostrarObservacion(jsonData);
+        });
     }
 });
 function cambiarEstado(idRecursoPorUsuario) {
@@ -343,13 +349,13 @@ function mostrarObservacion(jsonData) {
     $.ajax({
         type: "GET",
         url: "/PersonalUV/mostrarObservacion/",
-        data: { "recursoID": jsonData.Recurso.ID },
+        data: { "recursoID": jsonData.recurso.ID },
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (res) {
             if (res.hasOwnProperty("isRead")) { } else {
                 $("#linkAviso").click();
-                $("#aviso .modal-body").html("Observacion: " + res.observacion);
+                $("#aviso .modal-body").html("Observacion: " + res.Observacion);
                 $("#" + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).unbind('click')
             }            
         },
