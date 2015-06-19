@@ -81,7 +81,7 @@ $(document).ready(function () {
         }
         var prioridad = jsonData.recurso['Prioridad'] == "Alta" ? "alert alert-danger" : jsonData.recurso['Prioridad'] == "Media" ? "alert alert-warning" : "alert alert-success"
         $(jsonData.place).append($("<div class='Recurso'></div>").html('' +
-            '<div class="' + prioridad + '">' +
+            '<div class="' + prioridad + '" >' +
                 '<table class="table" ' + 'id=' + '"' + jsonData.usuario['ID'] + '_Table"' + ' style="margin: 0px">' +
                     '<tr><td style="border:0px">' + jsonData.recurso['Nombre'] + '</td>' +
                      '<td class="navbar-right" style="border:0px">' +
@@ -209,58 +209,64 @@ function enviarSiguienteDepto(idRecurso) {
         dataType: "json",
         success: function (res) {
             $.each(res, function (ind, recUsr) {
-                if (recUsr.Estado == "Terminado") {
-                    var idUsuario = $('#modalEnviar_' + idRecurso + ' select').val()
-                    $.ajax({
-                        type: "GET",
-                        url: "/PersonalUV/updateRecursoPorUsuario",
-                        data: { "usuarioID": idUsuario, "recursoID": idRecurso },
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (res) {
-                            $.ajax({
-                                type: "GET",
-                                url: "/PersonalUV/updateEstadoRecursoPorUsuario",
-                                data: { "idRecursoPorUsuario": res.idRecursoPorUsuario, "Estado": "No Empezado" },
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                success: function () {
-                                    $("#" + res.oldUser + "_" + idRecurso).remove();
-                                    toastr.success("El recurso ha sido enviado a otro departamento ")
-                                },
-                                error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); console.log(dataError) }
-                            });
-                            $.ajax({
-                                type: "GET",
-                                url: "/PersonalUV/updateCicloDeVidaAsignacion",
-                                data: { "usuarioID": idUsuario, "recursoID": idRecurso },
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                success: function (usuarios) {
-                                },
-                                error: function (errorData) {
-                                }
-                            });
-                            $.ajax({
-                                type: "GET",
-                                url: "/PersonalUV/updateObservacion",
-                                data: { "observacion": $('#txtObservacion_'+idRecurso).val(), "recursoID": idRecurso },
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                success: function (usuarios) {
-                                },
-                                error: function (errorData) {
-                                }
-                            });
-                        },
-                        error: function (dataError) {
-                            toastr.error("Ha ocurrido un error por parte del servidor");
-                            console.log(dataError)
-                        }
-                    });
-                } else {
+                if ($("#txtObservacion_" + idRecurso).val().length > 0) {
+                    if (recUsr.Estado == "Terminado") {
+                        var idUsuario = $('#modalEnviar_' + idRecurso + ' select').val()
+                        $.ajax({
+                            type: "GET",
+                            url: "/PersonalUV/updateRecursoPorUsuario",
+                            data: { "usuarioID": idUsuario, "recursoID": idRecurso },
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (res) {
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/PersonalUV/updateEstadoRecursoPorUsuario",
+                                    data: { "idRecursoPorUsuario": res.idRecursoPorUsuario, "Estado": "No Empezado" },
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function () {
+                                        $("#" + res.oldUser + "_" + idRecurso).remove();
+                                        toastr.success("El recurso ha sido enviado a otro departamento ")
+                                    },
+                                    error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); console.log(dataError) }
+                                });
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/PersonalUV/updateCicloDeVidaAsignacion",
+                                    data: { "usuarioID": idUsuario, "recursoID": idRecurso },
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function (usuarios) {
+                                    },
+                                    error: function (errorData) {
+                                    }
+                                });
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/PersonalUV/updateObservacion",
+                                    data: { "observacion": $('#txtObservacion_' + idRecurso).val(), "recursoID": idRecurso },
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function (usuarios) {
+                                    },
+                                    error: function (errorData) {
+                                    }
+                                });
+                            },
+                            error: function (dataError) {
+                                toastr.error("Ha ocurrido un error por parte del servidor");
+                                console.log(dataError)
+                            }
+                        });
+                    } else {
+                        $("#linkAviso").click();
+                        $("#aviso .modal-body").html("Debe Cambiar el estado del recurso a terminado para poder enviar al siguiente departamento");
+                    }
+                }//si llenó la observacion
+                else {
                     $("#linkAviso").click();
-                    $("#aviso .modal-body").html("Debe Cambiar el estado del recurso a terminado para poder enviar al siguiente departamento");
+                    $("#aviso .modal-body").html("Debe ingresar la observación");
                 }
             });            
         }, error: function(errorData){
@@ -309,4 +315,46 @@ function eliminarRecurso(recursoId) {
     $('#selectArchivosRecurso_' + recursoId).remove(idArchivo);
     $("#" + recursoId + ".frmDelRecurso").prop("action", url + "?archivoId=" + idArchivo);
     return true;
+}
+
+function validarEnviarSiguienteDepto(idRecurso) {
+    $.ajax({
+        type: "GET",
+        url: "/PersonalUV/getRecursoPorUsuario/",
+        data: { "idUsuario": IDUsuarioActual, "idRecurso": idRecurso },
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (res) {
+            $.each(res, function (ind, recUsr) {
+                if (recUsr.Estado == "Terminado") {
+                    $('#linkEscribaObservacion_'+idRecurso).click()
+                } else {
+                    $("#linkAviso").click();
+                    $("#aviso .modal-body").html("Debe Cambiar el estado del recurso a terminado para poder enviar al siguiente departamento");
+                }
+            })
+        },
+        error: function (errorData) {
+            toastr.error("Ha ocurrido un error por parte del servidor");
+        }
+    });
+}
+function mostrarObservacion(jsonData) {
+    $.ajax({
+        type: "GET",
+        url: "/PersonalUV/mostrarObservacion/",
+        data: { "recursoID": jsonData.Recurso.ID },
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (res) {
+            if (res.hasOwnProperty("isRead")) { } else {
+                $("#linkAviso").click();
+                $("#aviso .modal-body").html("Observacion: " + res.observacion);
+                $("#" + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).unbind('click')
+            }            
+        },
+        error: function () {
+            toastr.error("Ha ocurrido un error por parte del servidor");
+        }
+    })
 }

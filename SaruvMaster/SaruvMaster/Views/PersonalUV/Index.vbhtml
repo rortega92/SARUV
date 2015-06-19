@@ -96,7 +96,7 @@ End If
                                 <div class="modal-footer">
                                     <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
 
-                                    <button data-dismiss="modal" class="btn btn-success" type="button" onclick="$('#linkEscribaObservacion_@item.RecursoID').click()">Enviar</button>
+                                    <button data-dismiss="modal" class="btn btn-success" type="button" onclick="validarEnviarSiguienteDepto(@item.RecursoID)">Enviar</button>
                                 </div>
                             </div>
                         </div>
@@ -216,12 +216,14 @@ End If
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title">Ingrese una observación</h4>
                                 </div>
-                                <div class="modal-body" style="height:100%">
-                                    <textarea id="txtObservacion_@item.RecursoID" style="width:100%"></textarea>
-                                </div>
-                                <div class="modal-footer">
-                                    <button data-dismiss="modal" data-target="#escribaObservacion" class="btn btn-default" type="button" onclick="enviarSiguienteDepto(@item.RecursoID)">Aceptar</button>
-                                </div>
+                                <form>
+                                    <div class="modal-body" style="height:100%">
+                                        <textarea id="txtObservacion_@item.RecursoID" style="width:100%" required></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button value="Submit" data-dismiss="modal" data-target="#escribaObservacion" class="btn btn-default" type="button" onclick="enviarSiguienteDepto(@item.RecursoID)">Aceptar</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

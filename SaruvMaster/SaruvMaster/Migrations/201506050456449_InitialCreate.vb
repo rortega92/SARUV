@@ -964,6 +964,19 @@ Namespace Migrations
                     "INSERT [dbo].[RecursoObservacion]([RecursoID], [Observacion], [isRead])" & vbCrLf & _
                     "VALUES (@RecursoID, @Observacion, @isRead)"
             )
+            CreateStoredProcedure(
+                "dbo.RecursoObservacion_Update",
+                Function(p) New With
+                    {
+                        .RecursoID = p.Int(),
+                        .Observacion = p.String(),
+                        .isRead = p.Int()
+                    },
+                    body:=
+                    "UPDATE [dbo].[RecursoObservacion]" & vbCrLf & _
+                    "SET [Observacion] = @Observacion, [isRead] = @isRead" & vbCrLf & _
+                    "WHERE ([RecursoID] = @RecursoID)"
+            )
             
         End Sub
         
@@ -1005,6 +1018,7 @@ Namespace Migrations
             DropStoredProcedure("dbo.RecursoPorUsuario_UpdateEstado")
             DropStoredProcedure("dbo.CicloDeVida_InsertNewState")
             DropStoredProcedure("dbo.RecursoObservacion_Insert")
+            DropStoredProcedure("dbo.RecursoObservacion_Update")
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers")
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers")
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers")

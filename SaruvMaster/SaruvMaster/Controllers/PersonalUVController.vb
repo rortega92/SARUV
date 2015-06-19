@@ -429,14 +429,18 @@ Namespace SaruvMaster
         End Function
         Function updateObservacion(ByVal observacion As String, ByVal recursoID As Integer) As ActionResult
             Dim UsuarioID = UserManager.Users.Where(Function(e) e.UserName = My.User.Name).First().Id
-            Dim row = db.CicloDeVida.Where(Function(e) e.RecursoID = recursoID And e.UsuarioID = UsuarioID).First()
+            Dim row = db.RecursoObservacion.Where(Function(e) e.ID = recursoID)
 
             Dim con As New Connection
             Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
             Dim cmd = New SqlCommand()
             cone.Open()
             cmd.CommandType = System.Data.CommandType.StoredProcedure
-            cmd.CommandText = "RecursoObservacion_Insert"
+            If (row.ToArray().Length = 0) Then
+                cmd.CommandText = "RecursoObservacion_Insert"
+            Else
+                cmd.CommandText = "RecursoObservacion_Update"
+            End If
             Dim parm = New SqlParameter()
             parm.ParameterName = "@RecursoID"
             parm.Value = recursoID
@@ -453,7 +457,48 @@ Namespace SaruvMaster
             Dim res = cmd.ExecuteNonQuery()
             cone.Close()
             Dim returnJson As New Dictionary(Of String, String)
-            returnJson.Add("Inserted", res.Equals(1))
+            If (row.ToArray().Length = 0) Then
+                returnJson.Add("Inserted", res.Equals(1))
+            Else
+                returnJson.Add("Updated", res.Equals(1))
+            End If
+            Return Json(returnJson, JsonRequestBehavior.AllowGet)
+        End Function
+        Function mostrarObservacion(ByVal recursoID As Integer) As ActionResult
+            Dim recurso = db.RecursoObservacion.Where(Function(e) e.RecursoID = recursoID And e.isRead = 0)
+            If (recurso.ToArray().Length = 0) Then
+                Dim returnJson1 As New Dictionary(Of String, String)
+                returnJson1.Add("isRead", True)
+                Return Json(returnJson1, JsonRequestBehavior.AllowGet)
+            End If
+            Dim recursoObservacion = recurso.First()
+            'Actualizar como ya leído
+
+
+            Dim con As New Connection
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cmd.CommandText = "RecursoObservacion_Update"
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@RecursoID"
+            parm.Value = recursoID
+            cmd.Parameters.Add(parm)
+            Dim parm2 = New SqlParameter()
+            parm2.ParameterName = "@Observacion"
+            parm2.Value = recursoObservacion.Observacion
+            cmd.Parameters.Add(parm2)
+            Dim parm3 = New SqlParameter()
+            parm3.ParameterName = "@isRead"
+            parm3.Value = 1
+            cmd.Parameters.Add(parm3)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+
+            Dim returnJson As New Dictionary(Of String, String)
+            returnJson.Add("Observacion", recursoObservacion.Observacion)
             Return Json(returnJson, JsonRequestBehavior.AllowGet)
         End Function
     End Class
