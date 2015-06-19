@@ -183,7 +183,7 @@ $(document).ready(function () {
 
     
 
-        $(".Recurso").click(function(e){
+        $("#"+jsonData.usuario['ID']+"_"+jsonData.recurso['ID']).click(function(e){
             mostrarObservacion(jsonData);
         });
     }
