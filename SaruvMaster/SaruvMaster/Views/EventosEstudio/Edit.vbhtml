@@ -147,6 +147,17 @@ End Code
         });
     });
 
+
+    $("#saveBtn").click(function (event) {
+        if ($("#HoraInicio").val() >= $("#HoraFinal").val()) {
+
+            event.stopPropagation();
+        }
+
+
+
+    });
+
     $("#saveBtn").click(function () {
        
         if ($('#docenteToggle').is(':checked')) {

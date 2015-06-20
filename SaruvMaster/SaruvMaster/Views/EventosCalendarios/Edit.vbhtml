@@ -107,7 +107,18 @@ End Code
 <div>
     <a style="color: #007AFF" class="btn btn-default btn-sm" href="/EventosCalendarios/Index">Regresar al Calendario</a>
 </div>
+<script>
 
+    $("#saveBtn").click(function (event) {
+        if ($("#HoraInicio").val() >= $("#HoraFinal").val()) {
+
+            event.stopPropagation();
+        }
+
+
+
+    });
+</script>
 
 @Section Scripts
     @Scripts.Render("~/bundles/jqueryval")

@@ -141,9 +141,18 @@ End Code
                                 </td>
                                 <td>
                                     <a class="btn btn-default btn-sm" href="@Url.Action("", New With {.id = item.Id})"><span class="glyphicon glyphicon-time"></span> Historial</a>
-                                    <a class="btn btn-default btn-sm" href="@Url.Action("Details", New With {.id = item.ID})"><span class="glyphicon glyphicon-list-alt"></span> Detalles</a>
-
                                 </td>
+                                 <td>
+                                     <div class="col-md-12">
+                                         <select class="form-control" id="selectArchivosFuente_@item.Id" name="ArchivosFuenteDescargar"></select>
+                                     </div>
+                                 </td>
+                                 <td>
+                                     @Using (Html.BeginForm("download", "FTP", New With {.archivoId = 1}, FormMethod.Post, New With {.id = item.Id, .class = "frmDesFuente"}))
+                                         @<input type="submit" name="Submit" id="Submit" value="Descargar" class="btn btn-default col-md-12" onclick="descargarFuente(@item.Id)" />
+                                     End Using
+                                 </td>
+
                             </tr>
                         Next
                     </tbody>

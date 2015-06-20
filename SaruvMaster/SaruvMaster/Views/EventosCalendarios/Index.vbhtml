@@ -17,6 +17,17 @@ End Code
         });
     });
 
+
+    $("#saveBtn").click(function (event) {
+        if ($("#HoraInicio").val() >= $("#HoraFinal").val()) {
+
+            event.stopPropagation();
+        }
+
+
+
+    });
+
     $(document).ready(function () {
 
         $('#calendar').fullCalendar({

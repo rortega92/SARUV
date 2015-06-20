@@ -466,11 +466,11 @@
     <Content Include="Views\Facultad\Details.vbhtml" />
     <Content Include="Views\Facultad\Edit.vbhtml" />
     <Content Include="Views\Facultad\Index.vbhtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\Recurso\RecursosCompletos.vbhtml" />
-=======
+
     <Content Include="Views\CicloDeVida\Index.vbhtml" />
->>>>>>> 84ae59533f27da288a4b8dc306d0e8bc61917f6c
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
