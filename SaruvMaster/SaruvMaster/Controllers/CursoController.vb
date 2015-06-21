@@ -16,8 +16,28 @@ Namespace Controllers
         Private db As New Connection
 
         ' GET: Curso
-        Function Index() As ActionResult
+        Function Index(ByVal searchString As String, ByVal searchConceptInput As String) As ActionResult
             Dim curso = db.Curso.Include(Function(c) c.AreaDeConocimiento).Include(Function(c) c.EncargadoDeValidacion).Include(Function(c) c.ModalidadDeCurso)
+
+            If Not String.IsNullOrEmpty(searchString) Then
+
+                Select Case searchConceptInput
+                    Case "Nombre"
+                        curso = curso.Where(Function(m) m.Nombres.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Modalidad de Curso"
+                        curso = curso.Where(Function(m) m.ModalidadDeCurso.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Área de Conocimiento"
+                        curso = curso.Where(Function(m) m.AreaDeConocimiento.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Encargado de Validación"
+                        curso = curso.Where(Function(m) m.EncargadoDeValidacion.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Período"
+                        curso = curso.Where(Function(m) m.Periodo.ToString.Equals(searchString.ToUpper))
+                    Case Else
+                        curso = curso.Where(Function(m) m.Nombres.ToUpper().Contains(searchString.ToUpper()))
+                End Select
+            End If
+
+
             Return View(curso.ToList())
         End Function
 
