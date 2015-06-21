@@ -71,8 +71,8 @@ End Code
 <div class="row">
     <div class="col-md-12">
         <section class="panel">
-            <div class="panel-body">
-                <table class="table table-bordered table-striped">
+            <div style="overflow-x:auto" class="panel-body">
+                <table style="white-space:nowrap" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>
@@ -96,9 +96,7 @@ End Code
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.FechaModificacion)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.IsDeleted)
-                            </th>
+                            
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -126,9 +124,7 @@ End Code
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.FechaModificacion)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.IsDeleted)
-                                </td>
+                                
                                 <td>
                                     <a class="btn btn-default btn-sm" href="@Url.Action("Edit", New With {.id = item.ID})"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
                                     <a class="btn btn-default btn-sm" href="@Url.Action("Details", New With {.id = item.ID})"><span class="glyphicon glyphicon-list-alt"></span> Detalles</a>

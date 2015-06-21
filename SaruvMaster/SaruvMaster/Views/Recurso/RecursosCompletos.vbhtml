@@ -66,8 +66,8 @@ End Code
 <div class="row">
     <div class="col-md-12">
         <section class="panel">
-            <div class="panel-body">
-                <table class="table table-bordered table-striped">
+            <div style="overflow-x:auto" class="panel-body">
+                <table style="white-space:nowrap" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>
@@ -94,7 +94,7 @@ End Code
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.Duracion)
                             </th>
-                            
+
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.FechaCreacion)
                             </th>
@@ -132,7 +132,7 @@ End Code
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.Duracion)
                                 </td>
-                                
+
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.FechaCreacion)
                                 </td>
@@ -142,16 +142,16 @@ End Code
                                 <td>
                                     <a class="btn btn-default btn-sm" href="@Url.Action("", New With {.id = item.Id})"><span class="glyphicon glyphicon-time"></span> Historial</a>
                                 </td>
-                                 <td>
-                                     <div class="col-md-12">
-                                         <select class="form-control" id="selectArchivosFuente_@item.Id" name="ArchivosFuenteDescargar"></select>
-                                     </div>
-                                 </td>
-                                 <td>
-                                     @Using (Html.BeginForm("download", "FTP", New With {.archivoId = 1}, FormMethod.Post, New With {.id = item.Id, .class = "frmDesFuente"}))
-                                         @<input type="submit" name="Submit" id="Submit" value="Descargar" class="btn btn-default col-md-12" onclick="descargarFuente(@item.Id)" />
-                                     End Using
-                                 </td>
+                                <td>
+                                    <div class="col-md-12">
+                                        <select class="form-control" id="selectArchivosFuente_@item.Id" name="ArchivosFuenteDescargar"></select>
+                                    </div>
+                                </td>
+                                <td>
+                                    @Using (Html.BeginForm("download", "FTP", New With {.archivoId = 1}, FormMethod.Post, New With {.id = item.Id, .class = "frmDesFuente"}))
+                                        @<input type="submit" name="Submit" id="Submit" value="Descargar" class="btn btn-default col-md-12" onclick="descargarFuente(@item.Id)" />
+                                    End Using
+                                </td>
 
                             </tr>
                         Next
@@ -159,5 +159,6 @@ End Code
                 </table>
             </div>
         </section>
+
     </div>
 </div>

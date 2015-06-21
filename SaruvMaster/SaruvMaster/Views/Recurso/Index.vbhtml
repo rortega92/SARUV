@@ -67,8 +67,8 @@ End Code
 <div class="row">
     <div class="col-md-12">
         <section class="panel">
-            <div class="panel-body">
-                <table class="table table-bordered table-striped">
+            <div style="overflow-x:auto" class="panel-body">
+                <table style="white-space:nowrap" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>
