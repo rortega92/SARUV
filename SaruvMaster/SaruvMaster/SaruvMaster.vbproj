@@ -128,6 +128,9 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Owin">
@@ -213,6 +216,7 @@
     <Compile Include="Controllers\ModalidadDeCursoController.vb" />
     <Compile Include="Controllers\PersonalUVController.vb" />
     <Compile Include="Controllers\RecursoController.vb" />
+    <Compile Include="Controllers\TareasController.vb" />
     <Compile Include="Controllers\TipoDeRecursoController.vb" />
     <Compile Include="DAL\Connection.vb" />
     <Compile Include="Global.asax.vb">
@@ -246,6 +250,10 @@
       <DependentUpon>201506182152064_RecursoObservacion.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506182152064_RecursoObservacion.vb" />
+    <Compile Include="Migrations\201506211913586_Tareas.Designer.vb">
+      <DependentUpon>201506211913586_Tareas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506211913586_Tareas.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -309,6 +317,9 @@
     <EmbeddedResource Include="Migrations\201506182152064_RecursoObservacion.resx">
       <DependentUpon>201506182152064_RecursoObservacion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506211913586_Tareas.resx">
+      <DependentUpon>201506211913586_Tareas.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -351,6 +362,7 @@
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\gcal.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\RecursoCompleto.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.0.js" />
@@ -469,6 +481,8 @@
     <Content Include="Views\Facultad\Index.vbhtml" />
     <Content Include="Views\Recurso\RecursosCompletos.vbhtml" />
     <Content Include="Views\CicloDeVida\Index.vbhtml" />
+    <Content Include="Views\Tareas\Create.vbhtml" />
+    <Content Include="Views\Tareas\Index.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

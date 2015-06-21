@@ -7,6 +7,15 @@ Imports System.Net
 Imports System.Web
 Imports System.Web.Mvc
 Imports SaruvMaster
+Imports System.Data.SqlClient
+Imports Microsoft.AspNet.Identity
+Imports System.Globalization
+Imports System.Security.Claims
+Imports System.Threading.Tasks
+Imports Microsoft.AspNet.Identity.Owin
+Imports Microsoft.Owin.Security
+Imports Owin
+Imports Microsoft.AspNet.Identity.EntityFramework
 
 Namespace Controllers
     <LogFilter>
@@ -14,7 +23,15 @@ Namespace Controllers
         Inherits System.Web.Mvc.Controller
 
         Private db As New Connection
-
+        Private _userManager As ApplicationUserManager
+        Public Property UserManager() As ApplicationUserManager
+            Get
+                Return If(_userManager, HttpContext.GetOwinContext().GetUserManager(Of ApplicationUserManager)())
+            End Get
+            Private Set(value As ApplicationUserManager)
+                _userManager = value
+            End Set
+        End Property
         ' GET: Recurso
         Function Index(ByVal searchString As String, ByVal searchConceptInput As String) As ActionResult
             Dim recurso = db.Recurso.Include(Function(r) r.ClienteCorporativo).Include(Function(r) r.Curso).Include(Function(r) r.Docente).Include(Function(r) r.Empresa).Include(Function(r) r.ModalidadDeCurso).Include(Function(r) r.TipoDeRecurso)
@@ -52,9 +69,39 @@ Namespace Controllers
             Return View(recurso.ToList())
         End Function
 
-        Function RecursosCompletos() As ActionResult
+        Function RecursosCompletos(ByVal wantsJson As Boolean?) As ActionResult
             Dim recurso = db.Recurso.Include(Function(r) r.ClienteCorporativo).Include(Function(r) r.Curso).Include(Function(r) r.Docente).Include(Function(r) r.Empresa).Include(Function(r) r.ModalidadDeCurso).Include(Function(r) r.TipoDeRecurso)
-            Return View(recurso.ToList())
+            Dim departamentoId = db.Departamento.Where(Function(e) e.Nombre = "Entrega").First().ID
+            Dim usuariosEntrega = UserManager.Users.Where(Function(u) u.DepartamentoID = departamentoId).ToList()
+            Dim recursosPorUsuario = New List(Of RecursoPorUsuario)
+            Dim recursos = New List(Of Recurso)
+            For i As Integer = 0 To usuariosEntrega.ToArray().Length - 1
+                Dim currentUsuarioId = usuariosEntrega.ToArray().ElementAt(i).Id
+                Dim recursosPorUsuarioActual = db.RecursoPorUsuario.Where(Function(e) e.UsuarioID = currentUsuarioId And e.Estado = "Terminado")
+                If (recursosPorUsuarioActual.ToArray().Length > 0) Then
+                    For j As Integer = 0 To recursosPorUsuarioActual.ToArray().Length - 1
+                        Dim currentRecursosPorUsuario = recursosPorUsuarioActual.ToArray().ElementAt(j)
+                        recursosPorUsuario.Add(currentRecursosPorUsuario)
+                    Next
+                End If
+            Next
+            For i As Integer = 0 To recursosPorUsuario.ToArray().Length - 1
+                Dim currentRecursoPorUsuarioId = recursosPorUsuario.ToArray().ElementAt(i).RecursoID
+                Dim recursoActual = db.Recurso.Where(Function(e) e.Id = currentRecursoPorUsuarioId)
+                If recursoActual.ToArray().Length > 0 Then
+                    recursos.Add(recursoActual.First())
+                End If
+            Next
+            If Not (wantsJson Is Nothing) Then
+                Dim returnRecursos As New List(Of Dictionary(Of String, String))
+                For i As Integer = 0 To recursos.ToArray().Length - 1
+                    Dim row As New Dictionary(Of String, String)
+                    row.Add("ID", recursos.ElementAt(i).Id)
+                    returnRecursos.Add(row)
+                Next
+                Return Json(returnRecursos, JsonRequestBehavior.AllowGet)
+            End If
+            Return View(recursos.ToList())
         End Function
 
         ' GET: Recurso/Details/5

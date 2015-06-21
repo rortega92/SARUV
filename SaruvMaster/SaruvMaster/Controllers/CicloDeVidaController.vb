@@ -15,7 +15,11 @@ Namespace Controllers
         Private db As New Connection
 
         ' GET: CicloDeVida
-        Function Index() As ActionResult
+        Function Index(ByVal id As Integer?) As ActionResult
+            If Not (id Is Nothing) Then
+                Dim cicloDeVidaRecurso = db.CicloDeVida.Where(Function(e) e.RecursoID = id)
+                Return View(cicloDeVidaRecurso.ToList())
+            End If
             Dim cicloDeVida = db.CicloDeVida.Include(Function(c) c.Recurso).Include(Function(c) c.Usuario)
             Return View(cicloDeVida.ToList())
         End Function

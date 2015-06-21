@@ -45,6 +45,8 @@ Public Class Connection
 
     Public Property UserFile As DbSet(Of ArchivoUsuario)
 
+    Public Property Tarea As DbSet(Of Tarea)
+
 
 
 
@@ -66,6 +68,8 @@ Public Class Connection
         modelBuilder.Entity(Of Curso).MapToStoredProcedures()
         modelBuilder.Entity(Of TipoDeRecurso).MapToStoredProcedures()
         modelBuilder.Entity(Of Recurso).MapToStoredProcedures()
+        modelBuilder.Entity(Of Tarea).MapToStoredProcedures()
+
 
         modelBuilder.Entity(Of Departamento).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)
         modelBuilder.Entity(Of ArchivoUsuario).Map(Function(m) m.Requires("IsDeleted").HasValue(0)).Ignore(Function(m) m.IsDeleted)

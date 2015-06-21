@@ -10,7 +10,7 @@
                     <span> Administración</span>
                 </a>
                 <ul Class="sub">
-                    <li> <a Class="" href="#">Reporte de Tareas</a></li>
+                    <li> <a class="" href="/Tareas">Reporte de Tareas</a></li>
                     <li> <a class="" href="/Recurso/RecursosCompletos">Recursos Completados</a></li>
                     <li> <a Class="" href="/EventosEstudio">Estudio de Grabación</a></li>
                     <li> <a class="" href="/EventosCalendarios">Eventos UV</a></li>
@@ -34,7 +34,6 @@
                     <li> <a Class="" href="/ModalidadDeCurso">Modalidad de Curso</a></li>
                     <li> <a Class="" href="/TipoDeRecurso">Tipo de Recurso</a></li>
                     <li> <a Class="" href="/Recurso">Recurso</a></li>
-                    <li> <a Class="" href="/RolPorDepartamento">Rol por Departamento</a></li>
                 </ul>
             </li>
             End If
@@ -47,6 +46,7 @@
                 </a>
                 <ul Class="sub">
                     <li> <a class="" href="/EventosCalendarios">Eventos UV</a></li>
+                    <li> <a class="" href="/Tareas/Create">Registrar Tareas</a></li>
                 </ul>
             </li>
             Else

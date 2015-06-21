@@ -72,24 +72,6 @@ End Code
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(Function(model) model.ClienteCorporativo.Nombre)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.Curso.Nombres)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.Docente.Nombres)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.Empresa.Nombre)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.ModalidadDeCurso.Nombre)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(Function(model) model.TipoDeRecurso.Nombre)
-                            </th>
-                            <th>
                                 @Html.DisplayNameFor(Function(model) model.Nombre)
                             </th>
                             <th>
@@ -99,8 +81,26 @@ End Code
                                 @Html.DisplayNameFor(Function(model) model.Prioridad)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(Function(model) model.TipoDeRecurso.Nombre)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(Function(model) model.FechaEntrega)
                             </th>
+                            <th>
+                                Modalidad
+                            </th>  
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.Empresa.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.ClienteCorporativo.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.Curso.Nombres)
+                            </th>
+                            <th>
+                                Docente
+                            </th>                                                                                  
                             <th>
                                 @Html.DisplayNameFor(Function(model) model.FechaCreacion)
                             </th>
@@ -114,6 +114,27 @@ End Code
 
                         @For Each item In Model
                             @<tr>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.Nombre)
+                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.Duracion)
+                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.Prioridad)
+                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.TipoDeRecurso.Nombre)
+                                 </td>                                 
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.FechaEntrega)
+                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.ModalidadDeCurso.Nombre)
+                                 </td>
+                                 <td>
+                                     @Html.DisplayFor(Function(modelItem) item.Empresa.Nombre)
+                                 </td>
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.ClienteCorporativo.Nombre)
                                 </td>
@@ -122,28 +143,8 @@ End Code
                                 </td>
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.Docente.Nombres)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Empresa.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.ModalidadDeCurso.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.TipoDeRecurso.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Duracion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Prioridad)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Function(modelItem) item.FechaEntrega)
-                                </td>
+                                    @Html.DisplayFor(Function(modelItem) item.Docente.Apellidos)
+                                </td>                                
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.FechaCreacion)
                                 </td>
