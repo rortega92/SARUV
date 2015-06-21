@@ -61,7 +61,7 @@ End Code
                         <li><a href="#Empresa">Empresa</a></li>
                     </ul>
                 </div>
-                @Html.TextBox("SearchString", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                @Html.TextBox("searchString", Nothing, htmlAttributes:=New With {.class = "form-control"})
             </div>
         End Using
         <a href="javascript:void(0)" id="cancelar">Cancelar</a>

@@ -16,8 +16,29 @@ Namespace Controllers
         Private db As New Connection
 
         ' GET: ClienteCorporativo
-        Function Index() As ActionResult
+        Function Index(ByVal searchString As String, ByVal searchConceptInput As String) As ActionResult
             Dim clienteCorporativo = db.ClienteCorporativo.Include(Function(c) c.Empresa)
+
+            If Not String.IsNullOrEmpty(searchString) Then
+
+                Select Case searchConceptInput
+                    Case "Nombre"
+                        clienteCorporativo = clienteCorporativo.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Apellido"
+                        clienteCorporativo = clienteCorporativo.Where(Function(m) m.Apellidos.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Número de Identidad"
+                        clienteCorporativo = clienteCorporativo.Where(Function(m) m.NumeroIdentidad.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Correo Electrónico"
+                        clienteCorporativo = clienteCorporativo.Where(Function(m) m.CorreoElectronico.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Teléfono"
+                        clienteCorporativo = clienteCorporativo.Where(Function(m) m.Telefono.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Empresa"
+                        clienteCorporativo = clienteCorporativo.Where(Function(m) m.Empresa.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case Else
+                        clienteCorporativo = clienteCorporativo.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                End Select
+            End If
+
             Return View(clienteCorporativo.ToList())
         End Function
 

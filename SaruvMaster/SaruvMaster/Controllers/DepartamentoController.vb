@@ -15,8 +15,13 @@ Namespace Controllers
         Private db As New Connection
 
         ' GET: Departamento
-        Function Index() As ActionResult
-            Return View(db.Departamento.ToList())
+        Function Index(ByVal searchString As String) As ActionResult
+            Dim departamento = From m In db.Departamento
+                                   Select m
+            If Not String.IsNullOrEmpty(searchString) Then
+                departamento = departamento.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+            End If
+            Return View(departamento)
         End Function
 
         ' GET: Departamento/Details/5

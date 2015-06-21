@@ -17,8 +17,14 @@ Namespace Controllers
 
         ' GET: AreaDeConocimiento
 
-        Function Index() As ActionResult
-            Return View(db.AreaDeConocimiento.ToList())
+        Function Index(ByVal searchString As String) As ActionResult
+            Dim area = From m In db.AreaDeConocimiento
+                                   Select m
+            If Not String.IsNullOrEmpty(searchString) Then
+                area = area.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+            End If
+
+            Return View(area)
         End Function
 
         ' GET: AreaDeConocimiento/Details/5

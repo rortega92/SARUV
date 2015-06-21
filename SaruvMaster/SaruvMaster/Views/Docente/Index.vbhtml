@@ -54,11 +54,11 @@ End Code
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#Nombre">Nombre</a></li>
                         <li><a href="#Apellido">Apellido</a></li>
-                        <li><a href="#NumID">Número de Identidad</a></li>
+                        <li><a href="#NumID">Número de Talento Humano</a></li>
                         <li><a href="#Correo">Correo Electrónico</a></li>
                         <li><a href="#Telefono">Teléfono</a></li>
                         <li><a href="#Facultad">Facultad</a></li>
-                        <li><a href="#Área de Conocimineto">Área de Conocimiento</a></li>
+                        <li><a href="#Área de Conocimiento">Área de Conocimiento</a></li>
                     </ul>
                 </div>
 

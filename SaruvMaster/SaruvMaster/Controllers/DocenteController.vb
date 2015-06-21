@@ -16,8 +16,30 @@ Namespace Controllers
         Private db As New Connection
 
         ' GET: Docente
-        Function Index() As ActionResult
+        Function Index(ByVal searchString As String, ByVal searchConceptInput As String) As ActionResult
             Dim docente = db.Docente.Include(Function(d) d.AreaDeConocimiento).Include(Function(d) d.Facultad)
+
+            If Not String.IsNullOrEmpty(searchString) Then
+
+                Select Case searchConceptInput
+                    Case "Nombre"
+                        docente = docente.Where(Function(m) m.Nombres.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Apellido"
+                        docente = docente.Where(Function(m) m.Apellidos.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Número de Talento Humano"
+                        docente = docente.Where(Function(m) m.NumeroTalentoHumano.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Correo Electrónico"
+                        docente = docente.Where(Function(m) m.correoElectronico.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Teléfono"
+                        docente = docente.Where(Function(m) m.telefono.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Facultad"
+                        docente = docente.Where(Function(m) m.Facultad.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Área de Conocimiento"
+                        docente = docente.Where(Function(m) m.AreaDeConocimiento.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case Else
+                        docente = docente.Where(Function(m) m.Nombres.ToUpper().Contains(searchString.ToUpper()))
+                End Select
+            End If
             Return View(docente.ToList())
         End Function
 
