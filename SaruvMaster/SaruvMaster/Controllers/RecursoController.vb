@@ -33,7 +33,7 @@ Namespace Controllers
                     Case "Curso"
                         recurso = recurso.Where(Function(m) m.Curso.Nombres.ToUpper().Contains(searchString.ToUpper()))
                     Case "Cliente Corp."
-                        recurso = recurso.Where(Function(m) m.ClienteCorporativo.Nombres.ToUpper().Contains(searchString.ToUpper()))
+                        recurso = recurso.Where(Function(m) m.ClienteCorporativo.Nombre.ToUpper().Contains(searchString.ToUpper()))
                     Case "Docente"
                         recurso = recurso.Where(Function(m) m.Docente.Nombres.ToUpper().Contains(searchString.ToUpper()))
                     Case "Correo Electrónico"
