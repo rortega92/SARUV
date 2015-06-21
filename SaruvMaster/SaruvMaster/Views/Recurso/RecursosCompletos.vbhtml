@@ -66,6 +66,7 @@ End Code
 <div class="row">
     <div class="col-md-12">
         <section class="panel">
+<<<<<<< HEAD
             <div class="panel-body">
                 <div style="overflow-x:auto" class="panel-body">
                     <table style="white-space:nowrap" class="table table-bordered table-striped">
@@ -95,6 +96,94 @@ End Code
                                 <th>
                                     @Html.DisplayNameFor(Function(model) model.Duracion)
                                 </th>
+=======
+            <div style="overflow-x:auto" class="panel-body">
+                <table style="white-space:nowrap" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.ClienteCorporativo.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.Curso.Nombres)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.Docente.Nombres)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.Empresa.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.ModalidadDeCurso.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.TipoDeRecurso.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.Duracion)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.FechaCreacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Function(model) model.FechaModificacion)
+                            </th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @For Each item In Model
+                            @<tr>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.ClienteCorporativo.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Curso.Nombres)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Docente.Nombres)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Empresa.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.ModalidadDeCurso.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.TipoDeRecurso.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.Duracion)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.FechaCreacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Function(modelItem) item.FechaModificacion)
+                                </td>
+                                <td>
+                                    <a class="btn btn-default btn-sm" href="@Url.Action("", New With {.id = item.Id})"><span class="glyphicon glyphicon-time"></span> Historial</a>
+                                </td>
+                                <td>
+                                    <div class="col-md-12">
+                                        <select class="form-control" id="selectArchivosFuente_@item.Id" name="ArchivosFuenteDescargar"></select>
+                                    </div>
+                                </td>
+                                <td>
+                                    @Using (Html.BeginForm("download", "FTP", New With {.archivoId = 1}, FormMethod.Post, New With {.id = item.Id, .class = "frmDesFuente"}))
+                                        @<input type="submit" name="Submit" id="Submit" value="Descargar" class="btn btn-default col-md-12" onclick="descargarFuente(@item.Id)" />
+                                    End Using
+                                </td>
+>>>>>>> 88b422c1ad640657be79146a750da4c02fbb206c
 
                                 <th>
                                     @Html.DisplayNameFor(Function(model) model.FechaCreacion)
@@ -161,5 +250,6 @@ End Code
                     </div>
                 </div>
         </section>
+
     </div>
 </div>

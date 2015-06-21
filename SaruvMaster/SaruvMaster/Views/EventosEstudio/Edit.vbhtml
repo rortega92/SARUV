@@ -125,7 +125,7 @@ End Code
     </div>
 </section>
 <div>
-    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/EventosEstudio/Index">Regresar al Calendario</a>
+    <a class="btn btn-default btn-sm" href="/EventosEstudio/Index">Regresar al Calendario</a>
 </div>
 
 <script>

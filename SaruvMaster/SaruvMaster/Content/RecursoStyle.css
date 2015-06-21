@@ -1,0 +1,13 @@
+﻿table,
+td,
+th {
+  padding: 1em;
+  border: 1px thick #ddd;
+  text-align: left;
+}
+
+table {
+  background-color: white;
+  table-layout: auto;
+  width: 814px;
+}

@@ -19,8 +19,8 @@ End Code
             <h3>Facultades</h3>
         </header>
         <div class="breadcrumb">
-            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Facultad/Create"><span class="glyphicon glyphicon-plus"></span> Crear Nueva</a>
-            <a style="color: #007AFF" class="btn btn-default btn-sm" href="javascript:void(0)" id="filterButton"><span class="glyphicon glyphicon-filter"></span> Filtrar</a>
+            <a class="btn btn-default btn-sm" href="/Facultad/Create"><span class="glyphicon glyphicon-plus"></span> Crear Nueva</a>
+            <a class="btn btn-default btn-sm" href="javascript:void(0)" id="filterButton"><span class="glyphicon glyphicon-filter"></span> Filtrar</a>
         </div>
     </div>
     <div class="col-md-12" id="Buscar">

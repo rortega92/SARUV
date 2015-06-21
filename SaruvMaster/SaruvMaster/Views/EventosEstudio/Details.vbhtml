@@ -5,7 +5,7 @@
 End Code
 
 <div>
-    <h3>Encargado de Validación</h3>
+    <h3>Eventos Estudio</h3>
     <section class="panel">
         <header class="panel-heading">
             Detalles

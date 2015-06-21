@@ -41,6 +41,6 @@ End Code
     </section>
 </div>
 <p>
-    <button class="btn btn-default btn-sm"> @Html.ActionLink("Editar", "Edit", New With {.id = Model.ID}) </button> 
-    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Facultad/Index">Regresar a la lista</a>
+    <a class="btn btn-default btn-sm" href="@Url.Action("Edit", New With {.id = Model.ID})"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+    <a class="btn btn-default btn-sm" href="/Facultad/Index">Regresar a la lista</a>
 </p>
