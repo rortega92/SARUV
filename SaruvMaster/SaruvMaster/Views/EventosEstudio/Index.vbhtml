@@ -225,7 +225,7 @@ End Code
 </header>
 @If User.IsInRole("Admin").Equals(True) Then
     @<div class="breadcrumb">
-        <a style="color: #007AFF" class="btn btn-default btn-sm" id="addToggle"><span class="glyphicon glyphicon-plus"></span> Crear Evento</a>
+        <a class="btn btn-default btn-sm" id="addToggle"><span class="glyphicon glyphicon-plus"></span> Crear Evento</a>
     </div>
 End If
 <div id="calendar"></div>

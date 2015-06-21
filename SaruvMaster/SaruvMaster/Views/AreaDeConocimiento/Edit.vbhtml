@@ -38,7 +38,7 @@ End Code
     </div>
 </section>
 <div>
-    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/AreaDeConocimiento/Index">Regresar a la lista</a>
+    <a class="btn btn-default btn-sm" href="/AreaDeConocimiento/Index">Regresar a la lista</a>
 </div>
 
 @Section Scripts

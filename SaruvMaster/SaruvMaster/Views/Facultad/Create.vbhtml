@@ -42,7 +42,7 @@ End Code
 
 
 <div>
-    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Facultad/Index">Regresar a la lista</a>
+    <a class="btn btn-default btn-sm" href="/Facultad/Index">Regresar a la lista</a>
 </div>
 
 @Section Scripts 

@@ -39,8 +39,8 @@ End Code
             <h3>Encargado de Validación</h3>
         </header>
         <div class="breadcrumb">
-            <a style="color: #007AFF" class="btn btn-default btn-sm" href="/EncargadoDeValidacion/Create"><span class="glyphicon glyphicon-plus"></span> Crear Nuevo</a>
-            <a style="color: #007AFF" class="btn btn-default btn-sm" href="javascript:void(0)" id="botonBuscar"><span class="glyphicon glyphicon-filter"></span> Filtrar</a>
+            <a  class="btn btn-default btn-sm" href="/EncargadoDeValidacion/Create"><span class="glyphicon glyphicon-plus"></span> Crear Nuevo</a>
+            <a  class="btn btn-default btn-sm" href="javascript:void(0)" id="botonBuscar"><span class="glyphicon glyphicon-filter"></span> Filtrar</a>
         </div>
     </div>
 </div>
