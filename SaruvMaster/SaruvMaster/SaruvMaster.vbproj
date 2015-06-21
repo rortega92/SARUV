@@ -266,6 +266,7 @@
     <Compile Include="Models\Recurso.vb" />
     <Compile Include="Models\RecursoObservacion.vb" />
     <Compile Include="Models\RecursoPorUsuario.vb" />
+    <Compile Include="Models\Tarea.vb" />
     <Compile Include="Models\TipoDeRecurso.vb" />
     <Compile Include="Models\ArchivoUsuario.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -466,11 +467,8 @@
     <Content Include="Views\Facultad\Details.vbhtml" />
     <Content Include="Views\Facultad\Edit.vbhtml" />
     <Content Include="Views\Facultad\Index.vbhtml" />
-
     <Content Include="Views\Recurso\RecursosCompletos.vbhtml" />
-
     <Content Include="Views\CicloDeVida\Index.vbhtml" />
-
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
