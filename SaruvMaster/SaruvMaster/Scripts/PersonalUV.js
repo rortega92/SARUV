@@ -39,6 +39,7 @@ $(document).ready(function () {
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
                                 success: function (recursos) {
+                                    var contRecursos = 0;
                                     $.each(recursos, function (indRec, recurso) {
                                         if (!(DepartamentoActual.Nombre == "Entrega" && recurso.Estado == "Terminado")) {
                                             bindRecurso({
@@ -46,9 +47,12 @@ $(document).ready(function () {
                                                 "usuario": usuario,
                                                 "place": "#recursosPanel"
                                             })
+                                            contRecursos++;
+                                        } else {
+                                            $overlay.fadeOut();
                                         }
                                     });
-                                    if (recursos.length == 0) {
+                                    if (contRecursos == 0) {
                                         $("#recursosPanel").append("<div id='NoRecursos' style='margin-left:40%; margin-right:40%; text-align:center;'>No hay recursos</div>");
                                         $overlay.fadeOut();
                                     }
@@ -57,6 +61,7 @@ $(document).ready(function () {
                                 error: function (dataError) {
                                     toastr.error("Ha ocurrido un error por parte del servidor");
                                     console.log(dataError)
+                                    $overlay.fadeOut();
                                 }
                             });//end getRecursosByUsuario
                         });                    
@@ -64,6 +69,7 @@ $(document).ready(function () {
                     error: function (dataError) {
                         toastr.error("Ha ocurrido un error por parte del servidor");
                         console.log(dataError)
+                        $overlay.fadeOut();
                     }
                 })//end getCurrentUsuarioId
             });
@@ -202,6 +208,9 @@ function cambiarEstado(idRecursoPorUsuario) {
                 $("#" + IDUsuarioActual + "_" + idRecursoPorUsuario).remove();
             }
             toastr.success("El estado del recurso ha sido actualizado")
+            if (estado != "Terminado") {
+                history.go(0)
+            }
         },
         error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); console.log(dataError)}
     });
@@ -246,6 +255,7 @@ function enviarSiguienteDepto(idRecurso) {
                                     success: function (usuarios) {
                                     },
                                     error: function (errorData) {
+                                        toastr.error("Ha ocurrido un error por parte del servidor");
                                     }
                                 });
                                 $.ajax({
@@ -257,6 +267,7 @@ function enviarSiguienteDepto(idRecurso) {
                                     success: function (usuarios) {
                                     },
                                     error: function (errorData) {
+                                        toastr.error("Ha ocurrido un error por parte del servidor");
                                     }
                                 });
                             },

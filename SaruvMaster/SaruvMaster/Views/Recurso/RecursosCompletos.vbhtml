@@ -159,18 +159,18 @@ End Code
                                     </td>
                                     <td>
                                         <div class="col-md-12">
-                                            <select class="form-control" id="selectArchivosFuente_@item.Id" name="ArchivosFuenteDescargar"></select>
+                                            <select style="padding:0px" class="form-control" id="selectArchivosFuente_@item.Id" name="ArchivosFuenteDescargar"></select>
                                             @Using (Html.BeginForm("download", "FTP", New With {.archivoId = 1}, FormMethod.Post, New With {.id = item.Id, .class = "frmDesFuente"}))
-                                                @<input type="submit" name="Submit" id="btnDescargarFuente_@item.Id" value="Descargar" class="btn btn-default" onclick="descargarFuente(@item.Id)" />
+                                                @<button type="submit" name="Submit" id="btnDescargarFuente_@item.Id" value="Descargar" class="btn btn-default btn-sm" onclick="descargarFuente(@item.Id)"><span class="glyphicon glyphicon-download-alt"></span> Descargar</button>
                                             End Using
                                         </div>
                                     </td>
                                      <td>
                                          <div class="col-md-12">
-                                             <select class="form-control" id="selectArchivosRecurso_@item.Id" name="ArchivosFuenteDescargar"></select>
+                                             <select style="padding:0px" class="form-control" id="selectArchivosRecurso_@item.Id" name="ArchivosFuenteDescargar"></select>
                                              @Using (Html.BeginForm("download", "FTP", New With {.archivoId = 1}, FormMethod.Post, New With {.id = item.Id, .class = "frmDesRecurso"}))
-                                                 @<input type="submit" name="Submit" id="btnDescargarRecurso_@item.Id" value="Descargar" class="btn btn-default" onclick="descargarRecurso(@item.Id)" />
-                                End Using
+                                                 @<button type="submit" name="Submit" id="btnDescargarRecurso_@item.Id" value="Descargar" class="btn btn-default btn-sm" onclick="descargarRecurso(@item.Id)"><span class="glyphicon glyphicon-download-alt"></span> Descargar</button>
+                                            End Using
                                          </div>
                                      </td>
                                 </tr>

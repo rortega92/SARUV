@@ -483,6 +483,7 @@
     <Content Include="Views\CicloDeVida\Index.vbhtml" />
     <Content Include="Views\Tareas\Create.vbhtml" />
     <Content Include="Views\Tareas\Index.vbhtml" />
+    <Content Include="Views\Account\Index.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
