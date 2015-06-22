@@ -21,4 +21,12 @@ Public Class EventosCalendario
     Public Property HoraFinal As Date
 
     Public Property IsDeleted As Integer = 0
+
+    <Display(Name:="Fecha de creación")>
+    <DataType(DataType.DateTime)>
+    Public Property FechaCreacion As Date = Date.Now
+
+    <Display(Name:="Fecha de modificación")>
+    <DataType(DataType.DateTime)>
+    Public Property FechaModificacion As Date = Date.Now
 End Class

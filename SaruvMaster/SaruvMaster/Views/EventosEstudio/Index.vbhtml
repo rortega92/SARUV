@@ -17,15 +17,6 @@ End Code
         });
     });
 
-    $("#saveBtn").click(function (event) {
-        if ($("#HoraInicio").val() >= $("#HoraFinal").val()) {
-
-            event.stopPropagation();
-        }
-
-        
-        
-    });
 
     $(document).ready(function () {
 
@@ -151,7 +142,7 @@ End Code
                         <div class="form-group">
                             <label for="FechaReserva" class="control-label col-md-2">Fecha de Reserva @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                             <div class="col-md-10">
-                                @Html.JQueryUI().DatepickerFor(Function(model) model.FechaReserva, New With {.htmlAttributes = New With {.class = "form-control", .id = "inicio"}}).MinDate(DateTime.Today)
+                                @Html.JQueryUI().DatepickerFor(Function(model) model.FechaReserva, New With {.htmlAttributes = New With {.class = "form-control", .id = "inicio"}}).MinDate(DateTime.Today).DateFormat("mm-dd-yy")
                                 @Html.ValidationMessageFor(Function(model) model.FechaReserva, "", New With {.class = "text-danger"})
                             </div>
                         </div>
@@ -251,6 +242,11 @@ End If
 
     $("#saveBtn").click(function () {
 
+        if ($("#HoraInicio").val() >= $("#HoraFinal").val()) {
+
+            return false;
+            
+        }.DateFormat("mm-dd-yy")
         if ($('#docenteToggle').is(':checked')) {
             $("#ClienteCorporativoID").empty();
         }
