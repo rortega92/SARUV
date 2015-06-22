@@ -25,7 +25,7 @@ End Code
 <div class="row indexHeader">
     <div class="col-md-12">
         <header class="panel-heading">
-            <h3>Ciclo de Vida</h3>
+            <h3>Historial de Recursos</h3>
         </header>
         <div class="breadcrumb">
 
@@ -64,7 +64,7 @@ End Code
                         @Html.DisplayNameFor(Function(model) model.Recurso.Nombre)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(Function(model) model.Usuario.Email)
+                        @Html.DisplayNameFor(Function(model) model.Usuario)
                     </th>
                     <th>
                         @Html.DisplayNameFor(Function(model) model.Estado)
@@ -85,7 +85,8 @@ End Code
                                     @Html.DisplayFor(Function(modelItem) item.Recurso.Nombre)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(Function(modelItem) item.Usuario.Email)
+                                    @Html.DisplayFor(Function(modelItem) item.Usuario.Nombre)
+                                    @Html.DisplayFor(Function(modelItem) item.Usuario.Apellido)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.Estado)

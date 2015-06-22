@@ -14,6 +14,7 @@
                     <li> <a class="" href="/Recurso/RecursosCompletos">Recursos Completados</a></li>
                     <li> <a Class="" href="/EventosEstudio">Estudio de Grabación</a></li>
                     <li> <a class="" href="/EventosCalendarios">Eventos UV</a></li>
+                    <li> <a class="" href="/CicloDeVida">Historial de Recursos</a></li>
                 </ul>
             </li>
 
@@ -48,6 +49,7 @@
                 <ul Class="sub">
                     <li> <a class="" href="/EventosCalendarios">Eventos UV</a></li>
                     <li> <a class="" href="/Tareas/Create">Registrar Tareas</a></li>
+                    <li> <a class="" href="/CicloDeVida">Historial de Recursos</a></li>
                 </ul>
             </li>
             Else

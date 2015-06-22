@@ -36,7 +36,7 @@ End Code
 <div class="row">
     <div class="col-md-12">
         <header class="panel-heading">
-            <h3>Recurso</h3>
+            <h3>Recursos Completados</h3>
         </header>
         <div class="breadcrumb">
             <a class="btn btn-default btn-sm" href="javascript:void(0)" id="botonBuscar"><span class="glyphicon glyphicon-filter"></span> Filtrar</a>
