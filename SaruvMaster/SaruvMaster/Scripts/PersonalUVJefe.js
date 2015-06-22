@@ -333,7 +333,10 @@ $(document).ready(function () {
             },
             error: function () { toastr.error("Ha ocurrido un error por parte del servidor"); }
         })
-    }
+        $("#" + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).click(function (e) {
+            mostrarObservacion(jsonData);
+        });
+    }//Final bindRecurso
 });
 function cambiarEstado(recursoPorUsuario) {
     var estado = $('#modalCambiarEstado_' + recursoPorUsuario + ' select').val();
@@ -349,6 +352,9 @@ function cambiarEstado(recursoPorUsuario) {
                 $("#" + IDUsuarioActual + "_" + recursoPorUsuario).remove();
             }
             toastr.success("El estado del recurso ha sido actualizado")
+            if (estado != "Terminado") {
+                history.go(0)
+            }
         },
         error: function (dataError) { toastr.error("Ha ocurrido un error por parte del servidor"); }
     });   
@@ -427,6 +433,19 @@ function enviarSiguienteDepto(idRecurso) {
                                 success: function (usuarios) {
                                 },
                                 error: function (errorData) {
+                                    toastr.error("Ha ocurrido un error por parte del servidor");
+                                }
+                            });
+                            $.ajax({
+                                type: "GET",
+                                url: "/PersonalUV/updateObservacion",
+                                data: { "observacion": $('#txtObservacion_' + idRecurso).val(), "recursoID": idRecurso },
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (usuarios) {
+                                },
+                                error: function (errorData) {
+                                    toastr.error("Ha ocurrido un error por parte del servidor");
                                 }
                             });
                         },
@@ -504,4 +523,45 @@ function eliminarRecurso(recursoId) {
     $('#selectArchivosRecurso_' + recursoId).remove(idArchivo);
     $("#" + recursoId + ".frmDelRecurso").prop("action", url + "?archivoId=" + idArchivo);
     return true;
+}
+function validarEnviarSiguienteDepto(idRecurso) {
+    $.ajax({
+        type: "GET",
+        url: "/PersonalUV/getRecursoPorUsuario/",
+        data: { "idUsuario": IDUsuarioActual, "idRecurso": idRecurso },
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (res) {
+            $.each(res, function (ind, recUsr) {
+                if (recUsr.Estado == "Terminado") {
+                    $('#linkEscribaObservacion_' + idRecurso).click()
+                } else {
+                    $("#linkAviso").click();
+                    $("#aviso .modal-body").html("Debe Cambiar el estado del recurso a terminado para poder enviar al siguiente departamento");
+                }
+            })
+        },
+        error: function (errorData) {
+            toastr.error("Ha ocurrido un error por parte del servidor");
+        }
+    });
+}
+function mostrarObservacion(jsonData) {
+    $.ajax({
+        type: "GET",
+        url: "/PersonalUV/mostrarObservacion/",
+        data: { "recursoID": jsonData.recurso.ID },
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (res) {
+            if (res.hasOwnProperty("isRead")) { } else {
+                $("#linkAviso").click();
+                $("#aviso .modal-body").html("Observacion: " + res.Observacion);
+                $("#" + jsonData.usuario['ID'] + "_" + jsonData.recurso['ID']).unbind('click')
+            }
+        },
+        error: function () {
+            toastr.error("Ha ocurrido un error por parte del servidor");
+        }
+    })
 }

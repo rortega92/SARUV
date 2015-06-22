@@ -477,4 +477,8 @@ Public Class AccountController
         End Sub
     End Class
 #End Region
+    Function Index() As ActionResult
+        ViewBag.Departamentos = db.Departamento.ToList()
+        Return View(UserManager.Users.ToList())
+    End Function
 End Class

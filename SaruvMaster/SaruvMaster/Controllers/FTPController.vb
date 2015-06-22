@@ -86,7 +86,7 @@ Namespace Controllers
                 End If
                 requestObj = Nothing
                 insertArchivo(fileName, tipo, recursoId)
-
+                updateCicloDeVidaSubirArchivo(recursoId, fileName, tipo)
 
 
             Catch ex As Exception
@@ -228,7 +228,10 @@ Namespace Controllers
                     'toate de todo buen'
                     Console.Write("listo")
                 End If
+                Dim rowCicloDeVida = db.UserFile.Where(Function(e) e.ID = archivoId).First()
+                updateCicloDeVidaEliminarArchivo(rowCicloDeVida.RecursoID, rowCicloDeVida.NombreArchivo, rowCicloDeVida.TipoArchivo)
                 deleteArchivo(archivoId)
+
 
             Catch ex As Exception
                 'toast de que ocurrio un error'
@@ -252,6 +255,92 @@ Namespace Controllers
             Dim row As New Dictionary(Of String, String)
             row.Add("deleted", res.Equals(1))
             Return Json(row, JsonRequestBehavior.AllowGet)
+        End Function
+
+        Function updateCicloDeVidaSubirArchivo(ByVal recursoID As Integer, ByVal nombreArchivo As String, ByVal tipoArchivo As Integer) As ActionResult
+            Dim UsuarioID = UserManager.Users.Where(Function(e) e.UserName = My.User.Name).First().Id
+            Dim row = db.CicloDeVida.Where(Function(e) e.RecursoID = recursoID And e.UsuarioID = UsuarioID).First()
+
+            Dim con As New Connection
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cmd.CommandText = "CicloDeVida_InsertNewState"
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@RecursoID"
+            parm.Value = recursoID
+            cmd.Parameters.Add(parm)
+            Dim parm1 = New SqlParameter()
+            parm1.ParameterName = "@UsuarioID"
+            parm1.Value = UsuarioID
+            cmd.Parameters.Add(parm1)
+            Dim parm2 = New SqlParameter()
+            parm2.ParameterName = "@Estado"
+            parm2.Value = row.Estado
+            cmd.Parameters.Add(parm2)
+            Dim parm3 = New SqlParameter()
+            parm3.ParameterName = "@FechaModificacion"
+            parm3.Value = Date.Now
+            cmd.Parameters.Add(parm3)
+            Dim parm4 = New SqlParameter()
+            parm4.ParameterName = "@Observacion"
+            If (tipoArchivo = 0) Then
+                'es fuente
+                parm4.Value = "Se subió el archivo fuente " + nombreArchivo
+            Else
+                parm4.Value = "Se subió el archivo de recurso " + nombreArchivo
+            End If
+            cmd.Parameters.Add(parm4)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+            Dim returnJson As New Dictionary(Of String, String)
+            returnJson.Add("MyUserName", My.User.Name)
+            Return Json(returnJson, JsonRequestBehavior.AllowGet)
+        End Function
+
+        Function updateCicloDeVidaEliminarArchivo(ByVal recursoID As Integer, ByVal nombreArchivo As String, ByVal tipoArchivo As Integer) As ActionResult
+            Dim UsuarioID = UserManager.Users.Where(Function(e) e.UserName = My.User.Name).First().Id
+            Dim row = db.CicloDeVida.Where(Function(e) e.RecursoID = recursoID And e.UsuarioID = UsuarioID).First()
+
+            Dim con As New Connection
+            Dim cone = New SqlConnection(con.Database.Connection.ConnectionString)
+            Dim cmd = New SqlCommand()
+            cone.Open()
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cmd.CommandText = "CicloDeVida_InsertNewState"
+            Dim parm = New SqlParameter()
+            parm.ParameterName = "@RecursoID"
+            parm.Value = recursoID
+            cmd.Parameters.Add(parm)
+            Dim parm1 = New SqlParameter()
+            parm1.ParameterName = "@UsuarioID"
+            parm1.Value = UsuarioID
+            cmd.Parameters.Add(parm1)
+            Dim parm2 = New SqlParameter()
+            parm2.ParameterName = "@Estado"
+            parm2.Value = row.Estado
+            cmd.Parameters.Add(parm2)
+            Dim parm3 = New SqlParameter()
+            parm3.ParameterName = "@FechaModificacion"
+            parm3.Value = Date.Now
+            cmd.Parameters.Add(parm3)
+            Dim parm4 = New SqlParameter()
+            parm4.ParameterName = "@Observacion"
+            If (tipoArchivo = 0) Then
+                'es fuente
+                parm4.Value = "Se eliminó el archivo fuente " + nombreArchivo
+            Else
+                parm4.Value = "Se eliminó el archivo de recurso " + nombreArchivo
+            End If
+            cmd.Parameters.Add(parm4)
+            cmd.Connection = cone
+            Dim res = cmd.ExecuteNonQuery()
+            cone.Close()
+            Dim returnJson As New Dictionary(Of String, String)
+            returnJson.Add("MyUserName", My.User.Name)
+            Return Json(returnJson, JsonRequestBehavior.AllowGet)
         End Function
     End Class
 
