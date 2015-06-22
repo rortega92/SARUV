@@ -69,7 +69,7 @@ Namespace Controllers
             Return View(recurso.ToList())
         End Function
 
-        Function RecursosCompletos(ByVal wantsJson As Boolean?) As ActionResult
+        Function RecursosCompletos(ByVal wantsJson As Boolean?, ByVal searchString As String, ByVal searchConceptInput As String) As ActionResult
             Dim recurso = db.Recurso.Include(Function(r) r.ClienteCorporativo).Include(Function(r) r.Curso).Include(Function(r) r.Docente).Include(Function(r) r.Empresa).Include(Function(r) r.ModalidadDeCurso).Include(Function(r) r.TipoDeRecurso)
             Dim departamentoId = db.Departamento.Where(Function(e) e.Nombre = "Entrega").First().ID
             Dim usuariosEntrega = UserManager.Users.Where(Function(u) u.DepartamentoID = departamentoId).ToList()
@@ -101,6 +101,37 @@ Namespace Controllers
                 Next
                 Return Json(returnRecursos, JsonRequestBehavior.AllowGet)
             End If
+
+            If Not String.IsNullOrEmpty(searchString) Then
+
+                Select Case searchConceptInput
+                    Case "Nombre"
+                        recurso = recurso.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Tipo de Recurso"
+                        recurso = recurso.Where(Function(m) m.TipoDeRecurso.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Modalidad"
+                        recurso = recurso.Where(Function(m) m.ModalidadDeCurso.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Empresa"
+                        recurso = recurso.Where(Function(m) m.Empresa.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Curso"
+                        recurso = recurso.Where(Function(m) m.Curso.Nombres.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Cliente Corp."
+                        recurso = recurso.Where(Function(m) m.ClienteCorporativo.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Docente"
+                        recurso = recurso.Where(Function(m) m.Docente.Nombres.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Correo Electrónico"
+                        recurso = recurso.Where(Function(m) m.Docente.correoElectronico.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Duración"
+                        recurso = recurso.Where(Function(m) m.Duracion.ToString.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Prioridad"
+                        recurso = recurso.Where(Function(m) m.Prioridad.ToUpper().Contains(searchString.ToUpper()))
+                    Case "Fecha de Entrega"
+                        recurso = recurso.Where(Function(m) m.FechaEntrega.ToString.ToUpper().Contains(searchString.ToUpper()))
+                    Case Else
+                        recurso = recurso.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                End Select
+            End If
+
             Return View(recursos.ToList())
         End Function
 
