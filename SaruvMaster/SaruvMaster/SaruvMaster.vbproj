@@ -254,6 +254,10 @@
       <DependentUpon>201506211913586_Tareas.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506211913586_Tareas.vb" />
+    <Compile Include="Migrations\201506222156044_ModelosEventosConFechaMod.Designer.vb">
+      <DependentUpon>201506222156044_ModelosEventosConFechaMod.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506222156044_ModelosEventosConFechaMod.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -319,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506211913586_Tareas.resx">
       <DependentUpon>201506211913586_Tareas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506222156044_ModelosEventosConFechaMod.resx">
+      <DependentUpon>201506222156044_ModelosEventosConFechaMod.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

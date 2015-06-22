@@ -3,6 +3,7 @@ Public Class EventosEstudio
 
     Public Property ID As Integer
 
+    <Required(ErrorMessage:="Este campo es obligatorio")>
     <StringLength(255, ErrorMessage:="Este campo solo permite un máximo de 255 caracteres")>
     Public Property Evento As String
 
@@ -17,12 +18,15 @@ Public Class EventosEstudio
 
     Public Overridable Property ClienteCorporativo As ClienteCorporativo
 
+    <Required(ErrorMessage:="Este campo es obligatorio")>
     <DataType(DataType.Date)>
     Public Property FechaReserva As Date
 
+    <Required(ErrorMessage:="Este campo es obligatorio")>
     <DataType(DataType.Time)>
     Public Property HoraInicio As Date
 
+    <Required(ErrorMessage:="Este campo es obligatorio")>
     <DataType(DataType.Time)>
     Public Property HoraFinal As Date
 
