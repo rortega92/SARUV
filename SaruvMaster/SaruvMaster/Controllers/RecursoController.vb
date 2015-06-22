@@ -106,29 +106,29 @@ Namespace Controllers
 
                 Select Case searchConceptInput
                     Case "Nombre"
-                        recurso = recurso.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                        recursos = recursos.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper())).ToList()
                     Case "Tipo de Recurso"
-                        recurso = recurso.Where(Function(m) m.TipoDeRecurso.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                        recursos = recursos.Where(Function(m) m.TipoDeRecurso.Nombre.ToUpper().Contains(searchString.ToUpper())).ToList()
                     Case "Modalidad"
-                        recurso = recurso.Where(Function(m) m.ModalidadDeCurso.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                        recursos = recursos.Where(Function(m) m.ModalidadDeCurso.Nombre.ToUpper().Contains(searchString.ToUpper())).ToList()
                     Case "Empresa"
-                        recurso = recurso.Where(Function(m) m.Empresa.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                        recursos = recursos.Where(Function(m) m.Empresa.Nombre.ToUpper().Contains(searchString.ToUpper())).ToList()
                     Case "Curso"
-                        recurso = recurso.Where(Function(m) m.Curso.Nombres.ToUpper().Contains(searchString.ToUpper()))
+                        recursos = recursos.Where(Function(m) m.Curso.Nombres.ToUpper().Contains(searchString.ToUpper())).ToList()
                     Case "Cliente Corp."
-                        recurso = recurso.Where(Function(m) m.ClienteCorporativo.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                        recursos = recursos.Where(Function(m) m.ClienteCorporativo.Nombre.ToUpper().Contains(searchString.ToUpper())).ToList()
                     Case "Docente"
-                        recurso = recurso.Where(Function(m) m.Docente.Nombres.ToUpper().Contains(searchString.ToUpper()))
+                        recursos = recursos.Where(Function(m) m.Docente.Nombres.ToUpper().Contains(searchString.ToUpper())).ToList()
                     Case "Correo Electrónico"
-                        recurso = recurso.Where(Function(m) m.Docente.correoElectronico.ToUpper().Contains(searchString.ToUpper()))
+                        recursos = recursos.Where(Function(m) m.Docente.correoElectronico.ToUpper().Contains(searchString.ToUpper())).ToList()
                     Case "Duración"
-                        recurso = recurso.Where(Function(m) m.Duracion.ToString.ToUpper().Contains(searchString.ToUpper()))
+                        recursos = recursos.Where(Function(m) m.Duracion.ToString.ToUpper().Contains(searchString.ToUpper())).ToList()
                     Case "Prioridad"
-                        recurso = recurso.Where(Function(m) m.Prioridad.ToUpper().Contains(searchString.ToUpper()))
+                        recursos = recursos.Where(Function(m) m.Prioridad.ToUpper().Contains(searchString.ToUpper())).ToList()
                     Case "Fecha de Entrega"
-                        recurso = recurso.Where(Function(m) m.FechaEntrega.ToString.ToUpper().Contains(searchString.ToUpper()))
+                        recursos = recursos.Where(Function(m) m.FechaEntrega.ToString.ToUpper().Contains(searchString.ToUpper())).ToList()
                     Case Else
-                        recurso = recurso.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                        recursos = recursos.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper())).ToList()
                 End Select
             End If
 
