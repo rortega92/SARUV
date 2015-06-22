@@ -131,6 +131,8 @@ Public Class AccountController
     <AllowAnonymous>
     <ValidateAntiForgeryToken>
     Public Async Function Register(model As RegisterViewModel) As Task(Of ActionResult)
+        Dim userStore = New UserStore(Of ApplicationUser)(db)
+        UserManager = New ApplicationUserManager(userStore)
         Dim roleStore = New RoleStore(Of IdentityRole)(db)
         Dim roleManager = New RoleManager(Of IdentityRole)(roleStore)
         Dim isJefe As Integer = 0
@@ -172,9 +174,9 @@ Public Class AccountController
                 })
             End If
 
-            Dim result = Await UserManager.CreateAsync(user, model.Password)
+            Dim result = UserManager.Create(user, model.Password)
             If result.Succeeded Then
-                Await SignInManager.SignInAsync(user, isPersistent:=False, rememberBrowser:=False)
+                'Await SignInManager.SignInAsync(user, isPersistent:=False, rememberBrowser:=False)
 
                 ' For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 ' Send an email with this link
@@ -182,7 +184,7 @@ Public Class AccountController
                 ' Dim callbackUrl = Url.Action("ConfirmEmail", "Account", New With { .userId = user.Id, .code = code }, protocol := Request.Url.Scheme)
                 ' Await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=""" & callbackUrl & """>here</a>")
 
-                Return RedirectToAction("Index", "Home")
+                Return RedirectToAction("Index", "Account")
             End If
             AddErrors(result)
         End If
@@ -492,7 +494,12 @@ Public Class AccountController
                 Case "Email"
                     users = users.Where(Function(m) m.Email.ToUpper().Contains(searchString.ToUpper()))
                 Case "Departamento"
-                    users = users.Where(Function(m) m.Departamento.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Dim depto = db.Departamento.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Dim idDepto As Integer = -1
+                    If depto.ToArray().Length > 0 Then
+                        idDepto = depto.First().ID
+                    End If
+                    users = users.Where(Function(m) m.DepartamentoID = idDepto)
 
                 Case Else
                     users = users.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))

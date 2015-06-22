@@ -38,6 +38,7 @@ End Code
             <h3>Usuarios</h3>
         </header>
         <div class="breadcrumb">
+            <a class="btn btn-default btn-sm" href="/Account/Register"><span class="glyphicon glyphicon-plus"></span> Crear Nuevo</a>
             <a class="btn btn-default btn-sm" href="javascript:void(0)" id="botonBuscar"><span class="glyphicon glyphicon-filter"></span> Filtrar</a>
         </div>
     </div>
@@ -97,9 +98,6 @@ End Code
                         <th>
                             @Html.DisplayNameFor(Function(model) model.FechaModificacion)
                         </th>
-                        <th>
-                            Acciones
-                        </th>
                     </tr>
                         </thead>
 
@@ -144,12 +142,6 @@ End Code
                             <td>
                                 @Html.DisplayFor(Function(modelItem) item.FechaModificacion)
                             </td>
-                             <td>
-                                 <a class="btn btn-default btn-sm" href="@Url.Action("Edit", New With {.id = item.ID})"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-                                 <a class="btn btn-default btn-sm" href="@Url.Action("Details", New With {.id = item.ID})"><span class="glyphicon glyphicon-list-alt"></span> Detalles</a>
-                                 <a class="btn btn-default btn-sm" href="@Url.Action("Delete", New With {.id = item.ID})"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
-
-                             </td>
                         </tr>
                     Next
 

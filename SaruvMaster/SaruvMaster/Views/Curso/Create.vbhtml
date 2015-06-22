@@ -26,42 +26,8 @@ End Code
         $("#FechaFinal").addClass('form-control text-box single-line valid');
     });
 
-    $(function () {
-        $('#agregarArea').click(function (e) {
-            $('#eventAdd').modal();
-        });
-    });
+    
 </script>
-<div id="eventAdd" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                Area de Conocimeinto
-            </div>
-            <div class="modal-body">
-                @Using (Html.BeginForm())
-                    @Html.AntiForgeryToken()
-                    @<div class="form-horizontal">
-                        <hr />
-                        @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
-                        <div class="form-group">
-                            <label style="display: inline;" for="Nombre" class="control-label col-md-2">Nombre @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Crear" class="btn btn-default" />
-                            </div>
-                        </div>
-                    </div>
-                End Using
-            </div>
-        </div>
-    </div>
-</div>
 
 <h3>Curso</h3>
 
@@ -89,7 +55,7 @@ End Code
                     <label for="Nombre" class="control-label col-md-2">Área de Conocimiento @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     <div class="col-md-10">
                         @Html.DropDownList("AreaDeConocimientoID", Nothing, htmlAttributes:=New With {.class = "form-control", .style = "display: inline;"})
-                        <a class="btn btn-default btn-sm" href="javascript:void(0)" id="agregarArea">Agregar</a>
+                        
 
                         @Html.ValidationMessageFor(Function(model) model.AreaDeConocimientoID, "", New With {.class = "text-danger"})
 

@@ -32,13 +32,20 @@ Namespace Controllers
             End Set
         End Property
         ' GET: Tareas
-        <LogFilter>
         Function Index(ByVal idUsuario As String) As ActionResult
-            If Not (idUsuario Is Nothing) Then
-                Dim tareas = db.Tarea.Where(Function(e) e.UsuarioID = idUsuario)
-                Return View(tareas.ToList())
+            If My.User.IsAuthenticated Then
+                If My.User.IsInRole("Admin") Then
+                    If Not (idUsuario Is Nothing) Then
+                        Dim tareas = db.Tarea.Where(Function(e) e.UsuarioID = idUsuario)
+                        Return View(tareas.ToList())
+                    End If
+                    Return View(db.Tarea.ToList())
+                Else
+                    Return RedirectToAction("Index", "Home")
+                End If
+            Else
+                Return RedirectToAction("Index", "Home")
             End If
-            Return View(db.Tarea.ToList())
         End Function
         ' GET: Tareas/Create
         Function Create() As ActionResult
