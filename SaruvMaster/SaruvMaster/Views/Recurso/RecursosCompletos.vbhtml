@@ -21,7 +21,7 @@ End Code
             $('.input-group #search_param').val(parametro);
             $("#searchConceptInput").val(concepto);
         });
-    })
+    });
 </script>
 
 <div class="row indexHeader">
