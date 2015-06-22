@@ -16,8 +16,14 @@ Namespace Controllers
         Private db As New Connection
 
         ' GET: Empresa
-        Function Index() As ActionResult
-            Return View(db.Empresa.ToList())
+        Function Index(ByVal searchString As String) As ActionResult
+            Dim empresa = From m In db.Empresa
+                                   Select m
+            If Not String.IsNullOrEmpty(searchString) Then
+                empresa = empresa.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+            End If
+
+            Return View(empresa)
         End Function
 
         ' GET: Empresa/Details/5

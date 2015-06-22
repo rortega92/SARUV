@@ -478,8 +478,27 @@ Public Class AccountController
     End Class
 #End Region
     <LogFilter>
-    Function Index() As ActionResult
+    Function Index(ByVal searchString As String, ByVal searchConceptInput As String) As ActionResult
         ViewBag.Departamentos = db.Departamento.ToList()
-        Return View(UserManager.Users.ToList())
+        Dim users = UserManager.Users
+
+        If Not String.IsNullOrEmpty(searchString) Then
+
+            Select Case searchConceptInput
+                Case "Nombre"
+                    users = users.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                Case "Apellido"
+                    users = users.Where(Function(m) m.Apellido.ToUpper().Contains(searchString.ToUpper()))
+                Case "Email"
+                    users = users.Where(Function(m) m.Email.ToUpper().Contains(searchString.ToUpper()))
+                Case "Departamento"
+                    users = users.Where(Function(m) m.Departamento.Nombre.ToUpper().Contains(searchString.ToUpper()))
+
+                Case Else
+                    users = users.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+            End Select
+        End If
+
+        Return View(users.ToList())
     End Function
 End Class
