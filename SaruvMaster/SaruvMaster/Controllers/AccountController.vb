@@ -492,7 +492,12 @@ Public Class AccountController
                 Case "Email"
                     users = users.Where(Function(m) m.Email.ToUpper().Contains(searchString.ToUpper()))
                 Case "Departamento"
-                    users = users.Where(Function(m) m.Departamento.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Dim depto = db.Departamento.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
+                    Dim idDepto As Integer = -1
+                    If depto.ToArray().Length > 0 Then
+                        idDepto = depto.First().ID
+                    End If
+                    users = users.Where(Function(m) m.DepartamentoID = idDepto)
 
                 Case Else
                     users = users.Where(Function(m) m.Nombre.ToUpper().Contains(searchString.ToUpper()))
