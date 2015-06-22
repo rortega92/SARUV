@@ -40,7 +40,7 @@ End Code
             <h3>Tarea</h3>
         </header>
         <div class="breadcrumb">
-            <a class="btn btn-default btn-sm" href="/Tarea/Create"><span class="glyphicon glyphicon-plus"></span> Crear Nuevo</a>
+            <a class="btn btn-default btn-sm" href="/Tareas/Create"><span class="glyphicon glyphicon-plus"></span> Crear Nuevo</a>
             <a class="btn btn-default btn-sm" href="javascript:void(0)" id="botonBuscar"><span class="glyphicon glyphicon-filter"></span> Filtrar</a>
         </div>
     </div>
