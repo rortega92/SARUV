@@ -33,7 +33,8 @@
                     <li> <a Class="" href="/Facultad">Facultad</a></li>
                     <li> <a Class="" href="/ModalidadDeCurso">Modalidad de Curso</a></li>
                     <li> <a Class="" href="/TipoDeRecurso">Tipo de Recurso</a></li>
-                    <li> <a Class="" href="/Recurso">Recurso</a></li>
+                    <li> <a class="" href="/Recurso">Recurso</a></li>
+                    <li> <a Class="" href="/Account">Usuarios</a></li>
                 </ul>
             </li>
             End If
