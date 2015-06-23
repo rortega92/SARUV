@@ -106,7 +106,9 @@ End Code
                             <option value="17:00">17:00</option>
                             <option value="17:30">17:30</option>
                         </select>
-                        @Html.ValidationMessageFor(Function(model) model.HoraFinal, "", New With {.class = "text-danger"})
+                        <span hidden="hidden" id="TimeError" class="text-danger field-validation-error" data-valmsg-for="HoraFinal" data-valmsg-replace="true">
+                            <span class="" for="Nombre">La hora de inicio debe de ir antes de la hora final.</span>
+                        </span>
                     </div>
                 </div>
 
@@ -154,7 +156,7 @@ End Code
        
 
         if ($("#HoraInicio").val() >= $("#HoraFinal").val()) {
-
+            $("#TimeError").show();
             return false;
 
         }
