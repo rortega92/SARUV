@@ -106,7 +106,7 @@ End Code
                                     @Html.DisplayFor(Function(modelItem) item.Estado)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(Function(modelItem) item.FechaModificacion)
+                                    @Html.DisplayFor(Function(modelItem) item.FechaModificacion) - @item.FechaModificacion.TimeOfDay
                                 </td>
                                 <td>
                                     @Html.DisplayFor(Function(modelItem) item.Observacion)

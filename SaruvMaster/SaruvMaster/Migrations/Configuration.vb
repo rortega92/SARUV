@@ -576,8 +576,8 @@ Namespace Migrations
                        .Prioridad = "Alta",
                        .FechaEntrega = DateTime.Parse("2015-09-01"),
                        .IsDeleted = 0,
-                       .FechaCreacion = DateTime.Parse("2010-09-01"),
-                        .FechaModificacion = DateTime.Parse("2010-10-01")
+                       .FechaCreacion = Date.Now,
+                        .FechaModificacion = Date.Now
                    },
                    New Recurso() With {
                        .Nombre = "Sea Emprendedor Hoy",
@@ -589,8 +589,8 @@ Namespace Migrations
                        .Prioridad = "Media",
                        .FechaEntrega = DateTime.Parse("2015-09-03"),
                        .IsDeleted = 0,
-                       .FechaCreacion = DateTime.Parse("2010-09-01"),
-                        .FechaModificacion = DateTime.Parse("2010-10-01")
+                       .FechaCreacion = Date.Now,
+                        .FechaModificacion = Date.Now
                    },
                    New Recurso() With {
                        .Nombre = "Ondas",
@@ -602,8 +602,8 @@ Namespace Migrations
                        .Prioridad = "Baja",
                        .FechaEntrega = DateTime.Parse("2015-09-05"),
                        .IsDeleted = 0,
-                       .FechaCreacion = DateTime.Parse("2010-09-01"),
-                        .FechaModificacion = DateTime.Parse("2010-10-01")
+                       .FechaCreacion = Date.Now,
+                        .FechaModificacion = Date.Now
                    },
                    New Recurso() With {
                        .Nombre = "Alcalinos",
@@ -615,8 +615,8 @@ Namespace Migrations
                        .Prioridad = "Media",
                        .FechaEntrega = DateTime.Parse("2015-09-03"),
                        .IsDeleted = 0,
-                       .FechaCreacion = DateTime.Parse("2010-09-01"),
-                        .FechaModificacion = DateTime.Parse("2010-10-01")
+                       .FechaCreacion = Date.Now,
+                        .FechaModificacion = Date.Now
                    },
                    New Recurso() With {
                        .Nombre = "Como Atender Al Cliente",
@@ -628,8 +628,8 @@ Namespace Migrations
                        .Prioridad = "Alta",
                        .FechaEntrega = DateTime.Parse("2015-09-01"),
                        .IsDeleted = 0,
-                       .FechaCreacion = DateTime.Parse("2010-09-01"),
-                        .FechaModificacion = DateTime.Parse("2010-10-01")
+                       .FechaCreacion = Date.Now,
+                        .FechaModificacion = Date.Now
                    },
                    New Recurso() With {
                        .Nombre = "Que Hacer En Un Simulacro",
@@ -641,8 +641,8 @@ Namespace Migrations
                        .Prioridad = "Baja",
                        .FechaEntrega = DateTime.Parse("2015-09-10"),
                        .IsDeleted = 0,
-                       .FechaCreacion = DateTime.Parse("2010-09-01"),
-                        .FechaModificacion = DateTime.Parse("2010-10-01")
+                       .FechaCreacion = Date.Now,
+                        .FechaModificacion = Date.Now
                    }
                }
             For Each rec In recursos
