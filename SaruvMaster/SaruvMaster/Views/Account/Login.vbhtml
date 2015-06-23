@@ -56,10 +56,7 @@ End Code
         </div>
     </div>
 </section>
-<p>
-    <a class="btn btn-default btn-sm" href="/Account/Register">Registrarse</a>
 
-</p>
 <div class="col-md-4">
     <section id="socialLoginForm">
         @Html.Partial("_ExternalLoginsListPartial", New ExternalLoginListViewModel With {.ReturnUrl = ViewBag.ReturnUrl})

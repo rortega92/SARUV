@@ -46,6 +46,10 @@ End Code
         </div>
     </div>
 </section>
+<p>
+    <a class="btn btn-default btn-sm" href="/">Pagina Principal</a>
+
+</p>
 @Section Scripts
     @Scripts.Render("~/bundles/jqueryval")
 End Section
