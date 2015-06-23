@@ -218,7 +218,7 @@ End If
                                 </div>
                                 <form>
                                     <div class="modal-body" style="height:100%">
-                                        <textarea id="txtObservacion_@item.RecursoID" style="width:100%" required></textarea>
+                                        <textarea id="txtObservacion_@item.RecursoID" style="width:100%" required class="form-control"></textarea>
                                     </div>
                                     <div class="modal-footer">
                                         <button value="Submit" data-dismiss="modal" data-target="#escribaObservacion" class="btn btn-default" type="button" onclick="enviarSiguienteDepto(@item.RecursoID)">Aceptar</button>

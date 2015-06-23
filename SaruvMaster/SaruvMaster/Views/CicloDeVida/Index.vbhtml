@@ -32,7 +32,7 @@ End Code
 </script>
 
 
-<div class="row indexHeader">
+<div class="row">
     <div class="col-md-12">
         <header class="panel-heading">
             <h3>Historial de Recursos</h3>
