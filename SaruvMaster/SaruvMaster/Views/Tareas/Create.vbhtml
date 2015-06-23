@@ -25,6 +25,7 @@ End Code
                     <label for="Nombre" class="control-label col-md-2">Descripción @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                     
                     <div class="col-md-10">
+                     
                         @Html.TextAreaFor(Function(model) model.Descripcion, New With {.htmlAttributes = New With {.class = "form-control"}})
                         @Html.ValidationMessageFor(Function(model) model.Descripcion, "", New With {.class = "text-danger"})
                     </div>

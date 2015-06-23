@@ -57,7 +57,7 @@ End Code
     </div>
 </section>
 <p>
-    <a style="color: #007AFF" class="btn btn-default btn-sm" href="/Account/Register">Registrarse</a>
+    <a class="btn btn-default btn-sm" href="/Account/Register">Registrarse</a>
 
 </p>
 <div class="col-md-4">
