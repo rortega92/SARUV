@@ -3,6 +3,7 @@
     ViewData("Title") = "Calendario"
     Layout = "~/Views/Shared/_Layout2.vbhtml"
 End Code
+@Styles.Render("~/Content/css")
 @Styles.Render("~/Content/fullcalendarcss")
 @Scripts.Render("~/bundles/fullcalendarjs")
 @Scripts.Render("~/bundles/jquery")
@@ -35,7 +36,7 @@ End Code
             eventClick: function (event, jsEvent, view) {
                 $('#modalTitle').html(event.title);
                 if (event.description != null) {
-                    $('#modalDescription').html("<label class='control-label col-md-2'>Descripción: </label> " + event.description);
+                    $('#modalDescription').html("<label class='control-label col-md-2'>Descripción: </label>" + "&nbsp; &nbsp;" + event.description);
                 }
                 
                 $('#modalHoraInicio').html("<label class='control-label col-md-2'>Inicio: </label> " + event.start);
@@ -118,7 +119,7 @@ End Code
                         <div class="form-group">
                             <label for="FechaReserva" class="control-label col-md-2">Fecha de Reserva @Html.Label("*", htmlAttributes:=New With {.class = "text-danger"}) </label>
                             <div class="col-md-10">
-                                @Html.JQueryUI().DatepickerFor(Function(model) model.FechaReserva, New With {.htmlAttributes = New With {.class = "form-control", .id = "inicio"}}).MinDate(DateTime.Today).DateFormat("mm-dd-yy")
+                                @Html.JQueryUI().DatepickerFor(Function(model) model.FechaReserva, New With {.htmlAttributes = New With {.class = "form-control", .id = "inicio"}}).MinDate(DateTime.Today)
                                 @Html.ValidationMessageFor(Function(model) model.FechaReserva, "", New With {.class = "text-danger"})
                             </div>
                         </div>

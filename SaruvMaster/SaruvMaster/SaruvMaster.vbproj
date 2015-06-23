@@ -258,6 +258,10 @@
       <DependentUpon>201506222156044_ModelosEventosConFechaMod.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506222156044_ModelosEventosConFechaMod.vb" />
+    <Compile Include="Migrations\201506230438425_NoDescriptionRequiredCalendario.Designer.vb">
+      <DependentUpon>201506230438425_NoDescriptionRequiredCalendario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506230438425_NoDescriptionRequiredCalendario.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\AreaDeConocimiento.vb" />
@@ -326,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506222156044_ModelosEventosConFechaMod.resx">
       <DependentUpon>201506222156044_ModelosEventosConFechaMod.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506230438425_NoDescriptionRequiredCalendario.resx">
+      <DependentUpon>201506230438425_NoDescriptionRequiredCalendario.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

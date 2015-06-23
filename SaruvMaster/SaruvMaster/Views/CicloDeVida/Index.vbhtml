@@ -4,12 +4,20 @@
 
 End Code
 <script>
-    $(function () {
-        $("#filterButton").click(function () {
-            $("#Buscar").toggle();
-        })
-    });
 
+    $(function () {
+        $("#botonBuscar").click(function () {
+            $("#Buscar").show("blind");
+            $("#botonBuscar").hide();
+
+        })
+        $("#cancelar").click(function () {
+            $("#Buscar").hide("blind");
+            $("#botonBuscar").show();
+
+        })
+        $("#Buscar").hide();
+    });
     $(document).ready(function (e) {
         $('#search-panel .dropdown-menu').find('a').click(function (e) {
             e.preventDefault();
@@ -20,7 +28,9 @@ End Code
             $("#searchConceptInput").val(concepto);
         });
     });
+
 </script>
+
 
 <div class="row indexHeader">
     <div class="col-md-12">
@@ -28,31 +38,35 @@ End Code
             <h3>Historial de Recursos</h3>
         </header>
         <div class="breadcrumb">
+            <a class="btn btn-default btn-sm" href="javascript:void(0)" id="botonBuscar"><span class="glyphicon glyphicon-filter"></span> Filtrar</a>
 
         </div>
     </div>
-    <div class="col-md-12" id="Buscar">
-        <div class="filterBox col-md-12">
-            <div class="col-md-8">
-                <div class="col-md-1" id="search-panel">
+    
+</div>
+
+<div id="Buscar" class="row" style="margin-bottom:10px">
+    <div class="col-xs-4 col-xs-offset-2" style="margin-top:10px">
+        @Using Html.BeginForm()
+            @<div class="input-group">
+                <div class="input-group-btn" id="search-panel">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <span id="search_concept">Filtrar Por</span> <span class="caret"></span>
                     </button>
                     <input type="hidden" value="Nombre" id="searchConceptInput" name="searchConceptInput" />
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#Nombre">Nombre</a></li>
-                        <li><a href="#Fecha Entrega">Fecha</a></li>
+                        <li><a href="#Usuario">Usuario</a></li>
+                        
                     </ul>
                 </div>
-                <div class="col-md-3">
-                    <input class="form-control" type="search" placeholder="Buscar" />
-                    <span class="glyphicon glyphicon-search"></span>
-                </div>
+                @Html.TextBox("SearchString", Nothing, htmlAttributes:=New With {.class = "form-control"})
             </div>
-        </div>
+        End Using
+        <a href="javascript:void(0)" id="cancelar">Cancelar</a>
     </div>
-
 </div>
+
 
 <div class="row">
     <div class="col-md-12">

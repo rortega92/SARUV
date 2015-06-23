@@ -27,8 +27,8 @@ Namespace Controllers
                 Select Case searchConceptInput
                     Case "Nombre"
                         cicloDeVida = cicloDeVida.Where(Function(m) m.Recurso.Nombre.ToUpper().Contains(searchString.ToUpper()))
-                    Case "Fecha"
-                        cicloDeVida = cicloDeVida.Where(Function(m) m.FechaModificacion.Equals(DateTime.Parse(searchString)))
+                    Case "Usuario"
+                        cicloDeVida = cicloDeVida.Where(Function(m) m.Usuario.Nombre.ToUpper().Contains(searchString.ToUpper()))
        
                     Case Else
                         cicloDeVida = cicloDeVida.Where(Function(m) m.Recurso.Nombre.ToUpper().Contains(searchString.ToUpper()))
