@@ -7,7 +7,6 @@ Public Class EventosCalendario
     <StringLength(255, ErrorMessage:="Este campo solo permite un máximo de 255 caracteres")>
     Public Property Evento As String
 
-    <Required(ErrorMessage:="Este campo es obligatorio")>
     Public Property Description As String
 
     Public Property StartString As String
