@@ -1,6 +1,7 @@
 ﻿var IDUsuarioActual
 var DepartamentoActual
 $(document).ready(function () {
+    
     $(".tab-bg-primary").css("background", "#394A59");
     $(".tab-bg-primary").css("padding-bottom", "10px");
     function getParameterByName(name) {
@@ -24,6 +25,9 @@ $(document).ready(function () {
         success: function (res) {
             $.each(res, function (ind, ele) {
                 DepartamentoActual = { "ID": ele.ID, "Nombre": ele.Nombre }
+                if (DepartamentoActual.Nombre == "Grabación") {
+                    $(".sub-menu .sub").append('<li> <a Class="" href="/EventosEstudio">Estudio de Grabación</a></li>');
+                }
                 $.ajax({
                     type: "GET",
                     url: "/PersonalUV/getCurrentUsuarioId",
